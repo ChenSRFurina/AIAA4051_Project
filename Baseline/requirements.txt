@@ -1,0 +1,6 @@
+# Minimal experiment wrapper. Upstream Azure/Codex harness dependencies are unused.
+PyYAML>=6.0,<7
+transformers>=4.45,<6
+tokenizers>=0.20
+# Download/materialization only:
+pyarrow>=15

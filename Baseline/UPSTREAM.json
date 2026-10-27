@@ -1,0 +1,29 @@
+{
+  "repository": "https://github.com/ruisun7/GraphSkillEvo",
+  "commit": "722a8a913b05dc9d1b4078f0bec604cde4dc7529",
+  "snapshot": "vendor/GraphSkillEvo",
+  "snapshot_method": "git archive of the exact commit, excluding Git metadata",
+  "upstream_files_modified": false,
+  "integration": "CourseTrainer subclasses EvolutionarySkillTrainer; original sampling, selection, prompt construction, graph validation and scope adoption are reused.",
+  "common_course_changes": [
+    "Bounded initialization and per-candidate total attempts replace indefinite retries for both B and C",
+    "Fixed 100/30/50 dataset limits, population 2, max 3 rounds, max 2 candidates/round",
+    "Single fixed local model endpoint and shared token/call/GPU allocation accounting",
+    "HotpotQA supplied-context adapter and official answer-only yes/no F1 behavior",
+    "Common feedback token cap with retained selected-failure IDs",
+    "Frozen method/test boundary and complete prediction/error logs",
+    "Optional common JSON schema constraint for skill serialization on the local llama.cpp backend; QA prompts and answers remain unconstrained",
+    "For the local structured backend, a shared output-only size contract caps graph verbosity to six nodes/three task graphs within the existing 2048-token skill cap; operator temperature frozen at 0.6 after pilot diagnostics"
+  ],
+  "not_claimed": [
+    "Full-scale paper replication",
+    "All four crossover/mutation operators",
+    "JitRL numerical logit updates",
+    "Measured benchmark improvements"
+  ],
+  "publication_excludes": [
+    "Upstream evolved ckpt artifacts",
+    "Unneeded dataset manifests except SearchQA split ID metadata",
+    "Runtime caches"
+  ]
+}

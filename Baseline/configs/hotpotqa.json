@@ -1,0 +1,43 @@
+{
+  "dataset": "hotpotqa",
+  "seed": 42,
+  "rounds": 3,
+  "population_size": 2,
+  "train_batch_size": 20,
+  "failure_k": 3,
+  "max_attempts": 2,
+  "qa_max_tokens": 1024,
+  "operator_max_tokens": 3072,
+  "skill_max_tokens": 2048,
+  "feedback_max_tokens": 2048,
+  "qa_temperature": 0.0,
+  "operator_temperature": 0.6,
+  "top_p": 1.0,
+  "concurrency": 1,
+  "timeout_seconds": 300,
+  "gpu_ledger_path": "runs/gpu_accounting.jsonl",
+  "budget": {
+    "max_calls": 600,
+    "max_generated_tokens": 700000,
+    "max_wall_hours": 9
+  },
+  "pairing": {
+    "jaccard_threshold": 0.2,
+    "per_outcome_limit": 2
+  },
+  "model": {
+    "id": "Qwen3.5-9B-Q4_K_M",
+    "revision": "Qwen/Qwen3.5-9B@c202236235762e1c871ad0ccb60c8ee5ba337b9a;unsloth/Qwen3.5-9B-GGUF@3885219b6810b007914f3a7950a8d1b469d598a5",
+    "base_url": "http://127.0.0.1:8000/v1",
+    "api_key_env": "PROJECT5_API_KEY",
+    "tokenizer_path": "F:\\Document\\HKUST\\2026fall\\NLP\\Qwen3.5_9B_4bit\\tokenizer",
+    "precision": "GGUF Q4_K_M, CUDA 12.4, all layers on RTX 4070 Ti SUPER",
+    "server_version": "llama.cpp b11871 (b3fa69955ea81c3b60e77e3c1e2224c4a826ffb9)",
+    "extra_body": {
+      "chat_template_kwargs": {
+        "enable_thinking": false
+      }
+    },
+    "structured_operators": true
+  }
+}
