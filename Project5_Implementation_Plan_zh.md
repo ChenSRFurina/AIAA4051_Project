@@ -1,145 +1,196 @@
 # Project 5 实施方案
 
-## 项目目标与研究方案
+**课程题目：Evolving Graph-Structured Skills for LLM Agents**
 
-**课程题目：Evolving Graph-Structured Skills for LLM Agents**  
-**方案版本：v1，2026 年 10 月 23 日**  
-**拟定研究题目：利用成功与失败对照改进图结构技能优化**  
+**方案版本：v2，2026 年 10 月 27 日；本机真实 pilot 验证日期：2026 年 10 月 25 日。**
+
+**研究题目：利用成功与失败对照改进图结构技能优化**
+
 **英文工作标题：Success–Failure Contrastive Feedback for Graph-Structured Skill Optimization**
 
-本项目先完成 GraphSkillEvo 的课程规模复现，再检验一个具体假设：在同样的模型调用和生成 token 预算下，为技能优化器提供成功参照、失败偏差及应保留的有效行为，是否比仅提供失败记录更容易修复错误，并减少对已有能力的破坏。
+代码仓库：[AIAA4051_Project](https://github.com/ChenSRFurina/AIAA4051_Project)。本版根据已实现的 `Baseline/`、`Explore/`、本机模型服务和真实 pilot 记录更新，取代 v1 中“目录只有 PDF”“模型尚未确认”“程序待实现”的描述。源代码实现基点为提交 `6abf5d5fc0d115bdb5eb829339f5f5df3502fee3`；本文档后续修订以 Git 历史为准。
 
-这落实了我们讨论的思路：**相对于可比的成功案例，定位失败案例中有证据支持的有害偏差，重点抑制该偏差，同时保留共同的有效部分。** 主实验选择课程 Part 3 的 **Option A，修改优化器输入**。失败案例的抽样规则、父代与幸存者选择、验证评分保持一致。优化器依据对照反馈自动修改技能，形成带适用条件的检查步骤或行为约束。
+## 1 项目目标、研究边界与当前状态
 
-这里的“抑制”是通过技能指令影响后续输出，属于反馈引导的技能优化；它不等于给 logits 加数值惩罚。真正的动作概率惩罚单列为第 13 节的后续扩展，不能与主实验同时改动后仍声称只有一个变量。
+研究假设保持不变：在相同模型调用与生成 token 上限下，为图结构技能优化器提供可比成功参照、失败偏差及应保留的有效行为，是否比只提供失败记录更容易修复错误、减少已有能力退化。
 
-**完成标准：** 两个数据集上的四组主结果、完整失败清单、逐轮技能图、可复现代码和配置、最多六页报告及课程统一格式要求的演示材料。正结果、无提升或性能下降都可以形成完整结论，前提是对照公平、分析有证据。
+主实验选择课程 Part 3 的 **Option A：修改优化器输入**。B、C 共用失败抽样规则、训练 batch、父代与幸存者选择、验证评分、初始化和预算控制；C 只在父代的 `train_reflection_context` 中附加成功对照与局部反馈。优化结果必须由模型自动生成，不手写最终技能。
 
-## 1 课程要求与对应交付
+这里的“自我纠正”发生在 **train 经验驱动的技能迭代阶段**：相对于可比成功，识别有证据支持或明确标为假设的有害偏差，为下一版技能加入窄适用范围的检查，并保留有效行为。测试时只执行冻结技能，不读测试 gold，不按测试结果继续学习。
 
-本方案以本目录的 [课程项目说明第 19 至 23 页](/Users/sirui/code/2026fall/NLP/AIAA4051_Project/AIAA4051_26Fall_Final_Research_Projects.pdf) 为准。以下表格区分课程要求与方案中的具体实现选择。
+本版状态分为三类：
 
-| 课程要求 | 本方案的实施方式 | 验收材料 |
-| --- | --- | --- |
-| 在 SearchQA 和 HotpotQA 上复现 GraphSkillEvo | 两个数据集各自独立初始化、优化和评测技能 | 两套配置、数据 ID、运行日志 |
-| 固定模型进行比较 | 执行器和优化器使用同一固定开源模型检查点；pilot 后冻结 | 模型 revision、tokenizer、精度、服务版本 |
-| 说明训练集与验证集作用 | train 产生技能修改证据；dev 排名、选父代和幸存者、选最终技能，并用于错误诊断 | 数据流图与方法说明 |
-| 与 no-skill、initial-skill 比较 | 四组条件 N、I、B、C，定义见第 7 节 | 两个数据集的 EM、F1、延迟表 |
-| 展示技能演化 | 保存初始化及每轮所有候选、保留者和最终技能，导出流程图 | 技能 Markdown、图、版本关系 |
-| 完整开发集失败分析 | 收集原版最终技能在固定 dev 集上所有 EM=0 的样例 | 全量错误表、分类与节点诊断 |
-| 只选一个主要改进方向 | Option A：加入成功对照与偏差反馈；固定失败案例选择策略 | 改动说明、差异记录 |
-| 匹配调用与生成 token 预算 | 统一数据、轮数、候选数、每次调用限制和总预算；记录实际消耗 | 调用账本与预算对照 |
-| 冻结后测试 | 所有方法冻结后才运行两套固定 test；测试错误只做结果分析 | 冻结配置、完整 test 失败清单 |
-| 报告和演示 | 正文最多六页；实现细节可放附录 | 报告、代码、图表、演示材料 |
+- **已实现并验证基本正确性：** Baseline 的 N/I/B 入口；Explore 的训练记忆、配对和对照反馈；共同预算、图校验、日志、失败清单、图导出和冻结入口；两数据集接口的合成流程；21 项正确性测试。
+- **已完成的真实模型验证：** RTX 4070 Ti SUPER 上的 Qwen3.5-9B Q4_K_M 服务，以及固定 10 个 SearchQA train ID 的 pilot。它验证 N、I、自动生成初始技能和一个自动变异候选的执行链路。
+- **尚未完成：** 正式共享初始化与完整 N/I/B/C 实验、B 的完整 dev 诊断、C 的真实模型对照实验、HotpotQA 真实 pilot 与课程版划分接入、两数据集正式 test、报告和演示材料。
 
-课程明确上限：**每个数据集最多 100 个训练样例、30 个验证／开发样例、50 个测试样例；最多 3 轮进化，每轮最多评估 2 个新候选；1 张 A6000，总预算上限 40 GPU 小时。** 这些是规划上限，不是已测运行时间。失败运行、初始化、诊断、评分和最终推理都要计入总消耗。
+因此，目前不能声称完成课程复现或证明 C 优于 B。正结果、无提升或性能下降都可以构成结论，但必须保留公平对照与完整证据。
 
-课程的跨数据集迁移和联合技能更新是选做。本方案必做部分采用两个数据集独立优化，不把迁移实验混入主结果。
+## 2 课程协议与固定实现基础
 
-## 2 已核实的实现基础
+课程要求以本目录 [课程项目说明](AIAA4051_26Fall_Final_Research_Projects.pdf) 的 Project 5、第 19–23 页为准。
 
-代码基线为 [GraphSkillEvo 官方仓库](https://github.com/ruisun7/GraphSkillEvo)，本方案核对的 main 提交为 `722a8a913b05dc9d1b4078f0bec604cde4dc7529`。开始实现时固定这个提交；若改用更新版本，重新核对下面的行为并记录实际提交。
+每个数据集最多 100 个 train、30 个 dev、50 个 test；最多 3 轮进化，每轮最多评估 2 个新候选。必须比较 no-skill、initial-skill、原版优化器与冻结后的改进方法，报告 EM、F1、延迟、逐轮技能变化和完整失败清单。报告正文最多六页，演示按课程统一格式完成。
 
-| 已核实的代码行为 | 对实施的影响 |
-| --- | --- |
-| `evaluation.py` 的 `_sample_failure_rows` 从 hard=0 的结果中按固定 seed 随机抽取失败样例 | 主方法保留这个选择规则；不自行加入难例排序或类别重采样 |
-| `trainer.py` 把父代的 `train_reflection_context` 传给 mutation 算子 | 对照反馈应接入这一输入，而不是另建独立 Agent 框架 |
-| `selection.py` 按验证表现排序、采样父代与选择幸存者；不同函数的并列处理不完全相同 | 主实验复用原函数，记录真实行为，不额外设计“惩罚后适应度” |
-| SearchQA 默认是给定 question 和 context 的单轮问答，答案使用 `<answer>...</answer>` | 不能假定存在多步工具轨迹或可观测的节点执行顺序 |
-| SearchQA 会截断 context，当前代码按 6000 字符及文档边界处理 | 四组使用相同截断；记录模型实际看到的上下文，区分证据缺失与推理错误 |
-| 仓库发布 split ID 清单，完整数据需另行准备 | 数据准备是第一阶段任务，不能把 ID 清单当作完整数据集 |
-| 当前公开树未提供 HotpotQA 环境配置和适配器 | 优先使用课程提供的 HotpotQA 数据／代码；没有适配器时新增一个薄适配层 |
-| 默认配置超过课程规模，例如 SearchQA train_size=400、进化轮数=5、种群数=4 | 必须显式覆盖配置，不能直接用默认配置启动正式实验 |
+课程说明的硬件为 1 张 A6000、规划上限为 40 GPU 小时；**当前实际开发硬件是 RTX 4070 Ti SUPER 16GB**。本机实验沿用 40 GPU 小时的全项目分配账本，但不把本机测量标注成 A6000 实测。后续若迁移硬件，记录硬件与服务变化，并在统一条件下重新评测延迟。
 
-代码依据：[评估与失败抽样](https://github.com/ruisun7/GraphSkillEvo/blob/722a8a913b05dc9d1b4078f0bec604cde4dc7529/graphskillevo/evaluation.py)、[优化循环](https://github.com/ruisun7/GraphSkillEvo/blob/722a8a913b05dc9d1b4078f0bec604cde4dc7529/graphskillevo/trainer.py)、[选择规则](https://github.com/ruisun7/GraphSkillEvo/blob/722a8a913b05dc9d1b4078f0bec604cde4dc7529/graphskillevo/selection.py)、[SearchQA 执行器](https://github.com/ruisun7/GraphSkillEvo/blob/722a8a913b05dc9d1b4078f0bec604cde4dc7529/graphskillevo/envs/searchqa/rollout.py)。
+上游固定为 [GraphSkillEvo 提交 `722a8a913b05dc9d1b4078f0bec604cde4dc7529`](https://github.com/ruisun7/GraphSkillEvo/tree/722a8a913b05dc9d1b4078f0bec604cde4dc7529)，源代码在 `Baseline/vendor/GraphSkillEvo/`。集成和共同修改记录见 [UPSTREAM.json](Baseline/UPSTREAM.json)。
 
-### 与 JitRL 的关系
+当前复用的关键行为：
 
-[JitRL 第 4 节](https://arxiv.org/html/2601.18510v1#S4) 根据经验估计动作优势，并以 `z_new = z_old + beta * A_hat` 调整动作分数。优势本来就可能为负，因此“增加负向惩罚”本身不足以构成与 JitRL 的区别。
+- `CourseTrainer` 继承原 `EvolutionarySkillTrainer`，复用原 `_sample_operator_inputs`、`_invoke_operator` 及父代反思输入接口。
+- 失败样例由原 `_sample_failure_rows` 从 `hard=0` 的输出中按固定 seed 随机抽取，`k=3`，不加入难例排序、类别重采样或手工挑题。
+- 父代排序、rank 权重、父代抽样、幸存者选择与最终选择调用原函数，保留它们不同的并列处理。父代排序看验证 EM/F1；幸存者以验证 EM 为主并保留原稳定顺序；最终 best 使用原 EM 优先规则。
+- 种群大小为 2 时只调度 `mutation_other` 和 `mutation_graph`，不触发 crossover。前者通过原 `adopt_other` 保留父代图部分，后者通过原 `adopt_graph` 保留父代 Global Guidance。不能把这个课程规模运行称为完整四算子复现。
+- SearchQA 为给定 question/context 的单轮 QA，保留原 6000 字符及 `[DOC]` 边界截断行为，并记录实际可见文本和 hash；不声称观察到逐节点内部执行顺序。
 
-本方案借鉴经验对照和局部决策反馈，研究的是：**成功对照能否改善图结构技能的修改依据，减少错误归因和能力退化。** 不宣称复现 JitRL，不宣称发现新 RL 算法，也不预先保证贡献的论文级新颖性。
+为课程规模和本机后端作出的修改是 **B/C 共同条件**，不是 C 的创新点：有限次初始化与候选生成、统一 token 上限、本地服务接入、HotpotQA 薄适配层、结构化技能输出和简洁长度提示。报告应同时披露这些共同修改和 C 的唯一反馈改动。
 
-## 3 数据与模型准备
+## 3 数据准备、划分与标签隔离
 
-### 固定数据划分
+### 3.1 SearchQA：已准备 100/30/50
 
-为每个数据集建立独立的 `train_ids.json`、`dev_ids.json`、`test_ids.json`。默认目标为 100／30／50；实际提供数量不足时使用可用样例并披露数量，不跨原始划分补齐。固定 seed 为 42，先按 ID 排序，再在各自官方／课程划分内抽样，生成后立即保存。
+原始来源为 [`lucadiliello/searchqa`](https://huggingface.co/datasets/lucadiliello/searchqa/tree/c1a979068ba118d85467179b704031d113d689cc)，固定 revision `c1a979068ba118d85467179b704031d113d689cc`。
 
-| 数据部分 | 可以做什么 | 不能做什么 |
-| --- | --- | --- |
-| train，最多 100 | 执行技能、计算结果、建立成功／失败记忆、构造优化输入 | 混入 dev 或 test 的样例作为新的训练记录 |
-| dev，最多 30 | 排名、最终选择、诊断失败模式、制定并冻结反馈规则 | 将其结果解释为无偏测试成绩 |
-| test，最多 50 | 方法冻结后评估；生成最终错误清单 | 调 prompt、改技能、更新记忆、挑选模型或重选 test ID |
+先按上游 GraphSkillEvo 的 train/val/test ID 清单恢复完整记录，再在各自 GraphSkillEvo 分区内按 ID 排序、以 seed=42 抽样，固定 100 train、30 dev、50 test。原始 HF split 来源保留在元数据中；实验分区以固定的 GraphSkillEvo 清单为准，不临时按答题结果重新划分。
 
-pilot 使用固定 train 内预留的 10 题，仍计入最多 100 题的范围。主方案中的记忆只保存 train 轨迹；dev 用于方法层面的诊断，不把 dev 的具体题目、答案和轨迹加入优化 batch。测试记忆只读，不能按测试结果持续学习。
+本地准备数据位于 `Baseline/data/prepared/searchqa/`，包括 `train.json`、`dev.json`、`test.json`、对应的 `*_ids.json` 和 `manifest.json`。manifest 保存来源、文件 SHA256、样例内容 hash、数量和 pilot 的预留 train ID。程序拒绝重复/跨划分 ID、文件或 ID 清单篡改；记录规范化重复问题和词集合 Jaccard≥0.8 的跨划分近重复提示，不根据模型表现过滤或补抽。
 
-同一题重复采样不算新的数据 ID，但每次模型调用都计入预算。相同缓存输出不能作为新的独立观测。检查 ID 重叠和规范化问题文本重复，对跨划分近重复做记录，不依据答对答错过滤数据。
+### 3.2 HotpotQA：公开版仅作当前开发基础
 
-### HotpotQA 的具体处理
+已下载 [`hotpotqa/hotpot_qa`](https://huggingface.co/datasets/hotpotqa/hotpot_qa/tree/1908d6afbbead072334abe2965f91bd2709910ab) 的公开 distractor train/validation，固定 revision `1908d6afbbead072334abe2965f91bd2709910ab`，准备 100 train、30 dev。
 
-先核对课程提供文件的版本、任务设置和划分。将每条记录转换成统一结构：`id, question, context, answers, metadata`，保留文章标题与句子位置。答案和 supporting-facts 标签仅供评分或训练阶段反馈使用，不出现在正常解题输入中。
+**当前 `test.json` 和 `test_ids.json` 为空，数量为 0，manifest 中 `test_pending=true`、课程等价性为 `unconfirmed_public_distractor`。** 公开测试文件没有可用于本实验本地评分的 gold answer，而课程说明指定 HotpotQA provided。因此不把 validation 改名为 test，也不把公开开发集成绩包装成课程测试成绩。
 
-若课程提供的是带上下文的问答，沿用单轮执行接口；若是需要检索的版本，必须保留课程规定的检索设定，并相应重算预算，不能悄悄改成另一个 benchmark。两种情况下均不能直接把 SearchQA ID 清单套到 HotpotQA 上。
+拿到课程文件后核对版本、分区与任务设置，再用新的目录准备 `hotpotqa_course`。当前适配器处理已提供上下文的 QA，支持官方 `context=[[title,[sentences]]]` 及统一结构，保留文章标题、句子编号、supporting-facts 元数据。若课程版要求检索，必须接入相应检索环境并重算预算，不能直接当成当前单轮版本。
 
-### 模型和执行设置
+当前公开版可用于开发联调；正式 HotpotQA 条件必须在课程版确认后独立重新初始化、运行与冻结。数据 manifest 改变后不能直接复用旧运行作为正式对照。
 
-课程举例使用 `qwen3.5-9B`；实施时先确认实际可获取的完整模型 ID、revision、服务兼容性和 A6000 内存占用，再冻结。主实验所有组使用同一检查点，优化器与执行器也使用同一个模型。采用量化时记录方式，并对所有组一致使用。
+### 3.3 各分区的职责
 
-以下是 **pilot 起始值，不是已验证可运行配置**：单轮 QA、QA 最多 1024 个生成 token、技能生成最多 3072 个生成 token、每份技能最多 2048 个 token、反馈区最多 2048 个输入 token、每个候选最多 2 次总生成尝试。若 pilot 发现截断率过高，统一调整后再冻结，不对某一组单独放宽。
+- **train：** 产生技能修改证据、成功/失败记忆和优化反馈；pilot 的 10 个唯一 ID 来自固定 train 内部，仍计入最多 100 题。
+- **dev：** 完整验证候选、排名、父代与幸存者选择、最终技能选择，以及方法开发诊断。重复使用 dev 的偏差必须在报告披露；不将 dev 的具体题目、答案或响应装进 train 优化 batch。
+- **test：** 四组、模型和设置全部冻结后才推理与评分；只做描述性错误分析，不调 prompt、不选模型、不更新记忆。
 
-模型的推理模式、temperature、top-p、随机 seed、并发数、超时和重试规则全部记录。QA 默认确定性解码，技能生成可使用固定的低温采样；后端是否真正确定性应以实测为准。计入 reasoning token 和失败重试，不能只统计最终答案 token。
+正常 QA prompt 只由基础指令、技能、question 和实际可见 context 构成。gold answer、HotpotQA supporting-facts 标签和带 `[EVALUATION RESULT]` 的评分日志不回送正常执行器。相同输出的复用不算独立新观测；重复实际调用和失败重试全部计入消耗。
 
-## 4 主方法设计
+## 4 已部署模型、后端与共同配置
 
-### 4.1 只修改反馈内容
+### 4.1 模型与本机服务
 
-记原始流程为：父代技能执行训练任务 → 随机抽取失败记录 → 把失败上下文交给 mutation 算子 → 生成新技能 → 验证选择。
+当前执行器和优化器共用以下固定组合：
 
-修改后为：父代技能执行相同规模训练任务 → 用同一规则抽取失败记录 → 为这些记录附加可比成功参照、偏差证据和保留要求 → 生成新技能 → 用原规则验证选择。
+- 原模型：[`Qwen/Qwen3.5-9B`](https://huggingface.co/Qwen/Qwen3.5-9B/tree/c202236235762e1c871ad0ccb60c8ee5ba337b9a)，revision `c202236235762e1c871ad0ccb60c8ee5ba337b9a`。
+- 量化模型：[`unsloth/Qwen3.5-9B-GGUF`](https://huggingface.co/unsloth/Qwen3.5-9B-GGUF/tree/3885219b6810b007914f3a7950a8d1b469d598a5)，revision `3885219b6810b007914f3a7950a8d1b469d598a5`，文件 `Qwen3.5-9B-Q4_K_M.gguf`。
+- 文件大小：5,680,522,464 bytes；SHA256：`03b74727a860a56338e042c4420bb3f04b2fec5734175f4cb9fa853daf52b7e8`。已完成完整文件校验。
+- 本机权重目录：`F:\Document\HKUST\2026fall\NLP\Qwen3.5_9B_4bit`；官方 tokenizer 位于其 `tokenizer/`，按上述原模型 revision 下载并在本地加载。
+- Conda 环境：`qwen3.5`，Python 3.11.17；环境依赖锁见 [requirements-lock.txt](local_model/requirements-lock.txt)。
+- GPU：RTX 4070 Ti SUPER，服务实测可见显存 16,376MiB。
+- 服务：llama.cpp `b11871`，commit `b3fa69955ea81c3b60e77e3c1e2224c4a826ffb9`，Windows CUDA 12.4 原生二进制；其官方发布包已校验摘要。GPU 推理由 llama.cpp 执行，Python 环境用于 tokenizer 和实验脚本。
+- 接口：`http://127.0.0.1:8000/v1`，alias `Qwen3.5-9B-Q4_K_M`，只监听本机。
 
-两组保留相同的失败抽样算法、k、随机种子规则、每轮训练抽样和候选上限。由于技能逐渐不同，实际失败池会不同；公平比较要求规则一致，而不是强迫后续每轮使用完全相同的失败 ID。
+服务使用 16384-token 上下文、单并发、GPU offload、Flash Attention，关闭思考模式和自动 context shift。请求过长时应报错，不静默挪掉前文。官方 tokenizer 与 GGUF 服务对样本文本的计数一致；这是一项接入检查，不等于穷尽验证全部文本的 tokenizer 行为。
 
-本方案不修改选择评分，不在主实验中加入 `EM - lambda * penalty`，不同时增加推理时动作重排。否则会变成多个干预，无法判断是哪部分带来效果。
+启动/停止脚本见 [本机服务说明](local_model/README.md)。已完成 pilot 后服务主动停止，避免持续占用 GPU；后续正式运行前重新启动。
 
-### 4.2 记忆从哪里来
+### 4.2 当前两数据集一致的限制
 
-保存本方法运行中正常产生的所有 train 输出，包括成功与失败，记录 `example_id, skill_hash, round, question, visible_context_hash, raw_response, extracted_answer, EM, F1, generation_config`。
+以 [SearchQA 配置](Baseline/configs/searchqa.json) 和 [HotpotQA 配置](Baseline/configs/hotpotqa.json) 为准：
 
-默认不为凑正负样例额外调用模型。利用同一轮两个父代对相同训练 batch 的输出，以及本方法此前各轮的历史记录寻找配对。原版 B 和改进版 C 只能共享正式分叉前的初始化记录；C 不能白拿 B 后续进化产生的成功轨迹。
+- 固定 seed=42；种群大小 2；最多 3 轮；每轮每个父代使用相同的 20 个 train 样例；每轮最多 2 个新候选；失败反馈 k=3。
+- QA 最大生成 1024 tokens，temperature=0；技能生成最大 3072 tokens，temperature=0.6；共同 top-p=1；并发数 1；请求超时 300 秒。
+- 每份技能最多 2048 tokens；反思/对照反馈区最多 2048 tokens；初始化、候选及 QA 的重试服从最多 2 次总尝试限制，不存在预算外的隐藏无限重采样。
+- 每个 runner 当前调用上限 600、生成 token 总上限 700000、运行 wall time 上限 9 小时；优化 run 包括导入的共享初始化逻辑成本。它们是一次运行的上限，不是全项目总量，也不意味着会实际耗满。
+- `structured_operators=true`：只对初始化和 mutation 的响应施加 JSON schema，约束 `skills` 或 `new_skill/notes` 的序列化；不对 QA 施加 JSON 约束。
 
-优先使用当前轮记录；历史记录保留原技能版本及适用条件。每个问题最多保留 2 个不同的成功输出和 2 个不同的失败输出，确定性重复只保留一份。所有尝试仍留在原始日志中，记忆压缩不会删除预算记录。
+本机后端同时为技能生成附加共同的序列化/长度提示：**最多六个简洁节点、三个不重复 task graphs**，保持原 2048-token 技能上限、图结构检查和原作用域采用规则。这里的节点/图数量是当前提示合同，不是新增的独立计数校验或人工 veto；实际硬校验仍由原图结构验证和 token 上限执行。
 
-### 4.3 成功与失败怎样配对
+这些设置是在 train pilot 诊断阶段确定的，两组必须一致。它们不构成 C 相对于 B 的额外干预。后端是否完全确定性仍应按实际重复运行判断，不能仅凭 temperature=0 宣称绝对可复现。
 
-对每个已被原抽样器选中的失败案例，依次执行：
+## 5 真实 pilot 的结果与修复记录
 
-1. **同题配对。** 在记忆中寻找相同 question ID、相同可见 context hash 的 EM=1 输出。优先当前轮、再最近历史；同等级按固定 ID 排序选择。成功输出若只有正确答案却没有任何可核实证据，标记为 answer-only，对节点定位的证据强度降低。
-2. **同类参照。** 没有同题成功时，只从同一数据集、相同粗任务类型的成功案例中选词面相近者。v1 可用问题词集合 Jaccard，默认阈值 0.2，规则在 pilot 后冻结。这些参照只支持抽象策略比较，不支持“换掉某一步就一定成功”的判断。
-3. **无可比成功。** 保留原失败反馈并标记 `unpaired`。不删除该失败，不编造成功轨迹，也不把标准答案包装成模型曾经走通的路径。
+已完成的成功运行是 `Baseline/runs/searchqa/pilot-qwen35-q4-20261025-163349/`，不是完整三轮 B，也不是 C 的真实实验。
 
-粗任务类型由问题和上下文中可观察的信息及固定规则确定，例如实体属性、关系链、比较、是非、计数／日期。分类不确定时标为 unknown，不利用测试结果修订规则。
+该 pilot 固定 10 个唯一 train ID，分别执行 N、I、模型自动生成的初始技能和一个自动变异候选，共 **40 次 QA + 2 次技能生成 = 42 次真实模型调用**。全部过程不使用 dev/test 作为优化证据。
 
-报告同题配对率、同类参照率、无配对率；它们能够解释方法为什么有效或无效。首轮没有足够成功参照时允许自然退化成原反馈，不能更换为“更容易出现成功”的训练子集。
+成功运行记录：
 
-### 4.4 怎样确定有害偏差
+- wall time 约 58.765 秒；整卡显存峰值 7518MiB，约 7.34GiB，包含桌面等进程占用。
+- 输入 tokens 68245，生成 tokens 4404；当前关闭思考模式，报告 reasoning tokens 为 0。
+- 接口错误、答案格式失败、生成达到长度上限的次数均为 0；初始技能与变异候选通过 JSON、图结构和技能长度检查。
+- 当前 21 项正确性测试通过，上传前从仅含暂存源代码的隔离副本运行也通过。
 
-主版本比较 **可观察输出和证据关系**：答案实体类型、关系是否反向、引用证据是否支持结论、题目约束是否遗漏、输出格式是否破坏答案抽取。节点归因需要在当前技能中找到对应节点或规则；找不到时明确写“现有技能缺少该规则”。
+此前的两次失败 pilot 均未删除：第一次完成 20 次 QA 后，技能生成返回无效 JSON；启用 schema 后，第二次因重复扩展相似任务图而达到生成上限。随后统一收紧输出长度提示并把技能 temperature 从 0.2 调整到 0.6，才完成上述成功运行。未手工修补最终技能，也未为某一实验组放宽上限。
 
-不能把两个回答的词面差异直接当错误，不能把模型解释当作完整内部执行轨迹，也不能因为一个案例最终 EM=0 就惩罚所有步骤。SearchQA 默认没有逐节点执行日志，因此主版本把节点映射标为 **基于输出的诊断假设**；只有独立执行日志支持时才能称为观测到的节点行为。
+包括诊断和两次失败运行在内，部署验证合计记录 **89 次模型调用**；当时 GPU 服务分配账本累计约 **0.221655 GPU 小时**，已关闭该会话。这个数含加载、调试和服务常驻时间，不能与成功 pilot 的 58.765 秒 wall time 混为一谈。
 
-程序提供原始对照记录和可确定的字段，由同一次技能生成调用完成比较分析与修改，不额外引入一个大型评审模型。为控制证据质量，人工抽查最多 10 对训练记录，核对输入字段及诊断规则；不人工编辑最终技能。
+本地证据为 `local_model/deployment_validation.json`、`checks/`、`latest_pilot.json` 及成功 pilot 的 `pilot_summary.json`、`hardware_profile.json`、逐题输出和技能图。这些运行产物不随代码上传 GitHub。
 
-**示意例子，非实验结果：** 问题要求“人物 A 的导师在哪所大学任职”。成功输出根据材料先确认导师 B，再定位 B 的大学；失败输出直接回答 A 的大学。反馈指出应在关系解析节点检查答案对应的人物，保留成功路径中有效的实体识别，不笼统禁止回答大学名称。
+pilot 只证明当前模型在本机可以执行这条链路，不证明 B/C 有收益，也不能把这 10 题 train 指标写成正式测试成绩。HotpotQA 的真实模型 pilot 尚未完成。
 
-### 4.5 反馈包格式
+## 6 四组正式条件与公平性
 
-每个 mutation 调用默认使用 3 个失败案例，保持原版 k=3。每个案例最多附 1 个成功参照，所有内容总计不超过统一反馈 token 上限。下列 JSON 为拟实现的数据接口：
+每个数据集独立建立四个条件：
+
+1. **N：No skill。** 仅基础 QA 指令，不附加技能。
+2. **I：Initial skill。** 使用上游原始 SearchQA 初始文档。该文档主要是图执行说明和空节点/任务图模板；当前 wrapper 对 HotpotQA 也使用这个同一通用模板，不声称是上游已提供的 HotpotQA 专用技能。
+3. **B：课程规模原版 GraphSkillEvo 优化器。** 在共同包装层上使用失败反思输入。
+4. **C：对照反馈优化器。** 在同一包装层上使用成功/失败对照反馈。
+
+正式共享初始化由 `initialize` 生成，包含原模板和模型生成的另一个个体，并在完整 dev 上评分。I 始终指原模板，不把 pilot 中模型生成的初始个体或上游已进化 `best_skill.md` 偷换成 I。
+
+B/C 从同一正式初始化产物分叉，共享初始化种群和相应 dev 缓存的逻辑成本；C 不读取 B 分叉后生成的训练成功输出。pilot 产物不直接充当正式共享初始化，不作为独立重复实验。
+
+两组固定相同模型、量化、服务、解码、轮数、候选数、batch 规则、dev、重试与预算上限。N/I 不需要人为消耗同样的优化预算。相同上限不等于相同实际消耗，正式结果必须同时报告实际调用数、输入/生成 tokens、时延和 GPU 分配。
+
+当前代码严格检查初始化的代码、配置、数据、tokenizer 和 demo 签名。正式初始化前应完成实现与基本配置定稿；若 B 开发诊断后又修改代码或这些配置，需重建共同初始化并重跑受影响的正式条件，不能把跨版本产物拼成一组公平对照。
+
+## 7 Explore：成功–失败对照反馈的具体实现
+
+### 7.1 与 JitRL 的关系
+
+借鉴 [JitRL 第 4 节](https://arxiv.org/html/2601.18510v1#S4) 的经验记忆和局部反馈思路。JitRL 估计动作优势并修改动作 logits；当前方案不实现那条数值更新，也不宣称继承其理论保证或提出新的 RL 算法。
+
+研究贡献候选是：**可比成功参照能否改善图结构技能修改的证据，减少错误归因与能力退化。** 因此 C 的修改集中于反馈材料与保留要求，而非奖励函数、选择评分或推理动作重排。
+
+### 7.2 训练记忆与更新时序
+
+`Explore/explore/memory.py` 只接受本方法、同一数据集、固定 train ID 的真实输出；拒绝 dev/test、其他方法分叉后的记录，不把缓存或基础设施错误响应记为有效经验。
+
+保留 ID、round、skill hash、可见 context hash、question、原始响应、抽取答案、EM/F1、generation config 和 observation ID。每题最多保存两份不同成功和两份不同失败，以响应和可见上下文去重；新一轮重复真实输出只更新来源，不当作新的独立模式。原始调用和全部输出仍在未压缩日志中。
+
+一轮中先让两个父代执行同一 batch，再一次性观察全部输出，之后分别构造反馈。这样第一个父代可以引用第二个父代正常产生的同轮成功，不因执行顺序造成配对不对称。不额外调用成功采样器或大型评审模型。
+
+### 7.3 保留原失败抽样，再查找成功参照
+
+只处理原抽样器已经选中的失败，不按配对是否容易成功更换失败 ID。
+
+1. **same_question：** 相同题目 ID、相同可见 context hash 的 EM=1 输出优先；先当前轮、再最近历史，以固定 ID/技能/observation 顺序打破并列。忽略未来轮记录。
+2. **similar_task：** 无同题成功时，仅从相同数据集、其他题目 ID、相同粗任务类型的成功中筛选问题词集合 Jaccard≥0.2 的参照。先当前轮，再相似度和固定来源顺序。同类参照只支持抽象策略比较，不支持确定的因果替换结论。
+3. **unpaired：** 没有可比成功时保留原失败，不编造成功轨迹，不把标准答案冒充模型已经完成的解法。所有选中失败均无配对时，C 原样回退到 B 的有界反馈行为。
+
+粗任务类型由固定的 **问题文本规则** 决定，包含 yes/no、比较、计数/日期、关系链、实体属性和 unknown；不读取 HotpotQA gold type 或测试表现来分类。
+
+### 7.4 可观察检查与不确定性
+
+目前程序确定性检查答案标签格式，以及成功响应中的显式引文片段是否出现在该响应实际可见的 context 中。`reference_has_verifiable_quote=true` 只说明找到字面引文，不说明引文在语义上支持答案；无法核验时标为 `answer_only_or_unverified`。
+
+实体混淆、关系方向、遗漏约束、无依据推断和对应技能节点的归因，交由同一次技能生成调用依据材料提出，并始终作为需要核对的诊断假设。SearchQA 单轮输出不是逐节点执行日志；EM=1 也不证明所有推理都正确。没有对应节点时可以提出缺少规则，不虚构曾经观测到该节点执行。
+
+反馈指令要求识别适用条件、可支持或疑似有害的偏差、应保留的有效行为，再加入窄范围检查；禁止把所有词面差异当成错误，禁止复制题目实体、答案或完整解例进最终技能。最多抽查 10 对 train 记录以核对材料与诊断规则，不手改最终技能。
+
+### 7.5 审计包与真正送入优化器的反馈
+
+审计包字段与现实现一致，下面仅为接口示意，不是实验结果：
 
 ```json
 {
-  "failure_id": "train_example_id",
+  "failure_id": "train_id",
   "pair_type": "same_question",
+  "similarity": 1.0,
+  "task_type": "entity_attribute",
   "failure": {
+    "example_id": "train_id",
     "skill_hash": "...",
     "visible_context_hash": "...",
     "question": "...",
@@ -149,317 +200,208 @@ pilot 使用固定 train 内预留的 10 题，仍计入最多 100 题的范围�
     "em": 0
   },
   "success_reference": {
-    "example_id": "train_example_id",
+    "example_id": "train_id",
     "skill_hash": "...",
     "response_excerpt": "...",
+    "predicted_answer": "...",
     "em": 1
   },
   "observable_checks": {
     "answer_format_ok": true,
-    "reference_has_evidence": true,
-    "diagnosis_status": "hypothesis_to_check"
+    "reference_has_verifiable_quote": false,
+    "reference_evidence_status": "answer_only_or_unverified",
+    "diagnosis_status": "hypothesis_to_check",
+    "node_execution_observed": false
   }
 }
 ```
 
-优化器附加指令模板：
+原始响应完整保存在运行日志/记忆中；审计包提供来源元数据和初步摘要。实际优化器输入进一步按统一 2048-token 上限缩短字段，并记录 `actual_packets` 与 `actual_feedback`。优先保留全部所选失败 ID 及其成功参照，使用逐字段缩短和短版指令，不直接切断已序列化 JSON。若最小材料仍放不下则报错，不能悄悄删掉失败或截掉成功一侧。
 
-```text
-Use the selected training failures and their available success references
-to revise the parent graph-structured skill.
+正式分析报告同题配对率、同类参照率、无配对率，并以真正被选择为 mutation 父代的反馈为主要统计对象。没有失败的父代不人为制造样例分母。
 
-For each usable pair, identify the shared task conditions, the supported
-or suspected harmful deviation, the relevant skill node or missing rule,
-and the successful behavior that should be preserved.
+## 8 已实现的代码组织与证据输出
 
-Add a narrowly applicable check or constraint that addresses the deviation.
-Do not treat every difference as an error. If evidence is insufficient,
-mark it as uncertain and avoid a broad prohibition. Do not copy dataset
-answers, question-specific entities, or a full solved example into the skill.
-
-Preserve the required skill structure. Return the usual new_skill field
-and notes linking each change to the supplied evidence IDs.
-```
-
-这是一种结构化负反馈，不声称它等价于 RL reward 或存在确定的数值惩罚。研究重点是反馈是否使新技能减少同类错误，而不是仅检查 prompt 中有没有“禁止”二字。
-
-### 4.6 生成与保留
-
-让原 mutation 算子输出 `new_skill` 和 `notes`，沿用图结构校验。非法结构按统一重试上限处理；仍失败则记作该候选失败，不无限重试或偷偷额外生成候选。
-
-候选仍按原验证规则决定是否保留。成功保留要求写在优化输入里，不另外加入人工 veto 或新的候选评分函数。这样 C 与 B 的主要差别集中在输入证据。
-
-实现重试上限时需要检查 `trainer.py` 的外层父代重采样循环；仅设置 `graph_retry_attempts` 不一定限制所有重采样累计调用。应由共同预算包装器限制候选的总尝试次数，B 和 C 同样执行。
-
-## 5 完整执行流程
-
-### 阶段一 跑通数据与最小实验
-
-1. 保存上游提交、Python 环境和依赖版本，配置固定本地模型服务。
-2. 获取 SearchQA 完整内容，按上游 ID 清单恢复划分；接入课程提供的 HotpotQA。
-3. 固定两套 train／dev／test ID 清单，确认标签不会进入解题 prompt。
-4. 在每个数据集的 10 个 pilot train 样例上跑 no-skill、初始技能和一轮候选生成。
-5. 检查答案抽取、EM/F1、context 截断、图结构校验、延迟、显存和 token 统计。
-6. 根据测得吞吐冻结模型、生成限制、每轮 train 样例数和共同预算。
-
-**阶段验收：** 每个数据集能从输入运行到结果表，并能追踪一次调用对应的 prompt、响应、分数和成本。HotpotQA 若尚未提供，是数据前置事项；先完成 SearchQA，不能把全项目标成完成。
-
-### 阶段二 完成原版复现与开发集诊断
-
-采用种群大小 2、最多 3 轮、每轮最多 2 个新候选。初始化保留原始初始技能，并按上游流程生成另一个初始个体；两组后续从同一初始化产物出发。初始产物共享属于共同起点，不作为独立重复实验。
-
-在当前上游实现中，`population_size=2` 会调用 `mutation_other` 与 `mutation_graph`，不会触发序列中后面的两个 crossover 算子。主方案保留这一受预算约束的行为，并在报告说明这是小种群复现，不声称覆盖全部四种算子。如果需要研究 crossover，应单列预算与共同调度修改，不能仅对 C 启用。
-
-每轮两个父代使用按同一 seed 规则抽取的 20 个 train 样例；抽样只能来自固定的最多 100 题。每个新候选在完整 30 题 dev 上选择，不能把上游 `env_num=0` 理解成“只评 30 题”而忘记先限制 loader 的划分。
-
-完成原版 B 后，整理其最终技能在全部 dev 上的 EM=0 清单，并建立失败分类。把 dev 诊断用于决定对照反馈的字段和规则，然后冻结该设计。
-
-**阶段验收：** B 的完整进化历史、最终技能、dev 全量错误表、方法冻结记录均存在；此时不查看 test 成绩。
-
-### 阶段三 实现并运行改进方法
-
-1. 给原有 train 输出增加只读记忆索引，记录来源、版本和上下文 hash。
-2. 复用原失败抽样器，在抽样完成后附加成功参照；不改变被选失败集合。
-3. 在反思上下文构造处切换 `original` 或 `contrastive`，共用其余执行路径。
-4. 在 pilot train 上核对一次反馈包和生成的技能差异，冻结格式。
-5. C 从共同初始化重新开始，不能接着 B 的最终技能多跑三轮。
-6. 在两个数据集上各完成相同规模的 C，保存无改善和失败运行。
-
-**阶段验收：** C 与 B 的配置差异能明确归结到反馈输入；输入成功案例的来源可追溯；所有新调用均进入成本账本。
-
-### 阶段四 冻结与最终评估
-
-锁定代码提交、模型 revision、数据 ID、最终技能 hash、全部 prompts、评分与抽取规则。之后四组 N／I／B／C 分别在两个数据集固定 test 上评测，默认共 `4 × 2 × 50 = 400` 个单轮 QA 任务。
-
-四组正常推理均不获得标准答案。每组保存所有题的输出、错误、超时、EM/F1 和延迟；不能只保留成功记录。评价器中的 `[EVALUATION RESULT]` 等带 gold 的日志段只能用于评分或训练反馈，不能重新送回测试执行器。
-
-汇总全量 test 错误清单、B 对而 C 错的退化案例、B 错而 C 对的修复案例。测试之后只分析和写报告，不基于这些案例修改模型或技能。
-
-## 6 开发任务与代码接入
-
-当前目录只有项目 PDF 和 Git 元数据；下面是 **待实现结构**，不代表这些程序已经存在：
+当前目录组织如下，`data/`、`runs/`、运行库和权重不包含在 GitHub 源码发布中：
 
 ```text
 AIAA4051_Project/
   Project5_Implementation_Plan_zh.md
-  vendor/GraphSkillEvo/             # 固定上游版本
-  configs/                         # 两个数据集的共同限制和方法开关
-  data/manifests/                   # 固定 train/dev/test ID
-  src/project5/
-    data_adapter.py                # 数据格式转换与划分检查
-    hotpotqa_adapter.py            # 课程数据到统一接口
-    memory.py                      # 训练输出索引和去重
-    pairing.py                     # 同题和同类成功参照匹配
-    feedback.py                    # 原版和对照反馈构造
-    budget.py                      # 调用、token、GPU 消耗与停止条件
-    error_analysis.py              # 全量错误清单及转移统计
-    graph_export.py                # 技能解析、流程图和版本关系
-  scripts/                         # 实验入口和汇总入口
-  runs/<dataset>/<condition>/       # 原始日志、技能和结果
-  report/                          # 正文、附录、图表、演示
+  Baseline/
+    baseline/             # 数据、QA、原版反馈、预算、进化包装、分析与冻结
+    configs/              # SearchQA / HotpotQA 的共同模型和资源配置
+    tests/                # 协议与端到端合成测试
+    vendor/GraphSkillEvo/  # 固定上游源代码及必要 SearchQA ID 元信息
+    download_data.py
+    run.py
+    data/                 # 本地原始数据、准备数据、固定 IDs 与 manifest
+    runs/                 # 本地初始化、N/I/B、pilot 与最终评估
+  Explore/
+    explore/              # memory.py / pairing.py / feedback.py
+    run.py
+    runs/                 # 本地 C、反馈设计冻结文件及训练记忆
+  local_model/
+    start.ps1 / stop.ps1 / status.ps1
+    download_model.py / run_pilot_measured.py
+    requirements-lock.txt
+    runtime/              # 本地 llama.cpp / CUDA 二进制
+    logs/ / checks/ / measurements/
 ```
 
-| 实施任务 | 接入位置 | 必须保存的证据 |
-| --- | --- | --- |
-| 数据适配与 100／30／50 限制 | `envs/*/adapter.py`、loader，新增 HotpotQA adapter | ID 清单、原始划分、格式校验 |
-| 成功与失败记忆 | `SkillEvaluator.evaluate` 产生结果之后 | 完整 train 输出与来源 |
-| 对照反馈 | `build_rollout_reflection_context` 周边的包装层 | 原失败 ID、匹配对象、截断后的反馈文本 |
-| 注入 mutation | 父代 `train_reflection_context` 到 `operators.py` 的现有接口 | 实际发送的 prompt 与 notes |
-| 图结构与变化 | `graph_skill.py` 输出及各轮 skill 文件 | 真实节点、顺序、条件和 hash |
-| 预算控制 | 模型调用统一入口及运行外层 | 调用类型、失败重试、token 与时长 |
+每个正式 run 保存实际 config、模型与 tokenizer 签名、prompt/原始响应、逐题指标、train batch IDs、候选/失败尝试、父代和幸存者记录、最终技能、dev 全量失败及 `.json/.mmd` 技能图。预算事件能追踪到对应调用；缓存复用保存来源 observation，不伪装成新观测。
 
-尽量用包装层和小 patch 保留上游代码。运行入口采用项目脚本命名即可；具体 CLI 在实现后依据真实参数编写，不把这里的拟定名称当作上游现成命令。
+图导出来自实际 `Node Lists`、`Use when` 和 workflow 顺序。节点内自然语言条件保留在结构化文本中，不推断不存在的内部执行轨迹或虚构分支。尚未完成正式三轮演化，因此不能把 pilot 的三份技能图当成完整 B/C 演化结果。
 
-需要的最小正确性检查：数据划分不重叠、测试标签不进 prompt、失败抽样规则一致、配对只来自允许的 train 记录、答案抽取与指标正确、缓存不会伪装成新样本、预算能在下一次调用前阻止超限。对一条真实调用做端到端日志核对。
+GitHub 发布源代码、prompts、配置、测试、依赖锁和说明，保留恢复 SearchQA 所需的轻量上游 ID 配方；排除模型、实际数据正文、CUDA 二进制、运行/测量日志、缓存与备份。正式提交课程实验材料时，另按要求提供冻结的实际数据 ID 和结果，不能因 Git 忽略而省略验收证据。
 
-## 7 实验条件与公平性
+## 9 接下来正式执行的顺序
 
-### 必做的四组
+以下命令在项目根目录运行，所有输出目录须为空；重复运行应使用新的明确目录，不覆盖旧账本。
 
-| 代号 | 方法 | 对应问题 |
-| --- | --- | --- |
-| N | No skill，仅基础问答指令 | 技能是否提供收益 |
-| I | Initial skill，正式进化前的固定初始技能 | 收益是否来自后续优化 |
-| B | 课程规模原版 GraphSkillEvo | 原优化器基线 |
-| C | 对照反馈 GraphSkillEvo | 成功参照与偏差反馈是否改善优化 |
+### 9.1 启动服务并确认代码定稿
 
-I 使用上游初始技能文件或课程明确提供的初始技能，记录其内容。若初始文件主要是空节点模板，应如实说明。不能将上游已进化的 `ckpt/.../best_skill.md` 当成自己未优化的起点。
+```powershell
+conda activate qwen3.5
+.\local_model\start.ps1
+.\local_model\status.ps1
+python -m unittest discover -s Baseline/tests -v
+```
 
-核心对照为 B 与 C。N 和 I 用于解释技能优化的价值，不需要人为消耗相同的优化预算。
+服务脚本自动为实际分配开启 GPU 会话，不要再手工叠加一个重复会话。当前 SearchQA pilot 已通过，无须为“填预算”反复执行。若改动模型/后端/输出限制，使用新 pilot 目录重新验证，再决定是否共同调整正式配置。
 
-### 预算如何匹配
+### 9.2 SearchQA：共享初始化、N/I/B 与完整 dev 诊断
 
-两组固定相同轮数、候选数、训练采样数、验证集、初始化、模型和解码限制。主方法从已有输出构造反馈，不增加专用的成功采样和评审调用。反馈内容各自限制在相同 token 上限内，技能生成限制一致。
+```powershell
+$cfg = "Baseline/configs/searchqa.json"
+$data = "Baseline/data/prepared/searchqa"
+$out = "Baseline/runs/searchqa"
 
-正式运行前为 B、C 各预分配相同的模型调用上限和生成 token 总上限，按初始化、执行、优化、重试分别记账。每次调用前检查剩余额度，不能因为 C 有额外诊断就给 C 更大总预算。
+python Baseline/run.py initialize --config $cfg --data $data --output "$out/shared_init"
+python Baseline/run.py static --condition N --config $cfg --data $data --output "$out/N"
+python Baseline/run.py static --condition I --config $cfg --data $data --output "$out/I"
+python Baseline/run.py train --config $cfg --data $data --initialization "$out/shared_init" --output "$out/B"
+```
 
-相同上限不意味着实际消耗完全相等。主表同时报告实际调用数、输入 token、输出／推理 token、GPU 时间。若实际开销差异明显，补充按共同累计预算截点、使用当时验证集选定技能的比较；不能用 test 表现挑截点或挑技能。实际长度差异本身也是效率结果，不通过无意义调用填满预算。
+检查 B 的 `dev_analysis/failures.json`、`failures.csv` 和完整输出，分析全部 EM=0 样例，区分观察与原因假设。必要的实现调整在正式比较前完成；若改变当前签名，按第 6 节重新建立同版本产物。
 
-若一个方法在完整轮数前撞到预算，记录停止原因，保留当时验证选出的技能，并给出双方共同可达预算的比较。pilot 若预测两组都不能完成核心实验，正式开始前统一缩小每轮 train 数或轮数；不要只缩小其中一组。
+### 9.3 冻结反馈设计并运行 C
 
-### 可选的机制验证
+```powershell
+python Explore/run.py freeze-design --config $cfg --baseline-run "$out/B" --output Explore/runs/searchqa/feedback_design.json
+python Explore/run.py train --config $cfg --data $data --initialization "$out/shared_init" --design Explore/runs/searchqa/feedback_design.json --output Explore/runs/searchqa/C
+```
 
-完成四组后，预算仍有余量时优先做一个小规模验证，不同时增加多个研究方向：
+`freeze-design` 保存 B 全量 dev 失败证据 hash、配对规则、反馈指令和代码签名，是实现规格的冻结记录，不代表人工诊断自动完成。C 训练前检查记录一致；不能在看过 test 后修改。
 
-| 可选比较 | 唯一变化 | 能回答什么 |
-| --- | --- | --- |
-| 原始对照材料与结构化偏差反馈 | 两组都看到同样正负材料，仅反馈指令结构不同 | 收益来自更多成功信息，还是来自明确的偏差定位 |
-| 正确配对与固定随机配对 | 相同材料预算，改变成功参照匹配 | 相似性和配对质量是否重要 |
+### 9.4 四组同时冻结后才评测 test
 
-这些消融先在 train／dev 做机制诊断；若要成为正式 test 对照，必须在打开 test 结果前冻结并预留预算。主实验只有一套随机种子时，不将几题的差异描述成稳定的普遍优势。
+```powershell
+python Baseline/run.py freeze --N "$out/N" --I "$out/I" --B "$out/B" --C Explore/runs/searchqa/C --data $data --output "$out/frozen.json"
+python Baseline/run.py test --frozen "$out/frozen.json" --output "$out/test"
+```
 
-## 8 指标与失败分析
+冻结检查 N/I/B/C 的模型、配置、代码、tokenizer、数据和 B/C 共同初始化一致，并对技能与运行证据计算 hash。冻结后改动代码、技能、数据或相关证据会拒绝评测。test 只读取技能，不加载或更新训练记忆。
 
-### 主指标
+### 9.5 HotpotQA 与结束服务
 
-- **EM：** 与任一标准答案规范化后一致的比例。沿用已验证的答案抽取；SearchQA 优先取最后一个 `<answer>` 标签，缺失时采用上游 fallback，并单列格式失败。
-- **F1：** 规范化后的 token F1，对多个标准答案取最高值；HotpotQA 优先沿用课程指定 scorer，明确指标差异。
-- **延迟：** 单题平均、P50、P95，并报告并发数、GPU、模型精度、输入和输出长度。批量吞吐另列，不混作单题延迟。
-- **成本：** 初始化、搜索、诊断、最终评估各阶段的模型调用、输入 token、生成 token 和 GPU 小时。
+拿到课程文件后先建立新数据目录：
 
-SearchQA 现有的 substring match 可以用于诊断，不能替代课程要求的 EM/F1。基础设施错误和格式错误分开列，但不能简单从主结果分母删除。
+```powershell
+python Baseline/run.py prepare --dataset hotpotqa --train COURSE_TRAIN.json --dev COURSE_DEV.json --test COURSE_TEST.json --output Baseline/data/prepared/hotpotqa_course
+```
 
-### 配对变化与保护已有能力
+确认任务设定后，用 `Baseline/configs/hotpotqa.json`、新数据目录和独立的 HotpotQA 输出目录执行同样的 pilot、初始化、N/I/B、诊断、C 和冻结测试步骤。当前公开 HotpotQA 的 test_pending 会阻止正式冻结评测，不绕过这项检查。
 
-在同一套固定题上统计：B 错 C 对、B 对 C 错、两者都对、两者都错。由此计算修复率 `修复题数 / B 的失败题数` 和退化率 `退化题数 / B 的成功题数`；分母为零时记 NA。
+实际停止 GPU 服务分配时执行：
 
-每个数据集 50 题时，一题对应 2 个百分点的 EM，报告时必须保留原始计数。可用题目级 paired bootstrap 展示差异的不确定性，但不能把它解释成不同训练随机种子之间的稳定性。
+```powershell
+.\local_model\stop.ps1
+```
 
-### 失败分类起点
+## 10 预算匹配、缓存与停止条件
 
-| 类别 | 判定要点 | 技能层面可能原因 |
-| --- | --- | --- |
-| 证据缺失或截断 | 正确信息没有出现在实际可见 context | 输入／上下文处理问题 |
-| 实体混淆 | 人物、时间、地点或同名实体对应错误 | 消歧规则缺失或未遵循 |
-| 关系链错误 | 跳过中间实体、关系方向颠倒 | 多步关系检查不足 |
-| 比较或约束遗漏 | 忽略早晚、数量、限定词 | 约束提取与检查不足 |
-| 无依据推断 | 结论与可见证据无支持关系 | 缺少证据检查，或过早回答 |
-| 答案表达与抽取 | 实质接近但格式／别名导致 EM=0 | 输出规范或 scorer 兼容问题 |
-| 技能规则不适用 | 规则过强，把有效替代解法压掉 | 对错误模式过度概括 |
-| 未知／证据不足 | 输出不足以定位原因 | 保留不确定性，不强行归因 |
+模型请求统一经过预算包装器，下一次调用前检查调用额度、预留完整最大生成 token 额度，并检查 run wall time 和全项目 GPU 账本。失败请求/无法取得 usage 的请求按预留上限保守记账；有效 usage 保存原始值。reasoning tokens 是 completion 的子集，单列但不重复相加。
 
-每题一个主标签，可附多个次标签；类别统计按主标签汇总，避免总数重复。把“事实观察”“推测原因”“对应技能指令”分别保存。开发集基线失败必须全量整理，测试集冻结后也必须生成完整清单，展示案例只是从全量清单中选出的代表。
+共享初始化的物理调用只在实际运行账本中发生一次，B/C 各导入相同逻辑使用成本并标记 `physical_calls=0`。方法内确定性 dev 输出缓存保留真实来源，不作为独立重复。train 不复用缓存充当新观测，也不删除重复真实调用的成本。
 
-## 9 技能图与结果呈现
+最多两次生成仍失败时，该候选失败，不无限重采样父代。达到预算时停止，保留按 dev 选出的技能；尚未完成 dev 的候选不参与选择，已完整验证的候选仍可按原规则竞争。报告停止原因、实际完成轮数和有效候选数。
 
-每轮保存父代、候选与幸存者。流程图应从实际技能文本解析，包含 task type 的路由条件、Node Lists、执行顺序和明确分支。没有分支的技能不要人为画出分支。
+按两个数据集都达到目标规模、两个不同初始化个体、三轮、每轮两个父代和两个新候选粗估：每个数据集 B/C 合计最多约 240 次 train QA 和 420 次唯一 dev QA；加上当前 `static` 实现中 N/I 各自完整 dev 的 60 次 QA，以及四组各 50 题的 200 次 test QA，约为 **920 次 QA/数据集、1840 次 QA/两数据集**，另加初始化、技能生成、pilot、失败重试和可选诊断。该估算取决于缓存命中和完整轮数，不是实测任务数或 GPU 小时承诺。
 
-建议最终至少制作四类图表：
+全项目实际 GPU 时间以服务分配账本为准，包含加载、常驻、失败运行和诊断；一张卡并发不重复加成多张卡。当前 9 小时、600 calls 和 700000 generated tokens 是 runner 上限；最终 `test` 为各条件独立记账，不能把这些值理解成整个项目的一个共享调用包。
 
-1. **主结果表：** 两个数据集 × N／I／B／C，包含 EM、F1、延迟和成本。
-2. **技能演化图：** 第 0 至第 3 轮的真实图结构与变更注释，区分未被保留的候选。
-3. **修复与退化表：** B 与 C 的配对结果计数，加 2 至 3 个证据完整的案例。
-4. **失败分布图：** 全量错误主标签分布；另列配对覆盖率和无法诊断比例。
+如果 B/C 实际开销明显不同，补充在共同累计预算截点、使用当时 dev 选定技能的比较。当前代码已保存每轮累计成本和技能历史；共同截点的补充评估尚未完成，不声称已有自动预算对齐主结果。不能使用 test 表现选择截点。
 
-主结果表先保留空值，不填写假数据：
+不为耗满预算做无意义调用。正式开始后如预算不足，先放弃可选消融和数值惩罚扩展；任何共同缩减轮数/batch 的决定须在正式比较前确定，不能只给 C 优惠。
 
-| 数据集 | 条件 | N | EM | F1 | P50 延迟 | P95 延迟 | 优化生成 token | GPU 小时 |
-| --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| SearchQA | N / I / B / C 各一行 | 50 或实际冻结数 | 待测 | 待测 | 待测 | 待测 | 待测 | 待测 |
-| HotpotQA | N / I / B / C 各一行 | 50 或实际冻结数 | 待测 | 待测 | 待测 | 待测 | 待测 | 待测 |
+## 11 指标、完整失败清单与能力退化
 
-## 10 工作量与算力预算
+正式结果按数据集、条件分别报告样本数、正确计数、EM、F1、单题均值/P50/P95 延迟、输入与生成 tokens、实际调用数和 GPU 分配时间。无结果的正式条件保留“待测”，不填 pilot 或预期数值。
 
-### 起始规模的任务量估算
+- **SearchQA：** 原答案抽取优先取最后一个 `<answer>...</answer>`，缺失时使用上游末行 fallback；使用规范化 EM 和多参考答案最大 token F1。substring match 仅作诊断。
+- **HotpotQA：** 当前实现为 answer-only EM/F1，并处理 yes/no/noanswer 的官方特殊 F1 规则；不宣称已实现 supporting-facts 或 joint 指标。课程若指定不同 scorer，先核对并共同冻结。
+- **基础设施和格式失败：** 保留在总分母中，单列数量；不能只汇报成功请求或删除超时题。
+- **配对变化：** 在相同固定题上统计 B 错 C 对、B 对 C 错、两者都对、两者都错；修复率为修复数/B 失败数，退化率为退化数/B 成功数，零分母为 NA。
+- **不确定性：** 50 题时一题对应 2 个百分点 EM。可使用题目级 paired bootstrap，但不能把它解释为不同训练随机种子之间的稳定性。
 
-按两个父代、每轮 20 个 train 样例、3 轮估算，每个数据集每种优化方法需要约 `2 × 20 × 3 = 120` 次训练 QA；B 和 C 共 240 次。每种方法最多有 2 个初始个体加 6 个后代，在 30 题 dev 上最多评估 240 次。两组共享 2 个初始化个体的 60 条验证结果时，合计最多 420 次唯一的验证 QA。
+B 的全部 dev 失败，以及冻结后各方法全部 test 失败，都要提供 ID、问题、参考/预测、EM/F1、可见证据、主类别和诊断解释。自动分析目前只明确归类基础设施错误和答案格式问题；其余默认“未知/证据不足”。实体混淆、关系链错误、比较/约束遗漏、证据缺失、无依据推断、过强技能约束等需要依据完整材料复核，不声称已有可靠自动因果分类。
 
-每个数据集四组 test 为 200 次。因此主流程约 `240 + 420 + 200 = 860` 次 QA，两个数据集约 **1720 次**，另外还有技能初始化／生成、pilot、重试和可选诊断。这个估算依赖单轮接口和验证缓存；不能直接换算成已知 GPU 小时，也不包括未决定的额外成功采样。
+每题只计一个主标签，可附次标签；将事实观察、原因假设和相关技能节点分开。人工抽查与研究分析不等于人工修改最终技能。测试错误只用于最终分析，不反向修订配对、prompt 或技能。
 
-缓存的初始化／验证结果在逻辑预算上计入每个方法的使用成本，在实际 GPU 总账中只算真实运行一次，并明确共享；不当作独立重复实验。相同技能被确定性缓存时同样处理。
+## 12 里程碑、验收与报告
 
-### 40 GPU 小时的规划分配
+接下来的依赖顺序是：
 
-| 工作 | 规划上限 |
-| --- | --- |
-| 环境、两套数据适配与 pilot | 3 小时 |
-| 两个数据集的原版 B | 9 小时 |
-| 两个数据集的改进版 C | 9 小时 |
-| N／I／B／C 最终评估 | 5 小时 |
-| 开发诊断与案例检查所需推理 | 3 小时 |
-| 可选小消融 | 4 小时 |
-| 失败运行与余量 | 7 小时 |
-| 合计 | 40 小时 |
+1. 复核当前共同实现/模型配置，完成正式 SearchQA 共享初始化与 N/I/B。
+2. 整理 B 的全量 dev 失败，核对对照材料质量，冻结反馈规格。
+3. 从同一初始化运行 C，检查原失败抽样一致、记忆来源正确、实际输入满足反馈上限。
+4. 取得并确认课程 HotpotQA，完成真实 pilot，再独立完成四组正式条件。
+5. 四组同版本冻结后分别评测两套固定 test，生成全量错误、修复/退化与成本结果。
+6. 完成最多六页正文、附录和课程演示材料，另行打包未上传 GitHub 的固定 ID、图、原始结果和 GPU 账本。
 
-以上分配是计划，不是性能承诺。pilot 用真实 tokens/s、任务时长和重试率估算剩余工作。优先取消消融和第 13 节扩展，再在正式比较前共同缩小每轮训练 batch；保留两数据集、四组主对照、完整错误清单和最终评估。不能为了省时只测试成功样例或只保留一个数据集。
+最终验收清单：
 
-GPU 账本按实际 GPU 数量乘占用时长计数，记录服务常驻和任务分配方式；同一张卡上并发任务不能重复累加成多张卡。若改用付费 API，另记录货币成本并遵守课程资源安排，不能把 API 时间伪装为本地 GPU 时间。
+- [x] 上游固定版本、Baseline/Explore 包装层、本机模型服务和共同预算实现。
+- [x] SearchQA 已固定 100/30/50；公开 HotpotQA 已固定 100/30 并明确 test_pending。
+- [x] 两数据集接口的合成流程与 21 项正确性测试通过。
+- [x] RTX 4070 Ti SUPER 上真实 SearchQA 10 题 pilot 通过，失败调试记录和消耗保留。
+- [x] 代码、配置和文档已发布 GitHub，模型、数据正文与运行产物排除。
+- [ ] 正式共享初始化、N/I/B 全轮运行及完整 B dev 诊断。
+- [ ] C 的真实对照运行、配对覆盖率和人工证据抽查。
+- [ ] HotpotQA 课程版核对、真实 pilot 与独立四组实验。
+- [ ] 两数据集冻结后的正式 test、完整错误和能力修复/退化分析。
+- [ ] 公平预算/共同截点分析、实际 GPU 统计、六页报告和演示材料。
 
-## 11 排期与分工
+报告建议包含背景与研究问题、共同实现与数据协议、对照反馈方法、正式结果、失败/修复/退化案例及局限。必须披露本机硬件、4-bit 量化、非思考模式、共同 JSON/长度约束、反复使用 dev 和单一训练 seed 的限制。不预先承诺论文级新颖性或普遍提升。
 
-采用相对工作日，未假定课程截止日期。以下为可并行分工，不要求必须有三名组员。
+## 13 单列的后续扩展：动作级数值惩罚
 
-| 时间 | 工作 | 完成标志 |
-| --- | --- | --- |
-| 第 1 至 2 个工作日 | 固定上游、数据准备、HotpotQA 适配、pilot | 两个数据集最小端到端跑通，配置和预算冻结 |
-| 第 3 至 4 个工作日 | 完成 B；整理 dev 全量失败 | 原版技能、错误分类、对照方法设计冻结 |
-| 第 5 至 6 个工作日 | 实现记忆、配对、反馈；完成 C | 两数据集 C 的优化日志与技能齐全 |
-| 第 7 个工作日 | 检查公平性，冻结所有正式方法 | 数据、模型、代码和 prompt 的冻结清单 |
-| 第 8 个工作日 | 最终测试与全量错误清单 | 四组主结果、修复／退化表 |
-| 第 9 至 10 个工作日 | 报告、图表、演示与复现检查 | 最终提交包 |
+当前 **未实现** 直接修改动作分数或 logits 的版本。若主项目完成后仍有预算，再单列研究基于配对经验的有限候选动作重排；不混入 Option A 主实验。
 
-有多名组员时，可按“数据与基线”“对照反馈实现”“评测与报告”分工。方法设计和测试冻结需要共同核对；每人保留对应提交、实验和文档记录，用于个人贡献说明。单人执行则按表中依赖顺序推进。
-
-## 12 报告结构与完成清单
-
-### 最多六页正文的建议安排
-
-| 内容 | 建议页数 | 应回答的问题 |
-| --- | --- | --- |
-| 背景与研究问题 | 0.75 | 图结构技能为何会失败，对照反馈想改善什么 |
-| 原版方法与数据协议 | 1.0 | 怎样复现，train／dev／test 各有什么作用 |
-| 对照反馈方法 | 1.25 | 成功参照来自哪里，偏差怎样判断，唯一改动是什么 |
-| 实验与主要结果 | 1.5 | 在相同预算下是否改善，成本如何 |
-| 失败、修复与退化分析 | 1.0 | 哪些错误被修复，哪些能力被误伤 |
-| 结论与局限 | 0.5 | 结果支持到什么程度，下一步应验证什么 |
-
-共六页。参考文献是否占页、poster 尺寸和演示时长按照课程统一要求核对；不假定文件未写明的格式豁免。完整 prompts、配置、错误表和实现细节放附录或仓库。
-
-### 验收清单
-
-- [ ] 两个数据集来自课程指定来源，固定 ID 与划分边界已保存。
-- [ ] 所有条件模型与基本推理配置一致，实际检查点和服务环境可追溯。
-- [ ] N／I／B／C 四组均有两个数据集的最终结果。
-- [ ] B 和 C 从同一初始化出发，轮数／候选上限一致，原选择函数保持一致。
-- [ ] 原失败抽样函数未因方法切换而改变，配对来源仅限允许的训练记忆。
-- [ ] 没有将 EM=1 当作全部推理正确，也没有把缺失轨迹补写成事实。
-- [ ] B 的全部 dev 失败、冻结后的全部 test 失败均已列出。
-- [ ] 每轮技能图来自真实技能内容，记录无效修改和未保留候选。
-- [ ] 成本账本覆盖初始化、所有推理、生成、诊断和重试，缓存不冒充独立观测。
-- [ ] 测试前方法已冻结，测试结果没有反向用于调参或选择技能。
-- [ ] 报告结果没有填写预期数值，负结果和退化案例如实呈现。
-- [ ] 报告、代码、固定数据 ID、prompts、技能图、评估输出、比较表、GPU 日志和演示材料齐全。
-
-## 13 数值惩罚的后续扩展
-
-如果后续仍要直接实现讨论中的“重点惩罚失败偏差”，可以在完成主项目后单独研究 **基于配对经验的动作重排**。该方向改变推理执行机制，超出主实验 Option A 的单一输入改动，需要另定实验范围，不应靠更换名称把它混入主方法。
-
-可先定义一个有限候选动作集合，例如某个可观测决策点的候选下一步，而不是惩罚整段自然语言里所有不同 token。为当前状态 `s` 和候选动作 `a`，从冻结的训练记忆中估计有害程度 `d_hat(s,a)` 和证据置信度 `c(s,a)`，使用一个有界的探索公式：
+一个待研究的有界形式为：
 
 ```text
 penalty(s, a) = clip(c(s, a) * d_hat(s, a), 0, 1)
 new_score(s, a) = base_score(s, a) - lambda * penalty(s, a)
 ```
 
-没有可比配对、只有词面差异、或证据无法定位时令 penalty=0。惩罚值由该状态下的有害偏差证据决定，不能由“历史轨迹最终失败”直接广播到全部动作。base_score 必须说明来自候选动作概率、完整候选序列评分还是显式打分；三者不能当作同一种 logits。
+它需要额外定义可观察状态、有限动作、配对证据、置信度、base_score 的来源、lambda 的开发集选择和候选生成预算。没有可比配对、只有词面差异或无法定位证据时 penalty=0；不能把整条轨迹的最终失败广播为全部动作的惩罚。
 
-这套扩展必须额外定义状态与动作接口、配对判定、置信度计算、lambda 的开发集选择及候选生成预算。SearchQA 当前单轮接口没有天然的动作级 logits，因此接入并不等于在现有输出上减一个数。测试阶段也不能读取测试 gold 更新惩罚记忆。
+SearchQA 当前接口没有天然的动作级 logits。候选动作概率、整段序列评分与显式打分也不能混为同一种 logits。没有无惩罚、整段统一惩罚、局部对照惩罚的独立公平比较前，不宣称实现 JitRL 更新或获得其理论保证。预算不足时不开展该扩展。
 
-扩展的最小比较应包括：无惩罚、对失败整段统一惩罚、成功对照定位后的局部惩罚，在相同候选和总预算下比较成功率与误伤率。预算不足时停留在主方案，课程项目仍然可以完整完成。
+## 14 复现入口与参考资料
 
-## 14 开始实施时的前五项工作
+项目入口和当前代码说明：
 
-1. 固定上游提交，读通 `trainer.py → evaluation.py → operators.py` 的数据流，写下实际失败抽样与选择规则。
-2. 获取两套指定数据，确认 HotpotQA 的提供位置和设置，生成固定划分清单。
-3. 用固定开源模型跑通两套 10 题 pilot，测得吞吐、截断与错误率，冻结共同资源限制。
-4. 完成 B 并整理全部 dev 失败，确认可比成功参照的覆盖率与反馈结构。
-5. 在 `train_reflection_context` 接入对照反馈开关，从共同初始化运行 C，再依照冻结协议完成最终测试。
+- [仓库首页](README.md)、[Baseline 说明](Baseline/README.md)、[Explore 说明](Explore/README.md)、[本机服务说明](local_model/README.md)。
+- [固定上游与共同修改](Baseline/UPSTREAM.json)、[两数据集配置目录](Baseline/configs)、[正确性测试](Baseline/tests/test_protocol.py)。
+- 本地运行证据路径已在第 5 节列出；它们有意不作为 GitHub 文件链接，以免误导远端读者以为仓库包含模型或实验日志。
 
-## 参考资料
+方法和数据来源：
 
-- [本目录课程项目说明](/Users/sirui/code/2026fall/NLP/AIAA4051_Project/AIAA4051_26Fall_Final_Research_Projects.pdf)，Project 5，第 19 至 23 页。
-- [GraphSkillEvo 论文](https://arxiv.org/abs/2609.21749)。
-- [GraphSkillEvo 官方仓库](https://github.com/ruisun7/GraphSkillEvo)，上述代码事实对应提交 `722a8a913b05dc9d1b4078f0bec604cde4dc7529`。
+- [课程项目说明](AIAA4051_26Fall_Final_Research_Projects.pdf)，Project 5，第 19–23 页。
+- [GraphSkillEvo 论文](https://arxiv.org/abs/2609.21749) 与 [固定官方代码](https://github.com/ruisun7/GraphSkillEvo/tree/722a8a913b05dc9d1b4078f0bec604cde4dc7529)。
 - [GraphSkillEvo 数据准备说明](https://github.com/ruisun7/GraphSkillEvo/blob/722a8a913b05dc9d1b4078f0bec604cde4dc7529/data/README.md)。
-- [SearchQA 默认配置](https://github.com/ruisun7/GraphSkillEvo/blob/722a8a913b05dc9d1b4078f0bec604cde4dc7529/configs/searchqa/default.yaml) 与 [基础配置](https://github.com/ruisun7/GraphSkillEvo/blob/722a8a913b05dc9d1b4078f0bec604cde4dc7529/configs/_base_/default.yaml)。
-- [JitRL 论文](https://arxiv.org/abs/2601.18510)，第 4 节用于说明经验优势与数值惩罚的关系；本方案没有直接复用其理论保证。
+- [JitRL](https://arxiv.org/abs/2601.18510)，经验记忆/动作优势用于研究启发，不等同于当前反馈方法。
+- [固定 SearchQA 数据源](https://huggingface.co/datasets/lucadiliello/searchqa/tree/c1a979068ba118d85467179b704031d113d689cc)、[HotpotQA 官方说明](https://hotpotqa.github.io/) 与 [固定 HF 镜像](https://huggingface.co/datasets/hotpotqa/hotpot_qa/tree/1908d6afbbead072334abe2965f91bd2709910ab)。
+- [Qwen3.5-9B 原模型](https://huggingface.co/Qwen/Qwen3.5-9B/tree/c202236235762e1c871ad0ccb60c8ee5ba337b9a)、[固定 GGUF 量化版本](https://huggingface.co/unsloth/Qwen3.5-9B-GGUF/tree/3885219b6810b007914f3a7950a8d1b469d598a5)、[llama.cpp b11871](https://github.com/ggml-org/llama.cpp/releases/tag/b11871)。
