@@ -32,11 +32,14 @@ def pilot(config, data_dir, output, demo=False):
         rows = runner.evaluate_items(individual, batch, "train", 0, runner.output / name)
         summaries[name] = aggregate(rows)
         evaluated.append((individual, rows, runner.output / name))
+    initialization_errors = []
     for attempt in range(config["max_attempts"]):
         try:
-            skill, _ = runner.operators.initial_attempt(runner.initial_content)
+            skill, _ = runner.operators.initial_attempt(runner.initial_content, recent_errors=initialization_errors)
             break
-        except (ValueError, RuntimeError):
+        except (ValueError, RuntimeError) as exc:
+            initialization_errors.append({"attempt": attempt + 1, "error": str(exc)})
+            write_json(runner.output / "initialization_errors.json", initialization_errors)
             if attempt + 1 == config["max_attempts"]:
                 raise
     initial = SkillIndividual("pilot_generated", skill, "pilot_generated")

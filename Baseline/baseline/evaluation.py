@@ -7,8 +7,12 @@ from pathlib import Path
 from graphskillevo.envs.searchqa.evaluator import evaluate, normalize_answer
 from graphskillevo.prompts import load_prompt
 from .budget import BudgetExceeded
-from .client import ModelError
+from .client import ModelError, ProviderRefusal
 from .io import digest, append_jsonl, write_json
+
+
+class InfrastructureError(RuntimeError):
+    """A failed request must not become a benchmark model-error observation."""
 
 
 def truncate_context(context, max_chars=6000):
@@ -46,21 +50,27 @@ def score(response, answers, dataset):
 def run_qa(client, item, skill, *, split, round_no, seed, condition, out_dir):
     system, user, visible = qa_prompts(item, skill)
     start, response, error, usage = time.monotonic(), "", "", {}
-    attempts = []
+    attempts, provider_refusal = [], False
     for attempt in range(client.config["max_attempts"]):
         try:
             response, usage = client.chat(system, user, maximum=client.config["qa_max_tokens"], stage="qa", seed=seed,
                                           temperature=client.config["qa_temperature"], phase=split)
             attempts.append({"attempt": attempt + 1, "status": "ok", "usage": usage})
             error = ""
+            provider_refusal = False
             break
         except BudgetExceeded:
             raise
         except ModelError as exc:
             error = str(exc)
-            attempts.append({"attempt": attempt + 1, "status": "error", "error": error})
+            provider_refusal = isinstance(exc, ProviderRefusal)
+            attempts.append({"attempt": attempt + 1, "status": "error", "error": error,
+                             "provider_refusal": provider_refusal})
+    refusal_reason = error if provider_refusal else ""
+    if provider_refusal:
+        error = ""
     metrics = score(response, item["answers"], item["dataset"])
-    if error:
+    if error or provider_refusal:
         metrics.update(em=0.0, f1=0.0)
     row = {"id": item["id"], "dataset": item["dataset"], "split": split, "condition": condition,
            "round": round_no, "skill_hash": digest(skill), "question": item["question"],
@@ -68,7 +78,8 @@ def run_qa(client, item, skill, *, split, round_no, seed, condition, out_dir):
            "raw_response": response, "response": response, **metrics,
            "hard": int(metrics["em"]), "soft": metrics["f1"], "gold_answers": item["answers"],
            "format_ok": bool(re.search(r"<answer>.*?</answer>", response, re.S | re.I)),
-           "error": error, "fail_reason": error or ("EM=0" if metrics["em"] == 0 else ""),
+           "error": error, "provider_refusal": provider_refusal, "refusal_reason": refusal_reason,
+           "fail_reason": error or refusal_reason or ("EM=0" if metrics["em"] == 0 else ""),
            "latency_seconds": time.monotonic() - start, "generation_config": {
                "model": client.config["model"], "temperature": client.config["qa_temperature"], "seed": seed,
                "max_tokens": client.config["qa_max_tokens"], "tokenizer_hash": client.counter.identity},
@@ -84,6 +95,11 @@ def run_qa(client, item, skill, *, split, round_no, seed, condition, out_dir):
         {"role": "system", "content": f"[EVALUATION RESULT]\nGold answers: {item['answers']!r}\nEM: {row['em']}\nF1: {row['f1']}"},
     ])
     append_jsonl(Path(out_dir) / "outputs.jsonl", row)
+    if error:
+        raise InfrastructureError(
+            f"QA infrastructure failure after {len(attempts)} attempts for {item['id']}; "
+            f"diagnostics saved to {prediction_dir / 'result.json'}. No complete score was produced."
+        )
     return row
 
 
@@ -99,4 +115,6 @@ def aggregate(rows):
     return {"n": len(rows), "correct": sum(r["hard"] for r in rows), "em": sum(r["em"] for r in rows) / len(rows),
             "f1": sum(r["f1"] for r in rows) / len(rows), "mean_latency_seconds": sum(values) / len(values),
             "p50_latency_seconds": percentile(.5), "p95_latency_seconds": percentile(.95),
-            "infrastructure_errors": sum(bool(r["error"]) for r in rows), "format_failures": sum(not r["format_ok"] for r in rows)}
+            "infrastructure_errors": sum(bool(r["error"]) for r in rows),
+            "provider_refusals": sum(bool(r.get("provider_refusal")) for r in rows),
+            "format_failures": sum(not r["format_ok"] for r in rows)}

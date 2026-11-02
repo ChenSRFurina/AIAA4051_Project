@@ -1,16 +1,17 @@
-"""One HTTP request per accounted attempt; compatible with a local vLLM server."""
+"""One HTTP request per accounted attempt, for local or hosted compatible APIs."""
 from __future__ import annotations
 
 import json
-import os
 import re
 import time
 import urllib.request
+import urllib.error
 import uuid
 from .io import append_jsonl, digest
+from .credentials import api_key
 
 
-def operator_response_format(stage):
+def operator_response_format(stage, mode=True):
     """Optional common syntax constraint; QA answer tags remain unconstrained."""
     if stage == "initialize":
         schema = {"type": "object", "properties": {"skills": {"type": "array", "items": {"type": "string"}, "minItems": 1, "maxItems": 1}},
@@ -20,6 +21,9 @@ def operator_response_format(stage):
                   "required": ["new_skill", "notes"], "additionalProperties": False}
     else:
         return None
+    if mode == "json_object":
+        # Hosted API JSON mode; graph/schema validation still happens locally.
+        return {"type": "json_object"}
     # llama.cpp supports schema-constrained json_object responses.
     return {"type": "json_object", "schema": schema}
 
@@ -28,13 +32,23 @@ class ModelError(RuntimeError):
     pass
 
 
+class ProviderRefusal(ModelError):
+    """The provider explicitly rejected content; this is a scored non-answer."""
+
+
 class ChatClient:
     def __init__(self, config, budget, counter, log_path, *, demo=False):
         self.config, self.budget, self.counter = config, budget, counter
         self.log_path, self.demo = log_path, demo
+        self._api_key = None if demo else api_key(config)
+        self._retry_not_before = 0.0
 
     def chat(self, system, user, *, maximum, stage, seed, temperature, phase=None):
-        if not self.demo:
+        if not self.demo and self.config.get("backend", "local") == "api":
+            delay = self._retry_not_before - time.monotonic()
+            if delay > 0:
+                time.sleep(delay)
+        if not self.demo and self.config.get("backend", "local") == "local":
             from .gpu import gpu_event
             from .budget import BudgetExceeded
             gpu = gpu_event(self.config["gpu_ledger_path"], "status", "a6000")
@@ -52,11 +66,12 @@ class ChatClient:
             raise ValueError("extra_body may not override frozen core request fields")
         payload.update(extra)
         if self.config["model"].get("structured_operators", False):
-            structured = operator_response_format(stage)
+            structured = operator_response_format(stage, self.config["model"]["structured_operators"])
             if structured is not None:
                 payload["response_format"] = structured
         phase = phase or ("initialize" if stage == "initialize" else "optimize")
-        record = {"call_id": call_id, "stage": stage, "phase": phase, "demo": self.demo, "request": payload,
+        record = {"call_id": call_id, "stage": stage, "phase": phase, "demo": self.demo,
+                  "backend": self.config.get("backend", "local"), "request": payload,
                   "prompt_hash": digest([system, user]), "raw_response": None}
         event = {"call_id": call_id, "stage": stage, "phase": phase, "calls": 1, "physical_calls": 1,
                  "prompt_tokens": self.counter.count(system + user), "generated_tokens": maximum,
@@ -67,9 +82,8 @@ class ChatClient:
             else:
                 body = json.dumps(payload).encode("utf-8")
                 headers = {"Content-Type": "application/json"}
-                key = os.environ.get(self.config["model"]["api_key_env"])
-                if key:
-                    headers["Authorization"] = "Bearer " + key
+                if self._api_key:
+                    headers["Authorization"] = "Bearer " + self._api_key
                 request = urllib.request.Request(self.config["model"]["base_url"].rstrip("/") + "/chat/completions", data=body, headers=headers)
                 with urllib.request.urlopen(request, timeout=self.config["timeout_seconds"]) as response:
                     data = json.load(response)
@@ -98,8 +112,27 @@ class ChatClient:
             return text, {**usage, "call_id": call_id, "finish_reason": choice.get("finish_reason")}
         except Exception as exc:
             event["status"] = "error"
-            record["error"] = f"{type(exc).__name__}: {exc}"
-            raise ModelError(record["error"]) from exc
+            if not self.demo and self.config.get("backend", "local") == "api":
+                self._retry_not_before = time.monotonic() + self.config.get("api_retry_delay_seconds", 2.0)
+            # Inspect only a known machine-readable refusal code, never log bodies
+            # or headers. Unknown HTTP failures must remain infrastructure errors.
+            refused = False
+            if isinstance(exc, urllib.error.HTTPError) and exc.code == 400 and self.config.get("backend") == "api":
+                try:
+                    body = json.loads(exc.read(65536))
+                    error_data = body.get("error") if isinstance(body, dict) else None
+                    refused = isinstance(error_data, dict) and error_data.get("code") == "data_inspection_failed"
+                except (ValueError, OSError, TypeError):
+                    pass
+            detail = f"HTTP {exc.code}" if isinstance(exc, urllib.error.HTTPError) else str(exc)
+            if refused:
+                detail += " (data_inspection_failed)"
+                record["provider_error_code"] = "data_inspection_failed"
+                event["provider_refusal"] = True
+            if self._api_key:
+                detail = detail.replace(self._api_key, "[REDACTED]")
+            record["error"] = f"{type(exc).__name__}: {detail}"
+            raise (ProviderRefusal if refused else ModelError)(record["error"]) from None
         finally:
             event["wall_seconds"] = time.monotonic() - start
             record["accounting"] = event

@@ -16,6 +16,8 @@ __pycache__/
 .env.*
 !.env.example
 .DS_Store
+/api/runtime/
+/api/runs/
 *.gguf
 *.safetensors
 *.onnx

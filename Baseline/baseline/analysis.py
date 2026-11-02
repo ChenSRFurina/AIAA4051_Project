@@ -15,7 +15,10 @@ def diagnose(row):
     observation = {"format_ok": row["format_ok"], "context_truncated": row["context_truncated"],
                    "infrastructure_error": row["error"], "gold_literal_visible": any(
                        normalize_answer(a) in normalize_answer(row["visible_context"]) for a in row["gold_answers"])}
-    if row["error"]:
+    if row.get("provider_refusal"):
+        observation["provider_refusal"] = row.get("refusal_reason")
+        category, reason = "provider_refusal", "Provider content rejection; scored zero and retained in the EM/F1 denominator."
+    elif row["error"]:
         category, reason = "infrastructure_error", "The request failed; retained in the EM/F1 denominator."
     elif not row["format_ok"]:
         category, reason = "answer_extraction", "Required answer tags are absent; upstream fallback was applied."

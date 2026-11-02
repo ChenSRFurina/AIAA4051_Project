@@ -68,8 +68,12 @@ class CourseTrainer(EvolutionarySkillTrainer):
                           "upstream_commit": UPSTREAM_COMMIT, "demo": demo}
         write_json(self.output / "config.json", config)
         write_json(self.output / "run_meta.json", {**self.signature, "condition": condition, "dataset": config["dataset"],
+                                                   "backend": config.get("backend", "local"),
+                                                   "tokenizer_note": config["model"].get("tokenizer_note"),
                                                    "concurrency": 1, "gpu_hours": None,
-                                                   "gpu_accounting": "Inference wall time is not GPU occupancy. Use the separate service/session GPU ledger."})
+                                                   "gpu_accounting": ("Hosted API: provider GPU occupancy is unknown; report server token usage and wall time."
+                                                                      if config.get("backend", "local") == "api" else
+                                                                      "Inference wall time is not GPU occupancy. Use the separate service/session GPU ledger.")})
 
     def evaluate_items(self, individual, items, split, generation, output):
         rows = []
@@ -103,7 +107,7 @@ class CourseTrainer(EvolutionarySkillTrainer):
         errors = []
         for attempt in range(self.course["max_attempts"]):
             try:
-                skill, record = self.operators.initial_attempt(self.initial_content)
+                skill, record = self.operators.initial_attempt(self.initial_content, recent_errors=errors)
                 population.append(SkillIndividual("g0000_i0001", skill, "llm_initialization"))
                 write_json(self.output / "initialization.json", record)
                 break

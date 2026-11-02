@@ -2,19 +2,23 @@ from __future__ import annotations
 
 from copy import deepcopy
 from pathlib import Path
+from urllib.parse import urlsplit
 from .io import read_json, digest
 
 DEFAULT = {
+    "backend": "local",
     "dataset": "searchqa", "seed": 42, "rounds": 3, "population_size": 2,
     "train_batch_size": 20, "failure_k": 3, "max_attempts": 2,
     "qa_max_tokens": 1024, "operator_max_tokens": 3072,
     "skill_max_tokens": 2048, "feedback_max_tokens": 2048,
     "qa_temperature": 0.0, "operator_temperature": 0.2, "top_p": 1.0,
     "timeout_seconds": 120, "concurrency": 1,
+    "api_retry_delay_seconds": 2.0,
     "gpu_ledger_path": "runs/gpu_accounting.jsonl",
     "model": {"id": "SET_MODEL_ID", "revision": "SET_REVISION", "base_url": "http://127.0.0.1:8000/v1",
               "api_key_env": "PROJECT5_API_KEY", "tokenizer_path": "SET_LOCAL_TOKENIZER",
-              "precision": "SET_PRECISION", "server_version": "SET_VERSION", "extra_body": {}, "structured_operators": False},
+              "precision": "SET_PRECISION", "server_version": "SET_VERSION", "extra_body": {}, "structured_operators": False,
+              "tokenizer_note": "Local tokenizer for the served model"},
     "budget": {"max_calls": 600, "max_generated_tokens": 700000, "max_wall_hours": 9},
     "pairing": {"jaccard_threshold": 0.2, "per_outcome_limit": 2},
 }
@@ -35,6 +39,19 @@ def load_config(path=None, *, demo=False):
                 config[key] = value
     if config["dataset"] not in {"searchqa", "hotpotqa"}:
         raise ValueError("Only searchqa and hotpotqa are supported")
+    if config["backend"] not in {"local", "api"}:
+        raise ValueError("backend must be local or api")
+    if config["model"]["structured_operators"] not in (True, False, "json_object"):
+        raise ValueError("structured_operators must be a boolean or json_object")
+    if config["backend"] == "api":
+        endpoint = urlsplit(config["model"]["base_url"])
+        if endpoint.scheme != "https" or not endpoint.hostname or endpoint.username or endpoint.password or endpoint.query or endpoint.fragment:
+            raise ValueError("API base_url must be an HTTPS endpoint without credentials, query or fragment")
+        if not config["model"]["api_key_env"]:
+            raise ValueError("API mode requires model.api_key_env")
+        tokenizer = Path(config["model"]["tokenizer_path"])
+        if not tokenizer.is_absolute():
+            config["model"]["tokenizer_path"] = str((Path(__file__).resolve().parents[2] / tokenizer).resolve())
     if config["population_size"] != 2 or not 0 <= config["rounds"] <= 3:
         raise ValueError("Course protocol requires population_size=2 and 0<=rounds<=3")
     for key in ["train_batch_size", "failure_k", "max_attempts", "qa_max_tokens", "operator_max_tokens",
@@ -45,6 +62,8 @@ def load_config(path=None, *, demo=False):
         raise ValueError("Use k=3, at most 2 attempts and at most 100 training IDs")
     if config["concurrency"] != 1:
         raise ValueError("This audited runner currently supports sequential concurrency=1")
+    if not isinstance(config["api_retry_delay_seconds"], (int, float)) or not 0 <= config["api_retry_delay_seconds"] <= 60:
+        raise ValueError("api_retry_delay_seconds must be between 0 and 60")
     if config["qa_temperature"] != 0.0:
         raise ValueError("QA validation caching requires the frozen deterministic decoding policy qa_temperature=0")
     if config["operator_temperature"] < 0 or not 0 < config["top_p"] <= 1:

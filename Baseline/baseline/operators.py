@@ -10,18 +10,31 @@ class CourseOperators(EvolutionOperators):
                          reasoning_effort=None, graph_retry_attempts=1)
         self.client, self.config, self.call_seed = client, config, config["seed"]
 
-    def _bounded_user(self, user):
+    def _bounded_user(self, user, *, initializing=False):
         if not self.config["model"].get("structured_operators", False):
             return user
+        initialization_format = (
+            'For initialization, the JSON object must have exactly one key, "skills", '
+            'whose value is an array of exactly one complete Markdown string. '
+            'Do not add separate array entries for notes, punctuation, or JSON delimiters. '
+            if self.config.get("backend", "local") == "api" else
+            'For an initialization skills array, finish the Markdown string, then close the array and object: \"]}. '
+        )
+        if self.config.get("backend", "local") == "api" and not initializing:
+            initialization_format = ""
         return user + (
             "\n\n## Serialization and size contract (common to all experiment methods)\n"
             f"The complete skill Markdown must fit within {self.config['skill_max_tokens']} tokens. "
             "Use at most six concise reusable nodes and at most three distinct task graphs. "
             "Do not enumerate many equivalent question categories or repeat the same workflow. "
             "Return exactly one JSON object, with no Markdown code fence or trailing prose. "
-            'For an initialization skills array, finish the Markdown string, then close the array and object: \"]}. '
-            "For mutation, return the complete new_skill string and a short notes list. "
-            "Every workflow item must be an exact defined node name; every defined node must be used."
+            + initialization_format
+            + ("" if initializing and self.config.get("backend") == "api" else
+               "For mutation, return the complete new_skill string and a short notes list. ") +
+            "Every workflow item must be an exact defined node name; every defined node must be used. "
+            "Workflow numbering must start at 1 and increase consecutively without duplicate numbers. "
+            "After each **Workflow:** marker, include only numbered node names until the next task heading or end of document. "
+            "Put all explanations, notes and fallback instructions in node definitions or Global Guidance, never after a workflow."
         )
 
     def validate(self, skill):
@@ -29,14 +42,19 @@ class CourseOperators(EvolutionOperators):
         if self.client.counter.count(skill) > self.config["skill_max_tokens"]:
             raise ValueError("Candidate exceeds the common skill token cap")
 
-    def initial_attempt(self, base_skill):
+    def initial_attempt(self, base_skill, recent_errors=None):
         if self.env_name == "searchqa":
             task_context = load_prompt("task_context_searchqa", env="searchqa")
         else:
             task_context = "Answer multi-hop questions using supplied titled context passages. Return <answer> tags. Supporting facts and gold answers are scoring-only."
-        user = self._build_init_user(n=1, base_skill=base_skill, task_context=task_context, recent_errors=[])
-        user = self._bounded_user(user)
-        response, usage = self.client.chat(load_prompt("init_population"), user, maximum=self.max_completion_tokens,
+        user = self._build_init_user(n=1, base_skill=base_skill, task_context=task_context, recent_errors=recent_errors or [])
+        user = self._bounded_user(user, initializing=True)
+        system = load_prompt("init_population")
+        if self.config.get("backend") == "api":
+            system = system.replace('{"skills": ["full skill document", "..."]}',
+                                    '{"skills": ["one complete Markdown skill document"]}')
+            system += "\nFor this request, generate exactly one complete skill string. The skills array must contain exactly one string and no other elements."
+        response, usage = self.client.chat(system, user, maximum=self.max_completion_tokens,
                                            stage="initialize", seed=self.call_seed, temperature=self.config["operator_temperature"])
         parsed = extract_json(response)
         if not isinstance(parsed, dict) or not isinstance(parsed.get("skills"), list) or len(parsed["skills"]) != 1:
