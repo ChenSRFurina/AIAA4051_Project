@@ -1,0 +1,440 @@
+{
+  "generated_at": "2026-11-10T18:53:04.050171+08:00",
+  "status": "completed_available_data",
+  "method_modified": false,
+  "new_cost": {
+    "physical_calls": 633,
+    "prompt_tokens": 1525836,
+    "generated_tokens": 108838
+  },
+  "searchqa_test": {
+    "status": "completed",
+    "freeze_id": "ca10a1bce932b82398a773136a6c5582a884f738aad07f6251f9ca53ade57d20",
+    "manifest": "F:\\Document\\HKUST\\2026fall\\NLP\\Project\\AIAA4051_Project\\Explore\\runs\\api\\part3-20261110\\searchqa\\test_frozen.json",
+    "conditions": {
+      "C": {
+        "n": 50,
+        "correct": 32,
+        "em": 0.64,
+        "f1": 0.7168571428571429,
+        "mean_latency_seconds": 1.557779999999475,
+        "p50_latency_seconds": 1.125,
+        "p95_latency_seconds": 3.2118500000029595,
+        "infrastructure_errors": 0,
+        "provider_refusals": 0,
+        "format_failures": 0,
+        "new_calls": 50,
+        "cost": {
+          "calls": 50,
+          "prompt_tokens": 99727,
+          "generated_tokens": 784,
+          "reasoning_tokens": 0,
+          "physical_calls": 50
+        },
+        "reused_from": null
+      },
+      "B_prefix": {
+        "n": 50,
+        "correct": 34,
+        "em": 0.68,
+        "f1": 0.778,
+        "mean_latency_seconds": 1.4975200000000768,
+        "p50_latency_seconds": 1.0470000000004802,
+        "p95_latency_seconds": 5.688100000000301,
+        "infrastructure_errors": 0,
+        "provider_refusals": 0,
+        "format_failures": 0,
+        "new_calls": 0,
+        "reused_from": "B",
+        "source_path": "F:\\Document\\HKUST\\2026fall\\NLP\\Project\\AIAA4051_Project\\Baseline\\runs\\part12\\searchqa\\test\\B\\outputs.json",
+        "cost": {
+          "calls": 0,
+          "physical_calls": 0,
+          "prompt_tokens": 0,
+          "generated_tokens": 0,
+          "reasoning_tokens": 0
+        }
+      },
+      "C_prefix": {
+        "n": 50,
+        "correct": 32,
+        "em": 0.64,
+        "f1": 0.7168571428571429,
+        "mean_latency_seconds": 1.557779999999475,
+        "p50_latency_seconds": 1.125,
+        "p95_latency_seconds": 3.2118500000029595,
+        "infrastructure_errors": 0,
+        "provider_refusals": 0,
+        "format_failures": 0,
+        "new_calls": 0,
+        "reused_from": "C",
+        "source_path": "F:\\Document\\HKUST\\2026fall\\NLP\\Project\\AIAA4051_Project\\Explore\\runs\\api\\part3-20261110\\searchqa\\test\\C\\outputs.json",
+        "cost": {
+          "calls": 0,
+          "physical_calls": 0,
+          "prompt_tokens": 0,
+          "generated_tokens": 0,
+          "reasoning_tokens": 0
+        }
+      }
+    },
+    "baseline_conditions": {
+      "N": {
+        "n": 50,
+        "correct": 35,
+        "em": 0.7,
+        "f1": 0.8059999999999999,
+        "mean_latency_seconds": 6.932180000000008,
+        "p50_latency_seconds": 1.069999999999709,
+        "p95_latency_seconds": 9.356249999999998,
+        "infrastructure_errors": 0,
+        "provider_refusals": 0,
+        "format_failures": 0,
+        "cost": {
+          "calls": 50,
+          "prompt_tokens": 57327,
+          "generated_tokens": 4485,
+          "reasoning_tokens": 0,
+          "physical_calls": 50
+        },
+        "gpu_hours": null
+      },
+      "I": {
+        "n": 50,
+        "correct": 36,
+        "em": 0.72,
+        "f1": 0.8075757575757576,
+        "mean_latency_seconds": 6.944720000000161,
+        "p50_latency_seconds": 6.516000000001441,
+        "p95_latency_seconds": 13.953549999999813,
+        "infrastructure_errors": 0,
+        "provider_refusals": 0,
+        "format_failures": 0,
+        "cost": {
+          "calls": 50,
+          "prompt_tokens": 69577,
+          "generated_tokens": 4453,
+          "reasoning_tokens": 0,
+          "physical_calls": 50
+        },
+        "gpu_hours": null
+      },
+      "B": {
+        "n": 50,
+        "correct": 34,
+        "em": 0.68,
+        "f1": 0.778,
+        "mean_latency_seconds": 1.4975200000000768,
+        "p50_latency_seconds": 1.0470000000004802,
+        "p95_latency_seconds": 5.688100000000301,
+        "infrastructure_errors": 0,
+        "provider_refusals": 0,
+        "format_failures": 0,
+        "cost": {
+          "calls": 50,
+          "prompt_tokens": 104077,
+          "generated_tokens": 789,
+          "reasoning_tokens": 0,
+          "physical_calls": 50
+        },
+        "gpu_hours": null
+      }
+    },
+    "comparisons": {
+      "B_to_C": {
+        "n": 50,
+        "counts": {
+          "repaired": 1,
+          "regressed": 3,
+          "both_correct": 31,
+          "both_wrong": 15
+        },
+        "repair_rate": 0.0625,
+        "regression_rate": 0.08823529411764706,
+        "em_difference_C_minus_B": -0.04,
+        "paired_bootstrap_95": [
+          -0.12,
+          0.04
+        ],
+        "uncertainty_scope": "Question-level resampling; not variability across training seeds.",
+        "changes": [
+          {
+            "id": "23a9f0f9823f4c6ba66163b1652a6b05",
+            "transition": "regressed",
+            "question": "Rachmaninoff wrote one \"on a Theme of Paganini\"; Gershwin wrote on \"in Blue\"",
+            "gold_answers": [
+              "a rhapsody"
+            ],
+            "B": "Rhapsody",
+            "C": "Rachmaninoff wrote \"Rhapsody on a Theme of Paganini\" and Gershwin wrote \"Rhapsody in Blue\""
+          },
+          {
+            "id": "255522dc506241a18970f20c859f4431",
+            "transition": "regressed",
+            "question": "Dad spent a year training for the priesthood in this type of school, from the Latin for \"seed\"--lucky for you, he quit",
+            "gold_answers": [
+              "seminary"
+            ],
+            "B": "seminary",
+            "C": "Not found in context"
+          },
+          {
+            "id": "491fe356172c4f0f8899595cd13426db",
+            "transition": "repaired",
+            "question": "The effect name for this 19th century British physicist is sometimes called magnetic rotation",
+            "gold_answers": [
+              "Faraday"
+            ],
+            "B": "Faraday rotation",
+            "C": "Faraday"
+          },
+          {
+            "id": "9ba40aba1544434b900db2758db2eded",
+            "transition": "regressed",
+            "question": "Planes & ships have been lost in this mysterious Atlantic region off the coast of Florida since the mid-19th century",
+            "gold_answers": [
+              "the Bermuda Triangle"
+            ],
+            "B": "Bermuda Triangle",
+            "C": "True"
+          }
+        ]
+      },
+      "matched_B_to_C": {
+        "n": 50,
+        "counts": {
+          "repaired": 1,
+          "regressed": 3,
+          "both_correct": 31,
+          "both_wrong": 15
+        },
+        "repair_rate": 0.0625,
+        "regression_rate": 0.08823529411764706,
+        "em_difference_C_minus_B": -0.04,
+        "paired_bootstrap_95": [
+          -0.12,
+          0.04
+        ],
+        "uncertainty_scope": "Question-level resampling; not variability across training seeds.",
+        "changes": [
+          {
+            "id": "23a9f0f9823f4c6ba66163b1652a6b05",
+            "transition": "regressed",
+            "question": "Rachmaninoff wrote one \"on a Theme of Paganini\"; Gershwin wrote on \"in Blue\"",
+            "gold_answers": [
+              "a rhapsody"
+            ],
+            "B": "Rhapsody",
+            "C": "Rachmaninoff wrote \"Rhapsody on a Theme of Paganini\" and Gershwin wrote \"Rhapsody in Blue\""
+          },
+          {
+            "id": "255522dc506241a18970f20c859f4431",
+            "transition": "regressed",
+            "question": "Dad spent a year training for the priesthood in this type of school, from the Latin for \"seed\"--lucky for you, he quit",
+            "gold_answers": [
+              "seminary"
+            ],
+            "B": "seminary",
+            "C": "Not found in context"
+          },
+          {
+            "id": "491fe356172c4f0f8899595cd13426db",
+            "transition": "repaired",
+            "question": "The effect name for this 19th century British physicist is sometimes called magnetic rotation",
+            "gold_answers": [
+              "Faraday"
+            ],
+            "B": "Faraday rotation",
+            "C": "Faraday"
+          },
+          {
+            "id": "9ba40aba1544434b900db2758db2eded",
+            "transition": "regressed",
+            "question": "Planes & ships have been lost in this mysterious Atlantic region off the coast of Florida since the mid-19th century",
+            "gold_answers": [
+              "the Bermuda Triangle"
+            ],
+            "B": "Bermuda Triangle",
+            "C": "True"
+          }
+        ]
+      }
+    },
+    "prior_sources": {
+      "N": {
+        "path": "F:\\Document\\HKUST\\2026fall\\NLP\\Project\\AIAA4051_Project\\Baseline\\runs\\part12\\searchqa\\test\\N\\outputs.json",
+        "sha256": "d4c8d5afa9253973a433040a8d0cc2e3c2a85d6859c7a0013cb204ad2baffe01",
+        "freeze_id": "1ec2c803df557ccb5d5c28f0a7f9cf7dcaa524d2aa3211d40f036120402b1448"
+      },
+      "I": {
+        "path": "F:\\Document\\HKUST\\2026fall\\NLP\\Project\\AIAA4051_Project\\Baseline\\runs\\part12\\searchqa\\test\\I\\outputs.json",
+        "sha256": "cc73bf302a15c46dc124345a87dead9a58c15068abbf96a50cfcf90973e38b20",
+        "freeze_id": "1ec2c803df557ccb5d5c28f0a7f9cf7dcaa524d2aa3211d40f036120402b1448"
+      },
+      "B": {
+        "path": "F:\\Document\\HKUST\\2026fall\\NLP\\Project\\AIAA4051_Project\\Baseline\\runs\\part12\\searchqa\\test\\B\\outputs.json",
+        "sha256": "50f26254985c3dcf27d89a38b67f03330994e29bd5381345af422bf9150bd807",
+        "freeze_id": "1ec2c803df557ccb5d5c28f0a7f9cf7dcaa524d2aa3211d40f036120402b1448"
+      }
+    },
+    "matched": {
+      "call_cap": 338,
+      "generated_token_cap": 19383,
+      "B": {
+        "round": 2,
+        "best_id": "g0002_i0000",
+        "skill_hash": "c4ab24a9c4550a970e68d42b0ba0ab5b46b4170ed5bfbb363693a6a1e0c606cb",
+        "cost": {
+          "calls": 265,
+          "prompt_tokens": 497928,
+          "generated_tokens": 15618,
+          "reasoning_tokens": 0,
+          "physical_calls": 204
+        },
+        "em": 0.7666666666666667,
+        "f1": 0.8155555555555555,
+        "unused_calls": 73,
+        "unused_generated_tokens": 3765
+      },
+      "C": {
+        "round": 2,
+        "best_id": "g0000_i0001",
+        "skill_hash": "0a21fc8afe52b0187c46b31af479538d39514d3486bdd828c4ae97cc7fc75100",
+        "cost": {
+          "calls": 266,
+          "prompt_tokens": 512294,
+          "generated_tokens": 15180,
+          "reasoning_tokens": 0,
+          "physical_calls": 205
+        },
+        "em": 0.7333333333333333,
+        "f1": 0.7822222222222222,
+        "unused_calls": 72,
+        "unused_generated_tokens": 4203
+      },
+      "interpretation": "Common cumulative call/token ceilings; realized costs may differ because only complete rounds are eligible. Not exactly equal realized tokens.",
+      "dev_comparison": {
+        "n": 30,
+        "counts": {
+          "repaired": 1,
+          "regressed": 2,
+          "both_correct": 21,
+          "both_wrong": 6
+        },
+        "repair_rate": 0.14285714285714285,
+        "regression_rate": 0.08695652173913043,
+        "em_difference_C_minus_B": -0.03333333333333333,
+        "paired_bootstrap_95": [
+          -0.13333333333333333,
+          0.06666666666666667
+        ],
+        "uncertainty_scope": "Question-level resampling; not variability across training seeds.",
+        "changes": [
+          {
+            "id": "24143f01e7dd455e86c34a4a6f4ed3b9",
+            "transition": "regressed",
+            "question": "(Jon of the Clue Crew shows an anatomical diagram on the monitor.)  When Lasik eye surgery is performed, a flap is made in the eye, folded back, & then the stroma, or middle section, of this eye part is reshaped using lasers",
+            "gold_answers": [
+              "the cornea"
+            ],
+            "B": "cornea",
+            "C": "True"
+          },
+          {
+            "id": "5324041c25d04316a800ccba2d79a2c7",
+            "transition": "regressed",
+            "question": "He wrote comic book stories for \"Captain America\" & \"Captain Marvel\" before hitting it big with \"I, the Jury\"",
+            "gold_answers": [
+              "Mickey Spillane"
+            ],
+            "B": "Mickey Spillane",
+            "C": "True"
+          },
+          {
+            "id": "f03757766e034c539bf2595428c03626",
+            "transition": "repaired",
+            "question": "Exist/unwanted \"bonnet\" intruder",
+            "gold_answers": [
+              "be/bee"
+            ],
+            "B": "bee",
+            "C": "be/bee"
+          }
+        ]
+      }
+    },
+    "test_n": 50,
+    "finished_at": "2026-11-10T10:48:42.865422+00:00",
+    "gpu_hours": null
+  },
+  "datasets": {
+    "searchqa": {
+      "baseline": "F:\\Document\\HKUST\\2026fall\\NLP\\Project\\AIAA4051_Project\\Baseline\\runs\\api\\searchqa\\20261107-125241-971323-38572",
+      "experiment": "F:\\Document\\HKUST\\2026fall\\NLP\\Project\\AIAA4051_Project\\Explore\\runs\\api\\part3-20261110\\searchqa",
+      "code_hash": "e6291efca3c706dcd41b5e6319a1568afe5f0d6b0d0193483e5f9df59b67fb89",
+      "config_hash": "4218e6505955258455225a37a8a7ec290d615d4dd284edc38d322f6dbca0ded1",
+      "pairing": {
+        "selected_count": 18,
+        "same_question": 2,
+        "similar_task": 0,
+        "unpaired": 16,
+        "paired_rate": 0.1111111111111111
+      },
+      "service": {
+        "models": [
+          "qwen3.5-9b"
+        ],
+        "system_fingerprints": [
+          "vllm-0.29.0-c6001cce"
+        ],
+        "finish_reasons": {
+          "stop": 277
+        },
+        "requests": 277
+      },
+      "initial_input_repeat": {
+        "n": 40,
+        "raw_response_equal": 39,
+        "predicted_answer_equal": 39,
+        "EM_equal": 40,
+        "scope": "Same initial skills, first-round train inputs and generation config; observed reproducibility check, not proof of identical server weights."
+      }
+    },
+    "hotpotqa": {
+      "baseline": "F:\\Document\\HKUST\\2026fall\\NLP\\Project\\AIAA4051_Project\\Baseline\\runs\\api\\hotpotqa\\20261109-153042-871031-7652",
+      "experiment": "F:\\Document\\HKUST\\2026fall\\NLP\\Project\\AIAA4051_Project\\Explore\\runs\\api\\part3-20261110\\hotpotqa",
+      "code_hash": "067f9db47e18c15f7f78975f73896c4ca6b25f6c477514214bae5889d3fb0f5e",
+      "config_hash": "16be27c13abe928b1deafb458703e90dd09c42313b90f649623ee6bfd66b9e7b",
+      "pairing": {
+        "selected_count": 18,
+        "same_question": 4,
+        "similar_task": 0,
+        "unpaired": 14,
+        "paired_rate": 0.2222222222222222
+      },
+      "service": {
+        "models": [
+          "qwen3.5-9b"
+        ],
+        "system_fingerprints": [
+          "vllm-0.29.0-c6001cce"
+        ],
+        "finish_reasons": {
+          "stop": 300,
+          "length": 6
+        },
+        "requests": 306
+      },
+      "initial_input_repeat": {
+        "n": 40,
+        "raw_response_equal": 40,
+        "predicted_answer_equal": 40,
+        "EM_equal": 40,
+        "scope": "Same initial skills, first-round train inputs and generation config; observed reproducibility check, not proof of identical server weights."
+      }
+    }
+  },
+  "hotpotqa_test": "missing_course_partition",
+  "manual_pairs_reviewed": 3,
+  "manual_cases_reviewed": 39
+}

@@ -9,6 +9,7 @@ import urllib.error
 import uuid
 from .io import append_jsonl, digest
 from .credentials import api_key
+from .transport import open_model_request
 
 
 def operator_response_format(stage, mode=True):
@@ -24,6 +25,10 @@ def operator_response_format(stage, mode=True):
     if mode == "json_object":
         # Hosted API JSON mode; graph/schema validation still happens locally.
         return {"type": "json_object"}
+    if mode == "json_schema":
+        return {"type": "json_schema", "json_schema": {
+            "name": "initial_skills" if stage == "initialize" else "skill_mutation",
+            "strict": True, "schema": schema}}
     # llama.cpp supports schema-constrained json_object responses.
     return {"type": "json_object", "schema": schema}
 
@@ -69,10 +74,23 @@ class ChatClient:
             structured = operator_response_format(stage, self.config["model"]["structured_operators"])
             if structured is not None:
                 payload["response_format"] = structured
+        prompt_estimate = self.counter.count(system) + self.counter.count(user)
+        if "response_format" in payload:
+            prompt_estimate += self.counter.count(json.dumps(payload["response_format"], ensure_ascii=False))
+        context_window = self.config["model"].get("context_window")
+        safety = self.config["model"].get("context_safety_tokens", 512)
+        if context_window is not None and prompt_estimate + maximum + safety > context_window:
+            self.budget.finish({"call_id": call_id, "calls": 0, "physical_calls": 0,
+                                "stage": stage, "status": "context_window_exceeded"}, maximum)
+            raise ValueError(
+                f"Request exceeds context window: estimated input {prompt_estimate} + "
+                f"output {maximum} + safety {safety} > {context_window}"
+            )
         phase = phase or ("initialize" if stage == "initialize" else "optimize")
         record = {"call_id": call_id, "stage": stage, "phase": phase, "demo": self.demo,
                   "backend": self.config.get("backend", "local"), "request": payload,
-                  "prompt_hash": digest([system, user]), "raw_response": None}
+                  "prompt_hash": digest([system, user]), "raw_response": None,
+                  "prompt_tokens_estimate": prompt_estimate, "context_safety_tokens": safety}
         event = {"call_id": call_id, "stage": stage, "phase": phase, "calls": 1, "physical_calls": 1,
                  "prompt_tokens": self.counter.count(system + user), "generated_tokens": maximum,
                  "reasoning_tokens": 0, "usage_status": "reserved_conservative", "shared": False}
@@ -85,7 +103,7 @@ class ChatClient:
                 if self._api_key:
                     headers["Authorization"] = "Bearer " + self._api_key
                 request = urllib.request.Request(self.config["model"]["base_url"].rstrip("/") + "/chat/completions", data=body, headers=headers)
-                with urllib.request.urlopen(request, timeout=self.config["timeout_seconds"]) as response:
+                with open_model_request(request, timeout=self.config["timeout_seconds"]) as response:
                     data = json.load(response)
             record["raw_response"] = data
             usage = data.get("usage") or {}

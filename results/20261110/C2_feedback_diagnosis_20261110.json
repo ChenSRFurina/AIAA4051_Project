@@ -1,0 +1,1815 @@
+{
+  "searchqa": {
+    "dataset": "searchqa",
+    "memory_replay": "exact_match",
+    "source_code_hash": "e6291efca3c706dcd41b5e6319a1568afe5f0d6b0d0193483e5f9df59b67fb89",
+    "rounds": [
+      {
+        "round": 1,
+        "memory_records": 38,
+        "success_observations": 18,
+        "success_questions": 11
+      },
+      {
+        "round": 2,
+        "memory_records": 54,
+        "success_observations": 25,
+        "success_questions": 18
+      },
+      {
+        "round": 3,
+        "memory_records": 69,
+        "success_observations": 34,
+        "success_questions": 27
+      }
+    ],
+    "failures": [
+      {
+        "round": 1,
+        "child": "g0001_i0000",
+        "parent": "g0000_i0001",
+        "failure_id": "f8a442980c55415b82527160422a2688",
+        "question": "...in American History, if you know that this man was the only U.S. President named Chester",
+        "type": "unknown",
+        "pair_type": "unpaired",
+        "failure_em": 0.0,
+        "failure_f1": 0.0,
+        "prediction": "Not found in context",
+        "gold": [
+          "Arthur"
+        ],
+        "successes_available": 18,
+        "same_kind_available": 0,
+        "max_jaccard_any_kind": 0.18518518518518517,
+        "max_jaccard_same_kind": 0,
+        "success": null,
+        "actual_packet": {
+          "failure_id": "f8a442980c55415b82527160422a2688",
+          "pair_type": "unpaired",
+          "failure": {
+            "question": "...in American History, if you know that this man was the only U.S. President named Chester",
+            "response_excerpt": "<answer>Not found in context</answer>",
+            "predicted_answer": "Not found in context",
+            "gold_answers": [
+              "Arthur"
+            ],
+            "em": 0,
+            "visible_context_excerpt": "[DOC] [TLE] Chester A. Arthur - U.S. Presidents - HISTORY.com [PAR] Find out more about the history of Chester A. Arthur, including videos, ... (1829-\n1886), the 21st U.S. president, took office after the death of President ... In 1871, \nan era of political machines and patronage, Arthur was named to ... Did You \nKnow? ... American Civil War (1861-1865), he was quartermaster for the state of \nNew... [DOC] [TLE] Chester A. Arthur - Wikipedia [PAR] Chester Alan Arthur (October 5, 1829  November 18, 18"
+          },
+          "success_reference": null,
+          "observable_checks": {
+            "answer_format_ok": true,
+            "reference_has_verifiable_quote": false,
+            "diagnosis_status": "hypothesis_to_check"
+          },
+          "original_failure_feedback": "\n\n### Trajectory 1 (id=f8a442980c55415b82527160422a2688)\nTask: ...in American History, if you know that this man was the only U.S. President named Chester\nTask type: \nFailure reason: EM=0\nSteps: ?\n\n#### Hidden Reference\nGold answers: ['Arthur']\n\n[assistant] <answer>Not found in context</answer>\n[verification] [EVALUATION RESULT]\nGold answers: ['Arthur']\nEM: 0.0\nF1: 0.0"
+        },
+        "feedback_tokens": 1628
+      },
+      {
+        "round": 1,
+        "child": "g0001_i0000",
+        "parent": "g0000_i0001",
+        "failure_id": "691178453c884f98a9205ef3d143bc42",
+        "question": "The National Air & Space Museum in Washington is the largest museum of this institution",
+        "type": "unknown",
+        "pair_type": "same_question",
+        "failure_em": 0.0,
+        "failure_f1": 0.0,
+        "prediction": "True",
+        "gold": [
+          "Smithsonian Institution"
+        ],
+        "successes_available": 18,
+        "same_kind_available": 0,
+        "max_jaccard_any_kind": 0.15384615384615385,
+        "max_jaccard_same_kind": 0,
+        "success": {
+          "example_id": "691178453c884f98a9205ef3d143bc42",
+          "skill_hash": "98e05007c06e2c5a10bcee2a4bbbe206c291efcc2fdef0335f0c4aaf8d3613a3",
+          "round": 1,
+          "visible_context_hash": "129bea06b6e6bfb71f3205add6e848aef3e8bdad3af03eb5dbb21fa87d2fd29e",
+          "observation_id": "6f552f21002ce28d2af2bc3d44676c393edaf2d41425307dcd66be0ce9375955",
+          "question": "The National Air & Space Museum in Washington is the largest museum of this institution",
+          "visible_context_excerpt": "[DOC] [TLE] National Air and Space Museum | [PAR] 46 minutes ago ... Are you an air racing fan? Learn More ... National Air and Space Museum ... \nBrilliant visit to the #airandspace museum in Washington DC with... [DOC] [TLE] About | National Air and Space Museum [PAR] The Steven F. Udvar-Hazy Center, located near Washington Dulles ... The \nSmithsonian's National Air and Space Museum will assess and improve our \nprograms, ... Museum is the largest of 19 museums included in the Smithsonian \nInstitution. [DOC] [TLE] History | National Air and Space Museum [PAR] The Smithsonian's connection to flight began with the birth of the Institution, first ... \nwould later",
+          "response_excerpt": "Based on the context provided, the National Air and Space Museum is described as \"the largest of 19 museums included in the Smithsonian Institution.\"\n\n<answer>Smithsonian Institution</answer>",
+          "predicted_answer": "Smithsonian Institution",
+          "gold_answers": [
+            "Smithsonian Institution"
+          ],
+          "em": 1.0
+        },
+        "actual_packet": {
+          "failure_id": "691178453c884f98a9205ef3d143bc42",
+          "pair_type": "same_question",
+          "failure": {
+            "question": "The National Air & Space Museum in Washington is the largest museum of this institution",
+            "response_excerpt": "<answer>True</answer>",
+            "predicted_answer": "True",
+            "gold_answers": [
+              "Smithsonian Institution"
+            ],
+            "em": 0,
+            "visible_context_excerpt": "[DOC] [TLE] National Air and Space Museum | [PAR] 46 minutes ago ... Are you an air racing fan? Learn More ... National Air and Space Museum ... \nBrilliant visit to the #airandspace museum in Washington DC with... [DOC] [TLE] About | National Air and Space Museum [PAR] The Steven F. Udvar-Hazy Center, located near Washington Dulles ... The \nSmithsonian's National Air and Space Museum will assess and improve our \nprograms, ... Museum is the largest of 19 museums included in the Smithsonian \nInstitution. [DOC] [TLE] History | National Air and Space Museum [PAR] The Smithsonian's connection to flight began with the birth of the Institution, first ... \nwould later"
+          },
+          "success_reference": {
+            "example_id": "691178453c884f98a9205ef3d143bc42",
+            "response_excerpt": "Based on the context provided, the National Air and Space Museum is described as \"the largest of 19 museums included in the Smithsonian Institution.\"\n\n<answer>Smithsonian Institution</answer>",
+            "predicted_answer": "Smithsonian Institution",
+            "em": 1,
+            "question": "The National Air & Space Museum in Washington is the largest museum of this institution",
+            "visible_context_excerpt": "[DOC] [TLE] National Air and Space Museum | [PAR] 46 minutes ago ... Are you an air racing fan? Learn More ... National Air and Space Museum ... \nBrilliant visit to the #airandspace museum in Washington DC with... [DOC] [TLE] About | National Air and Space Museum [PAR] The Steven F. Udvar-Hazy Center, located near Washington Dulles ... The \nSmithsonian's National Air and Space Museum will assess and improve our \nprograms, ... Museum is the largest of 19 museums included in the Smithsonian \nInstitution. [DOC] [TLE] History | National Air and Space Museum [PAR] The Smithsonian's connection to flight began with the birth of the Institution, first ... \nwould later"
+          },
+          "observable_checks": {
+            "answer_format_ok": true,
+            "reference_has_verifiable_quote": false,
+            "diagnosis_status": "hypothesis_to_check"
+          }
+        },
+        "feedback_tokens": 1628
+      },
+      {
+        "round": 1,
+        "child": "g0001_i0000",
+        "parent": "g0000_i0001",
+        "failure_id": "0d73382067a64ea4a6ed320ae386accb",
+        "question": "February 6, 1911 in Tampico, Illinois",
+        "type": "unknown",
+        "pair_type": "unpaired",
+        "failure_em": 0.0,
+        "failure_f1": 0.5714285714285715,
+        "prediction": "President Ronald Reagan was born",
+        "gold": [
+          "Ronald Reagan"
+        ],
+        "successes_available": 18,
+        "same_kind_available": 0,
+        "max_jaccard_any_kind": 0.058823529411764705,
+        "max_jaccard_same_kind": 0,
+        "success": null,
+        "actual_packet": {
+          "failure_id": "0d73382067a64ea4a6ed320ae386accb",
+          "pair_type": "unpaired",
+          "failure": {
+            "question": "February 6, 1911 in Tampico, Illinois",
+            "response_excerpt": "<answer>President Ronald Reagan was born</answer>",
+            "predicted_answer": "President Ronald Reagan was born",
+            "gold_answers": [
+              "Ronald Reagan"
+            ],
+            "em": 0,
+            "visible_context_excerpt": "[DOC] [TLE] Ronald Reagan born - Feb 06, 1911 - HISTORY.com [PAR] On this day in History, Ronald Reagan born on Feb 06, 1911. ... Ronald Reagan \nwas born on this day in 1911, in Tampico, a small town in northwestern Illinois. [DOC] [TLE] February 1911 - Wikipedia [PAR] ... was born at 4:16 a.m. in Tampico, Illinois, to Nelle Reagan and shoe salesman \nJohn Reagan. He died on... [DOC] [TLE] Tampico, Illinois - Places in the News | Library of Congress [PAR] Tampico, Illinois was founded in 185"
+          },
+          "success_reference": null,
+          "observable_checks": {
+            "answer_format_ok": true,
+            "reference_has_verifiable_quote": false,
+            "diagnosis_status": "hypothesis_to_check"
+          },
+          "original_failure_feedback": "\n\n### Trajectory 1 (id=0d73382067a64ea4a6ed320ae386accb)\nTask: February 6, 1911 in Tampico, Illinois\nTask type: \nFailure reason: EM=0\nSteps: ?\n\n#### Hidden Reference\nGold answers: ['Ronald Reagan']\n\n[assistant] <answer>President Ronald Reagan was born</answer>\n[verification] [EVALUATION RESULT]\nGold answers: ['Ronald Reagan']\nEM: 0.0\nF1: 0.5714285714285715"
+        },
+        "feedback_tokens": 1628
+      },
+      {
+        "round": 1,
+        "child": "g0001_i0001",
+        "parent": "g0000_i0001",
+        "failure_id": "f8a442980c55415b82527160422a2688",
+        "question": "...in American History, if you know that this man was the only U.S. President named Chester",
+        "type": "unknown",
+        "pair_type": "unpaired",
+        "failure_em": 0.0,
+        "failure_f1": 0.0,
+        "prediction": "Not found in context",
+        "gold": [
+          "Arthur"
+        ],
+        "successes_available": 18,
+        "same_kind_available": 0,
+        "max_jaccard_any_kind": 0.18518518518518517,
+        "max_jaccard_same_kind": 0,
+        "success": null,
+        "actual_packet": {
+          "failure_id": "f8a442980c55415b82527160422a2688",
+          "pair_type": "unpaired",
+          "failure": {
+            "question": "...in American History, if you know that this man was the only U.S. President named Chester",
+            "response_excerpt": "<answer>Not found in context</answer>",
+            "predicted_answer": "Not found in context",
+            "gold_answers": [
+              "Arthur"
+            ],
+            "em": 0,
+            "visible_context_excerpt": "[DOC] [TLE] Chester A. Arthur - U.S. Presidents - HISTORY.com [PAR] Find out more about the history of Chester A. Arthur, including videos, ... (1829-\n1886), the 21st U.S. president, took office after the death of President ... In 1871, \nan era of political machines and patronage, Arthur was named to ... Did You \nKnow? ... American Civil War (1861-1865), he was quartermaster for the state of \nNew... [DOC] [TLE] Chester A. Arthur - Wikipedia [PAR] Chester Alan Arthur (October 5, 1829  November 18, 18"
+          },
+          "success_reference": null,
+          "observable_checks": {
+            "answer_format_ok": true,
+            "reference_has_verifiable_quote": false,
+            "diagnosis_status": "hypothesis_to_check"
+          },
+          "original_failure_feedback": "\n\n### Trajectory 1 (id=f8a442980c55415b82527160422a2688)\nTask: ...in American History, if you know that this man was the only U.S. President named Chester\nTask type: \nFailure reason: EM=0\nSteps: ?\n\n#### Hidden Reference\nGold answers: ['Arthur']\n\n[assistant] <answer>Not found in context</answer>\n[verification] [EVALUATION RESULT]\nGold answers: ['Arthur']\nEM: 0.0\nF1: 0.0"
+        },
+        "feedback_tokens": 1628
+      },
+      {
+        "round": 1,
+        "child": "g0001_i0001",
+        "parent": "g0000_i0001",
+        "failure_id": "691178453c884f98a9205ef3d143bc42",
+        "question": "The National Air & Space Museum in Washington is the largest museum of this institution",
+        "type": "unknown",
+        "pair_type": "same_question",
+        "failure_em": 0.0,
+        "failure_f1": 0.0,
+        "prediction": "True",
+        "gold": [
+          "Smithsonian Institution"
+        ],
+        "successes_available": 18,
+        "same_kind_available": 0,
+        "max_jaccard_any_kind": 0.15384615384615385,
+        "max_jaccard_same_kind": 0,
+        "success": {
+          "example_id": "691178453c884f98a9205ef3d143bc42",
+          "skill_hash": "98e05007c06e2c5a10bcee2a4bbbe206c291efcc2fdef0335f0c4aaf8d3613a3",
+          "round": 1,
+          "visible_context_hash": "129bea06b6e6bfb71f3205add6e848aef3e8bdad3af03eb5dbb21fa87d2fd29e",
+          "observation_id": "6f552f21002ce28d2af2bc3d44676c393edaf2d41425307dcd66be0ce9375955",
+          "question": "The National Air & Space Museum in Washington is the largest museum of this institution",
+          "visible_context_excerpt": "[DOC] [TLE] National Air and Space Museum | [PAR] 46 minutes ago ... Are you an air racing fan? Learn More ... National Air and Space Museum ... \nBrilliant visit to the #airandspace museum in Washington DC with... [DOC] [TLE] About | National Air and Space Museum [PAR] The Steven F. Udvar-Hazy Center, located near Washington Dulles ... The \nSmithsonian's National Air and Space Museum will assess and improve our \nprograms, ... Museum is the largest of 19 museums included in the Smithsonian \nInstitution. [DOC] [TLE] History | National Air and Space Museum [PAR] The Smithsonian's connection to flight began with the birth of the Institution, first ... \nwould later",
+          "response_excerpt": "Based on the context provided, the National Air and Space Museum is described as \"the largest of 19 museums included in the Smithsonian Institution.\"\n\n<answer>Smithsonian Institution</answer>",
+          "predicted_answer": "Smithsonian Institution",
+          "gold_answers": [
+            "Smithsonian Institution"
+          ],
+          "em": 1.0
+        },
+        "actual_packet": {
+          "failure_id": "691178453c884f98a9205ef3d143bc42",
+          "pair_type": "same_question",
+          "failure": {
+            "question": "The National Air & Space Museum in Washington is the largest museum of this institution",
+            "response_excerpt": "<answer>True</answer>",
+            "predicted_answer": "True",
+            "gold_answers": [
+              "Smithsonian Institution"
+            ],
+            "em": 0,
+            "visible_context_excerpt": "[DOC] [TLE] National Air and Space Museum | [PAR] 46 minutes ago ... Are you an air racing fan? Learn More ... National Air and Space Museum ... \nBrilliant visit to the #airandspace museum in Washington DC with... [DOC] [TLE] About | National Air and Space Museum [PAR] The Steven F. Udvar-Hazy Center, located near Washington Dulles ... The \nSmithsonian's National Air and Space Museum will assess and improve our \nprograms, ... Museum is the largest of 19 museums included in the Smithsonian \nInstitution. [DOC] [TLE] History | National Air and Space Museum [PAR] The Smithsonian's connection to flight began with the birth of the Institution, first ... \nwould later"
+          },
+          "success_reference": {
+            "example_id": "691178453c884f98a9205ef3d143bc42",
+            "response_excerpt": "Based on the context provided, the National Air and Space Museum is described as \"the largest of 19 museums included in the Smithsonian Institution.\"\n\n<answer>Smithsonian Institution</answer>",
+            "predicted_answer": "Smithsonian Institution",
+            "em": 1,
+            "question": "The National Air & Space Museum in Washington is the largest museum of this institution",
+            "visible_context_excerpt": "[DOC] [TLE] National Air and Space Museum | [PAR] 46 minutes ago ... Are you an air racing fan? Learn More ... National Air and Space Museum ... \nBrilliant visit to the #airandspace museum in Washington DC with... [DOC] [TLE] About | National Air and Space Museum [PAR] The Steven F. Udvar-Hazy Center, located near Washington Dulles ... The \nSmithsonian's National Air and Space Museum will assess and improve our \nprograms, ... Museum is the largest of 19 museums included in the Smithsonian \nInstitution. [DOC] [TLE] History | National Air and Space Museum [PAR] The Smithsonian's connection to flight began with the birth of the Institution, first ... \nwould later"
+          },
+          "observable_checks": {
+            "answer_format_ok": true,
+            "reference_has_verifiable_quote": false,
+            "diagnosis_status": "hypothesis_to_check"
+          }
+        },
+        "feedback_tokens": 1628
+      },
+      {
+        "round": 1,
+        "child": "g0001_i0001",
+        "parent": "g0000_i0001",
+        "failure_id": "0d73382067a64ea4a6ed320ae386accb",
+        "question": "February 6, 1911 in Tampico, Illinois",
+        "type": "unknown",
+        "pair_type": "unpaired",
+        "failure_em": 0.0,
+        "failure_f1": 0.5714285714285715,
+        "prediction": "President Ronald Reagan was born",
+        "gold": [
+          "Ronald Reagan"
+        ],
+        "successes_available": 18,
+        "same_kind_available": 0,
+        "max_jaccard_any_kind": 0.058823529411764705,
+        "max_jaccard_same_kind": 0,
+        "success": null,
+        "actual_packet": {
+          "failure_id": "0d73382067a64ea4a6ed320ae386accb",
+          "pair_type": "unpaired",
+          "failure": {
+            "question": "February 6, 1911 in Tampico, Illinois",
+            "response_excerpt": "<answer>President Ronald Reagan was born</answer>",
+            "predicted_answer": "President Ronald Reagan was born",
+            "gold_answers": [
+              "Ronald Reagan"
+            ],
+            "em": 0,
+            "visible_context_excerpt": "[DOC] [TLE] Ronald Reagan born - Feb 06, 1911 - HISTORY.com [PAR] On this day in History, Ronald Reagan born on Feb 06, 1911. ... Ronald Reagan \nwas born on this day in 1911, in Tampico, a small town in northwestern Illinois. [DOC] [TLE] February 1911 - Wikipedia [PAR] ... was born at 4:16 a.m. in Tampico, Illinois, to Nelle Reagan and shoe salesman \nJohn Reagan. He died on... [DOC] [TLE] Tampico, Illinois - Places in the News | Library of Congress [PAR] Tampico, Illinois was founded in 185"
+          },
+          "success_reference": null,
+          "observable_checks": {
+            "answer_format_ok": true,
+            "reference_has_verifiable_quote": false,
+            "diagnosis_status": "hypothesis_to_check"
+          },
+          "original_failure_feedback": "\n\n### Trajectory 1 (id=0d73382067a64ea4a6ed320ae386accb)\nTask: February 6, 1911 in Tampico, Illinois\nTask type: \nFailure reason: EM=0\nSteps: ?\n\n#### Hidden Reference\nGold answers: ['Ronald Reagan']\n\n[assistant] <answer>President Ronald Reagan was born</answer>\n[verification] [EVALUATION RESULT]\nGold answers: ['Ronald Reagan']\nEM: 0.0\nF1: 0.5714285714285715"
+        },
+        "feedback_tokens": 1628
+      },
+      {
+        "round": 2,
+        "child": "g0002_i0000",
+        "parent": "g0001_i0000",
+        "failure_id": "84ab80ab3c5d47a58ddda464d62c5694",
+        "question": "He spun straw into gold(15)",
+        "type": "unknown",
+        "pair_type": "unpaired",
+        "failure_em": 0.0,
+        "failure_f1": 0.0,
+        "prediction": "He spun straw into gold",
+        "gold": [
+          "Rumpelstiltskin"
+        ],
+        "successes_available": 25,
+        "same_kind_available": 0,
+        "max_jaccard_any_kind": 0.05555555555555555,
+        "max_jaccard_same_kind": 0,
+        "success": null,
+        "actual_packet": null,
+        "feedback_tokens": 423
+      },
+      {
+        "round": 2,
+        "child": "g0002_i0000",
+        "parent": "g0001_i0000",
+        "failure_id": "1f6f687c79a642328a742e61154c9d90",
+        "question": "\"Tippecanoe and Tyler too\"",
+        "type": "unknown",
+        "pair_type": "unpaired",
+        "failure_em": 0.0,
+        "failure_f1": 0.0,
+        "prediction": "1840 U.S. Presidential Campaign slogan",
+        "gold": [
+          "William Henry Harrison"
+        ],
+        "successes_available": 25,
+        "same_kind_available": 0,
+        "max_jaccard_any_kind": 0.0,
+        "max_jaccard_same_kind": 0,
+        "success": null,
+        "actual_packet": null,
+        "feedback_tokens": 423
+      },
+      {
+        "round": 2,
+        "child": "g0002_i0000",
+        "parent": "g0001_i0000",
+        "failure_id": "1c2cc13e0fa745d6b541f6c7eb9f5619",
+        "question": "A \"hasty\" dessert, or perhaps you'd prefer the tapioca",
+        "type": "unknown",
+        "pair_type": "unpaired",
+        "failure_em": 0.0,
+        "failure_f1": 0.6666666666666666,
+        "prediction": "hasty pudding",
+        "gold": [
+          "pudding"
+        ],
+        "successes_available": 25,
+        "same_kind_available": 0,
+        "max_jaccard_any_kind": 0.1,
+        "max_jaccard_same_kind": 0,
+        "success": null,
+        "actual_packet": null,
+        "feedback_tokens": 423
+      },
+      {
+        "round": 2,
+        "child": "g0002_i0001",
+        "parent": "g0000_i0001",
+        "failure_id": "84ab80ab3c5d47a58ddda464d62c5694",
+        "question": "He spun straw into gold(15)",
+        "type": "unknown",
+        "pair_type": "unpaired",
+        "failure_em": 0.0,
+        "failure_f1": 0.0,
+        "prediction": "He spun straw into gold",
+        "gold": [
+          "Rumpelstiltskin"
+        ],
+        "successes_available": 25,
+        "same_kind_available": 0,
+        "max_jaccard_any_kind": 0.05555555555555555,
+        "max_jaccard_same_kind": 0,
+        "success": null,
+        "actual_packet": null,
+        "feedback_tokens": 426
+      },
+      {
+        "round": 2,
+        "child": "g0002_i0001",
+        "parent": "g0000_i0001",
+        "failure_id": "1f6f687c79a642328a742e61154c9d90",
+        "question": "\"Tippecanoe and Tyler too\"",
+        "type": "unknown",
+        "pair_type": "unpaired",
+        "failure_em": 0.0,
+        "failure_f1": 0.4,
+        "prediction": "1840 U.S. Presidential Campaign slogan for William Henry Harrison and John Tyler",
+        "gold": [
+          "William Henry Harrison"
+        ],
+        "successes_available": 25,
+        "same_kind_available": 0,
+        "max_jaccard_any_kind": 0.0,
+        "max_jaccard_same_kind": 0,
+        "success": null,
+        "actual_packet": null,
+        "feedback_tokens": 426
+      },
+      {
+        "round": 2,
+        "child": "g0002_i0001",
+        "parent": "g0000_i0001",
+        "failure_id": "1c2cc13e0fa745d6b541f6c7eb9f5619",
+        "question": "A \"hasty\" dessert, or perhaps you'd prefer the tapioca",
+        "type": "unknown",
+        "pair_type": "unpaired",
+        "failure_em": 0.0,
+        "failure_f1": 0.0,
+        "prediction": "A \"hasty\" dessert, or perhaps you'd prefer the tapioca",
+        "gold": [
+          "pudding"
+        ],
+        "successes_available": 25,
+        "same_kind_available": 0,
+        "max_jaccard_any_kind": 0.1,
+        "max_jaccard_same_kind": 0,
+        "success": null,
+        "actual_packet": null,
+        "feedback_tokens": 426
+      },
+      {
+        "round": 3,
+        "child": "g0003_i0000",
+        "parent": "g0000_i0001",
+        "failure_id": "a234f47261f14ab9aed867375bddc652",
+        "question": "Rubber is an ingredient in this type of chewing gum",
+        "type": "unknown",
+        "pair_type": "unpaired",
+        "failure_em": 0.0,
+        "failure_f1": 0.4,
+        "prediction": "Modern chewing gum",
+        "gold": [
+          "bubble gum"
+        ],
+        "successes_available": 34,
+        "same_kind_available": 0,
+        "max_jaccard_any_kind": 0.2222222222222222,
+        "max_jaccard_same_kind": 0,
+        "success": null,
+        "actual_packet": null,
+        "feedback_tokens": 382
+      },
+      {
+        "round": 3,
+        "child": "g0003_i0000",
+        "parent": "g0000_i0001",
+        "failure_id": "6252b238d9554d45bc4eb9b9978543c5",
+        "question": "\"...on my mind\"",
+        "type": "unknown",
+        "pair_type": "unpaired",
+        "failure_em": 0.0,
+        "failure_f1": 0.0,
+        "prediction": "Ellie Goulding",
+        "gold": [
+          "Georgia"
+        ],
+        "successes_available": 34,
+        "same_kind_available": 0,
+        "max_jaccard_any_kind": 0.0625,
+        "max_jaccard_same_kind": 0,
+        "success": null,
+        "actual_packet": null,
+        "feedback_tokens": 382
+      },
+      {
+        "round": 3,
+        "child": "g0003_i0000",
+        "parent": "g0000_i0001",
+        "failure_id": "84ab80ab3c5d47a58ddda464d62c5694",
+        "question": "He spun straw into gold(15)",
+        "type": "unknown",
+        "pair_type": "unpaired",
+        "failure_em": 0.0,
+        "failure_f1": 0.0,
+        "prediction": "He spun straw into gold",
+        "gold": [
+          "Rumpelstiltskin"
+        ],
+        "successes_available": 34,
+        "same_kind_available": 0,
+        "max_jaccard_any_kind": 0.05555555555555555,
+        "max_jaccard_same_kind": 0,
+        "success": null,
+        "actual_packet": null,
+        "feedback_tokens": 382
+      },
+      {
+        "round": 3,
+        "child": "g0003_i0001",
+        "parent": "g0000_i0001",
+        "failure_id": "a234f47261f14ab9aed867375bddc652",
+        "question": "Rubber is an ingredient in this type of chewing gum",
+        "type": "unknown",
+        "pair_type": "unpaired",
+        "failure_em": 0.0,
+        "failure_f1": 0.4,
+        "prediction": "Modern chewing gum",
+        "gold": [
+          "bubble gum"
+        ],
+        "successes_available": 34,
+        "same_kind_available": 0,
+        "max_jaccard_any_kind": 0.2222222222222222,
+        "max_jaccard_same_kind": 0,
+        "success": null,
+        "actual_packet": null,
+        "feedback_tokens": 382
+      },
+      {
+        "round": 3,
+        "child": "g0003_i0001",
+        "parent": "g0000_i0001",
+        "failure_id": "6252b238d9554d45bc4eb9b9978543c5",
+        "question": "\"...on my mind\"",
+        "type": "unknown",
+        "pair_type": "unpaired",
+        "failure_em": 0.0,
+        "failure_f1": 0.0,
+        "prediction": "Ellie Goulding",
+        "gold": [
+          "Georgia"
+        ],
+        "successes_available": 34,
+        "same_kind_available": 0,
+        "max_jaccard_any_kind": 0.0625,
+        "max_jaccard_same_kind": 0,
+        "success": null,
+        "actual_packet": null,
+        "feedback_tokens": 382
+      },
+      {
+        "round": 3,
+        "child": "g0003_i0001",
+        "parent": "g0000_i0001",
+        "failure_id": "84ab80ab3c5d47a58ddda464d62c5694",
+        "question": "He spun straw into gold(15)",
+        "type": "unknown",
+        "pair_type": "unpaired",
+        "failure_em": 0.0,
+        "failure_f1": 0.0,
+        "prediction": "He spun straw into gold",
+        "gold": [
+          "Rumpelstiltskin"
+        ],
+        "successes_available": 34,
+        "same_kind_available": 0,
+        "max_jaccard_any_kind": 0.05555555555555555,
+        "max_jaccard_same_kind": 0,
+        "success": null,
+        "actual_packet": null,
+        "feedback_tokens": 382
+      }
+    ],
+    "mutations": [
+      {
+        "round": 1,
+        "child": "g0001_i0000",
+        "operator": "mutation_other",
+        "parent": "g0000_i0001",
+        "parent_em": 0.7333333333333333,
+        "child_em": 0.7333333333333333,
+        "no_op": false,
+        "discarded_sections": [
+          "node_lists"
+        ],
+        "adopted_added_lines": [
+          "- **Exact Matching**: When the gold answer is a specific entity (e.g., \"Arthur\", \"Ronald Reagan\"), the extracted text must isolate that entity name directly. Avoid including surrounding context (e.g., \"President Ronald Reagan was born\" fails if gold is \"Ronald Reagan\"), unless the entity name is the only valid extraction."
+        ],
+        "introduced_gold_instructions": [
+          "- **Exact Matching**: When the gold answer is a specific entity (e.g., \"Arthur\", \"Ronald Reagan\"), the extracted text must isolate that entity name directly. Avoid including surrounding context (e.g., \"President Ronald Reagan was born\" fails if gold is \"Ronald Reagan\"), unless the entity name is the only valid extraction."
+        ],
+        "notes": [
+          "Added 'Exact Matching' principle to address failures where the model extracted descriptive text ('President Ronald Reagan was born') instead of the specific entity name ('Ronald Reagan') required by the gold answer.",
+          "Updated 'Extract Evidence' node instruction to explicitly warn against including unnecessary descriptors when the question targets a specific entity.",
+          "Verified task graph structure and node usage compliance."
+        ],
+        "dev_transitions": {
+          "repaired": 1,
+          "regressed": 1,
+          "both_correct": 21,
+          "both_wrong": 7
+        },
+        "feedback_tokens": 1628,
+        "paired_failures": 1
+      },
+      {
+        "round": 1,
+        "child": "g0001_i0001",
+        "operator": "mutation_graph",
+        "parent": "g0000_i0001",
+        "parent_em": 0.7333333333333333,
+        "child_em": 0.7333333333333333,
+        "no_op": false,
+        "discarded_sections": [
+          "global_guidance"
+        ],
+        "adopted_added_lines": [
+          "- Identify the specific information required to form an answer (e.g., a name, a date, a boolean fact).",
+          "- Note if the question asks for a specific entity or a relationship.",
+          "### Extract Entity",
+          "- Isolate the specific noun phrase or entity within the retrieved context that directly answers the question.",
+          "- If the question asks for a fact (e.g., \"What happened on...\"), extract the subject entity mentioned in the context.",
+          "- Do not add external context like titles or actions unless they are part of the entity name in the text.",
+          "- Ensure the extracted text is a complete thought or fact as presented in the source.",
+          "- Ensure the answer is a few words or a short phrase matching the entity found.",
+          "### Direct Entity Retrieval",
+          "**Use when:** The question asks for a specific entity (name, date, location) or a simple fact stated directly in the text.",
+          "3. Extract Entity",
+          "4. Verify Evidence",
+          "5. Formulate Answer",
+          "6. Wrap Answer",
+          "",
+          "### Negative Evidence Query",
+          "**Use when:** The question asks for information that might not be present in the context, asks for a negation, or implies a check for absence (e.g., \"What is NOT included\", \"Did X happen?\").",
+          "**Workflow:**",
+          "1. Parse Question",
+          "2. Search Context",
+          "3. Verify Evidence",
+          "4. Formulate Answer",
+          "5. Wrap Answer",
+          "",
+          "### Implicit Relationship Query",
+          "**Use when:** The question asks about a relationship or calculation not explicitly stated as a sentence but derivable from the context (e.g., comparing values, inferring a connection between two entities).",
+          "**Workflow:**",
+          "1. Parse Question",
+          "2. Search Context",
+          "3. Extract Entity",
+          "3. Extract Entity",
+          "### True/False Verification",
+          "**Use when:** The question is a statement followed by \"True\" or \"False\", or asks to verify a specific claim.",
+          "3. Extract Entity"
+        ],
+        "introduced_gold_instructions": [],
+        "notes": [
+          "Added 'Extract Entity' node to replace generic 'Extract Evidence' for better precision in extracting specific answers like names or dates.",
+          "Refined 'Formulate Answer' instructions to prevent adding external context (e.g., 'President', 'was born') unless explicitly in the text, addressing EM=0 failures where the model added extra text.",
+          "Consolidated workflows to use the new 'Extract Entity' node consistently across all task graphs.",
+          "Removed redundant 'Multi-Hop' specific logic as the core extraction process remains the same, focusing on the precision of the extracted entity.",
+          "Ensured all nodes are used in at least one workflow and no unused nodes exist."
+        ],
+        "dev_transitions": {
+          "repaired": 0,
+          "regressed": 0,
+          "both_correct": 22,
+          "both_wrong": 8
+        },
+        "feedback_tokens": 1628,
+        "paired_failures": 1
+      },
+      {
+        "round": 2,
+        "child": "g0002_i0000",
+        "operator": "mutation_other",
+        "parent": "g0001_i0000",
+        "parent_em": 0.7333333333333333,
+        "child_em": 0.7333333333333333,
+        "no_op": false,
+        "discarded_sections": [
+          "node_lists"
+        ],
+        "adopted_added_lines": [
+          "- **Entity Extraction**: If the gold answer is a specific entity (e.g., a person's name), the extracted text must isolate that entity name directly. Avoid including surrounding context unless the entity name alone is insufficient to identify the answer.",
+          "- **Recovery**: If evidence is missing or ambiguous, the final answer must explicitly state that the answer is not found in the context.",
+          "- **Strict Adherence**: Do not answer based on general knowledge or inference if the context does not explicitly support it.",
+          "- **Node Lists** define reusable steps like parsing, searching, extracting, and verifying.",
+          "- To execute: Identify the relevant **Task Graph** based on the question type, then follow its **Workflow** using the instructions in **Node Lists**."
+        ],
+        "introduced_gold_instructions": [
+          "- **Entity Extraction**: If the gold answer is a specific entity (e.g., a person's name), the extracted text must isolate that entity name directly. Avoid including surrounding context unless the entity name alone is insufficient to identify the answer."
+        ],
+        "notes": [
+          "Refined 'General Principles' to explicitly include 'Entity Extraction' and 'Strict Adherence' based on failure modes where agents failed to extract specific entity names or relied on external knowledge.",
+          "Clarified the instruction in 'Formulate Answer' to handle the 'Not found in context' case explicitly, addressing failures where the agent provided unrelated context descriptions instead of stating the answer was missing.",
+          "Ensured 'Extract Evidence' emphasizes isolating entity names directly, improving alignment with gold answers that are specific names.",
+          "Verified that all nodes are used in all task graphs and the structure adheres to the serialization contract."
+        ],
+        "dev_transitions": {
+          "repaired": 0,
+          "regressed": 0,
+          "both_correct": 22,
+          "both_wrong": 8
+        },
+        "feedback_tokens": 423,
+        "paired_failures": 0
+      },
+      {
+        "round": 2,
+        "child": "g0002_i0001",
+        "operator": "mutation_graph",
+        "parent": "g0000_i0001",
+        "parent_em": 0.7333333333333333,
+        "child_em": 0.7,
+        "no_op": false,
+        "discarded_sections": [],
+        "adopted_added_lines": [],
+        "introduced_gold_instructions": [],
+        "notes": [
+          "Merged 'Implicit Relationship Query' workflow into 'Multi-Hop Fact Retrieval' as it follows the exact same 6-step execution path, reducing redundancy.",
+          "Retained all 6 distinct nodes as they are all utilized across the workflows.",
+          "Ensured strict adherence to the 3-task-graph limit and 6-node limit."
+        ],
+        "dev_transitions": {
+          "repaired": 0,
+          "regressed": 1,
+          "both_correct": 21,
+          "both_wrong": 8
+        },
+        "feedback_tokens": 426,
+        "paired_failures": 0
+      },
+      {
+        "round": 3,
+        "child": "g0003_i0000",
+        "operator": "mutation_other",
+        "parent": "g0000_i0001",
+        "parent_em": 0.7333333333333333,
+        "child_em": 0.7333333333333333,
+        "no_op": true,
+        "discarded_sections": [],
+        "adopted_added_lines": [],
+        "introduced_gold_instructions": [],
+        "notes": [
+          "Refined General Principles to remove redundancy and ensure clarity on context-first and evidence-based reasoning.",
+          "Clarified Graph Execution Guide to explicitly link node names to workflow steps for better agent comprehension.",
+          "Ensured Task Graphs strictly follow syntax requirements (bold labels, consecutive numbering, exact node names) without duplication."
+        ],
+        "dev_transitions": {
+          "repaired": 0,
+          "regressed": 0,
+          "both_correct": 22,
+          "both_wrong": 8
+        },
+        "feedback_tokens": 382,
+        "paired_failures": 0
+      },
+      {
+        "round": 3,
+        "child": "g0003_i0001",
+        "operator": "mutation_graph",
+        "parent": "g0000_i0001",
+        "parent_em": 0.7333333333333333,
+        "child_em": 0.7,
+        "no_op": false,
+        "discarded_sections": [],
+        "adopted_added_lines": [
+          "- If the question asks for a specific entity (e.g., a name, object) rather than a full sentence, extract the specific entity name found.",
+          "- If the evidence is ambiguous, partial, or does not match the question intent, flag it for failure.",
+          "- If verification failed or no evidence was found, enclose \"Not found in context\" in the tags.",
+          "### Direct Lookup",
+          "**Use when:** The question asks for a specific fact, entity, or phrase that can be found by scanning the context for keywords.",
+          "### Relationship Inference",
+          "**Use when:** The question asks about a relationship, comparison, or derivation that requires combining multiple pieces of information from the context.",
+          "### Negative or Missing Information",
+          "**Use when:** The question asks for something that might not be in the context, or explicitly asks for a negation (e.g., \"What is NOT included\")."
+        ],
+        "introduced_gold_instructions": [],
+        "notes": [
+          "Refined 'Extract Evidence' to explicitly handle entity extraction (e.g., names, objects) to address failures where the model returned the question text instead of the answer entity.",
+          "Refined 'Verify Evidence' to include explicit failure flagging if evidence is ambiguous or does not match intent, triggering the 'Not found' response in the final step.",
+          "Renamed 'Negative Evidence Query' to 'Negative or Missing Information' and clarified its use case.",
+          "Consolidated workflows to three distinct types (Direct, Relationship, Negative) to reduce redundancy while covering all failure modes observed in trajectories.",
+          "Ensured strict adherence to node usage: all 6 nodes are referenced in at least one workflow."
+        ],
+        "dev_transitions": {
+          "repaired": 0,
+          "regressed": 1,
+          "both_correct": 21,
+          "both_wrong": 8
+        },
+        "feedback_tokens": 382,
+        "paired_failures": 0
+      }
+    ],
+    "summary": {
+      "selected_failure_exposures": 18,
+      "paired_exposures": 2,
+      "unique_paired_failures": 1,
+      "pair_types": {
+        "unpaired": 16,
+        "same_question": 2
+      },
+      "unknown_type_exposures": 18,
+      "fallback_operators": 4,
+      "no_op_candidates": 1,
+      "candidates_with_scope_discard": 3,
+      "candidates_with_new_gold_reference": 2,
+      "unique_paired_f1": {
+        "691178453c884f98a9205ef3d143bc42": 0.0
+      },
+      "unpaired_with_any_kind_jaccard_ge_02": 2,
+      "unpaired_with_eligible_kind_candidate": 0
+    },
+    "interpretation": "Counts describe this seed and stored observations. No new model calls, no test-based tuning, no causal proof from candidate score differences alone."
+  },
+  "hotpotqa": {
+    "dataset": "hotpotqa",
+    "memory_replay": "exact_match",
+    "source_code_hash": "067f9db47e18c15f7f78975f73896c4ca6b25f6c477514214bae5889d3fb0f5e",
+    "rounds": [
+      {
+        "round": 1,
+        "memory_records": 39,
+        "success_observations": 28,
+        "success_questions": 16
+      },
+      {
+        "round": 2,
+        "memory_records": 64,
+        "success_observations": 46,
+        "success_questions": 26
+      },
+      {
+        "round": 3,
+        "memory_records": 86,
+        "success_observations": 66,
+        "success_questions": 37
+      }
+    ],
+    "failures": [
+      {
+        "round": 1,
+        "child": "g0001_i0000",
+        "parent": "g0000_i0001",
+        "failure_id": "5a7219e155429971e9dc926e",
+        "question": "Which postcolonial literature academic specializes in Victorian and Modern English literature?",
+        "type": "entity_attribute",
+        "pair_type": "unpaired",
+        "failure_em": 0.0,
+        "failure_f1": 0.3076923076923077,
+        "prediction": "Ankhi Mukherjee",
+        "gold": [
+          "Ankhi Mukherjee is an academic specialising in Victorian and Modern English literature,"
+        ],
+        "successes_available": 28,
+        "same_kind_available": 11,
+        "max_jaccard_any_kind": 0.125,
+        "max_jaccard_same_kind": 0.07142857142857142,
+        "success": null,
+        "actual_packet": {
+          "failure_id": "5a7219e155429971e9dc926e",
+          "pair_type": "unpaired",
+          "failure": {
+            "question": "Which postcolonial literature academic specializes in Victorian and Modern English literature?",
+            "response_excerpt": "To answer this question, I need to find an academic who specializes in both \"postcolonial literature\" and \"Victorian and Modern English literature\".\n\n1.  **Scan for \"postcolonial literature\" academics:**\n    *   Alison Donnell: Specializes in anglophone postcolonial literature.\n    *   Sara Suleri: Special concerns include postcolonial literature.\n    *   Elleke Boehmer: Internationally recognised for research in colonial and postcolon",
+            "predicted_answer": "Ankhi Mukherjee",
+            "gold_answers": [
+              "Ankhi Mukherjee is an academic specialising in Victorian and Modern English literature,"
+            ],
+            "em": 0,
+            "visible_context_excerpt": "[DOC] Alison Donnell\n[0] Alison Donnell is an academic, originally from the United Kingdom.\n[1]  She is Professor of Modern Literatures in English and Head of School of Literature and Languages at the University of Reading, where she also founded the research theme \"Minority Identities: Rights and Representations\".\n[2]  Her primary research field is anglophone postcolonial literature, and she has been published widely on Caribbean and Black British literature."
+          },
+          "success_reference": null,
+          "observable_checks": {
+            "answer_format_ok": true,
+            "reference_has_verifiable_quote": false,
+            "diagnosis_status": "hypothesis_to_check"
+          },
+          "original_failure_feedback": "\n\n### Trajectory 1 (id=5a7219e155429971e9dc926e)\nTask: Which postcolonial literature academic specializes in Victorian and Modern English literature?\nTask type: \nFailure reason: EM=0\nSteps: ?\n\n#### Hidden Reference\nGold answers: ['Ankhi Mukherjee is an academic specialising in Victorian and Modern English literature,']\n\n[assistant] To answer this"
+        },
+        "feedback_tokens": 1628
+      },
+      {
+        "round": 1,
+        "child": "g0001_i0000",
+        "parent": "g0000_i0001",
+        "failure_id": "5a89d7d05542992e4fca83df",
+        "question": "What type of publication does The Writer and Wired and have in common?",
+        "type": "entity_attribute",
+        "pair_type": "unpaired",
+        "failure_em": 0.0,
+        "failure_f1": 0.6666666666666666,
+        "prediction": "monthly magazine",
+        "gold": [
+          "magazine"
+        ],
+        "successes_available": 28,
+        "same_kind_available": 11,
+        "max_jaccard_any_kind": 0.18518518518518517,
+        "max_jaccard_same_kind": 0.14285714285714285,
+        "success": null,
+        "actual_packet": {
+          "failure_id": "5a89d7d05542992e4fca83df",
+          "pair_type": "unpaired",
+          "failure": {
+            "question": "What type of publication does The Writer and Wired and have in common?",
+            "response_excerpt": "To answer this question, I need to identify the publication type for both \"The Writer\" and \"Wired\" based on the provided text and find the commonality.\n\n1.  **Analyze \"The Writer\"**:\n    *   Locate the passage for \"The Writer\".\n    *   Passage [0] states: \"The Writer is a **monthly magazine** for writers published by Madavor Media.\"\n    *   Fact: The Writer is a monthly magazine.\n\n2",
+            "predicted_answer": "monthly magazine",
+            "gold_answers": [
+              "magazine"
+            ],
+            "em": 0,
+            "visible_context_excerpt": "[DOC] Uterine cancer\n[0] Uterine cancer or womb cancer is any type of cancer that emerges from the tissue of the uterus.\n[1]  It can refer to several types of cancer, with cervical cancer (arising from the lower portion of the uterus) being the most common type worldwide and the second most common cancer in women in developing countries.\n[2]  Endometrial cancer (or cancer of the inner lining of the uterus) is the"
+          },
+          "success_reference": null,
+          "observable_checks": {
+            "answer_format_ok": true,
+            "reference_has_verifiable_quote": false,
+            "diagnosis_status": "hypothesis_to_check"
+          },
+          "original_failure_feedback": "\n\n### Trajectory 1 (id=5a89d7d05542992e4fca83df)\nTask: What type of publication does The Writer and Wired and have in common?\nTask type: \nFailure reason: EM=0\nSteps: ?\n\n#### Hidden Reference\nGold answers: ['magazine']\n\n[assistant] To answer this question, I need to identify the publication type for both \"The Writer\" and \""
+        },
+        "feedback_tokens": 1628
+      },
+      {
+        "round": 1,
+        "child": "g0001_i0000",
+        "parent": "g0000_i0001",
+        "failure_id": "5ab2de5d5542991669774116",
+        "question": "What two property groups own the enclosed shopping malls in Santa Rosa, California?",
+        "type": "entity_attribute",
+        "pair_type": "same_question",
+        "failure_em": 0.0,
+        "failure_f1": 1.0,
+        "prediction": "Simon Property Group and Codding Enterprises",
+        "gold": [
+          "Codding Enterprises and Simon Property Group"
+        ],
+        "successes_available": 28,
+        "same_kind_available": 10,
+        "max_jaccard_any_kind": 0.11538461538461539,
+        "max_jaccard_same_kind": 0.1,
+        "success": {
+          "example_id": "5ab2de5d5542991669774116",
+          "skill_hash": "98e05007c06e2c5a10bcee2a4bbbe206c291efcc2fdef0335f0c4aaf8d3613a3",
+          "round": 1,
+          "visible_context_hash": "6d8279a26b49e6255dfcc6d2c36bb8c5c05c2753feea28bed003c01ee89e3a7c",
+          "observation_id": "c7e5e50a0f0b853d5fa0fd850326dc969015ab0dccc2ebe44218f0f3415374b2",
+          "question": "What two property groups own the enclosed shopping malls in Santa Rosa, California?",
+          "visible_context_excerpt": "[DOC] Santa Rosa Rancheria\n[0] Santa Rosa Rancheria is the reservation of the Santa Rosa Indian Community of the Santa Rosa Rancheria.\n[1]  It is located 4.5 mile southeast of Lemoore, California.\n[2]  Established in 1934 on about 40 acre , the Santa Rosa Rancheria belongs to the federally recognized Tachi Yokuts tribe.\n[3]  It is the site of the Tachi Palace Hotel & Casino.\n[4]  The population was 517 at the time of the 2000 United States Census and had increased to 652 by the 2010 United States Census.\n[5]  In 2010",
+          "response_excerpt": "Based on the provided context:\n\n1.  **Santa Rosa Plaza** is managed by **Simon Property Group**.\n2.  **Coddingtown Mall** is owned by **Codding Enterprises** and **Simon Property Group**.\n\nBoth malls are identified as the two enclosed shopping malls in Santa Rosa, California. Therefore, the two property groups involved in owning/operating them are Codding Enterprises and Simon Property Group.\n\n<answer>Codding Enterprises and Simon Property Group</answer>",
+          "predicted_answer": "Codding Enterprises and Simon Property Group",
+          "gold_answers": [
+            "Codding Enterprises and Simon Property Group"
+          ],
+          "em": 1.0
+        },
+        "actual_packet": {
+          "failure_id": "5ab2de5d5542991669774116",
+          "pair_type": "same_question",
+          "failure": {
+            "question": "What two property groups own the enclosed shopping malls in Santa Rosa, California?",
+            "response_excerpt": "To answer this question, I need to identify the enclosed shopping malls in Santa Rosa, California, and then determine which property groups own them based on the provided text.\n\n1.  **Identify the malls:**\n    *   According to the passage titled \"Santa Rosa Plaza\", it is \"one of two enclosed shopping malls in Santa Rosa, California.\"\n    *   According to the passage titled \"Coddingtown Mall\", it is also \"one of two enclosed shopping malls in Santa Rosa",
+            "predicted_answer": "Simon Property Group and Codding Enterprises",
+            "gold_answers": [
+              "Codding Enterprises and Simon Property Group"
+            ],
+            "em": 0,
+            "visible_context_excerpt": "[DOC] Santa Rosa Rancheria\n[0] Santa Rosa Rancheria is the reservation of the Santa Rosa Indian Community of the Santa Rosa Rancheria.\n[1]  It is located 4.5 mile southeast of Lemoore, California.\n[2]  Established in 1934 on about 40 acre , the Santa Rosa Rancheria belongs to the federally recognized Tachi Yokuts tribe.\n[3]  It is the site of the Tachi"
+          },
+          "success_reference": {
+            "example_id": "5ab2de5d5542991669774116",
+            "response_excerpt": "Based on the provided context:\n\n1.  **Santa Rosa Plaza** is managed by **Simon Property Group**.\n2.  **Coddingtown Mall** is owned by **Codding Enterprises** and **Simon Property Group**.\n\nBoth malls are identified as the two enclosed shopping malls in Santa Rosa, California. Therefore, the two property groups involved in owning/operating them are Codding Enterprises and Simon Property Group.\n\n<answer>Codding Enterprises and Simon Property Group</answer>",
+            "predicted_answer": "Codding Enterprises and Simon Property Group",
+            "em": 1,
+            "question": "What two property groups own the enclosed shopping malls in Santa Rosa, California?",
+            "visible_context_excerpt": "[DOC] Santa Rosa Rancheria\n[0] Santa Rosa Rancheria is the reservation of the Santa Rosa Indian Community of the Santa Rosa Rancheria.\n[1]  It is located 4.5 mile southeast of Lemoore, California.\n[2]  Established in 1934 on about 40 acre , the Santa Rosa Rancheria belongs to the federally recognized Tachi Yokuts tribe.\n[3]  It is the site of the Tachi"
+          },
+          "observable_checks": {
+            "answer_format_ok": true,
+            "reference_has_verifiable_quote": false,
+            "diagnosis_status": "hypothesis_to_check"
+          }
+        },
+        "feedback_tokens": 1628
+      },
+      {
+        "round": 1,
+        "child": "g0001_i0001",
+        "parent": "g0000_i0001",
+        "failure_id": "5a7219e155429971e9dc926e",
+        "question": "Which postcolonial literature academic specializes in Victorian and Modern English literature?",
+        "type": "entity_attribute",
+        "pair_type": "unpaired",
+        "failure_em": 0.0,
+        "failure_f1": 0.3076923076923077,
+        "prediction": "Ankhi Mukherjee",
+        "gold": [
+          "Ankhi Mukherjee is an academic specialising in Victorian and Modern English literature,"
+        ],
+        "successes_available": 28,
+        "same_kind_available": 11,
+        "max_jaccard_any_kind": 0.125,
+        "max_jaccard_same_kind": 0.07142857142857142,
+        "success": null,
+        "actual_packet": {
+          "failure_id": "5a7219e155429971e9dc926e",
+          "pair_type": "unpaired",
+          "failure": {
+            "question": "Which postcolonial literature academic specializes in Victorian and Modern English literature?",
+            "response_excerpt": "To answer this question, I need to find an academic who specializes in both \"postcolonial literature\" and \"Victorian and Modern English literature\".\n\n1.  **Scan for \"postcolonial literature\" academics:**\n    *   Alison Donnell: Specializes in anglophone postcolonial literature.\n    *   Sara Suleri: Special concerns include postcolonial literature.\n    *   Elleke Boehmer: Internationally recognised for research in colonial and postcolon",
+            "predicted_answer": "Ankhi Mukherjee",
+            "gold_answers": [
+              "Ankhi Mukherjee is an academic specialising in Victorian and Modern English literature,"
+            ],
+            "em": 0,
+            "visible_context_excerpt": "[DOC] Alison Donnell\n[0] Alison Donnell is an academic, originally from the United Kingdom.\n[1]  She is Professor of Modern Literatures in English and Head of School of Literature and Languages at the University of Reading, where she also founded the research theme \"Minority Identities: Rights and Representations\".\n[2]  Her primary research field is anglophone postcolonial literature, and she has been published widely on Caribbean and Black British literature."
+          },
+          "success_reference": null,
+          "observable_checks": {
+            "answer_format_ok": true,
+            "reference_has_verifiable_quote": false,
+            "diagnosis_status": "hypothesis_to_check"
+          },
+          "original_failure_feedback": "\n\n### Trajectory 1 (id=5a7219e155429971e9dc926e)\nTask: Which postcolonial literature academic specializes in Victorian and Modern English literature?\nTask type: \nFailure reason: EM=0\nSteps: ?\n\n#### Hidden Reference\nGold answers: ['Ankhi Mukherjee is an academic specialising in Victorian and Modern English literature,']\n\n[assistant] To answer this"
+        },
+        "feedback_tokens": 1628
+      },
+      {
+        "round": 1,
+        "child": "g0001_i0001",
+        "parent": "g0000_i0001",
+        "failure_id": "5a89d7d05542992e4fca83df",
+        "question": "What type of publication does The Writer and Wired and have in common?",
+        "type": "entity_attribute",
+        "pair_type": "unpaired",
+        "failure_em": 0.0,
+        "failure_f1": 0.6666666666666666,
+        "prediction": "monthly magazine",
+        "gold": [
+          "magazine"
+        ],
+        "successes_available": 28,
+        "same_kind_available": 11,
+        "max_jaccard_any_kind": 0.18518518518518517,
+        "max_jaccard_same_kind": 0.14285714285714285,
+        "success": null,
+        "actual_packet": {
+          "failure_id": "5a89d7d05542992e4fca83df",
+          "pair_type": "unpaired",
+          "failure": {
+            "question": "What type of publication does The Writer and Wired and have in common?",
+            "response_excerpt": "To answer this question, I need to identify the publication type for both \"The Writer\" and \"Wired\" based on the provided text and find the commonality.\n\n1.  **Analyze \"The Writer\"**:\n    *   Locate the passage for \"The Writer\".\n    *   Passage [0] states: \"The Writer is a **monthly magazine** for writers published by Madavor Media.\"\n    *   Fact: The Writer is a monthly magazine.\n\n2",
+            "predicted_answer": "monthly magazine",
+            "gold_answers": [
+              "magazine"
+            ],
+            "em": 0,
+            "visible_context_excerpt": "[DOC] Uterine cancer\n[0] Uterine cancer or womb cancer is any type of cancer that emerges from the tissue of the uterus.\n[1]  It can refer to several types of cancer, with cervical cancer (arising from the lower portion of the uterus) being the most common type worldwide and the second most common cancer in women in developing countries.\n[2]  Endometrial cancer (or cancer of the inner lining of the uterus) is the"
+          },
+          "success_reference": null,
+          "observable_checks": {
+            "answer_format_ok": true,
+            "reference_has_verifiable_quote": false,
+            "diagnosis_status": "hypothesis_to_check"
+          },
+          "original_failure_feedback": "\n\n### Trajectory 1 (id=5a89d7d05542992e4fca83df)\nTask: What type of publication does The Writer and Wired and have in common?\nTask type: \nFailure reason: EM=0\nSteps: ?\n\n#### Hidden Reference\nGold answers: ['magazine']\n\n[assistant] To answer this question, I need to identify the publication type for both \"The Writer\" and \""
+        },
+        "feedback_tokens": 1628
+      },
+      {
+        "round": 1,
+        "child": "g0001_i0001",
+        "parent": "g0000_i0001",
+        "failure_id": "5ab2de5d5542991669774116",
+        "question": "What two property groups own the enclosed shopping malls in Santa Rosa, California?",
+        "type": "entity_attribute",
+        "pair_type": "same_question",
+        "failure_em": 0.0,
+        "failure_f1": 1.0,
+        "prediction": "Simon Property Group and Codding Enterprises",
+        "gold": [
+          "Codding Enterprises and Simon Property Group"
+        ],
+        "successes_available": 28,
+        "same_kind_available": 10,
+        "max_jaccard_any_kind": 0.11538461538461539,
+        "max_jaccard_same_kind": 0.1,
+        "success": {
+          "example_id": "5ab2de5d5542991669774116",
+          "skill_hash": "98e05007c06e2c5a10bcee2a4bbbe206c291efcc2fdef0335f0c4aaf8d3613a3",
+          "round": 1,
+          "visible_context_hash": "6d8279a26b49e6255dfcc6d2c36bb8c5c05c2753feea28bed003c01ee89e3a7c",
+          "observation_id": "c7e5e50a0f0b853d5fa0fd850326dc969015ab0dccc2ebe44218f0f3415374b2",
+          "question": "What two property groups own the enclosed shopping malls in Santa Rosa, California?",
+          "visible_context_excerpt": "[DOC] Santa Rosa Rancheria\n[0] Santa Rosa Rancheria is the reservation of the Santa Rosa Indian Community of the Santa Rosa Rancheria.\n[1]  It is located 4.5 mile southeast of Lemoore, California.\n[2]  Established in 1934 on about 40 acre , the Santa Rosa Rancheria belongs to the federally recognized Tachi Yokuts tribe.\n[3]  It is the site of the Tachi Palace Hotel & Casino.\n[4]  The population was 517 at the time of the 2000 United States Census and had increased to 652 by the 2010 United States Census.\n[5]  In 2010",
+          "response_excerpt": "Based on the provided context:\n\n1.  **Santa Rosa Plaza** is managed by **Simon Property Group**.\n2.  **Coddingtown Mall** is owned by **Codding Enterprises** and **Simon Property Group**.\n\nBoth malls are identified as the two enclosed shopping malls in Santa Rosa, California. Therefore, the two property groups involved in owning/operating them are Codding Enterprises and Simon Property Group.\n\n<answer>Codding Enterprises and Simon Property Group</answer>",
+          "predicted_answer": "Codding Enterprises and Simon Property Group",
+          "gold_answers": [
+            "Codding Enterprises and Simon Property Group"
+          ],
+          "em": 1.0
+        },
+        "actual_packet": {
+          "failure_id": "5ab2de5d5542991669774116",
+          "pair_type": "same_question",
+          "failure": {
+            "question": "What two property groups own the enclosed shopping malls in Santa Rosa, California?",
+            "response_excerpt": "To answer this question, I need to identify the enclosed shopping malls in Santa Rosa, California, and then determine which property groups own them based on the provided text.\n\n1.  **Identify the malls:**\n    *   According to the passage titled \"Santa Rosa Plaza\", it is \"one of two enclosed shopping malls in Santa Rosa, California.\"\n    *   According to the passage titled \"Coddingtown Mall\", it is also \"one of two enclosed shopping malls in Santa Rosa",
+            "predicted_answer": "Simon Property Group and Codding Enterprises",
+            "gold_answers": [
+              "Codding Enterprises and Simon Property Group"
+            ],
+            "em": 0,
+            "visible_context_excerpt": "[DOC] Santa Rosa Rancheria\n[0] Santa Rosa Rancheria is the reservation of the Santa Rosa Indian Community of the Santa Rosa Rancheria.\n[1]  It is located 4.5 mile southeast of Lemoore, California.\n[2]  Established in 1934 on about 40 acre , the Santa Rosa Rancheria belongs to the federally recognized Tachi Yokuts tribe.\n[3]  It is the site of the Tachi"
+          },
+          "success_reference": {
+            "example_id": "5ab2de5d5542991669774116",
+            "response_excerpt": "Based on the provided context:\n\n1.  **Santa Rosa Plaza** is managed by **Simon Property Group**.\n2.  **Coddingtown Mall** is owned by **Codding Enterprises** and **Simon Property Group**.\n\nBoth malls are identified as the two enclosed shopping malls in Santa Rosa, California. Therefore, the two property groups involved in owning/operating them are Codding Enterprises and Simon Property Group.\n\n<answer>Codding Enterprises and Simon Property Group</answer>",
+            "predicted_answer": "Codding Enterprises and Simon Property Group",
+            "em": 1,
+            "question": "What two property groups own the enclosed shopping malls in Santa Rosa, California?",
+            "visible_context_excerpt": "[DOC] Santa Rosa Rancheria\n[0] Santa Rosa Rancheria is the reservation of the Santa Rosa Indian Community of the Santa Rosa Rancheria.\n[1]  It is located 4.5 mile southeast of Lemoore, California.\n[2]  Established in 1934 on about 40 acre , the Santa Rosa Rancheria belongs to the federally recognized Tachi Yokuts tribe.\n[3]  It is the site of the Tachi"
+          },
+          "observable_checks": {
+            "answer_format_ok": true,
+            "reference_has_verifiable_quote": false,
+            "diagnosis_status": "hypothesis_to_check"
+          }
+        },
+        "feedback_tokens": 1628
+      },
+      {
+        "round": 2,
+        "child": "g0002_i0000",
+        "parent": "g0001_i0000",
+        "failure_id": "5ab5dba3554299494045f086",
+        "question": "Who directed the 1979 American drama film that starred the actress who won the Golden Globe Award for Best Supporting Actress for \"Psycho\"?",
+        "type": "entity_attribute",
+        "pair_type": "same_question",
+        "failure_em": 0.0,
+        "failure_f1": 0.6666666666666666,
+        "prediction": "Stephen Verona",
+        "gold": [
+          "Verona"
+        ],
+        "successes_available": 46,
+        "same_kind_available": 19,
+        "max_jaccard_any_kind": 0.1568627450980392,
+        "max_jaccard_same_kind": 0.125,
+        "success": {
+          "example_id": "5ab5dba3554299494045f086",
+          "skill_hash": "8408ba62c3570a5c575069ffb40076c1d176892d46d98aa1c1d3b0cb3601023a",
+          "round": 2,
+          "visible_context_hash": "7a826791d7ce64f98242400251d6e21f19c4e4ba190c13cfb85296bdc7e2f7fa",
+          "observation_id": "c42adfb740c66ecfb3a1f1e4e243dc642c7f4edd38cedc3a3c3a4a0a09460ccc",
+          "question": "Who directed the 1979 American drama film that starred the actress who won the Golden Globe Award for Best Supporting Actress for \"Psycho\"?",
+          "visible_context_excerpt": "[DOC] The Dark at the Top of the Stairs (film)\n[0] The Dark at the Top of the Stairs is a 1960 American drama film.\n[1]  Academy Award winner Delbert Mann directed the work of Robert Preston and Dorothy McGuire in the production.\n[2]  Shirley Knight garnered an Oscar nomination for Best Supporting Actress, and Lee Kinsolving was nominated for a Golden Globe Award as Best Supporting Actor.\n[3]  Knight was also nominated for two Golden Globes.\n[4]  Mann's direction was nominated for a Directors Guild of America Award for Outstanding Directing in a Feature Film.\n[5]  It was based on the Tony Award nominated play of the same name by William Inge",
+          "response_excerpt": "To answer this question, I need to break it down into steps:\n\n1.  **Identify the actress:** Find the actress who won the Golden Globe Award for Best Supporting Actress for the film \"Psycho\".\n    *   Looking at the document **[DOC] Janet Leigh**, passage [1] states: \"She is best remembered for her performance in 'Psycho', for which she was awarded the Golden Globe Award for Best Supporting Actress...\"\n    *   So, the actress is **Janet Leigh**.\n\n2.  **Identify the film:** Find the 1979 American drama film that starred Janet Leigh.\n    *   Looking at the document **[DOC] Boardwalk (film)**, passage [0] states: \"Boardwalk is a 19",
+          "predicted_answer": "Verona",
+          "gold_answers": [
+            "Verona"
+          ],
+          "em": 1.0
+        },
+        "actual_packet": {
+          "failure_id": "5ab5dba3554299494045f086",
+          "pair_type": "same_question",
+          "failure": {
+            "question": "Who directed the 1979 American drama film that starred the actress who won the Golden Globe Award for Best Supporting Actress for \"Psycho\"?",
+            "response_excerpt": "To answer this question, I need to follow these steps:\n1.  Identify the actress who won the Golden Globe Award for Best Supporting Actress for the film \"Psycho\".\n2.  Find the 1979 American drama film that starred this actress.\n3.  Identify the director of that 1979 film.\n\n**Step 1: Identify the actress.**\nLooking at the context under the document \"Janet Leigh\":\n- \"[1] She",
+            "predicted_answer": "Stephen Verona",
+            "gold_answers": [
+              "Verona"
+            ],
+            "em": 0,
+            "visible_context_excerpt": "[DOC] The Dark at the Top of the Stairs (film)\n[0] The Dark at the Top of the Stairs is a 1960 American drama film.\n[1]  Academy Award winner Delbert Mann directed the work of Robert Preston and Dorothy McGuire in the production.\n[2]  Shirley Knight garnered an Oscar nomination for Best Supporting Actress, and Lee Kinsolving was nominated for a Golden Globe Award as Best Supporting Actor.\n[3"
+          },
+          "success_reference": {
+            "example_id": "5ab5dba3554299494045f086",
+            "response_excerpt": "To answer this question, I need to break it down into steps:\n\n1.  **Identify the actress:** Find the actress who won the Golden Globe Award for Best Supporting Actress for the film \"Psycho\".\n    *   Looking at the document **[DOC] Janet Leigh**, passage [1] states: \"She is best remembered for her performance in 'Psycho', for which she was awarded the Golden Globe Award for Best Supporting Actress...\"\n    *   So, the actress is",
+            "predicted_answer": "Verona",
+            "em": 1,
+            "question": "Who directed the 1979 American drama film that starred the actress who won the Golden Globe Award for Best Supporting Actress for \"Psycho\"?",
+            "visible_context_excerpt": "[DOC] The Dark at the Top of the Stairs (film)\n[0] The Dark at the Top of the Stairs is a 1960 American drama film.\n[1]  Academy Award winner Delbert Mann directed the work of Robert Preston and Dorothy McGuire in the production.\n[2]  Shirley Knight garnered an Oscar nomination for Best Supporting Actress, and Lee Kinsolving was nominated for a Golden Globe Award as Best Supporting Actor.\n[3"
+          },
+          "observable_checks": {
+            "answer_format_ok": true,
+            "reference_has_verifiable_quote": false,
+            "diagnosis_status": "hypothesis_to_check"
+          }
+        },
+        "feedback_tokens": 1656
+      },
+      {
+        "round": 2,
+        "child": "g0002_i0000",
+        "parent": "g0001_i0000",
+        "failure_id": "5ade88ca55429939a52fe8e7",
+        "question": "What city is the university located where Lester J. Reed received his Bachelors of Science from?",
+        "type": "entity_attribute",
+        "pair_type": "unpaired",
+        "failure_em": 0.0,
+        "failure_f1": 0.8,
+        "prediction": "New Orleans",
+        "gold": [
+          "New Orleans, Louisiana"
+        ],
+        "successes_available": 46,
+        "same_kind_available": 20,
+        "max_jaccard_any_kind": 0.18518518518518517,
+        "max_jaccard_same_kind": 0.17391304347826086,
+        "success": null,
+        "actual_packet": {
+          "failure_id": "5ade88ca55429939a52fe8e7",
+          "pair_type": "unpaired",
+          "failure": {
+            "question": "What city is the university located where Lester J. Reed received his Bachelors of Science from?",
+            "response_excerpt": "To answer this question, I need to follow these steps:\n1.  Identify where Lester J. Reed received his Bachelors of Science.\n2.  Identify the city where that university is located.\n\n**Step 1: Identify the university.**\nAccording to the passage titled \"Lester J. Reed\", sentence [1]: \"He received his Bachelors of Science from **Tulane University** in 1943...\"\n\n**Step 2: Identify",
+            "predicted_answer": "New Orleans",
+            "gold_answers": [
+              "New Orleans, Louisiana"
+            ],
+            "em": 0,
+            "visible_context_excerpt": "[DOC] Bow Down to Washington\n[0] Bow Down to Washington is the official fight song of the University of Washington.\n[1]  It was written by Lester J. Wilson in 1915 while partaking in a competition requesting a new song for the university.\n[2]  The competition was sponsored by The Daily, and had a grand prize of US$25 (the equivalent of $581 in 2015).\n[3"
+          },
+          "success_reference": null,
+          "observable_checks": {
+            "answer_format_ok": true,
+            "reference_has_verifiable_quote": false,
+            "diagnosis_status": "hypothesis_to_check"
+          },
+          "original_failure_feedback": "\n\n### Trajectory 1 (id=5ade88ca55429939a52fe8e7)\nTask: What city is the university located where Lester J. Reed received his Bachelors of Science from?\nTask type: \nFailure reason: EM=0\nSteps: ?\n\n#### Hidden Reference\nGold answers: ['New Orleans, Louisiana']\n\n[assistant] To answer this question, I need to follow these steps:\n1"
+        },
+        "feedback_tokens": 1656
+      },
+      {
+        "round": 2,
+        "child": "g0002_i0000",
+        "parent": "g0001_i0000",
+        "failure_id": "5a7bcd09554299294a54aaeb",
+        "question": "When was the actor who starred in The Finest Hours born?",
+        "type": "count_date",
+        "pair_type": "unpaired",
+        "failure_em": 0.0,
+        "failure_f1": 0.16666666666666669,
+        "prediction": "August 26, 1980 (Chris Pine) and December 19, 1991 (Keiynan Lonsdale)",
+        "gold": [
+          "1980"
+        ],
+        "successes_available": 46,
+        "same_kind_available": 10,
+        "max_jaccard_any_kind": 0.15,
+        "max_jaccard_same_kind": 0.13043478260869565,
+        "success": null,
+        "actual_packet": {
+          "failure_id": "5a7bcd09554299294a54aaeb",
+          "pair_type": "unpaired",
+          "failure": {
+            "question": "When was the actor who starred in The Finest Hours born?",
+            "response_excerpt": "To answer this question, I need to identify the actors who starred in the 2016 film *The Finest Hours* and then find their birth dates from the provided text.\n\n1.  **Identify the film and its cast:**\n    *   According to the passage `[DOC] The Finest Hours (2016 film)`, the film stars **Chris Pine**, **Casey Affleck**, **Ben Foster**, **Holliday Grainger**, **John",
+            "predicted_answer": "August 26, 1980 (Chris Pine) and December 19, 1991 (Keiynan Lonsdale)",
+            "gold_answers": [
+              "1980"
+            ],
+            "em": 0,
+            "visible_context_excerpt": "[DOC] The Finest Hours (1964 film)\n[0] The Finest Hours is a 1964 British documentary film about Winston Churchill, directed by Peter Baylis.\n[1]  It was nominated for an Academy Award for Best Documentary Feature.\n[DOC] Donnie Wahlberg\n[0] Donald Edmond Wahlberg Jr. (born August 17, 1969) is an American singer, songwriter, actor,"
+          },
+          "success_reference": null,
+          "observable_checks": {
+            "answer_format_ok": true,
+            "reference_has_verifiable_quote": false,
+            "diagnosis_status": "hypothesis_to_check"
+          },
+          "original_failure_feedback": "\n\n### Trajectory 1 (id=5a7bcd09554299294a54aaeb)\nTask: When was the actor who starred in The Finest Hours born?\nTask type: \nFailure reason: EM=0\nSteps: ?\n\n#### Hidden Reference\nGold answers: ['1980']\n\n[assistant] To answer this question, I need to identify the actors who starred in the 2016 film"
+        },
+        "feedback_tokens": 1656
+      },
+      {
+        "round": 2,
+        "child": "g0002_i0001",
+        "parent": "g0000_i0001",
+        "failure_id": "5a8e1f4955429917b4a5bd2f",
+        "question": "What army did the uncle of Jean Gordon command?",
+        "type": "entity_attribute",
+        "pair_type": "unpaired",
+        "failure_em": 0.0,
+        "failure_f1": 0.0,
+        "prediction": "Jean Gordon (politician).",
+        "gold": [
+          "U.S. Seventh Army"
+        ],
+        "successes_available": 46,
+        "same_kind_available": 20,
+        "max_jaccard_any_kind": 0.17647058823529413,
+        "max_jaccard_same_kind": 0.17647058823529413,
+        "success": null,
+        "actual_packet": {
+          "failure_id": "5a8e1f4955429917b4a5bd2f",
+          "pair_type": "unpaired",
+          "failure": {
+            "question": "What army did the uncle of Jean Gordon command?",
+            "response_excerpt": "To answer this question, I need to identify who Jean Gordon's uncle is and then determine which army that uncle commanded.\n\n1.  **Identify Jean Gordon:** There are multiple \"Jean Gordon\" entries.\n    *   Jean Gordon, Countess of Bothwell (1546–1629).\n    *   Lady Agnes Campbell's mother is Lady Jean Gordon (daughter of Alexander Gordon, 3rd Earl of Huntly).\n    *   George Hamilton",
+            "predicted_answer": "Jean Gordon (politician).",
+            "gold_answers": [
+              "U.S. Seventh Army"
+            ],
+            "em": 0,
+            "visible_context_excerpt": "[DOC] Jean Gordon, Countess of Bothwell\n[0] Jean Gordon, Countess of Bothwell (1546 – 14 May 1629) was a wealthy Scottish noblewoman and the first wife of James Hepburn, Earl of Bothwell who became, after his divorce from Lady Jean, the third husband of Mary, Queen of Scots.\n[1]  Lady Jean herself had a total of three husbands.\n[2]  Upon her"
+          },
+          "success_reference": null,
+          "observable_checks": {
+            "answer_format_ok": false,
+            "reference_has_verifiable_quote": false,
+            "diagnosis_status": "hypothesis_to_check"
+          },
+          "original_failure_feedback": "\n\n### Trajectory 1 (id=5a8e1f4955429917b4a5bd2f)\nTask: What army did the uncle of Jean Gordon command?\nTask type: \nFailure reason: EM=0\nSteps: ?\n\n#### Hidden Reference\nGold answers: ['U.S. Seventh Army']\n\n[assistant] To answer this question, I need to identify who Jean Gordon's uncle is and then determine which army"
+        },
+        "feedback_tokens": 1635
+      },
+      {
+        "round": 2,
+        "child": "g0002_i0001",
+        "parent": "g0000_i0001",
+        "failure_id": "5a7bcd09554299294a54aaeb",
+        "question": "When was the actor who starred in The Finest Hours born?",
+        "type": "count_date",
+        "pair_type": "unpaired",
+        "failure_em": 0.0,
+        "failure_f1": 0.16666666666666669,
+        "prediction": "August 26, 1980 (Chris Pine) and December 19, 1991 (Keiynan Lonsdale)",
+        "gold": [
+          "1980"
+        ],
+        "successes_available": 46,
+        "same_kind_available": 10,
+        "max_jaccard_any_kind": 0.15,
+        "max_jaccard_same_kind": 0.13043478260869565,
+        "success": null,
+        "actual_packet": {
+          "failure_id": "5a7bcd09554299294a54aaeb",
+          "pair_type": "unpaired",
+          "failure": {
+            "question": "When was the actor who starred in The Finest Hours born?",
+            "response_excerpt": "To answer this question, I need to identify the actors who starred in the 2016 film *The Finest Hours* and then find their birth dates from the provided text.\n\n1.  **Identify the film and its cast:**\n    *   According to the passage `[DOC] The Finest Hours (2016 film)`, the film stars **Chris Pine**, **Casey Affleck**, **Ben Foster**, **Holliday Grainger**, **John",
+            "predicted_answer": "August 26, 1980 (Chris Pine) and December 19, 1991 (Keiynan Lonsdale)",
+            "gold_answers": [
+              "1980"
+            ],
+            "em": 0,
+            "visible_context_excerpt": "[DOC] The Finest Hours (1964 film)\n[0] The Finest Hours is a 1964 British documentary film about Winston Churchill, directed by Peter Baylis.\n[1]  It was nominated for an Academy Award for Best Documentary Feature.\n[DOC] Donnie Wahlberg\n[0] Donald Edmond Wahlberg Jr. (born August 17, 1969) is an American singer, songwriter, actor,"
+          },
+          "success_reference": null,
+          "observable_checks": {
+            "answer_format_ok": true,
+            "reference_has_verifiable_quote": false,
+            "diagnosis_status": "hypothesis_to_check"
+          },
+          "original_failure_feedback": "\n\n### Trajectory 1 (id=5a7bcd09554299294a54aaeb)\nTask: When was the actor who starred in The Finest Hours born?\nTask type: \nFailure reason: EM=0\nSteps: ?\n\n#### Hidden Reference\nGold answers: ['1980']\n\n[assistant] To answer this question, I need to identify the actors who starred in the 2016 film"
+        },
+        "feedback_tokens": 1635
+      },
+      {
+        "round": 2,
+        "child": "g0002_i0001",
+        "parent": "g0000_i0001",
+        "failure_id": "5ab2de5d5542991669774116",
+        "question": "What two property groups own the enclosed shopping malls in Santa Rosa, California?",
+        "type": "entity_attribute",
+        "pair_type": "same_question",
+        "failure_em": 0.0,
+        "failure_f1": 1.0,
+        "prediction": "Simon Property Group and Codding Enterprises",
+        "gold": [
+          "Codding Enterprises and Simon Property Group"
+        ],
+        "successes_available": 46,
+        "same_kind_available": 19,
+        "max_jaccard_any_kind": 0.11538461538461539,
+        "max_jaccard_same_kind": 0.1,
+        "success": {
+          "example_id": "5ab2de5d5542991669774116",
+          "skill_hash": "98e05007c06e2c5a10bcee2a4bbbe206c291efcc2fdef0335f0c4aaf8d3613a3",
+          "round": 1,
+          "visible_context_hash": "6d8279a26b49e6255dfcc6d2c36bb8c5c05c2753feea28bed003c01ee89e3a7c",
+          "observation_id": "c7e5e50a0f0b853d5fa0fd850326dc969015ab0dccc2ebe44218f0f3415374b2",
+          "question": "What two property groups own the enclosed shopping malls in Santa Rosa, California?",
+          "visible_context_excerpt": "[DOC] Santa Rosa Rancheria\n[0] Santa Rosa Rancheria is the reservation of the Santa Rosa Indian Community of the Santa Rosa Rancheria.\n[1]  It is located 4.5 mile southeast of Lemoore, California.\n[2]  Established in 1934 on about 40 acre , the Santa Rosa Rancheria belongs to the federally recognized Tachi Yokuts tribe.\n[3]  It is the site of the Tachi Palace Hotel & Casino.\n[4]  The population was 517 at the time of the 2000 United States Census and had increased to 652 by the 2010 United States Census.\n[5]  In 2010",
+          "response_excerpt": "Based on the provided context:\n\n1.  **Santa Rosa Plaza** is managed by **Simon Property Group**.\n2.  **Coddingtown Mall** is owned by **Codding Enterprises** and **Simon Property Group**.\n\nBoth malls are identified as the two enclosed shopping malls in Santa Rosa, California. Therefore, the two property groups involved in owning/operating them are Codding Enterprises and Simon Property Group.\n\n<answer>Codding Enterprises and Simon Property Group</answer>",
+          "predicted_answer": "Codding Enterprises and Simon Property Group",
+          "gold_answers": [
+            "Codding Enterprises and Simon Property Group"
+          ],
+          "em": 1.0
+        },
+        "actual_packet": {
+          "failure_id": "5ab2de5d5542991669774116",
+          "pair_type": "same_question",
+          "failure": {
+            "question": "What two property groups own the enclosed shopping malls in Santa Rosa, California?",
+            "response_excerpt": "To answer this question, I need to identify the enclosed shopping malls in Santa Rosa, California, and then determine which property groups own them based on the provided text.\n\n1.  **Identify the malls:**\n    *   According to the passage titled \"Santa Rosa Plaza\", it is \"one of two enclosed shopping malls in Santa Rosa, California.\"\n    *   According to the passage titled \"Coddingtown Mall\", it is also \"one of two enclosed shopping malls in Santa Rosa",
+            "predicted_answer": "Simon Property Group and Codding Enterprises",
+            "gold_answers": [
+              "Codding Enterprises and Simon Property Group"
+            ],
+            "em": 0,
+            "visible_context_excerpt": "[DOC] Santa Rosa Rancheria\n[0] Santa Rosa Rancheria is the reservation of the Santa Rosa Indian Community of the Santa Rosa Rancheria.\n[1]  It is located 4.5 mile southeast of Lemoore, California.\n[2]  Established in 1934 on about 40 acre , the Santa Rosa Rancheria belongs to the federally recognized Tachi Yokuts tribe.\n[3]  It is the site of the Tachi"
+          },
+          "success_reference": {
+            "example_id": "5ab2de5d5542991669774116",
+            "response_excerpt": "Based on the provided context:\n\n1.  **Santa Rosa Plaza** is managed by **Simon Property Group**.\n2.  **Coddingtown Mall** is owned by **Codding Enterprises** and **Simon Property Group**.\n\nBoth malls are identified as the two enclosed shopping malls in Santa Rosa, California. Therefore, the two property groups involved in owning/operating them are Codding Enterprises and Simon Property Group.\n\n<answer>Codding Enterprises and Simon Property Group</answer>",
+            "predicted_answer": "Codding Enterprises and Simon Property Group",
+            "em": 1,
+            "question": "What two property groups own the enclosed shopping malls in Santa Rosa, California?",
+            "visible_context_excerpt": "[DOC] Santa Rosa Rancheria\n[0] Santa Rosa Rancheria is the reservation of the Santa Rosa Indian Community of the Santa Rosa Rancheria.\n[1]  It is located 4.5 mile southeast of Lemoore, California.\n[2]  Established in 1934 on about 40 acre , the Santa Rosa Rancheria belongs to the federally recognized Tachi Yokuts tribe.\n[3]  It is the site of the Tachi"
+          },
+          "observable_checks": {
+            "answer_format_ok": true,
+            "reference_has_verifiable_quote": false,
+            "diagnosis_status": "hypothesis_to_check"
+          }
+        },
+        "feedback_tokens": 1635
+      },
+      {
+        "round": 3,
+        "child": "g0003_i0000",
+        "parent": "g0000_i0001",
+        "failure_id": "5ae160125542990adbacf778",
+        "question": "Who was the ruler of an ancient city located Northwest of the junction of the Euphrates and Tigris and had several statues found in southern Mesopotamia?",
+        "type": "entity_attribute",
+        "pair_type": "unpaired",
+        "failure_em": 0.0,
+        "failure_f1": 0.6666666666666666,
+        "prediction": "Gudea",
+        "gold": [
+          "Gudea ruled"
+        ],
+        "successes_available": 66,
+        "same_kind_available": 29,
+        "max_jaccard_any_kind": 0.1388888888888889,
+        "max_jaccard_same_kind": 0.13513513513513514,
+        "success": null,
+        "actual_packet": null,
+        "feedback_tokens": 848
+      },
+      {
+        "round": 3,
+        "child": "g0003_i0000",
+        "parent": "g0000_i0001",
+        "failure_id": "5a7219e155429971e9dc926e",
+        "question": "Which postcolonial literature academic specializes in Victorian and Modern English literature?",
+        "type": "entity_attribute",
+        "pair_type": "unpaired",
+        "failure_em": 0.0,
+        "failure_f1": 0.3076923076923077,
+        "prediction": "Ankhi Mukherjee",
+        "gold": [
+          "Ankhi Mukherjee is an academic specialising in Victorian and Modern English literature,"
+        ],
+        "successes_available": 66,
+        "same_kind_available": 29,
+        "max_jaccard_any_kind": 0.125,
+        "max_jaccard_same_kind": 0.11538461538461539,
+        "success": null,
+        "actual_packet": null,
+        "feedback_tokens": 848
+      },
+      {
+        "round": 3,
+        "child": "g0003_i0000",
+        "parent": "g0000_i0001",
+        "failure_id": "5a7bcd09554299294a54aaeb",
+        "question": "When was the actor who starred in The Finest Hours born?",
+        "type": "count_date",
+        "pair_type": "unpaired",
+        "failure_em": 0.0,
+        "failure_f1": 0.16666666666666669,
+        "prediction": "August 26, 1980 (Chris Pine) and December 19, 1991 (Keiynan Lonsdale)",
+        "gold": [
+          "1980"
+        ],
+        "successes_available": 66,
+        "same_kind_available": 12,
+        "max_jaccard_any_kind": 0.15,
+        "max_jaccard_same_kind": 0.13043478260869565,
+        "success": null,
+        "actual_packet": null,
+        "feedback_tokens": 848
+      },
+      {
+        "round": 3,
+        "child": "g0003_i0001",
+        "parent": "g0000_i0001",
+        "failure_id": "5ae160125542990adbacf778",
+        "question": "Who was the ruler of an ancient city located Northwest of the junction of the Euphrates and Tigris and had several statues found in southern Mesopotamia?",
+        "type": "entity_attribute",
+        "pair_type": "unpaired",
+        "failure_em": 0.0,
+        "failure_f1": 0.6666666666666666,
+        "prediction": "Gudea",
+        "gold": [
+          "Gudea ruled"
+        ],
+        "successes_available": 66,
+        "same_kind_available": 29,
+        "max_jaccard_any_kind": 0.1388888888888889,
+        "max_jaccard_same_kind": 0.13513513513513514,
+        "success": null,
+        "actual_packet": null,
+        "feedback_tokens": 848
+      },
+      {
+        "round": 3,
+        "child": "g0003_i0001",
+        "parent": "g0000_i0001",
+        "failure_id": "5a7219e155429971e9dc926e",
+        "question": "Which postcolonial literature academic specializes in Victorian and Modern English literature?",
+        "type": "entity_attribute",
+        "pair_type": "unpaired",
+        "failure_em": 0.0,
+        "failure_f1": 0.3076923076923077,
+        "prediction": "Ankhi Mukherjee",
+        "gold": [
+          "Ankhi Mukherjee is an academic specialising in Victorian and Modern English literature,"
+        ],
+        "successes_available": 66,
+        "same_kind_available": 29,
+        "max_jaccard_any_kind": 0.125,
+        "max_jaccard_same_kind": 0.11538461538461539,
+        "success": null,
+        "actual_packet": null,
+        "feedback_tokens": 848
+      },
+      {
+        "round": 3,
+        "child": "g0003_i0001",
+        "parent": "g0000_i0001",
+        "failure_id": "5a7bcd09554299294a54aaeb",
+        "question": "When was the actor who starred in The Finest Hours born?",
+        "type": "count_date",
+        "pair_type": "unpaired",
+        "failure_em": 0.0,
+        "failure_f1": 0.16666666666666669,
+        "prediction": "August 26, 1980 (Chris Pine) and December 19, 1991 (Keiynan Lonsdale)",
+        "gold": [
+          "1980"
+        ],
+        "successes_available": 66,
+        "same_kind_available": 12,
+        "max_jaccard_any_kind": 0.15,
+        "max_jaccard_same_kind": 0.13043478260869565,
+        "success": null,
+        "actual_packet": null,
+        "feedback_tokens": 848
+      }
+    ],
+    "mutations": [
+      {
+        "round": 1,
+        "child": "g0001_i0000",
+        "operator": "mutation_other",
+        "parent": "g0000_i0001",
+        "parent_em": 0.6333333333333333,
+        "child_em": 0.6,
+        "no_op": false,
+        "discarded_sections": [
+          "node_lists"
+        ],
+        "adopted_added_lines": [
+          "- **Order Preservation**: When listing multiple entities or groups as the answer, maintain the order presented in the relevant context passages or the logical sequence of the question."
+        ],
+        "introduced_gold_instructions": [],
+        "notes": [
+          "Added 'Order Preservation' principle to Global Guidance to address failures where answer entity order differed from context (e.g., failure 5ab2de5d5542991669774116).",
+          "Refined 'Synthesize Final Answer' node instructions to explicitly mention preserving order from source text for list-type answers.",
+          "Ensured strict adherence to the serialization contract: concise nodes, limited task graphs, and correct formatting for Task Graphs sections."
+        ],
+        "dev_transitions": {
+          "repaired": 1,
+          "regressed": 2,
+          "both_correct": 17,
+          "both_wrong": 10
+        },
+        "feedback_tokens": 1628,
+        "paired_failures": 1
+      },
+      {
+        "round": 1,
+        "child": "g0001_i0001",
+        "operator": "mutation_graph",
+        "parent": "g0000_i0001",
+        "parent_em": 0.6333333333333333,
+        "child_em": 0.5666666666666667,
+        "no_op": false,
+        "discarded_sections": [
+          "global_guidance"
+        ],
+        "adopted_added_lines": [
+          "- Read the entire question carefully to identify the core entities and the relationship chain required.",
+          "- Identify the target entity for the final answer and note if the answer requires a specific order (e.g., \"two groups\", \"commonalities\").",
+          "- Select passages that contain explicit mentions of the starting entity, intermediate entities, or the target entity.",
+          "- Ensure retrieved passages cover all necessary links in the reasoning chain.",
+          "- Preserve the exact wording of facts, especially regarding lists or paired entities.",
+          "- If the answer involves a list or pair, ensure the inference correctly aggregates the identified items without altering their order relative to the query.",
+          "- Based on the inferred intermediate conclusion, determine the final answer entity or set of entities.",
+          "- If the answer is a list, ensure all items are included in the correct order as implied by the text or question.",
+          "- Prepare the answer string for output, ensuring it stands alone as a complete response and matches the gold answer format if possible.",
+          "- Wrap the final answer in `<answer>` tags.",
+          "- Verify order sensitivity: If the question asks for multiple entities, does the answer list them in the expected order?",
+          "- If verification fails, return to `Retrieve Relevant Passages` or `Extract Facts` to find missing links or correct orderings.",
+          "**Use when:** The question requires comparing two or more entities, finding commonalities/differences, or listing multiple specific entities (e.g., \"What two groups own...\", \"What do X and Y have in common?\")."
+        ],
+        "introduced_gold_instructions": [
+          "- Prepare the answer string for output, ensuring it stands alone as a complete response and matches the gold answer format if possible."
+        ],
+        "notes": [
+          "Added 'Order Sensitivity' principle to Global Guidance to address failures where the answer order was incorrect (e.g., failure 5ab2de5d5542991669774116).",
+          "Refined 'Parse Goal' node instructions to explicitly identify if the answer requires a specific order.",
+          "Refined 'Extract Facts' node to emphasize preserving exact wording and order of listed entities.",
+          "Refined 'Verify Against Context' node to include a check for order sensitivity in multi-entity answers.",
+          "Refined 'Complex Multi-Entity Comparison' task graph description to clarify handling of lists and pairs."
+        ],
+        "dev_transitions": {
+          "repaired": 1,
+          "regressed": 3,
+          "both_correct": 16,
+          "both_wrong": 10
+        },
+        "feedback_tokens": 1628,
+        "paired_failures": 1
+      },
+      {
+        "round": 2,
+        "child": "g0002_i0000",
+        "operator": "mutation_other",
+        "parent": "g0001_i0000",
+        "parent_em": 0.6,
+        "child_em": 0.5666666666666667,
+        "no_op": false,
+        "discarded_sections": [
+          "node_lists",
+          "task_graphs"
+        ],
+        "adopted_added_lines": [
+          "- **Evidence Verification**: Every claim must be supported by a specific sentence or fact in the context. Explicitly cite the document title and passage number when possible.",
+          "- **Exact Matching**: Final answers should match the text exactly unless formatting (like removing quotes) is necessary for clarity. If a gold answer includes specific details (e.g., city and state), ensure the extracted text contains those specific details.",
+          "- **Strict Document Adherence**: If the required information is not present in the provided context passages, do not hallucinate or use external knowledge. State that the information is unavailable."
+        ],
+        "introduced_gold_instructions": [
+          "- **Exact Matching**: Final answers should match the text exactly unless formatting (like removing quotes) is necessary for clarity. If a gold answer includes specific details (e.g., city and state), ensure the extracted text contains those specific details."
+        ],
+        "notes": [
+          "Added 'Strict Document Adherence' principle to explicitly forbid hallucination when information is missing, addressing failures where the model failed to recognize missing context.",
+          "Enhanced 'Extract Facts' and 'Synthesize Final Answer' nodes to require capturing full specific details (e.g., city and state) rather than partial matches, addressing the 'New Orleans' vs 'New Orleans, Louisiana' failure.",
+          "Clarified 'Evidence Verification' to explicitly mention citing document titles and passage numbers, improving traceability.",
+          "Removed redundant node definitions; consolidated into a single 'Node Lists' section with six distinct nodes as per the original structure but clarified instructions.",
+          "Ensured all Task Graphs strictly follow the required syntax: '### Task Name', '**Use when:**', '**Workflow:**', and numbered node names without extra text.",
+          "Fixed the output format to be a single JSON object without markdown code fences, adhering to the serialization contract. (Note: The previous output contained duplicate sections due to an internal error in the thought process; this is the corrected, single version.)"
+        ],
+        "dev_transitions": {
+          "repaired": 1,
+          "regressed": 2,
+          "both_correct": 16,
+          "both_wrong": 11
+        },
+        "feedback_tokens": 1656,
+        "paired_failures": 1
+      },
+      {
+        "round": 2,
+        "child": "g0002_i0001",
+        "operator": "mutation_graph",
+        "parent": "g0000_i0001",
+        "parent_em": 0.6333333333333333,
+        "child_em": 0.5,
+        "no_op": false,
+        "discarded_sections": [
+          "global_guidance"
+        ],
+        "adopted_added_lines": [
+          "- Identify if the question requires a list of answers (e.g., \"What two groups...\").",
+          "- For list-based questions, ensure all relevant passages containing the target items are selected.",
+          "- For list-based questions, extract all occurrences of the named items or groups mentioned in the text.",
+          "- If the question involves multiple items, verify connections for each item individually before synthesis.",
+          "- Based on the inferred intermediate conclusion, determine the final answer entity or entities.",
+          "- If the answer is a list, ensure all items are included and formatted correctly, preserving the order of mention or alphabetical order if implied as a set.",
+          "- Do not reorder items based on external knowledge unless the text explicitly orders them.",
+          "- Ensure the count of items in the answer matches the request (e.g., \"two groups\").",
+          "**Use when:** The question requires comparing two or more entities or finding commonalities/differences between them based on the provided text, or asking for a specific number of groups/items."
+        ],
+        "introduced_gold_instructions": [],
+        "notes": [
+          "Added 'List Ordering' principle to Global Guidance to address failures where answer order was incorrect due to implicit reordering.",
+          "Enhanced 'Parse Goal' node to explicitly check for list-based questions (e.g., 'What two...').",
+          "Enhanced 'Retrieve Relevant Passages' node to ensure all relevant passages for list-based questions are selected.",
+          "Enhanced 'Extract Facts' node to capture all occurrences of named items for list questions.",
+          "Enhanced 'Infer Intermediate Conclusion' node to verify connections for multiple items individually.",
+          "Enhanced 'Synthesize Final Answer' node to preserve order of mention and prevent external reordering.",
+          "Enhanced 'Verify Against Context' node to check item counts and presence.",
+          "Added specific handling instructions for multi-entity comparison tasks in the 'Complex Multi-Entity Comparison' graph workflow."
+        ],
+        "dev_transitions": {
+          "repaired": 0,
+          "regressed": 4,
+          "both_correct": 15,
+          "both_wrong": 11
+        },
+        "feedback_tokens": 1635,
+        "paired_failures": 1
+      },
+      {
+        "round": 3,
+        "child": "g0003_i0000",
+        "operator": "mutation_other",
+        "parent": "g0000_i0001",
+        "parent_em": 0.6333333333333333,
+        "child_em": 0.5333333333333333,
+        "no_op": false,
+        "discarded_sections": [
+          "node_lists"
+        ],
+        "adopted_added_lines": [
+          "- **Evidence Verification**: Every claim must be supported by a specific sentence or fact in the context. Check for hallucinations by ensuring every word in the final answer exists in the source text.",
+          "- **Exact Matching**: Final answers should match the text exactly unless formatting (like removing quotes) is necessary for clarity. If the gold answer includes specific phrasing (e.g., \"X is an academic...\"), preserve that structure.",
+          "- **Error Recovery**: If a path leads to a contradiction or missing information, backtrack to the previous inference step and try an alternative path or re-examine the extracted facts for synonyms or related entities."
+        ],
+        "introduced_gold_instructions": [
+          "- **Exact Matching**: Final answers should match the text exactly unless formatting (like removing quotes) is necessary for clarity. If the gold answer includes specific phrasing (e.g., \"X is an academic...\"), preserve that structure."
+        ],
+        "notes": [
+          "Refined 'Exact Matching' principle to explicitly address preserving descriptive phrasing found in gold answers (e.g., 'X is an academic...') to improve EM scores.",
+          "Enhanced 'Error Recovery' and 'Verify Against Context' sections to emphasize re-examining facts for synonyms and checking for exact word presence to prevent hallucinations.",
+          "Clarified 'Synthesize Final Answer' to ensure the extracted string matches the gold standard's descriptive structure if applicable."
+        ],
+        "dev_transitions": {
+          "repaired": 0,
+          "regressed": 3,
+          "both_correct": 16,
+          "both_wrong": 11
+        },
+        "feedback_tokens": 848,
+        "paired_failures": 0
+      },
+      {
+        "round": 3,
+        "child": "g0003_i0001",
+        "operator": "mutation_graph",
+        "parent": "g0000_i0001",
+        "parent_em": 0.6333333333333333,
+        "child_em": 0.6,
+        "no_op": false,
+        "discarded_sections": [],
+        "adopted_added_lines": [
+          "- Explicitly identify the starting entity and the specific relationship or attribute being queried (e.g., \"ruler of\", \"born in\").",
+          "- Ensure the selected passages cover the full scope of the query chain.",
+          "- If the question asks for a specific attribute (like a birth year), extract the exact sentence containing that attribute.",
+          "- If the chain is complete, confirm the path from start to target is valid.",
+          "- Based on the inferred intermediate conclusion, determine the final answer entity or value.",
+          "- Do not add introductory phrases; provide only the direct answer derived from the text.",
+          "- Confirm the final answer matches the gold standard format if available (e.g., specific phrasing)."
+        ],
+        "introduced_gold_instructions": [
+          "- Confirm the final answer matches the gold standard format if available (e.g., specific phrasing)."
+        ],
+        "notes": [
+          "Refined 'Parse Goal' to explicitly instruct identifying the starting entity and specific relationship to prevent ambiguity in multi-hop chains.",
+          "Enhanced 'Extract Facts' to include instructions for extracting specific attributes (like dates) directly from sentences.",
+          "Strengthened 'Synthesize Final Answer' to prohibit introductory phrases and ensure exact string matching from context.",
+          "Added explicit consistency checks in 'Infer Intermediate Conclusion' to validate the bridge between entities before proceeding.",
+          "Improved 'Verify Against Context' to include a specific step for confirming answer format and phrasing alignment with the text.",
+          "Merged redundant workflow conditions in Task Graphs to ensure distinct use cases while maintaining the reusable node structure."
+        ],
+        "dev_transitions": {
+          "repaired": 0,
+          "regressed": 1,
+          "both_correct": 18,
+          "both_wrong": 11
+        },
+        "feedback_tokens": 848,
+        "paired_failures": 0
+      }
+    ],
+    "summary": {
+      "selected_failure_exposures": 18,
+      "paired_exposures": 4,
+      "unique_paired_failures": 2,
+      "pair_types": {
+        "unpaired": 14,
+        "same_question": 4
+      },
+      "unknown_type_exposures": 0,
+      "fallback_operators": 2,
+      "no_op_candidates": 0,
+      "candidates_with_scope_discard": 5,
+      "candidates_with_new_gold_reference": 4,
+      "unique_paired_f1": {
+        "5ab2de5d5542991669774116": 1.0,
+        "5ab5dba3554299494045f086": 0.6666666666666666
+      },
+      "unpaired_with_any_kind_jaccard_ge_02": 0,
+      "unpaired_with_eligible_kind_candidate": 14
+    },
+    "interpretation": "Counts describe this seed and stored observations. No new model calls, no test-based tuning, no causal proof from candidate score differences alone."
+  }
+}

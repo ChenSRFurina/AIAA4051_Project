@@ -1,0 +1,1577 @@
+[
+  {
+    "id": "59ec0cf2e15944659c77b96d911ceab0",
+    "dataset": "searchqa",
+    "split": "test",
+    "condition": "B",
+    "round": -1,
+    "skill_hash": "c4ab24a9c4550a970e68d42b0ba0ab5b46b4170ed5bfbb363693a6a1e0c606cb",
+    "question": "Sentence diagrams visually represent this, the way words are arranged & relate within sentences",
+    "visible_context": "[DOC] [TLE] Diagramming Sentences [PAR] Diagramming Sentences. Basic Sentence Parts and Patterns. Simple subject and \npredicate ... Charles is working in the garden by the river. Preposition with... [DOC] [TLE] Analyzing Sentences - Polysyllabic [PAR] Syntax concerns the way that words are arranged into larger units. ... The largest \nunit that syntactic analysis usually considers is the sentence. .... constituents \nrelate to one another, so constituency is the central issue in grammatical analysis\n, ..... Despite that simplicity, tree diagrams can represent phrase structure \naccurately. [DOC] [TLE] Linguistics 201: Syntax [PAR] The problem with the topic-comment definition is that many sentences have no \nclear ... In polysynthetic languages the single word serve as a complete sentence \nmuch more frequently. .... it uses the parts of speech in a way that conforms to the \nrules of English syntax. .... Diagramming sentences, how to deal with ambiguity. [DOC] [TLE] Grade 3: Arrays to Show Multiplication Concepts: Overview [PAR] For example, they can picture students in a marching band arranged in ... An \narrangement of objects, pictures, or numbers in columns and rows is ... The \nnumbers in multiplication sentences have special names. ... Now look at what \nhappens to the factors and product in the multiplication sentence when the array \nis turned on... [DOC] [TLE] chapter two - Jones & Bartlett Learning [PAR] does structure relate to language and reading difficulties? Do functions ... can \ndiagram the above sentence twice, but one diagram (the first interpreta- tion) will \nhave ..... value of using cued speech/language (Chapter 4) or visual phonics (\nChapter 7) ... wordsdiscussed in the next section (The Structure of Sentences)\n. For. [DOC] [TLE] diagramming - Why do we diagram sentences? - English Language ... [PAR] Jul 11, 2016 ... Why is sentence diagramming important? ... There are various visual \nrepresentations of this form, so-called sentence diagrams, that ... Without \narrangement, words alone can only convey extremely simple ideas; there is no \nlanguage. ... they cannot learn that fitting them together in a particular way \nmatters. [DOC] [TLE] View samples from a new chapter on how to teach for ... - Corwin [PAR] pairs of words that either are identical or differ in some subtle way. Say them \naloud ... Syntax.The rules of English prohibit the haphazard arrangement of \nwords in a sentence. ... tic skill is to give the children sentences with a key word \nmissing. Ask them ... when readers actively relate the ideas represented in print \nto their own. [DOC] [TLE] 4 Syntax [PAR] The term syntax (E Greek 'arrangement') is used to refer to the rules of a \nlanguage ... unit of syntax is the sentence just as the morpheme is that of \nmorphology, for .... The words in sentences can be classified in various ways and \nit is sensible to ..... tree diagram, i.e. the latter can be regarded as a visual \nrepresentation of the. [DOC] [TLE] English: Glossary - The Australian Curriculum v8.2 [PAR] A word class that may modify a verb (for example, 'beautifully' in 'she sings \nbeautifully'), .... A sentence with two or more main clauses of equal grammatical \nstatus, usually .... An audio, visual or multimodal text produced through digital or \nelectronic ... A way in which elements in a still or moving image are arranged to \ncreate a... [DOC] [TLE] Visual Languages - University of Pittsburgh [PAR] Compilers for visual languages must interpret visual sentences and translate \nthem ... It must also consider the context of the sentence, how the objects relate to \none another. ... A visual sentence is a spatial arrangement of object icons and/or \noperation ... In other words, the meaning part xm1 and xm2 are combined using \nthe... [DOC] [TLE] The Framework Elements - The Cognitive Foundations of Learning ... [PAR] Visual Map of the Cognitive Elements of Reading .... children recognize that the \ngolden arches represent a concept, which, in this .... The way that words are \narranged in English sentences has a fairly stringent structure, and one does not \nneed to be able to formally diagram sentences to understand that structure \nimplicitly. [DOC]",
+    "visible_context_hash": "819d48ba195dd45ab2511d43ad035e3fd7907fff1d2836ac4187050acc045000",
+    "context_truncated": false,
+    "raw_response": "<answer>structure</answer>",
+    "response": "<answer>structure</answer>",
+    "em": 0.0,
+    "f1": 0.0,
+    "sub_em": 0.0,
+    "predicted_answer": "structure",
+    "gold_answers": [
+      "syntax"
+    ],
+    "hard": 0,
+    "soft": 0.0,
+    "format_ok": true,
+    "error": "",
+    "provider_refusal": false,
+    "refusal_reason": "",
+    "fail_reason": "EM=0",
+    "latency_seconds": 0.8909999999996217,
+    "generation_config": {
+      "model": {
+        "id": "qwen3.5-9b",
+        "revision": "Team deployment; weight revision undisclosed",
+        "base_url": "http://10.4.162.57:19198/v1",
+        "api_key_env": "PROJECT5_TEAM_QWEN_API_KEY",
+        "tokenizer_path": "F:\\Document\\HKUST\\2026fall\\NLP\\Project\\AIAA4051_Project\\api\\runtime\\tokenizer",
+        "precision": "team-managed; undisclosed",
+        "server_version": "Team OpenAI-compatible API; deployment version undisclosed",
+        "extra_body": {
+          "chat_template_kwargs": {
+            "enable_thinking": false
+          }
+        },
+        "structured_operators": "json_schema",
+        "tokenizer_note": "Qwen/Qwen3.5-9B@c202236235762e1c871ad0ccb60c8ee5ba337b9a proxy for skill/feedback lengths only; hosted server usage is authoritative for request tokens",
+        "allow_private_http": true,
+        "context_window": 32768,
+        "context_safety_tokens": 512
+      },
+      "temperature": 0.0,
+      "seed": 42,
+      "max_tokens": 2048,
+      "tokenizer_hash": "5f434e57da7403bc8232613f565c8d3de0bf56be57ff8326a83ebd76ee1f1e9c"
+    },
+    "attempts": [
+      {
+        "attempt": 1,
+        "status": "ok",
+        "usage": {
+          "prompt_tokens": 2026,
+          "total_tokens": 2034,
+          "completion_tokens": 8,
+          "prompt_tokens_details": null,
+          "completion_tokens_details": null,
+          "call_id": "d6cb977774b643c69d0569c6ed9137df",
+          "finish_reason": "stop"
+        }
+      }
+    ],
+    "observation_id": "548c944f33409675e2074a6798470acb37b26c11049cbd0a8828529dbbd4905e",
+    "cached": false,
+    "observation_condition": "B",
+    "manual": {
+      "dataset": "searchqa",
+      "split": "test",
+      "condition": "B",
+      "id": "59ec0cf2e15944659c77b96d911ceab0",
+      "predicted_answer": "structure",
+      "category": "术语不够精确",
+      "note": "上下文直接把 words arranged 对应到 syntax；structure 是相关但更宽泛的词，未输出参考所指术语。单词回答没有提供可定位的内部推理轨迹。",
+      "skill_nodes": [
+        "Parse Question",
+        "Extract Evidence"
+      ],
+      "response_sha256": "e74c78765c4e3dbb2c96e2b35777cc0b66cdf5f9e17c563ffb47c7c4859c0738"
+    },
+    "skill_diagnosis": {
+      "nodes": [
+        "Parse Question",
+        "Extract Evidence"
+      ],
+      "instruction_quotes": {
+        "Parse Question": "- Extract the core intent and key entities from the QUESTION.\n- Identify the specific information required to form an answer.\n- Note any constraints on the answer format.",
+        "Extract Evidence": "- Isolate the specific sentence or phrase within the retrieved context that directly answers the question.\n- Ignore surrounding noise or unrelated text in the passage.\n- Ensure the extracted text is a complete thought or fact."
+      },
+      "note": "上下文直接把 words arranged 对应到 syntax；structure 是相关但更宽泛的词，未输出参考所指术语。单词回答没有提供可定位的内部推理轨迹。",
+      "status": "post_freeze_descriptive_only_not_optimizer_feedback",
+      "skill_hash": "c4ab24a9c4550a970e68d42b0ba0ab5b46b4170ed5bfbb363693a6a1e0c606cb"
+    }
+  },
+  {
+    "id": "273e54aff0a149e08852c43ca2c5ea89",
+    "dataset": "searchqa",
+    "split": "test",
+    "condition": "B",
+    "round": -1,
+    "skill_hash": "c4ab24a9c4550a970e68d42b0ba0ab5b46b4170ed5bfbb363693a6a1e0c606cb",
+    "question": "Bartenders use it to make an orange blossom",
+    "visible_context": "[DOC] [TLE] Orange Blossom Cocktail Recipe - Liquor.com [PAR] During Prohibition, this simple gin-and-orange-juice tipple was a big hit among \nillicit imbibers. Check out the classic Orange Blossom cocktail recipe now on \nLiquor.com! ... What type of bartending? ... How to make The Orange Blossom \nCocktail ... The color on the picture can be achieved only, if a bianco vermouth is \nused. [DOC] [TLE] Orange Blossom recipe - Drinksmixer.com [PAR] A delicious recipe for Orange Blossom, with gin, orange juice and superfine \nsugar. ... The Only Good Way To Make Broccoli ... For information on creating \nmixed drink recipes, bartending information, and measurements for alcoholic \ndrinks, visit... [DOC] [TLE] Orange Blossom - Drink Recipe  How to Make the Perfect Orange ... [PAR] Nov 5, 2007 ... 1 1/2 ounces gin -- London dry gin; 1 1/2 ounces orange juice ... There is, we \nshould mention, a competing version of the Orange Blossom that calls for equal \nparts gin ... fruit juices: \"the heathen put it to many uses but we know none for it. ... \nThis Is What Bartenders with Gloves Look Like  Old-Fashioned Gin... [DOC] [TLE] How to Use Honey in Cocktails | Serious Eats [PAR] Mar 18, 2015 ... For bartenders and home drink-makers who strive to introduce a locavore ... \nCharlotte Voisey led a discussion of how to use honey to make layered, lightly \nfloral cocktails. ... Orange blossom is also a mildly-flavored honey. [DOC] [TLE] How to Cut an orange garnish for a cocktail  Bartending [PAR] Aug 25, 2008 ... Bartender Blake shows a simple way to cut a wedge of orange that fits ... video \nbartending tutorial and learn how to make an orange garnish for... [DOC] [TLE] Cocktail Shaker | Drink Recipes Directory - Fine Art Bartending [PAR] What Is An Orange Blossom Cocktail There are two versions of the Orange ... \nHow To Make A Hollywood Cocktail Recipe (Story From About.com http:/ ... Juice) \n1/2 oz Cream 1 Scoop Ice Cream (Optional, Exclude ice cubes if using ice. [DOC] [TLE] Orange Blossom Using Grenadine Syrup Recipe by Mix.It.Up ... [PAR] MAKING. 1) Into the shaker with ice cubes, add the orange bitters. 2) Add the dry \ngin, ... This awesome bartending staple can be used in so much more than... [DOC] [TLE] Orange Flower Water | Home Bar Basics (and Not-So-Basics) [PAR] Adding cream and orange flower water was the masterstroke by barman ... But \ngood ice does make a key difference here, even though you'll only be using one \ncube ... Jason Schiffer, owner of 320 Main, told me this drink lets bartenders \nshow... [DOC] [TLE] Orange Blossom or Adirondack Cocktail - Cocktails - About.com [PAR] There are two versions of the Orange Blossom: one neat (with sweet ... \"some \nyoung bridegroom or other who wanted something novel to use at his final stag \nparty.\" The sweet vermouth of this cocktail takes some of the acidity out of the \ndrink, making it very nice. ... Bartending 101: A Crash Course in Making Great \nCocktails. [DOC] [TLE] Orange Blossom Margarita- Sweet Blended Margarita Recipe [PAR] Bartender Carlos Danny Herrera was up for a challenge, and after some ... \nUsed sparingly, orange blossom water can give a lovely perfume to a ... A few \nminutes before you make the drinks, place the margarita glasses in the freezer to \nchill. [DOC] [TLE] orange blossom special cocktail | Simple Cocktails: recipes ... [PAR] Nov 11, 2013 ... Simple Cocktails: recipes & reviews for home bartenders ... Gin and orange juice \nmake a great flavor combination, and I've begun to ... and strain into a chilled \ncocktail glass; garnish with a tiny orange wheel (I used a Cutie). [DOC] [TLE] The Well-Stocked Bar | Mr. Boston Drinks [PAR] Crusta and Horse's Neck cocktails use lemon or orange twists cut in a long, ... tiki \nbitters are specialty flavors that some bartenders wouldn't be without to make .... \nCombine pomegranate juice, sugar, and orange blossom water, if using, in a... [DOC] [TLE] Kentucky Orange Blossom Drink Recipe",
+    "visible_context_hash": "2d8881e3bad9f690358314046875d2d9cf46709398510eb5eeefae83737aa7a3",
+    "context_truncated": false,
+    "raw_response": "<answer>water</answer>",
+    "response": "<answer>water</answer>",
+    "em": 0.0,
+    "f1": 0.0,
+    "sub_em": 0.0,
+    "predicted_answer": "water",
+    "gold_answers": [
+      "gin"
+    ],
+    "hard": 0,
+    "soft": 0.0,
+    "format_ok": true,
+    "error": "",
+    "provider_refusal": false,
+    "refusal_reason": "",
+    "fail_reason": "EM=0",
+    "latency_seconds": 0.9220000000022992,
+    "generation_config": {
+      "model": {
+        "id": "qwen3.5-9b",
+        "revision": "Team deployment; weight revision undisclosed",
+        "base_url": "http://10.4.162.57:19198/v1",
+        "api_key_env": "PROJECT5_TEAM_QWEN_API_KEY",
+        "tokenizer_path": "F:\\Document\\HKUST\\2026fall\\NLP\\Project\\AIAA4051_Project\\api\\runtime\\tokenizer",
+        "precision": "team-managed; undisclosed",
+        "server_version": "Team OpenAI-compatible API; deployment version undisclosed",
+        "extra_body": {
+          "chat_template_kwargs": {
+            "enable_thinking": false
+          }
+        },
+        "structured_operators": "json_schema",
+        "tokenizer_note": "Qwen/Qwen3.5-9B@c202236235762e1c871ad0ccb60c8ee5ba337b9a proxy for skill/feedback lengths only; hosted server usage is authoritative for request tokens",
+        "allow_private_http": true,
+        "context_window": 32768,
+        "context_safety_tokens": 512
+      },
+      "temperature": 0.0,
+      "seed": 42,
+      "max_tokens": 2048,
+      "tokenizer_hash": "5f434e57da7403bc8232613f565c8d3de0bf56be57ff8326a83ebd76ee1f1e9c"
+    },
+    "attempts": [
+      {
+        "attempt": 1,
+        "status": "ok",
+        "usage": {
+          "prompt_tokens": 2105,
+          "total_tokens": 2113,
+          "completion_tokens": 8,
+          "prompt_tokens_details": null,
+          "completion_tokens_details": null,
+          "call_id": "b47cfd491f9a4c54a5236da3624e1970",
+          "finish_reason": "stop"
+        }
+      }
+    ],
+    "observation_id": "224ddfd430eafeeb09248fbdbc6dc26a666943fd2e9e5290d612879d51f04ea3",
+    "cached": false,
+    "observation_condition": "B",
+    "manual": {
+      "dataset": "searchqa",
+      "split": "test",
+      "condition": "B",
+      "id": "273e54aff0a149e08852c43ca2c5ea89",
+      "predicted_answer": "water",
+      "category": "同名短语与干扰段落",
+      "note": "上下文前几篇 Orange Blossom 鸡尾酒配方明确包含 gin；另有 orange blossom honey/water 的段落。预测选用了蜂蜜或水这一干扰语义，没有回答对应鸡尾酒的参考原料。",
+      "skill_nodes": [
+        "Search Context",
+        "Verify Evidence"
+      ],
+      "response_sha256": "d056422d78e609e3a32e0e60362d55b04496e3f72ac0f3a57b70115bf6a2164e"
+    },
+    "skill_diagnosis": {
+      "nodes": [
+        "Search Context",
+        "Verify Evidence"
+      ],
+      "instruction_quotes": {
+        "Search Context": "- Scan the provided CONTEXT passages for keywords or concepts matching the parsed question intent.\n- Retrieve relevant sentences or paragraphs that appear to contain the answer.\n- If multiple passages are relevant, prioritize the one with the most direct information.",
+        "Verify Evidence": "- Cross-check the extracted evidence against the original question to ensure it fully addresses the intent.\n- Confirm that the evidence is explicitly present in the provided CONTEXT.\n- If the evidence is ambiguous or partial, flag it for the next step."
+      },
+      "note": "上下文前几篇 Orange Blossom 鸡尾酒配方明确包含 gin；另有 orange blossom honey/water 的段落。预测选用了蜂蜜或水这一干扰语义，没有回答对应鸡尾酒的参考原料。",
+      "status": "post_freeze_descriptive_only_not_optimizer_feedback",
+      "skill_hash": "c4ab24a9c4550a970e68d42b0ba0ab5b46b4170ed5bfbb363693a6a1e0c606cb"
+    }
+  },
+  {
+    "id": "218c4e7c031049cf8e40caa3ef4d03a5",
+    "dataset": "searchqa",
+    "split": "test",
+    "condition": "B",
+    "round": -1,
+    "skill_hash": "c4ab24a9c4550a970e68d42b0ba0ab5b46b4170ed5bfbb363693a6a1e0c606cb",
+    "question": "Filmmakers:Joel & Ethan",
+    "visible_context": "[DOC] [TLE] Filmmaker Joel or Ethan - crossword puzzle clue - Crossword Tracker [PAR] Clue: Filmmaker Joel or Ethan. Filmmaker Joel or Ethan is a crossword puzzle \nclue that we have spotted 7 times. There are related clues (shown below). [DOC] [TLE] Filmmakers Joel and Ethan Crossword Clue, Crossword Solver ... [PAR] Answers for Filmmakers-Joel-and-Ethan crossword clue. Search for crossword \nclues found in the Daily Celebrity, NY Times, Daily Mirror, Telegraph and major... [DOC] [TLE] Film maker Joel or Ethan -- Crossword clue | Crossword Nexus [PAR] Film maker Joel or Ethan -- Find potential answers to this crossword clue at \ncrosswordnexus.com. [DOC] [TLE] Filmmaker Ethan or Joel - Answers with 4 Letters [PAR] Filmmaker Ethan or Joel ... \"Fargo\" filmmaker Joel or Ethan  Filmmaker Joel or \nEthan  Filmmaker Joel (or his brother Ethan)  Filmdom's Joel or Ethan  Ethan or\n... [DOC] [TLE] Coen brothers - Wikipedia [PAR] Joel David Coen (born November 29, 1954) and Ethan Jesse Coen (born \nSeptember 21, 1957), collectively referred to as the Coen brothers, are American \nfilmmakers... [DOC] [TLE] Director Joel or Ethan - Crossword Clue Answer | Crossword Heaven [PAR] Find answers for the crossword clue: Director Joel or Ethan. ... Film maker Joel or \nEthan  Filmdom's Joel or Ethan  Filmmaking family name  Filmdom's Ethan or... [DOC] [TLE] Film maker Joel or Ethan - Crossword Clue Answer | Crossword ... [PAR] Find answers for the crossword clue: Film maker Joel or Ethan. We have 1 \nanswer for this clue. [DOC] [TLE] \"Fargo\" filmmaker Joel or Ethan - Crossword Clue Answer ... [PAR] Find answers for the crossword clue: \"Fargo\" filmmaker Joel or Ethan. We have 1 \nanswer for this clue. [DOC] [TLE] Filmmakers Joel and Ethan | Crossword Puzzle Clue ... [PAR] Filmmakers Joel and Ethan crossword puzzle clue has 1 possible answer and \nappears in 1 publication. [DOC] [TLE] Last name of the film-directing brothers Joel and Ethan, 4 letter, 2nd ... [PAR] Either of two directing brothers.  Either of two filmmaking brothers.  Either \nRaising Arizona director.  Either True Grit (2010) director.  Ethan or Joel of \nFargo. [DOC] [TLE] Coen brothers | American filmmakers | Britannica.com [PAR] Feb 3, 2016 ... U.S. filmmakers Joel and Ethan Coen were meticulous craftsmen known for their \nunique juxtapositions, stylish visuals, and unsettling, though... [DOC] [TLE] Filmmaker Joel or Ethan - Crossword Clue Answers [PAR] Filmmaker Joel or Ethan? Find the answer to the crossword clue Filmmaker Joel \nor Ethan. 1 answer to this clue. [DOC] [TLE] Why do filmmakers like Joel and Ethan Coen use pseudonyms? [PAR] Mar 2, 2010 ... Joel and Ethan Coen are up for two Oscars this Sunday for their work on A \nSerious Man. As always, the brothers worked together to write, direct... [DOC] [TLE] Featured Filmmakers: Joel and Ethan Coen - IGN [PAR] Oct 30, 2001 ... We take a look at the career of the filmmaking brothers. [DOC] [TLE] Film Makers Joel and Ethan Coen | Cassava Films [PAR] This good but not great Coen Brothers outing has been underrated by many in \nthe wake of their Oscar-winning No County for Old Men, but diehard fans of the... [DOC] [TLE] Coenesque - Joel and Ethan Coen Biography [PAR] Working with his brother Ethan, screenwriter/director Joel Coen has built a \nreputation as one of the most visionary and idiosyncratic filmmakers of the late \n20th... [DOC] [TLE] Listen: 54-Minute Talk With Joel And Ethan Coen & Noah ... [PAR] Feb 5, 2016 ... Listen: 54-Minute Talk With Joel And Ethan Coen & Noah Baumbach About \nFilmmaking, Opening Shots, And More. [DOC] [TLE] The Scholarly Filmmaker: Joel and Ethan Coen | Film Army [PAR] Mar 23, 2016 ... Few directors have had a greater influence on American independent filmmaking \nthan Joel and Ethan Coen. They're filmmakers who defy easy... [DOC] [TLE] Joel and Ethan Coen: Raising Cain  Filmmakers  Walker ... [PAR] Dialogue: Joel and Ethan Coen. Retrospective: September 18October 17, 2009. \nIt's probable that most filmmakers love making movies, but few of",
+    "visible_context_hash": "1f0c8d2a298c7650ab24f40c3290953959606dd2915597e3ef340a8ac02a1adf",
+    "context_truncated": false,
+    "raw_response": "<answer>Coen brothers</answer>",
+    "response": "<answer>Coen brothers</answer>",
+    "em": 0.0,
+    "f1": 0.6666666666666666,
+    "sub_em": 1.0,
+    "predicted_answer": "Coen brothers",
+    "gold_answers": [
+      "Coen"
+    ],
+    "hard": 0,
+    "soft": 0.6666666666666666,
+    "format_ok": true,
+    "error": "",
+    "provider_refusal": false,
+    "refusal_reason": "",
+    "fail_reason": "EM=0",
+    "latency_seconds": 1.0780000000013388,
+    "generation_config": {
+      "model": {
+        "id": "qwen3.5-9b",
+        "revision": "Team deployment; weight revision undisclosed",
+        "base_url": "http://10.4.162.57:19198/v1",
+        "api_key_env": "PROJECT5_TEAM_QWEN_API_KEY",
+        "tokenizer_path": "F:\\Document\\HKUST\\2026fall\\NLP\\Project\\AIAA4051_Project\\api\\runtime\\tokenizer",
+        "precision": "team-managed; undisclosed",
+        "server_version": "Team OpenAI-compatible API; deployment version undisclosed",
+        "extra_body": {
+          "chat_template_kwargs": {
+            "enable_thinking": false
+          }
+        },
+        "structured_operators": "json_schema",
+        "tokenizer_note": "Qwen/Qwen3.5-9B@c202236235762e1c871ad0ccb60c8ee5ba337b9a proxy for skill/feedback lengths only; hosted server usage is authoritative for request tokens",
+        "allow_private_http": true,
+        "context_window": 32768,
+        "context_safety_tokens": 512
+      },
+      "temperature": 0.0,
+      "seed": 42,
+      "max_tokens": 2048,
+      "tokenizer_hash": "5f434e57da7403bc8232613f565c8d3de0bf56be57ff8326a83ebd76ee1f1e9c"
+    },
+    "attempts": [
+      {
+        "attempt": 1,
+        "status": "ok",
+        "usage": {
+          "prompt_tokens": 2207,
+          "total_tokens": 2217,
+          "completion_tokens": 10,
+          "prompt_tokens_details": null,
+          "completion_tokens_details": null,
+          "call_id": "2f3703fa75224827b46334e7326ad8e2",
+          "finish_reason": "stop"
+        }
+      }
+    ],
+    "observation_id": "0462ccefa77d831b42bf654d77002a7257d200b5d5ccb1d455a94400092fc2de",
+    "cached": false,
+    "observation_condition": "B",
+    "manual": {
+      "dataset": "searchqa",
+      "split": "test",
+      "condition": "B",
+      "id": "218c4e7c031049cf8e40caa3ef4d03a5",
+      "predicted_answer": "Coen brothers",
+      "category": "答案名称或粒度差异",
+      "note": "Coen brothers 与参考姓氏 Coen 指向同一对导演，多出的 brothers 在当前归一化规则下导致 EM=0；F1=0.667。",
+      "skill_nodes": [
+        "Formulate Answer"
+      ],
+      "response_sha256": "a76a2d32dabf926fadf61398b90f2a7d90c255f223f4f96fffb2fd273e8d0d61"
+    },
+    "skill_diagnosis": {
+      "nodes": [
+        "Formulate Answer"
+      ],
+      "instruction_quotes": {
+        "Formulate Answer": "- Synthesize the verified evidence into a concise, direct answer.\n- Remove any context-specific references (e.g., \"According to the text...\") unless necessary for clarity.\n- Ensure the answer is a few words or a short phrase."
+      },
+      "note": "Coen brothers 与参考姓氏 Coen 指向同一对导演，多出的 brothers 在当前归一化规则下导致 EM=0；F1=0.667。",
+      "status": "post_freeze_descriptive_only_not_optimizer_feedback",
+      "skill_hash": "c4ab24a9c4550a970e68d42b0ba0ab5b46b4170ed5bfbb363693a6a1e0c606cb"
+    }
+  },
+  {
+    "id": "0cbceee80bee448c8c5d40f39d12d434",
+    "dataset": "searchqa",
+    "split": "test",
+    "condition": "B",
+    "round": -1,
+    "skill_hash": "c4ab24a9c4550a970e68d42b0ba0ab5b46b4170ed5bfbb363693a6a1e0c606cb",
+    "question": "The first ballet, \"Ballet Comique de la Reine\", was presented at the court of this Medici Queen of France in 1581",
+    "visible_context": "[DOC] [TLE] Ballet Comique de la Reine - Wikipedia [PAR] The Ballet Comique de la Reine was first showcased on October 15, 1581 to the \ncourt of Catherine de' Medici. The \"Ballet Comique de la Reine\" was created for \nthe wedding celebration of Queen Louise's sister, Marguerite of Lorraine, who \nmarried Duc de Joyeuse. ... The tune has since become well known as a French \nfolk song there and its... [DOC] [TLE] Ballet comique de la reine | dance by Beaujoyeulx | Britannica.com [PAR] Ballet comique de la reine, court entertainment that is considered the first ballet. \nEnacted in 1581 at the French court of Catherine de Mdicis by the Queen, her... [DOC] [TLE] Catherine de Medici and the Ballet Comique de la Reine | mysylph [PAR] Apr 16, 2012 ... A political move to put a French Queen and King into the Scottish realm, also ... \nelse, the privilege and dynasty of the French court, and untold luxury and ..... \nfacing the partner, and presentation for her was everything! .... work, was the \nBallet Comique de la Reine in 1581, considered the first ballet de cour. [DOC] [TLE] Andros on Ballet: Catherine de' Medici (1519 - 1589) [PAR] At that time the court presented pageants on a grand scale. ... Catherine became \nthe Queen Mother of the next three kings of France. ... and his most important \nwork, the \"Ballet Comique de la Reine\" in 1581, considered the first ballet de cour\n. [DOC] [TLE] 11th-Grade Dance History: LE BALET COMIQUE DE LA REINE [PAR] Sep 21, 2007 ... The court ballets of the sixteenth and seventeenth centuries were ... Beaujoyeulx \nstates that, promptly after Queen Louise requested his ... The first dance in Le \nBalet Comique de la Reine was performed by .... In L'Art du Ballet de Cour en \nFrance 1581-1643, Margaret ... BALLET COMIQUE DE LA REINE [DOC] [TLE] Le Ballet Comique de La Reine Essay Example | Topics, Sample ... [PAR] Le Ballet Comique de la Reine is considered to be the first ballet by most dance \nhistorians. ... This ballet took place in Paris, France in 1581. This special ballet \nwas produced by Catherine d`Medici, and Balthazar de Beaujoyeaulx ... means, \njust simply members of the court that were trained in the Renaissance Dance \nSuites... [DOC] [TLE] Ballet Comique de la Reine - Wikiwand [PAR] The Ballet Comique de la Reine was first showcased on October 15, 1581 to the \ncourt of Catherine de' Medici. ... The Queen, along with a group of lady court \ndancers arrived on a fountain that was ... The ballet was also made in hopes of \nbringing resolution to the religious hardship that caused the French people to \nseparate. [DOC] [TLE] History of Ballet | Decker School of Ballet [PAR] Le Ballet Comique de la Reine (The Queen's BalletComedy), the first ballet for \nwhich a complete score survived, was performed in Paris in 1581. ... Beaujoyeux, \na violinist and dancing master at the court of Queen Catherine de Medicis. ... \nMany of the ballets presented at his court were created by the Italian-French \ncomposer... [DOC] [TLE] The History of the Charleston Ballet [PAR] Catherine de Medici, a member of the ruling family of Florence, became the \nqueen of France in 1547. Catherine introduced into the French court the same \nkind of entertainments ... entertainments, the Ballet Comique de la Reine, to be \nthe first ballet. It was a magnificent spectacle of about 51/2 hours performed in \n1581 in... [DOC] [TLE] The Distinct Periods of Ballet History - Cennarium [PAR] Aug 3, 2016 ... When Italian Catherine de Medici married the King of France at the age of ... The \nfirst endorsed ballet called Le Ballet Comique de la Reine or The Comic Ballet \nof the Queen was first performed for the court of Catherine de Medici on ... and \nthis is when the performances began to be presented on raised... [DOC] [TLE] Dance Timeline And Biography by Rachel Elia on Prezi [PAR] Start remote presentation ... History of Ballet : Timeline 1500: Birth of a new \nDance ! 1581: Ballet Starts to Spread ... Catherine de' Medici became Queen",
+    "visible_context_hash": "0fe2f18e281d9b3433a70f4a2f117733efaa5ea3d9e37e2a9933ae452639e64d",
+    "context_truncated": false,
+    "raw_response": "<answer>Catherine de' Medici</answer>",
+    "response": "<answer>Catherine de' Medici</answer>",
+    "em": 0.0,
+    "f1": 0.5,
+    "sub_em": 1.0,
+    "predicted_answer": "Catherine de' Medici",
+    "gold_answers": [
+      "Catherine"
+    ],
+    "hard": 0,
+    "soft": 0.5,
+    "format_ok": true,
+    "error": "",
+    "provider_refusal": false,
+    "refusal_reason": "",
+    "fail_reason": "EM=0",
+    "latency_seconds": 1.2030000000013388,
+    "generation_config": {
+      "model": {
+        "id": "qwen3.5-9b",
+        "revision": "Team deployment; weight revision undisclosed",
+        "base_url": "http://10.4.162.57:19198/v1",
+        "api_key_env": "PROJECT5_TEAM_QWEN_API_KEY",
+        "tokenizer_path": "F:\\Document\\HKUST\\2026fall\\NLP\\Project\\AIAA4051_Project\\api\\runtime\\tokenizer",
+        "precision": "team-managed; undisclosed",
+        "server_version": "Team OpenAI-compatible API; deployment version undisclosed",
+        "extra_body": {
+          "chat_template_kwargs": {
+            "enable_thinking": false
+          }
+        },
+        "structured_operators": "json_schema",
+        "tokenizer_note": "Qwen/Qwen3.5-9B@c202236235762e1c871ad0ccb60c8ee5ba337b9a proxy for skill/feedback lengths only; hosted server usage is authoritative for request tokens",
+        "allow_private_http": true,
+        "context_window": 32768,
+        "context_safety_tokens": 512
+      },
+      "temperature": 0.0,
+      "seed": 42,
+      "max_tokens": 2048,
+      "tokenizer_hash": "5f434e57da7403bc8232613f565c8d3de0bf56be57ff8326a83ebd76ee1f1e9c"
+    },
+    "attempts": [
+      {
+        "attempt": 1,
+        "status": "ok",
+        "usage": {
+          "prompt_tokens": 2168,
+          "total_tokens": 2180,
+          "completion_tokens": 12,
+          "prompt_tokens_details": null,
+          "completion_tokens_details": null,
+          "call_id": "da92e7e795584e15b7d9873631acd949",
+          "finish_reason": "stop"
+        }
+      }
+    ],
+    "observation_id": "d6c224029948455dbaad239f84a6f9e675ffaadb313335b4ffe4b4e5d30e428b",
+    "cached": false,
+    "observation_condition": "B",
+    "manual": {
+      "dataset": "searchqa",
+      "split": "test",
+      "condition": "B",
+      "id": "0cbceee80bee448c8c5d40f39d12d434",
+      "predicted_answer": "Catherine de' Medici",
+      "category": "答案名称或粒度差异",
+      "note": "预测 Catherine de' Medici 与参考 Catherine 对应同一人物；全名比参考更长，严格 EM 不合并这种名称形式。",
+      "skill_nodes": [
+        "Formulate Answer"
+      ],
+      "response_sha256": "3fba5e240d6710c49b014ab0e0c8030b22fd15282f5a33b16f8c4049d3d5adac"
+    },
+    "skill_diagnosis": {
+      "nodes": [
+        "Formulate Answer"
+      ],
+      "instruction_quotes": {
+        "Formulate Answer": "- Synthesize the verified evidence into a concise, direct answer.\n- Remove any context-specific references (e.g., \"According to the text...\") unless necessary for clarity.\n- Ensure the answer is a few words or a short phrase."
+      },
+      "note": "预测 Catherine de' Medici 与参考 Catherine 对应同一人物；全名比参考更长，严格 EM 不合并这种名称形式。",
+      "status": "post_freeze_descriptive_only_not_optimizer_feedback",
+      "skill_hash": "c4ab24a9c4550a970e68d42b0ba0ab5b46b4170ed5bfbb363693a6a1e0c606cb"
+    }
+  },
+  {
+    "id": "e006f1243e0e486e8bab439af1d1ffd0",
+    "dataset": "searchqa",
+    "split": "test",
+    "condition": "B",
+    "round": -1,
+    "skill_hash": "c4ab24a9c4550a970e68d42b0ba0ab5b46b4170ed5bfbb363693a6a1e0c606cb",
+    "question": "(Cheryl of the Clue Crew stands at a craps table.) For my first roll in a round of craps, I'm hoping to roll either of these 2 numbers & win right away",
+    "visible_context": "[DOC] [TLE] Craps Rules, How To Play - Gambling Guide il dado [PAR] The casino crew consist of a Stickman, Boxman and two Dealers. The game is \nplayed in rounds, with the right to roll the dice by each player moving ... If the \nshooter rolls the point number, the result is a win for bets on the Pass Line. ... \nPass Line Bet - You win if the first roll is a natural (7, 11) and lose if it is craps (2, \n3, 12). [DOC] [TLE] Craps - Probability - Wizard of Odds [PAR] What is the average number of rolls until a shooter \"sevens out\"? ... For the \nprobability of exactly 2 to 200 rolls, please see my craps probability of survival \npage. .... I'm either not correct on the odds b/t the two bets or is there some reason \nmost ... On any given roll the probability there is an old pass or come bet on the 4 \nis 3/9. [DOC] [TLE] What would you do with a free $1,000? - I Will Teach You To Be Rich [PAR] I'm giving away $1,001 as an experiment to see what one of you will do with it. .... \nI've been paying off my credit cards for the past 2+ years. ...... use it, to pay off a \nbusiness debt and buy more inventory to make the money roll .... Bet it on Hard 4 \nat the craps table! ..... A nice, round(ish) number would be a psychological boost. [DOC] [TLE] Mary Kay Cosmetics: Destroying Half a Million Women a Year ... [PAR] May 3, 2008 ... To many, my fight against Mary Kay Cosmetics is puzzling. ... her in and get her to \nbuy an inventory package of $600 to $4800 right away. ... This implies that at the \ncurrent time, the number of consultants is .... 5 May 2008 at 2:10 pm ...... I am just \ndoing my first round of orders for all the 'freebies' then I'm out. [DOC] [TLE] Leisure Suit Larry: Love for Sail! FAQ/Walkthrough for PC by odino ... [PAR] Dec 8, 2010 ... *DILDO* Select Larry and fart (11, 48) to free the table. ..... Arrive for the first time \n2 195 | | Take the toilet paper 2 197 | | Look at the ..... Narrator: No, these are \nunused. ... Used: For losing at craps (you do not really want to do that), given ...... \n<Use  Toilet Paper> Johnson: Nah, I keep a roll right here under... [DOC] [TLE] PUSSY GALORE  John Heald's Blog [PAR] Jun 22, 2011 ... I asked for a table for 2 for me and Mother on the Legend October 17 ... my 65th \nBirthdaybut you're never too old to rock & roll! .... By the way, I'm a travel agent. \n...... is a 'Majestic' virtual line right thru and it cuts the CRAPS table in half. ..... \nJohn I hope one of these works for you and your wife and you get to... [DOC] [TLE] Rambling Moron - The Landmark [PAR] What I choose to do with my energy is twofold - first, I think I'm just stuck ..... I \ncould tell you that the Chiefs have had winning seasons for the past two ..... Clue. \nEach time the box was opened, these kids grew slightly more detached to their \ndevices. ...... a six hour roll on the craps table, or I hit 20 numbers in a row on \nroulette. [DOC] [TLE] Robert Cooper | Josephmallozzi's Weblog [PAR] Jan 18, 2009 ... Thus, I've dedicated today's blog entry to My Rob Cooper Top Ten, my ... Becky \nwrites: Joe, I'm a fan of science fiction classics, and have had a .... to a number of \nthings  the Atlantis script, my Universe script, that short ..... Am I right? ... Also, \nthe studly guy rolling the dice at the craps table is none other that... [DOC] [TLE] District 7930 - Stories - ClubRunner [PAR] Now is the time to roll out your",
+    "visible_context_hash": "d03531c479f735ea45f8005b63650cc5c8f64859fffd6898def8e6fdcf556275",
+    "context_truncated": false,
+    "raw_response": "Based on the context provided, specifically the section on \"Pass Line Bet\" in the document titled \"Craps Rules, How To Play - Gambling Guide il dado\", the text states: \"You win if the first roll is a natural (7, 11)\".\n\nTherefore, the two numbers are 7 and 11.\n\n<answer>7 and 11</answer>",
+    "response": "Based on the context provided, specifically the section on \"Pass Line Bet\" in the document titled \"Craps Rules, How To Play - Gambling Guide il dado\", the text states: \"You win if the first roll is a natural (7, 11)\".\n\nTherefore, the two numbers are 7 and 11.\n\n<answer>7 and 11</answer>",
+    "em": 0.0,
+    "f1": 0.8,
+    "sub_em": 0.0,
+    "predicted_answer": "7 and 11",
+    "gold_answers": [
+      "7 & 11"
+    ],
+    "hard": 0,
+    "soft": 0.8,
+    "format_ok": true,
+    "error": "",
+    "provider_refusal": false,
+    "refusal_reason": "",
+    "fail_reason": "EM=0",
+    "latency_seconds": 6.328000000001339,
+    "generation_config": {
+      "model": {
+        "id": "qwen3.5-9b",
+        "revision": "Team deployment; weight revision undisclosed",
+        "base_url": "http://10.4.162.57:19198/v1",
+        "api_key_env": "PROJECT5_TEAM_QWEN_API_KEY",
+        "tokenizer_path": "F:\\Document\\HKUST\\2026fall\\NLP\\Project\\AIAA4051_Project\\api\\runtime\\tokenizer",
+        "precision": "team-managed; undisclosed",
+        "server_version": "Team OpenAI-compatible API; deployment version undisclosed",
+        "extra_body": {
+          "chat_template_kwargs": {
+            "enable_thinking": false
+          }
+        },
+        "structured_operators": "json_schema",
+        "tokenizer_note": "Qwen/Qwen3.5-9B@c202236235762e1c871ad0ccb60c8ee5ba337b9a proxy for skill/feedback lengths only; hosted server usage is authoritative for request tokens",
+        "allow_private_http": true,
+        "context_window": 32768,
+        "context_safety_tokens": 512
+      },
+      "temperature": 0.0,
+      "seed": 42,
+      "max_tokens": 2048,
+      "tokenizer_hash": "5f434e57da7403bc8232613f565c8d3de0bf56be57ff8326a83ebd76ee1f1e9c"
+    },
+    "attempts": [
+      {
+        "attempt": 1,
+        "status": "ok",
+        "usage": {
+          "prompt_tokens": 2093,
+          "total_tokens": 2174,
+          "completion_tokens": 81,
+          "prompt_tokens_details": null,
+          "completion_tokens_details": null,
+          "call_id": "08e90f672f134b1da88f07e2201c92c5",
+          "finish_reason": "stop"
+        }
+      }
+    ],
+    "observation_id": "08ffad8d820ede76378233cce44b05bdbd86dfba61f4ee1c50b5fb2b0d14a2bb",
+    "cached": false,
+    "observation_condition": "B",
+    "manual": {
+      "dataset": "searchqa",
+      "split": "test",
+      "condition": "B",
+      "id": "e006f1243e0e486e8bab439af1d1ffd0",
+      "predicted_answer": "7 and 11",
+      "category": "连接词归一化差异",
+      "note": "响应已正确列出两个数 7 和 11；参考用 &，预测用 and。当前评分移除 & 但保留 and，因而 EM=0、F1=0.8，不是骰点识别错误。",
+      "skill_nodes": [
+        "Formulate Answer",
+        "Wrap Answer"
+      ],
+      "response_sha256": "6078e7c7fa43602f5e8b8a479e67710005f786325a08172a5b2ee0f276c667af"
+    },
+    "skill_diagnosis": {
+      "nodes": [
+        "Formulate Answer",
+        "Wrap Answer"
+      ],
+      "instruction_quotes": {
+        "Formulate Answer": "- Synthesize the verified evidence into a concise, direct answer.\n- Remove any context-specific references (e.g., \"According to the text...\") unless necessary for clarity.\n- Ensure the answer is a few words or a short phrase.",
+        "Wrap Answer": "- Enclose the final concise answer in `<answer>...</answer>` tags.\n- If no evidence was found, enclose \"Not found in context\" in the tags.\n- Do not add extra explanation outside the tags."
+      },
+      "note": "响应已正确列出两个数 7 和 11；参考用 &，预测用 and。当前评分移除 & 但保留 and，因而 EM=0、F1=0.8，不是骰点识别错误。",
+      "status": "post_freeze_descriptive_only_not_optimizer_feedback",
+      "skill_hash": "c4ab24a9c4550a970e68d42b0ba0ab5b46b4170ed5bfbb363693a6a1e0c606cb"
+    }
+  },
+  {
+    "id": "491fe356172c4f0f8899595cd13426db",
+    "dataset": "searchqa",
+    "split": "test",
+    "condition": "B",
+    "round": -1,
+    "skill_hash": "c4ab24a9c4550a970e68d42b0ba0ab5b46b4170ed5bfbb363693a6a1e0c606cb",
+    "question": "The effect name for this 19th century British physicist is sometimes called magnetic rotation",
+    "visible_context": "[DOC] [TLE] History of physics - Wikipedia [PAR] Physics is the fundamental branch of science that developed out of the study of \nnature and philosophy known, until around the end of the 19th century, as ... \nAncient philosophy, meanwhile  including what was called \"physics\"  focused \non ... a key and sometimes contentious concept in modern and present-day \nphysics. [DOC] [TLE] Paleomagnetism - Wikipedia [PAR] Paleomagnetism is the study of the record of the Earth's magnetic field in rocks, \nsediment, ... Geophysicists who specialize in paleomagnetism are called ... In the \n19th century studies of the direction of magnetization in rocks showed that ... The \nBritish physicist P.M.S. Blackett provided a major impetus to paleomagnetism by\n... [DOC] [TLE] History of electromagnetic theory - Wikipedia [PAR] The history of electromagnetic theory begins with ancient measures to \nunderstand atmospheric ... In the 19th century it had become clear that electricity \nand magnetism were related, ... The source for electric field is electric charge, \nwhereas that for magnetic field is ... Thales wrote on the effect now known as \nstatic electricity. [DOC] [TLE] James Clerk Maxwell - Wikipedia [PAR] James Clerk Maxwell FRS FRSE (13 June 1831  5 November 1879) was a \nScottish scientist in ... Cambridge, England ... Many physicists regard Maxwell as \nthe 19th-century scientist having the ..... he dealt with the rotation of the plane of \nthe polarisation of light in a magnetic field, .... His name is honoured in several \nways:. [DOC] [TLE] Michael Faraday - Wikipedia [PAR] Michael Faraday FRS was an English scientist who contributed to the study of ... \nFaraday also established that magnetism could affect rays of light and that there \n.... was placed in a magnetic field Faraday determined the rotation of the plane of \n.... that dominated engineering and industry for the remainder of the 19th century. [DOC] [TLE] electromagnetism - Effects of varying electric fields | physics ... [PAR] Dec 3, 2015 ... The circuit in Figure 6 is an example of a magnetic field generated ... some other \nkind of current density, called the displacement current J d, ... British \nmathematician Alan Turing greatly contributed to the fields of ... Name the African \nBattle .... the mid-19th century as electricity and magnetism became precise,... [DOC] [TLE] Important Dates and Discoveries - The Physics of the Universe [PAR] 4th Century B.C. - The Greek philosopher Aristotle describes a geocentric ... that \nthe apparent daily motion of the stars is created by the rotation of the Earth on its \naxis .... or fine matter, producing what would later be called gravitational effects. ... \n1783 - The amateur British astronomer John Michell proposes the theoretical... [DOC] [TLE] History of Magnetism and Electricity [PAR] Scientists thought that the friction actually created the electricity (their word for ... It \nwas not until the end of the 19th century that this \"something\" was found to \nconsist .... Thomas Seebeck a German physicist was the discover of the \"Seebeck \neffect\". .... was experimenting on generators and he discovered the rotating \nmagnetic... [DOC] [TLE] How does a magnetic compass work? - Explain that Stuff [PAR] Oct 16, 2016 ... An easy-to-understand introduction to how magnetic compasses work. ... You let \nthe needle settle then rotate the compass card so the needle lines ... tiny effects \nof Earth's magnetism, we have to minimize the effects of these other forces. ... \nthrough the north pole (sometimes called the geographic north pole,... [DOC] [TLE] physical science - Britannica.com [PAR] May 3, 2016 ... Science from the Enlightenment to the 20th century ... In this work Newton had \nprovided a physics for the Copernican worldview ... in the middle of the 19th \ncentury, persisting into the 20th century and ultimately ... Name the African Battle \n.... in 1820, of the magnetic effect accompanying an electric current led... [DOC] [TLE] Moldwin's Time line of Solar Terrestrial Physics - Mark Moldwin [PAR] Name of book that description of compass is given -Meng ch'i pi t'an (Dream Pool \nEssays). ... One of the great astronomers of the 17th century with a number of .... (\ncgs (or often called Gaussian) unit of magnetic field strength is named after him). \n..... or ionizing",
+    "visible_context_hash": "64d248d15938c55a2ddb315f9f77ce61bb6ad6573f7e23c6d091a31a0546ac2b",
+    "context_truncated": false,
+    "raw_response": "Based on the context provided, the 19th-century British physicist is **Michael Faraday**. The text states that \"Faraday also established that magnetism could affect rays of light\" and that he \"determined the rotation of the plane of [polarization]\". While the text does not explicitly use the phrase \"magnetic rotation\" as a name for the effect, it describes Faraday's discovery of the rotation of the plane of polarization in a magnetic field (now known as Faraday rotation).\n\n<answer>Faraday rotation</answer>",
+    "response": "Based on the context provided, the 19th-century British physicist is **Michael Faraday**. The text states that \"Faraday also established that magnetism could affect rays of light\" and that he \"determined the rotation of the plane of [polarization]\". While the text does not explicitly use the phrase \"magnetic rotation\" as a name for the effect, it describes Faraday's discovery of the rotation of the plane of polarization in a magnetic field (now known as Faraday rotation).\n\n<answer>Faraday rotation</answer>",
+    "em": 0.0,
+    "f1": 0.6666666666666666,
+    "sub_em": 1.0,
+    "predicted_answer": "Faraday rotation",
+    "gold_answers": [
+      "Faraday"
+    ],
+    "hard": 0,
+    "soft": 0.6666666666666666,
+    "format_ok": true,
+    "error": "",
+    "provider_refusal": false,
+    "refusal_reason": "",
+    "fail_reason": "EM=0",
+    "latency_seconds": 8.75,
+    "generation_config": {
+      "model": {
+        "id": "qwen3.5-9b",
+        "revision": "Team deployment; weight revision undisclosed",
+        "base_url": "http://10.4.162.57:19198/v1",
+        "api_key_env": "PROJECT5_TEAM_QWEN_API_KEY",
+        "tokenizer_path": "F:\\Document\\HKUST\\2026fall\\NLP\\Project\\AIAA4051_Project\\api\\runtime\\tokenizer",
+        "precision": "team-managed; undisclosed",
+        "server_version": "Team OpenAI-compatible API; deployment version undisclosed",
+        "extra_body": {
+          "chat_template_kwargs": {
+            "enable_thinking": false
+          }
+        },
+        "structured_operators": "json_schema",
+        "tokenizer_note": "Qwen/Qwen3.5-9B@c202236235762e1c871ad0ccb60c8ee5ba337b9a proxy for skill/feedback lengths only; hosted server usage is authoritative for request tokens",
+        "allow_private_http": true,
+        "context_window": 32768,
+        "context_safety_tokens": 512
+      },
+      "temperature": 0.0,
+      "seed": 42,
+      "max_tokens": 2048,
+      "tokenizer_hash": "5f434e57da7403bc8232613f565c8d3de0bf56be57ff8326a83ebd76ee1f1e9c"
+    },
+    "attempts": [
+      {
+        "attempt": 1,
+        "status": "ok",
+        "usage": {
+          "prompt_tokens": 2089,
+          "total_tokens": 2203,
+          "completion_tokens": 114,
+          "prompt_tokens_details": null,
+          "completion_tokens_details": null,
+          "call_id": "cbd2752729854debbf9900bbe22e0ed7",
+          "finish_reason": "stop"
+        }
+      }
+    ],
+    "observation_id": "cbba253777e7e1855e1cc89f60692b41100e179d8266b1a67e73fb13ad272fda",
+    "cached": false,
+    "observation_condition": "B",
+    "manual": {
+      "dataset": "searchqa",
+      "split": "test",
+      "condition": "B",
+      "id": "491fe356172c4f0f8899595cd13426db",
+      "predicted_answer": "Faraday rotation",
+      "category": "答案名称或粒度差异",
+      "note": "响应已经识别 Michael Faraday，但最终输出效应名称 Faraday effect/rotation，参考只要求 Faraday。答案边界和人物/效应类型不一致；原始分数保持不变。",
+      "skill_nodes": [
+        "Parse Question",
+        "Formulate Answer"
+      ],
+      "response_sha256": "2297ce1a851e9d81917b7b91ea36b9e5d5548dd132cf6445ed899340dfc0f964"
+    },
+    "skill_diagnosis": {
+      "nodes": [
+        "Parse Question",
+        "Formulate Answer"
+      ],
+      "instruction_quotes": {
+        "Parse Question": "- Extract the core intent and key entities from the QUESTION.\n- Identify the specific information required to form an answer.\n- Note any constraints on the answer format.",
+        "Formulate Answer": "- Synthesize the verified evidence into a concise, direct answer.\n- Remove any context-specific references (e.g., \"According to the text...\") unless necessary for clarity.\n- Ensure the answer is a few words or a short phrase."
+      },
+      "note": "响应已经识别 Michael Faraday，但最终输出效应名称 Faraday effect/rotation，参考只要求 Faraday。答案边界和人物/效应类型不一致；原始分数保持不变。",
+      "status": "post_freeze_descriptive_only_not_optimizer_feedback",
+      "skill_hash": "c4ab24a9c4550a970e68d42b0ba0ab5b46b4170ed5bfbb363693a6a1e0c606cb"
+    }
+  },
+  {
+    "id": "671f3c2e406f4ca7b41cb69fefe72e66",
+    "dataset": "searchqa",
+    "split": "test",
+    "condition": "B",
+    "round": -1,
+    "skill_hash": "c4ab24a9c4550a970e68d42b0ba0ab5b46b4170ed5bfbb363693a6a1e0c606cb",
+    "question": "1940:Bad boys are turned into donkeys",
+    "visible_context": "[DOC] [TLE] Pleasure Island (Pinocchio) | Disney Wiki | Fandom powered by Wikia [PAR] Pleasure Island is a cursed amusement park seen in the 1940 film Pinocchio \nwhere it ... Once the boys had enough time being bad, they would turn into \ndonkeys... [DOC] [TLE] Pleasure Island - YouTube [PAR] Mar 19, 2013 - 2 min - Uploaded by rstein926Pinocchio, Lampwick and the other boys arrive at Pleasure Island and cause  havoc. ... Even if ... [DOC] [TLE] Disney's Pinocchio Jackass Transformation (Real Full) - YouTube [PAR] Apr 8, 2013 - 3 min - Uploaded by kermitTHEdinosaur930:21 Imagine that those Donkey boys ended up in the same circus that Dumbo  was in. ..... +Nick ... [DOC] [TLE] The Darker Corners of Pinocchio | The Artifice [PAR] Jun 20, 2014 ... Once again, Honest John lures Pinocchio into his clutches under even more false \npretenses. ... Labeled by the movie as one of the 'stupid little boys' the Coachman \nwas ... turning them to donkeys which apparently symbolizes their stupidity. ... He \nsurvived the torture and escaped before it got too bad but his... [DOC] [TLE] Land of Toys - Wikipedia [PAR] The Land of Toys (Italian: Paese dei balocchi) is a fictional location in the Italian \nnovel The ... It's clear, however, that Pleasure Island has some sort of bad \nreputation .... It said that the boys who were turned into donkeys were turned back \nto boys ... The Adventures of Pinocchio (1936); Pinocchio (1940); Pinocchio in \nOuter... [DOC] [TLE] Pinocchio (1940 film) - Wikipedia [PAR] Pinocchio is a 1940 American animated musical fantasy film produced by Walt \nDisney .... by the Blue Fairy. Jones also provided the voice of Alexander, a boy \ntransformed into a donkey. ... boys into donkeys. Evelyn Venable as The Blue \nFairy, who brings Pinocchio to life, and turns him into a real boy at the end of the \nfilm. [DOC] [TLE] Pinocchio / Nightmare Fuel - TV Tropes [PAR] And that's not considering The Mind Is a Plaything of the Body in which the boys \nnot turn into donkeys physically but mentally as well which might explain why... [DOC] [TLE] Forgotten/Minor Characters #2: Alexander and the Talking Donkeys ... [PAR] Nov 15, 2012 ... We journey now to Disney's 1940 film, \"Pinocchio.\" The story is quite known: an ... \nThe Coachman turns out to be the most evil of these bad guys. He operates a \njoint called ... He transforms them into donkeys, of course! How? [DOC] [TLE] Pinocchio (1940 film) - Wikiquote [PAR] Jiminy Cricket: [looks at his reflection in a paintpot and turns to Pinocchio] Oh! I \nalmost forgot about you. Well ... Jiminy: Well, you wanna be a real boy, don't you? [DOC] [TLE] Pinocchio's dark horrorand darker source material / The Dissolve [PAR] ... show, he goes to a place where boys enjoy themselves until they turn into \ndonkeys, .... he's imitating Lampwick as best he can, and praising the virtues of \nbeing bad. .... What I'm trying to get at is that I doubt a Pinocchio fan in 1940 had \nthe... [DOC] [TLE] Pinocchio (1940) - Greatest Films [PAR] The boys are being groomed to be 'jackasses' (donkeys) to be sold into slavery - \nhis words ... Give a bad boy enough rope and he'll soon make a jackass of \nhimself. ... Pinocchio inhales on his cigar, turning red in the face and then feeling \nsick. [DOC] [TLE] To Coachman With Love: Pinocchio and Behavioral Therapy ... [PAR] Jan 25, 2011 ... How does the Coachman make money by turning boys into donkeys? [DOC] [TLE] Pinocchio / Disney - TV Tropes [PAR] Released in 1940, Pinocchio is the 2nd film in the Disney Animated Canon, \nbased very ... Baleful Polymorph: The boys in Pleasure Island turn into jackasses \nand get ..... Shapeshifting Excludes Clothing: Where bad boys turn into donkeys \nafter... [DOC] [TLE] Pinocchio Movie Review & Film Summary (1940) | Roger Ebert [PAR] Jun 26, 1992 ... ... be turned into a donkey and put to work in the salt",
+    "visible_context_hash": "35aed6f8166bc2fed4dd09cb9fdba4203b28ae89f514a3e3a150c7b03f102008",
+    "context_truncated": false,
+    "raw_response": "<answer>True</answer>",
+    "response": "<answer>True</answer>",
+    "em": 0.0,
+    "f1": 0.0,
+    "sub_em": 0.0,
+    "predicted_answer": "True",
+    "gold_answers": [
+      "Pinocchio"
+    ],
+    "hard": 0,
+    "soft": 0.0,
+    "format_ok": true,
+    "error": "",
+    "provider_refusal": false,
+    "refusal_reason": "",
+    "fail_reason": "EM=0",
+    "latency_seconds": 0.9219999999986612,
+    "generation_config": {
+      "model": {
+        "id": "qwen3.5-9b",
+        "revision": "Team deployment; weight revision undisclosed",
+        "base_url": "http://10.4.162.57:19198/v1",
+        "api_key_env": "PROJECT5_TEAM_QWEN_API_KEY",
+        "tokenizer_path": "F:\\Document\\HKUST\\2026fall\\NLP\\Project\\AIAA4051_Project\\api\\runtime\\tokenizer",
+        "precision": "team-managed; undisclosed",
+        "server_version": "Team OpenAI-compatible API; deployment version undisclosed",
+        "extra_body": {
+          "chat_template_kwargs": {
+            "enable_thinking": false
+          }
+        },
+        "structured_operators": "json_schema",
+        "tokenizer_note": "Qwen/Qwen3.5-9B@c202236235762e1c871ad0ccb60c8ee5ba337b9a proxy for skill/feedback lengths only; hosted server usage is authoritative for request tokens",
+        "allow_private_http": true,
+        "context_window": 32768,
+        "context_safety_tokens": 512
+      },
+      "temperature": 0.0,
+      "seed": 42,
+      "max_tokens": 2048,
+      "tokenizer_hash": "5f434e57da7403bc8232613f565c8d3de0bf56be57ff8326a83ebd76ee1f1e9c"
+    },
+    "attempts": [
+      {
+        "attempt": 1,
+        "status": "ok",
+        "usage": {
+          "prompt_tokens": 2162,
+          "total_tokens": 2170,
+          "completion_tokens": 8,
+          "prompt_tokens_details": null,
+          "completion_tokens_details": null,
+          "call_id": "6afccd7a079644a092e82fbb99d19abf",
+          "finish_reason": "stop"
+        }
+      }
+    ],
+    "observation_id": "bdba66a4292e774005cc5863f7eec3fcda3a03758b4b75326bd5f1940889107e",
+    "cached": false,
+    "observation_condition": "B",
+    "manual": {
+      "dataset": "searchqa",
+      "split": "test",
+      "condition": "B",
+      "id": "671f3c2e406f4ca7b41cb69fefe72e66",
+      "predicted_answer": "True",
+      "category": "答案类型偏移",
+      "note": "参考要求电影 Pinocchio；N/I 输出故事内地点 Pleasure Island，B 输出 True。输入是简短线索，未显式保留题目类别；回答目标与参考不一致。",
+      "skill_nodes": [
+        "Parse Question",
+        "Formulate Answer"
+      ],
+      "response_sha256": "8220e293800681f807a84be08cad6643f422034939b31cd6c305e32935ae0e94"
+    },
+    "skill_diagnosis": {
+      "nodes": [
+        "Parse Question",
+        "Formulate Answer"
+      ],
+      "instruction_quotes": {
+        "Parse Question": "- Extract the core intent and key entities from the QUESTION.\n- Identify the specific information required to form an answer.\n- Note any constraints on the answer format.",
+        "Formulate Answer": "- Synthesize the verified evidence into a concise, direct answer.\n- Remove any context-specific references (e.g., \"According to the text...\") unless necessary for clarity.\n- Ensure the answer is a few words or a short phrase."
+      },
+      "note": "参考要求电影 Pinocchio；N/I 输出故事内地点 Pleasure Island，B 输出 True。输入是简短线索，未显式保留题目类别；回答目标与参考不一致。",
+      "status": "post_freeze_descriptive_only_not_optimizer_feedback",
+      "skill_hash": "c4ab24a9c4550a970e68d42b0ba0ab5b46b4170ed5bfbb363693a6a1e0c606cb"
+    }
+  },
+  {
+    "id": "021a105fde2040e6878900394ac1fe98",
+    "dataset": "searchqa",
+    "split": "test",
+    "condition": "B",
+    "round": -1,
+    "skill_hash": "c4ab24a9c4550a970e68d42b0ba0ab5b46b4170ed5bfbb363693a6a1e0c606cb",
+    "question": "A museum in Florence honors this footwear designer whose work is considered art",
+    "visible_context": "[DOC] [TLE] Fashion and Art in Florence: Museums, Events and Outlet [PAR] Jun 23, 2014 ... Florence is considered by many as one of the most beautiful cities in the world, \nbut ... The latest trend is to combine art and fashion: for example, an outlet in ... \nAlso, the designer Stefano Ricci has decided to fund a project to replace ... Pepe, \nEmilio Pucci, Ermanno Scervino are all Florentines whose fashion... [DOC] [TLE] Salvatore Ferragamo Museum - Florence [PAR] 2, the museum was opened to the public in 1995 by the Ferragamo family, in an \n... The shoes, all works of refined craftsmanship, their design and materials, \nunveil the mind of an artist who was always in touch with the cultural mood of the \ntime. [DOC] [TLE] FIDM Museum Blog: Shoes [PAR] Feb 3, 2016 ... In honor of Bastille Day, we salute legendary French footwear designer Roger \nVivier (1907-1998). Before working for Delman and Dior, Vivier studied sculpture \nat the prestigious Ecole des Beaux-Arts in ... They were probably made in the \nTuscany region of Italy, whose port city of Livorno (traditionally called... [DOC] [TLE] The Ferragamo Museum in Florence: one of 100 places every ... [PAR] Aug 7, 2012 ... Palazzo Spini Feroni is home to Museo Ferragamo, Florence / flickr ... dreamy \noasis in which to admire the works of the master shoemaker. ... She's so beloved \nby Italians they've even named a rose in her honor. ... The proceeds from ticket \nsales are used to finance scholarship for young footwear designers. [DOC] [TLE] Cranbrook's Golden Age - Curbed [PAR] Nov 16, 2015 ... Half of the dynamic design couple whose grabbag of inventive projects ... The \nlegend of the Cranbrook Academy of Art, and its role as a prewar petri ... could be \nconsidered the DNA of modern design: cross-disciplinary thought, ... \"Shu\" (later \nFlorence Knoll), had a keen eye for architecture and design that... [DOC] [TLE] Florence City Guide | Design*Sponge [PAR] When she's not working, she enjoys exploring her beloved city with her husband \nRob, ... Be sure to wear comfy shoes if you decide to climb to the top of the dome \n.... this place is considered more a dining 'event' than just your average restaurant\n. ... Florence is where art and history lovers come to die; an open-air museum... [DOC] [TLE] The 50 Best Artist Collaborations in Fashion | Complex [PAR] Apr 4, 2013 ... The artist-footwear designer team concocted a number of shoes, purses, ... \nDeBeers is a family of companies that is considered to be the ... gallery Honor \nFraser, found some initial notoriety from her art-world ... a Welsh multimedia artist, \nwhose work ranges from film and sculpture to more conceptual pieces. [DOC] [TLE] Winter Volume 30, No.1 - Textile Arts Council [PAR] Jan 17, 2015 ... Fine Arts. Museums of. San Francisco de Young. Legion of Honor. The Bay Area \n... Susan Taber Avila's work promotes sustainability through the ... intersections of \nLas Vegas and Byzantium; Shoe .... would be considered of little to no value .... \nfemale American designers whose careers emerged between. [DOC] [TLE] Antiques Roadshow FYI . Missing Masterpieces | PBS [PAR] Cowan had been commissioned by Eleanor Roosevelt to design a bowl to .... The \nmuseum is offering a $5 million reward for the return of the art works, whose ... \nThey were considered the top-of-the-line in Philadelphia woodworking. ..... was \nmade in the honor (and shape) of the famous \"Old Lady Who Lived in a Shoe\" \nfrom... [DOC] [TLE] Essays - Metropolitan Museum of Art [PAR] The Met's Timeline of Art History pairs essays and works of art with chronologies \n... Antonio Canova is considered the greatest Neoclassical sculptor of the late .... \nDesigner sportswear was not usurped from Europe, as modern art would later \n.... whose dynamic patronage of the arts, along with his health and appearance,... [DOC] [TLE] Continuing Studies & Special Programs | Ringling College of Art ... [PAR] Learn from award-winning working artists, designers,",
+    "visible_context_hash": "1a757d9d810488e4fdd4f984a7d7c29160a56a75159ab4a5f9d81d98a714ecc9",
+    "context_truncated": false,
+    "raw_response": "Based on the context provided, the museum in Florence that honors a footwear designer is the **Salvatore Ferragamo Museum** (or **Museo Ferragamo**). The text states that the museum was opened by the Ferragamo family and features \"works of refined craftsmanship\" by the \"master shoemaker,\" whose design and materials \"unveil the mind of an artist.\"\n\n<answer>Salvatore Ferragamo Museum</answer>",
+    "response": "Based on the context provided, the museum in Florence that honors a footwear designer is the **Salvatore Ferragamo Museum** (or **Museo Ferragamo**). The text states that the museum was opened by the Ferragamo family and features \"works of refined craftsmanship\" by the \"master shoemaker,\" whose design and materials \"unveil the mind of an artist.\"\n\n<answer>Salvatore Ferragamo Museum</answer>",
+    "em": 0.0,
+    "f1": 0.8,
+    "sub_em": 1.0,
+    "predicted_answer": "Salvatore Ferragamo Museum",
+    "gold_answers": [
+      "Salvatore Ferragamo"
+    ],
+    "hard": 0,
+    "soft": 0.8,
+    "format_ok": true,
+    "error": "",
+    "provider_refusal": false,
+    "refusal_reason": "",
+    "fail_reason": "EM=0",
+    "latency_seconds": 7.203000000001339,
+    "generation_config": {
+      "model": {
+        "id": "qwen3.5-9b",
+        "revision": "Team deployment; weight revision undisclosed",
+        "base_url": "http://10.4.162.57:19198/v1",
+        "api_key_env": "PROJECT5_TEAM_QWEN_API_KEY",
+        "tokenizer_path": "F:\\Document\\HKUST\\2026fall\\NLP\\Project\\AIAA4051_Project\\api\\runtime\\tokenizer",
+        "precision": "team-managed; undisclosed",
+        "server_version": "Team OpenAI-compatible API; deployment version undisclosed",
+        "extra_body": {
+          "chat_template_kwargs": {
+            "enable_thinking": false
+          }
+        },
+        "structured_operators": "json_schema",
+        "tokenizer_note": "Qwen/Qwen3.5-9B@c202236235762e1c871ad0ccb60c8ee5ba337b9a proxy for skill/feedback lengths only; hosted server usage is authoritative for request tokens",
+        "allow_private_http": true,
+        "context_window": 32768,
+        "context_safety_tokens": 512
+      },
+      "temperature": 0.0,
+      "seed": 42,
+      "max_tokens": 2048,
+      "tokenizer_hash": "5f434e57da7403bc8232613f565c8d3de0bf56be57ff8326a83ebd76ee1f1e9c"
+    },
+    "attempts": [
+      {
+        "attempt": 1,
+        "status": "ok",
+        "usage": {
+          "prompt_tokens": 2079,
+          "total_tokens": 2172,
+          "completion_tokens": 93,
+          "prompt_tokens_details": null,
+          "completion_tokens_details": null,
+          "call_id": "e7eab526066c4a0f8ffeb6deed8afcae",
+          "finish_reason": "stop"
+        }
+      }
+    ],
+    "observation_id": "27c573ae05f1ff1f34cfaa1b085989f80c5b7efaaf5d4151b506e9243665ca37",
+    "cached": false,
+    "observation_condition": "B",
+    "manual": {
+      "dataset": "searchqa",
+      "split": "test",
+      "condition": "B",
+      "id": "021a105fde2040e6878900394ac1fe98",
+      "predicted_answer": "Salvatore Ferragamo Museum",
+      "category": "答案类型偏移",
+      "note": "题目问受纪念的鞋履设计师，预测却是其同名博物馆。人物姓名已包含在回答中，但 Museum 使回答对象从人物变成机构。",
+      "skill_nodes": [
+        "Parse Question",
+        "Formulate Answer"
+      ],
+      "response_sha256": "cb1a990084463a4baca2fe5d2a150f362c468e34e5691645495dbb1cb8b31999"
+    },
+    "skill_diagnosis": {
+      "nodes": [
+        "Parse Question",
+        "Formulate Answer"
+      ],
+      "instruction_quotes": {
+        "Parse Question": "- Extract the core intent and key entities from the QUESTION.\n- Identify the specific information required to form an answer.\n- Note any constraints on the answer format.",
+        "Formulate Answer": "- Synthesize the verified evidence into a concise, direct answer.\n- Remove any context-specific references (e.g., \"According to the text...\") unless necessary for clarity.\n- Ensure the answer is a few words or a short phrase."
+      },
+      "note": "题目问受纪念的鞋履设计师，预测却是其同名博物馆。人物姓名已包含在回答中，但 Museum 使回答对象从人物变成机构。",
+      "status": "post_freeze_descriptive_only_not_optimizer_feedback",
+      "skill_hash": "c4ab24a9c4550a970e68d42b0ba0ab5b46b4170ed5bfbb363693a6a1e0c606cb"
+    }
+  },
+  {
+    "id": "3b118e16845f4c09a5c0ad28fa40b006",
+    "dataset": "searchqa",
+    "split": "test",
+    "condition": "B",
+    "round": -1,
+    "skill_hash": "c4ab24a9c4550a970e68d42b0ba0ab5b46b4170ed5bfbb363693a6a1e0c606cb",
+    "question": "Gas up its Prius /MPG is 55 /Time to hit the road",
+    "visible_context": "[DOC] [TLE] Better Gas Mileage in a Toyota Prius - HybridCars.com [PAR] Apr 4, 2011 ... Better Gas Mileage in a Toyota Prius - Here we go again: gas prices are spiking \nand sales ... Given these trends, it's a great time to revisit our expert guide to .... \nFor highway driving, get best results by setting cruise control at 55 mph. ..... \nActually, Road and Track got up to 67 MPG in mixed suburban driving,... [DOC] [TLE] Toyota Prius MPG: Fuel Efficient or Not? | Earth's Friends [PAR] Sep 10, 2014 ... So how many miles per gallon does your Prius hybrid get? ... On a recent visit to \nSan Francisco I was amazed at the number of Toyota Priuses on the road. ... I get \n55 mpg highway and 75 to a 100 mpg in the city. .... It's possible to get great fuel \neconomy and keep up with traffic if you follow some common... [DOC] [TLE] Meet the 2016 Toyota Prius: longer, sportier and 55 mpg ... [PAR] Sep 9, 2015 ... It's possible this would be the first non-plug-in / non-EV to hit 60 mpg. ... Inside, \nthe Prius picks up some styling cues from Mirai. ... Toyota is launching the Prius \nat a time of very cheap gasoline prices. The US average for regular gas is $2.38 \na gallon, the lowest it has been in more than half a decade. [DOC] [TLE] Toyota Prius MPG-Real World Numbers - Car Forums at Edmunds.com [PAR] This topic is for Prius owners to share their MPG with others. ... She's not running \nthe gas engine long enough to get it warmed up in 2 miles :cry: .... This isn&#146;\nt 55 mph type speeds and limits but roads similar to his normal .... We will have to \nhit 102.x mpg or so over the tank to reach it but there is a good chance of this... [DOC] [TLE] 9 Cars That Average 50 MPG or Better on the Highway: You'll Be ... [PAR] Mar 9, 2014 ... Fuel economy has grown to become an increasingly important factor which ... \nfrom its previous target of 34.5 miles per gallon due to hit in 2016. ... oil \nconsumption with presumably even more cars on the road. ... the option to plug \ntheir Prius in to get up to 15 miles of all-electric range at 62 mph or less. [DOC] [TLE] Hybrid cars don't save you money. Do the math! - I Will Teach You ... [PAR] I know the Toyota Prius is THE ... Split the difference on those mileage figures, \nand we'll use ... about how much more you paid for the hybrid car to save money \non gas. ..... current gas prices (~$3/gal), it's cheaper than the midrange model by \nthe time you hit ..... I am considerate of others and will not block up two-lane \nroads. [DOC] [TLE] This Guy Can Get 59 MPG in a Plain Old Accord. Beat That, Punk ... [PAR] They're watching Wayne Gerdes prepare for his run in Hybridfest's mpg \nChallenge, ... as the car he's driving, a 2006 Honda Civic Hybrid, pulls over to \npick me up. ... gas in the rain, as it gets the wheels out of the puddly grooves in \nthe road .... epa mpg estimate of 55, and even hypermilers with Priuses were only \nposting... [DOC] [TLE] Fuel Economy: Why You're Not Getting The MPG (miles per gallon ... [PAR] Oct 1, 2005 ... Drivers who track their own fuel economy have long known that their results ... \nPut another way, when gas in August hit $2.37 per gallon, the mpg ... The EPA \nformula still uses a 55/45 percent city/highway ratio to .... 0-60 acceleration time \nby 24 percent and bulked up average vehicle weight by 27 percent. [DOC] [TLE] Fuel economy: why your car won't match the official mpg - Telegraph [PAR] May 2, 2012 ... It's a common complaint to Honest John that owners have to fill up ... The petrol-\nelectric hybrid Toyota Prius is averaging 56.5mpg  well below the official 72.4",
+    "visible_context_hash": "c9d2c08f66cb581c13415248779fd809f43f2572d023b026be687143f68aa147",
+    "context_truncated": false,
+    "raw_response": "<answer>55</answer>",
+    "response": "<answer>55</answer>",
+    "em": 0.0,
+    "f1": 0.0,
+    "sub_em": 0.0,
+    "predicted_answer": "55",
+    "gold_answers": [
+      "Toyota"
+    ],
+    "hard": 0,
+    "soft": 0.0,
+    "format_ok": true,
+    "error": "",
+    "provider_refusal": false,
+    "refusal_reason": "",
+    "fail_reason": "EM=0",
+    "latency_seconds": 1.0,
+    "generation_config": {
+      "model": {
+        "id": "qwen3.5-9b",
+        "revision": "Team deployment; weight revision undisclosed",
+        "base_url": "http://10.4.162.57:19198/v1",
+        "api_key_env": "PROJECT5_TEAM_QWEN_API_KEY",
+        "tokenizer_path": "F:\\Document\\HKUST\\2026fall\\NLP\\Project\\AIAA4051_Project\\api\\runtime\\tokenizer",
+        "precision": "team-managed; undisclosed",
+        "server_version": "Team OpenAI-compatible API; deployment version undisclosed",
+        "extra_body": {
+          "chat_template_kwargs": {
+            "enable_thinking": false
+          }
+        },
+        "structured_operators": "json_schema",
+        "tokenizer_note": "Qwen/Qwen3.5-9B@c202236235762e1c871ad0ccb60c8ee5ba337b9a proxy for skill/feedback lengths only; hosted server usage is authoritative for request tokens",
+        "allow_private_http": true,
+        "context_window": 32768,
+        "context_safety_tokens": 512
+      },
+      "temperature": 0.0,
+      "seed": 42,
+      "max_tokens": 2048,
+      "tokenizer_hash": "5f434e57da7403bc8232613f565c8d3de0bf56be57ff8326a83ebd76ee1f1e9c"
+    },
+    "attempts": [
+      {
+        "attempt": 1,
+        "status": "ok",
+        "usage": {
+          "prompt_tokens": 2095,
+          "total_tokens": 2104,
+          "completion_tokens": 9,
+          "prompt_tokens_details": null,
+          "completion_tokens_details": null,
+          "call_id": "eb71f4930b9b46ea86ba513e9d78499a",
+          "finish_reason": "stop"
+        }
+      }
+    ],
+    "observation_id": "64023161f6f8ef8214df841abb16914f5954a1ce0a4006c44f8b26d8e60615de",
+    "cached": false,
+    "observation_condition": "B",
+    "manual": {
+      "dataset": "searchqa",
+      "split": "test",
+      "condition": "B",
+      "id": "3b118e16845f4c09a5c0ad28fa40b006",
+      "predicted_answer": "55",
+      "category": "线索题目标识别偏移",
+      "note": "题目以 Prius 的线索指向 Toyota，预测只输出速度或 MPG 数值（B 为 55）。上下文多次出现 Toyota Prius；短诗式输入的答案类别识别与参考不一致。",
+      "skill_nodes": [
+        "Parse Question",
+        "Verify Evidence"
+      ],
+      "response_sha256": "82353240fd0c5fbfce8c98df81755384652d6d8f12c53ce0b3a5791edffd5b18"
+    },
+    "skill_diagnosis": {
+      "nodes": [
+        "Parse Question",
+        "Verify Evidence"
+      ],
+      "instruction_quotes": {
+        "Parse Question": "- Extract the core intent and key entities from the QUESTION.\n- Identify the specific information required to form an answer.\n- Note any constraints on the answer format.",
+        "Verify Evidence": "- Cross-check the extracted evidence against the original question to ensure it fully addresses the intent.\n- Confirm that the evidence is explicitly present in the provided CONTEXT.\n- If the evidence is ambiguous or partial, flag it for the next step."
+      },
+      "note": "题目以 Prius 的线索指向 Toyota，预测只输出速度或 MPG 数值（B 为 55）。上下文多次出现 Toyota Prius；短诗式输入的答案类别识别与参考不一致。",
+      "status": "post_freeze_descriptive_only_not_optimizer_feedback",
+      "skill_hash": "c4ab24a9c4550a970e68d42b0ba0ab5b46b4170ed5bfbb363693a6a1e0c606cb"
+    }
+  },
+  {
+    "id": "7d249f57e28e4719aaec9d223e0a27e7",
+    "dataset": "searchqa",
+    "split": "test",
+    "condition": "B",
+    "round": -1,
+    "skill_hash": "c4ab24a9c4550a970e68d42b0ba0ab5b46b4170ed5bfbb363693a6a1e0c606cb",
+    "question": "Back in 1979 I put Ms. Derek to shame with this hairstyle seen here",
+    "visible_context": "[DOC] [TLE] Daddy Do's - apocryphal - Teen Wolf (TV) [Archive of Our Own] [PAR] May 27, 2013 ... Daddy Do's is a term a stolen from Cute Girls Hairstyles, which is .... Mr. SMr. \nStilinski, apparentlyhad moved here, to the suburbs of Albany. ... waited for \nDerek to arrive before starting to put it all back in. ..... You might have seen herI \nuse her as a model for my more adult hairstyles on my channel. [DOC] [TLE] So I got a $310 haircut. I learned 3 SURPRISING things about ... [PAR] I am the owner and operator of Luxury Mobile Barber Shop here in Los Angeles \n... and able to charge what he does- he has certainly put in the time and work to \nget there! ... nice article Derek. i think price reflect the quality. when i was a \nnewbie i charged .... Curious though, will you be going back for another $310 \nhaircut? [DOC] [TLE] Common Errors in English Usage by Paul Brians - Washington State ... [PAR] If the standard usage where you are differs from what is described here, tell me \nabout it, .... The same error is commonly seen on storefront signs. ..... is a phrase \nmeaning \"completely prepared,\" as in \"As soon as I put my coat on, I'll be all \nready. ..... this problem, but here are the easiest ones in Microsoft Word: 1) for \nWindows... [DOC] [TLE] White People Are Rebranding Cornrows as 'Boxer Braids' - Jezebel [PAR] Mar 15, 2016 ... The Los Angeles Times gave white people credit for cornrows back in September \n2014. ... And for those who will surely miss the point of all this and wonder ... I \npaid some lady put braids in my hair the last few days of my ..... It's a practical \nhairstyle and it's not appropriation if their not claiming they invented it. [DOC] [TLE] A Mystery of Three Suicides: Oil City - Rolling Stone [PAR] Feb 10, 1977 ... A newspaper, the Oil City Derrick. ... One day, when he finally decided to get a \nhaircut, on the way to the ... Tim turned back and went home. ... He put a down \npayment on a car and decided to visit her at Easter for .... Frank hadn't seen much \nof Tim for a year or so, but they had been .... I gotta get out of here. [DOC] [TLE] The 80 Hottest Women of the '80s | Complex [PAR] Oct 3, 2011 ... Here are The 80 Hottest Women of the '80s. ... It's a fairly arbitrary pick; basically \nSybil Danning's career (stretching back to the early '70s) ... Where Is She Now: \nMost recently seen in her one-woman show ... Bobbi, Miss Teen Louisiana USA \n1987, had dominate the ..... That's a damn shame. .... Bo Derek... [DOC] [TLE] Faces of Suicide [PAR] Faces of Suicide - remembering those that left before their time. [DOC] [TLE] Lyrics to Hello Nasty - Beastie Boys Annotated [PAR] Putting Shame In Your Game Flowin' Prose ... \"Rapper's Delight\" - The Sugarhill \nGang (1979). ... Have you seen what I mean. I'm the ... Boxing promoter Don King \nwas infamous for his impossibly weird hair style. We've ... And brought it back to \nthe nest singing microphone check ..... I got some shit right here.... if you would. [DOC] [TLE] Murder of Ann Ogilby - Wikipedia [PAR] The murder of Ann Ogilby, also known as the \"Romper Room murder\", took place \nin Sandy ... The boys had been put up for adoption after their birth, leaving only \nthe ... herself\" was a cultural infraction that brought shame upon their community. \n.... They took her back to Sandy Row and put her before a kangaroo court held... [DOC] [TLE] Tiger 93.9 | Blog [PAR] We're airing the top half of this list on New Year's Eve, but here is the full list of \n100 tracks. .... 46. Trainwreck 1979 - Death from Above 1979 (The Physical \nWorld) .... I'm going to resist",
+    "visible_context_hash": "e825ccfdda6e7d4bdbdfee031de4bbf81f4a4bac83dde22e8864240694c20769",
+    "context_truncated": false,
+    "raw_response": "<answer>Not found in context</answer>",
+    "response": "<answer>Not found in context</answer>",
+    "em": 0.0,
+    "f1": 0.0,
+    "sub_em": 0.0,
+    "predicted_answer": "Not found in context",
+    "gold_answers": [
+      "cornrows"
+    ],
+    "hard": 0,
+    "soft": 0.0,
+    "format_ok": true,
+    "error": "",
+    "provider_refusal": false,
+    "refusal_reason": "",
+    "fail_reason": "EM=0",
+    "latency_seconds": 1.125,
+    "generation_config": {
+      "model": {
+        "id": "qwen3.5-9b",
+        "revision": "Team deployment; weight revision undisclosed",
+        "base_url": "http://10.4.162.57:19198/v1",
+        "api_key_env": "PROJECT5_TEAM_QWEN_API_KEY",
+        "tokenizer_path": "F:\\Document\\HKUST\\2026fall\\NLP\\Project\\AIAA4051_Project\\api\\runtime\\tokenizer",
+        "precision": "team-managed; undisclosed",
+        "server_version": "Team OpenAI-compatible API; deployment version undisclosed",
+        "extra_body": {
+          "chat_template_kwargs": {
+            "enable_thinking": false
+          }
+        },
+        "structured_operators": "json_schema",
+        "tokenizer_note": "Qwen/Qwen3.5-9B@c202236235762e1c871ad0ccb60c8ee5ba337b9a proxy for skill/feedback lengths only; hosted server usage is authoritative for request tokens",
+        "allow_private_http": true,
+        "context_window": 32768,
+        "context_safety_tokens": 512
+      },
+      "temperature": 0.0,
+      "seed": 42,
+      "max_tokens": 2048,
+      "tokenizer_hash": "5f434e57da7403bc8232613f565c8d3de0bf56be57ff8326a83ebd76ee1f1e9c"
+    },
+    "attempts": [
+      {
+        "attempt": 1,
+        "status": "ok",
+        "usage": {
+          "prompt_tokens": 2077,
+          "total_tokens": 2088,
+          "completion_tokens": 11,
+          "prompt_tokens_details": null,
+          "completion_tokens_details": null,
+          "call_id": "221b562642fe4b5c8dfb70687754f392",
+          "finish_reason": "stop"
+        }
+      }
+    ],
+    "observation_id": "bca98f3474ab02751492c7b7cfabbacd10cdbbf09bbda080dcc889b76136d7f8",
+    "cached": false,
+    "observation_condition": "B",
+    "manual": {
+      "dataset": "searchqa",
+      "split": "test",
+      "condition": "B",
+      "id": "7d249f57e28e4719aaec9d223e0a27e7",
+      "predicted_answer": "Not found in context",
+      "category": "视觉指代与证据不完整",
+      "note": "题目含 seen here，但当前单轮文本输入没有图像。上下文出现 cornrows、Bo Derek、Don King 等分散片段，未直接给出完整的 1979 关系。N/I 返回人物 Don King 而非发型；B 拒答。不能只凭 gold 单词出现就证明完整关系可从文本恢复。",
+      "skill_nodes": [
+        "Parse Question",
+        "Verify Evidence",
+        "Wrap Answer"
+      ],
+      "response_sha256": "aa1668c44787527444353bbe1d4ece06dfcbc6f98692ba37231cb257aa2b76f2"
+    },
+    "skill_diagnosis": {
+      "nodes": [
+        "Parse Question",
+        "Verify Evidence",
+        "Wrap Answer"
+      ],
+      "instruction_quotes": {
+        "Parse Question": "- Extract the core intent and key entities from the QUESTION.\n- Identify the specific information required to form an answer.\n- Note any constraints on the answer format.",
+        "Verify Evidence": "- Cross-check the extracted evidence against the original question to ensure it fully addresses the intent.\n- Confirm that the evidence is explicitly present in the provided CONTEXT.\n- If the evidence is ambiguous or partial, flag it for the next step.",
+        "Wrap Answer": "- Enclose the final concise answer in `<answer>...</answer>` tags.\n- If no evidence was found, enclose \"Not found in context\" in the tags.\n- Do not add extra explanation outside the tags."
+      },
+      "note": "题目含 seen here，但当前单轮文本输入没有图像。上下文出现 cornrows、Bo Derek、Don King 等分散片段，未直接给出完整的 1979 关系。N/I 返回人物 Don King 而非发型；B 拒答。不能只凭 gold 单词出现就证明完整关系可从文本恢复。",
+      "status": "post_freeze_descriptive_only_not_optimizer_feedback",
+      "skill_hash": "c4ab24a9c4550a970e68d42b0ba0ab5b46b4170ed5bfbb363693a6a1e0c606cb"
+    }
+  },
+  {
+    "id": "39f0fe99cde247619b4057d0084ba9e1",
+    "dataset": "searchqa",
+    "split": "test",
+    "condition": "B",
+    "round": -1,
+    "skill_hash": "c4ab24a9c4550a970e68d42b0ba0ab5b46b4170ed5bfbb363693a6a1e0c606cb",
+    "question": "No Brontes, just Dantes / Got sent off to D'if / But with Danglars, that Danglars! / He had a big beef",
+    "visible_context": "[DOC] [TLE] LITERATURE A LA SEUSS Flashcards | Quizlet [PAR] ... said, \"No, Lennie, No! / I won't get you a guppy! ... No Brontes, just Dantes / Got \nsent off to D'if / But with Danglars, that Danglars! / He had a big beef. [DOC] [TLE] The Count of Monte Cristo Chapters 1-10 Summary and Analysis ... [PAR] M. Morrel assumes that if such a letter exists, Dants will give it to him. ... Dants, \nhowever, makes the mistake of not discarding of Danglars when he can. ... the \ntwo hundred francs Dants had given him before he went to sea to pay off their \nneighbor, .... Not only has he denounced Dantes, but he also manages to \nconvince... [DOC] [TLE] Character List - CliffsNotes [PAR] Edmond Dants (alias the Count of Monte Cristo; his other aliases are Sinbad ... \ndid not commit and is kept in the horrible dungeon of the Chateau d'If, where he \n... the favors triple-fold, for not only does he save Monsieur Morrel's life, but he is \n.... He also has had an affair with a woman who becomes the Baroness Danglars,\n... [DOC] [TLE] SparkNotes: The Count of Monte Cristo: Chapters 15 [PAR] Morrel boards the ship and Danglars tells him that Dants forced the ship to stop \nat ... explaining that he has a personal dislike for Danglars but that Danglars does \nhis ... elder Dants pay him a debt that his son owed, which left the old man with \nonly ... This for the full version if your not reading the full version this will get you... [DOC] [TLE] Chapter 116: The Pardon | The Count of Monte Cristo | Alexandre ... [PAR] The next day Danglars was again hungry; certainly the air of that dungeon was \nvery ... But he had no sooner eaten than he felt thirsty; he had forgotten that. ... it \nwould be better to transact business with his old acquaintance, so he sent for \nPeppino. ... to regard the affair as a joke, he felt his temples get moist with \nperspiration. [DOC] [TLE] The Count Of Monte Cristo, Part 1 - Frenchly [PAR] Feb 14, 2016 ... That supercargo, Danglars, our first villain, mentions to Morrel that upon ... \nEdmond sets off to find Mercds, who he has not seen for months, ... Ah, but: \nwith his recent trip to the isle of Elba and his unknown .... Villefort is convinced by \nthe comport of his prisoner, even if Dants had been carrying word from... [DOC] [TLE] Full text of \"The universal anthology : a collection of the best ... [PAR] Dreaming a dream to prize Is wishing ghosts to rise; And if I had the spell To call \nthe ... Then he went on thus : \" Without compelling you to entreat me, without .... \nAfter all, you were wishing to die ; very well, your suicide is only put off for a time. \n...... Dantes might have waited until the evening visit was over, but he was afraid... [DOC] [TLE] WCA: Willa Cather: A Literary Life [PAR] If he can successfully negotiate the minefields, the biographer of Cather has a \ngreat ..... Now that she had escaped, she no longer had that fear, though she still \ngot ..... Those weeks off in the desert with her big, handsome brother were weeks \n...... Danglars' salon in Paris in the middle of lives so very different from our own. [DOC] [TLE] Full text of \"The bookman\" - Internet Archive [PAR] All manuscripts submitted were to be not only superlatively good, but, what is .... \nMr. Lincoln Steffens has had an idea that this was all wrong, believing that the ... \nFrom the Commercial Adver- tiser he went to McClure's Magazine, and while ..... \ntourist's imagination was supposed to wear, and sent off carriage-paid  this \nside... [DOC] [TLE] Full text of \"Picturegoer (Jan-Apr 1935)\" - Internet Archive [PAR] And not only that, but the Paramount star, when on top of her form, can run up ... \nOne day he went to a school, a free",
+    "visible_context_hash": "752988001bce2f4841917d47d8524800c2cd8fd6bb4aa56bf03d693e43ca5287",
+    "context_truncated": false,
+    "raw_response": "<answer>Dantes</answer>",
+    "response": "<answer>Dantes</answer>",
+    "em": 0.0,
+    "f1": 0.0,
+    "sub_em": 0.0,
+    "predicted_answer": "Dantes",
+    "gold_answers": [
+      "The Count Of Monte Cristo"
+    ],
+    "hard": 0,
+    "soft": 0.0,
+    "format_ok": true,
+    "error": "",
+    "provider_refusal": false,
+    "refusal_reason": "",
+    "fail_reason": "EM=0",
+    "latency_seconds": 0.9059999999990396,
+    "generation_config": {
+      "model": {
+        "id": "qwen3.5-9b",
+        "revision": "Team deployment; weight revision undisclosed",
+        "base_url": "http://10.4.162.57:19198/v1",
+        "api_key_env": "PROJECT5_TEAM_QWEN_API_KEY",
+        "tokenizer_path": "F:\\Document\\HKUST\\2026fall\\NLP\\Project\\AIAA4051_Project\\api\\runtime\\tokenizer",
+        "precision": "team-managed; undisclosed",
+        "server_version": "Team OpenAI-compatible API; deployment version undisclosed",
+        "extra_body": {
+          "chat_template_kwargs": {
+            "enable_thinking": false
+          }
+        },
+        "structured_operators": "json_schema",
+        "tokenizer_note": "Qwen/Qwen3.5-9B@c202236235762e1c871ad0ccb60c8ee5ba337b9a proxy for skill/feedback lengths only; hosted server usage is authoritative for request tokens",
+        "allow_private_http": true,
+        "context_window": 32768,
+        "context_safety_tokens": 512
+      },
+      "temperature": 0.0,
+      "seed": 42,
+      "max_tokens": 2048,
+      "tokenizer_hash": "5f434e57da7403bc8232613f565c8d3de0bf56be57ff8326a83ebd76ee1f1e9c"
+    },
+    "attempts": [
+      {
+        "attempt": 1,
+        "status": "ok",
+        "usage": {
+          "prompt_tokens": 2077,
+          "total_tokens": 2085,
+          "completion_tokens": 8,
+          "prompt_tokens_details": null,
+          "completion_tokens_details": null,
+          "call_id": "b826df2fda824373a1f75bf2fb6c64d7",
+          "finish_reason": "stop"
+        }
+      }
+    ],
+    "observation_id": "640379b3f2327cdcbf04bdacc466c305e86911bf9f89ad4372a8ba137a60a5e0",
+    "cached": false,
+    "observation_condition": "B",
+    "manual": {
+      "dataset": "searchqa",
+      "split": "test",
+      "condition": "B",
+      "id": "39f0fe99cde247619b4057d0084ba9e1",
+      "predicted_answer": "Dantes",
+      "category": "线索题目标识别偏移",
+      "note": "参考要求作品 The Count of Monte Cristo；N/B 返回人物 Dantès，I 返回人物间怨恨关系。标题和上下文支持作品关联，但输入是省略题目类别的谜面。I 额外称其为 The Who 的歌词，未在可见上下文找到支持。",
+      "skill_nodes": [
+        "Parse Question",
+        "Formulate Answer"
+      ],
+      "response_sha256": "6a98f596ac86c613f72e2be4140da4b01e9365e6fc4e8787d5b3e4de573ccba8"
+    },
+    "skill_diagnosis": {
+      "nodes": [
+        "Parse Question",
+        "Formulate Answer"
+      ],
+      "instruction_quotes": {
+        "Parse Question": "- Extract the core intent and key entities from the QUESTION.\n- Identify the specific information required to form an answer.\n- Note any constraints on the answer format.",
+        "Formulate Answer": "- Synthesize the verified evidence into a concise, direct answer.\n- Remove any context-specific references (e.g., \"According to the text...\") unless necessary for clarity.\n- Ensure the answer is a few words or a short phrase."
+      },
+      "note": "参考要求作品 The Count of Monte Cristo；N/B 返回人物 Dantès，I 返回人物间怨恨关系。标题和上下文支持作品关联，但输入是省略题目类别的谜面。I 额外称其为 The Who 的歌词，未在可见上下文找到支持。",
+      "status": "post_freeze_descriptive_only_not_optimizer_feedback",
+      "skill_hash": "c4ab24a9c4550a970e68d42b0ba0ab5b46b4170ed5bfbb363693a6a1e0c606cb"
+    }
+  },
+  {
+    "id": "23a6c1fda8fc4c5fbb3b7740bee62ead",
+    "dataset": "searchqa",
+    "split": "test",
+    "condition": "B",
+    "round": -1,
+    "skill_hash": "c4ab24a9c4550a970e68d42b0ba0ab5b46b4170ed5bfbb363693a6a1e0c606cb",
+    "question": "In the 1950s this secret militant movement opposed British rule in Kenya",
+    "visible_context": "[DOC] [TLE] In the 1950s this secret militant movement opposed British rule in ... [PAR] Jeopardy Question: DOUBLE TALK - In the 1950s this secret militant movement \nopposed British rule in Kenya. [DOC] [TLE] Mau Mau Uprising - Wikipedia [PAR] The Mau Mau Uprising, also known as the Mau Mau Rebellion, Mau Mau Revolt, \nor Kenya .... Kenyan opposition to British imperialism existed from the start of the \nBritish ... as a militant culmination of years of oppressive colonial rule and \nresistance to it, with .... By the mid-1950s, 90% of Kikuyu, Embu and Meru were \noathed. [DOC] [TLE] Revolt and Repression in Kenya: The \"Mau Mau\" Rebellion ... - JStor [PAR] ginning of the 1950s the British perceived their interests as iden- tical with ... \nKenyan labor movement that emerged with the granting of in- .... campaign and \nthe establishment of secret committees through- .... colonial rule by militant mass \naction, by strikes ..... was completely opposed to the revolt, but blamed it on the \ninjus-. [DOC] [TLE] Timeline of the Mau Mau Rebellion - 1951-1954 - African History [PAR] The Mau Mau were a militant African nationalist movement active in Kenya \nduring the 1950s whose main aim was to remove British rule and ... Information is \nfiltering back about secret meetings being held in the forests outside Nairobi. [DOC] [TLE] HISTORY OF KENYA [PAR] HISTORY OF KENYA including Masai and Kikuyu, German-British carve up, \nBritish East Africa Company, East African Protectorate, Kenya Colony, Mau Mau, \n... rule. In 1952 a militant independence movement calling itself Mau Mau makes \nits ... policies and his one-party rule, with little tolerance of any form of opposition. [DOC] [TLE] The British in Kenya (1952-1960) - Defense Technical Information ... [PAR] Coupled with the recently implemented apartheid movement in South Africa, \nmany ... Unrest had been building in this area long before the 1950s due to \nBritain's ...... urban political militancy with many old K.C.A. members opposed to \ncolonial rule of any kind. ..... If I ever reveal the secrets of this organization, may \nthis oath kill. [DOC] [TLE] Kenya unveils monument to Mau Mau leader | Reuters [PAR] Feb 18, 2007 ... Kenya's President Mwai Kibaki unveiled a statue of a Mau Mau guerrilla leader \non ... of Kenyans killed during an uprising against British rule in the 1950s. ... \nJomo Kenyatta, opposed the guerrilla movement's violent methods. ... that the \nmilitant movement held informal, secret peace talks with the Afghan... [DOC] [TLE] Mau Mau Uprising - New World Encyclopedia [PAR] Sep 26, 2014 ... Result, British military victory and eventual Kenyan democracy. .... While the KCA \ncontinued its oath rituals and creation of secret ... movement dedicated to the \nviolent overthrow of colonial rule. .... By the end of 1953, it had gained a Arab \ngeneral secretary who was a nationalist, but also opposed the revolt. [DOC] [TLE] Document:The Mau Mau War in Kenya 1952-60 - Wikispooks [PAR] Sep 16, 2016 ... It was a militant response to years of frustration at the refusal of the colonial ... \ncolonial state in Kenya closely resembled the fascist movements of the years ... \nThe major African nationalist political group opposed to British rule was the .... By \nthe mid-1950s the scale of atrocities was so great that news stories... [DOC] [TLE] Inside Terrorism - The New York Times [PAR] Acting on information provided by the arrested member, the secret police swept ... \nIn the 1880s and 1890s, for example, militant Armenian nationalist movements in \n.... East during the late 1940s and 1950s to oppose continued European rule. \nCountries as diverse as Israel, Kenya, Cyprus and Algeria, for example, owe their\n... [DOC] [TLE] \"Ideology, Theory, and Revolution: Lessons from the Mau Mau of ... [PAR] Ideology, Theory, and Revolution: Lessons from the Mau Mau of Kenya ... be \nfound in a number of historical accounts of the Mau Mau movement in colonial \nKenya. ... of the militant Mau Mau insurrection against British colonial rule in \nKenya as ... These developments eventually led to a revolutionary upsurge in the \n1950s... [DOC] [TLE] Mau-Mau Uprising PSYOP - PsyWar.",
+    "visible_context_hash": "513e92f7d7110bad28618b41d36b7bf14bde155fec0080b0ea5149a1e9117057",
+    "context_truncated": false,
+    "raw_response": "<answer>Mau Mau</answer>",
+    "response": "<answer>Mau Mau</answer>",
+    "em": 0.0,
+    "f1": 0.8,
+    "sub_em": 1.0,
+    "predicted_answer": "Mau Mau",
+    "gold_answers": [
+      "the Mau Mau movement"
+    ],
+    "hard": 0,
+    "soft": 0.8,
+    "format_ok": true,
+    "error": "",
+    "provider_refusal": false,
+    "refusal_reason": "",
+    "fail_reason": "EM=0",
+    "latency_seconds": 0.9850000000005821,
+    "generation_config": {
+      "model": {
+        "id": "qwen3.5-9b",
+        "revision": "Team deployment; weight revision undisclosed",
+        "base_url": "http://10.4.162.57:19198/v1",
+        "api_key_env": "PROJECT5_TEAM_QWEN_API_KEY",
+        "tokenizer_path": "F:\\Document\\HKUST\\2026fall\\NLP\\Project\\AIAA4051_Project\\api\\runtime\\tokenizer",
+        "precision": "team-managed; undisclosed",
+        "server_version": "Team OpenAI-compatible API; deployment version undisclosed",
+        "extra_body": {
+          "chat_template_kwargs": {
+            "enable_thinking": false
+          }
+        },
+        "structured_operators": "json_schema",
+        "tokenizer_note": "Qwen/Qwen3.5-9B@c202236235762e1c871ad0ccb60c8ee5ba337b9a proxy for skill/feedback lengths only; hosted server usage is authoritative for request tokens",
+        "allow_private_http": true,
+        "context_window": 32768,
+        "context_safety_tokens": 512
+      },
+      "temperature": 0.0,
+      "seed": 42,
+      "max_tokens": 2048,
+      "tokenizer_hash": "5f434e57da7403bc8232613f565c8d3de0bf56be57ff8326a83ebd76ee1f1e9c"
+    },
+    "attempts": [
+      {
+        "attempt": 1,
+        "status": "ok",
+        "usage": {
+          "prompt_tokens": 2151,
+          "total_tokens": 2160,
+          "completion_tokens": 9,
+          "prompt_tokens_details": null,
+          "completion_tokens_details": null,
+          "call_id": "f48c8f7671e94f0dbae415149fac473f",
+          "finish_reason": "stop"
+        }
+      }
+    ],
+    "observation_id": "f9e5255bd03fc41813a712d2b09d2af3acaa683a420047d055d00cd3a737e3eb",
+    "cached": false,
+    "observation_condition": "B",
+    "manual": {
+      "dataset": "searchqa",
+      "split": "test",
+      "condition": "B",
+      "id": "23a6c1fda8fc4c5fbb3b7740bee62ead",
+      "predicted_answer": "Mau Mau",
+      "category": "答案名称或粒度差异",
+      "note": "已识别 Mau Mau，参考写作 the Mau Mau movement。归一化移除 the 后仍多一个 movement；不把这种粒度差异直接认定为历史实体判断错误。",
+      "skill_nodes": [
+        "Formulate Answer"
+      ],
+      "response_sha256": "d63eb7b7b43c27ab155b06105831c51c6323752386ed65d220498fabe0be5f98"
+    },
+    "skill_diagnosis": {
+      "nodes": [
+        "Formulate Answer"
+      ],
+      "instruction_quotes": {
+        "Formulate Answer": "- Synthesize the verified evidence into a concise, direct answer.\n- Remove any context-specific references (e.g., \"According to the text...\") unless necessary for clarity.\n- Ensure the answer is a few words or a short phrase."
+      },
+      "note": "已识别 Mau Mau，参考写作 the Mau Mau movement。归一化移除 the 后仍多一个 movement；不把这种粒度差异直接认定为历史实体判断错误。",
+      "status": "post_freeze_descriptive_only_not_optimizer_feedback",
+      "skill_hash": "c4ab24a9c4550a970e68d42b0ba0ab5b46b4170ed5bfbb363693a6a1e0c606cb"
+    }
+  },
+  {
+    "id": "7ec750061ca34bbc927c07fd28f2cefa",
+    "dataset": "searchqa",
+    "split": "test",
+    "condition": "B",
+    "round": -1,
+    "skill_hash": "c4ab24a9c4550a970e68d42b0ba0ab5b46b4170ed5bfbb363693a6a1e0c606cb",
+    "question": "Before Julius Caesar's reforms, this was the tenth month in the Roman calendar",
+    "visible_context": "[DOC] [TLE] Roman calendar - Wikipedia [PAR] 60 BC), a Roman calendar from before the Julian reform, with the seventh and \neighth months still named Quintilis (\"QVI\") and Sextilis (\"SEX\"), and the \nintercalary month (\"INTER\") in the far righthand column (see enlarged). The \nRoman calendar changed its form several times between the founding of Rome \nand the fall ... According to these writers, Romulus' calendar had ten months with \nthe... [DOC] [TLE] The Roman Calendar - Timeanddate.com [PAR] The Roman or pre-Julian calendar has changed several times between its ... \nThe month Quintilis was renamed July in honor of Julius Caesar in 44 BCE and... [DOC] [TLE] The Roman calendar - My home page [PAR] In 45 BC Julius Caesar introduced the so-called Julian calendar, but before the ... \nlast four months were derived from the Latin words for nine, eleven, twelve, ten... [DOC] [TLE] Early Roman Calendar | Calendars - Webexhibits [PAR] The Roman calendar used a system of months, and special days in each month. \n.... Latin for \"the evening before\" is \"Pridie,\" a word that was used to refer to the \nday .... Finally, in 46 B.C.E., Julius Caesar initiated a thorough reform that \nresulted in ... were added to an original Roman calendar of only ten months in \n713 B.C.E.\". [DOC] [TLE] Roman calendar and Roman dates - Paul Lewis [PAR] Originally Romans had ten months in the year of either 30 or 31 days. ... By the \ntime Gaius Julius Caesar took power in the mid 40s BC the calendar was in a \nmess ... But Caesar was gone before he could see how his reforms were working \nand... [DOC] [TLE] Development of the Western Calendar | Faith and Conviction [PAR] Julius Caesar, for whom the Julian Calendar W is named, did some reforms to \nthe Roman ... Hundreds of years before Julius Caesar's birth, the Roman \nCalendar W ... The ninth month became September, the tenth month became \nOctober, the... [DOC] [TLE] the pre-Julian Roman calendar - Tyndale House [PAR] The Roman civil year was normally divided into 12 months: Ianuarius, Februarius\n, ... most notably before and after the reforms introduced by Julius Caesar in .... \nmonth) through December (10th month) are clear evidence that the calendar year\n... [DOC] [TLE] A brief history of the calendar - Ancient Roman History Timeline [PAR] Provides a chronological history of Ancient Rome with extensive links to internet \n... plainly appears by the name of the last, December, meaning the tenth month; \nand ... Afterwards Quintilis received the name of Julius, from Caesar, who \ndefeated ... is our most important source for the Julian reforms to the calendar, \nand along... [DOC] [TLE] terminology - Why does the start of the calendar year not correspond ... [PAR] Nov 30, 2015 ... Romulus' calendar had ten months with the spring equinox in the first month ... \nThe calendar reforms were completed during the reign of his ... In 44 BC, before \nJulius Caesar's assassination, the Roman Senate decreed that... [DOC] [TLE] The Roman Calendar - The Time Now [PAR] The Roman Calendar: From Romulus to Caesar. Published on April 10th, 2015 | \nby Brandon Ramsey in Calendars ... and it received changes and corrections \nmultiple times before it became the one ... phases, but after Numa's reforms, they \nwere set to fixed days each month. .... Julius Caesar was a perfect example of this\n. [DOC] [TLE] The Julian and Gregorian Calendars - Hermetic Systems [PAR] The Julian Calendar, the Gregorian reform and its adoption, astronomical ... The \ncalendar which Julius Caesar adopted in the year 709 a.u.c. (what we ... calendar \nof 239 B.C., and consisted of a solar year of twelve months and of ... As we can \nread in the excellent article, \"The Western Calendar and Calendar Reforms\" in \nthe... [DOC] [TLE] Gaius Julius Caesar - 44BC | Armstrong Economics [PAR] Julius was born on July 13th, 100 BC for whom the month of July is named. ... \nGaul as Governor for a period of five years, a term",
+    "visible_context_hash": "1f38b428423072561344954d1762208ff30795e53a14b79163b9d0d2f3224e66",
+    "context_truncated": false,
+    "raw_response": "<answer>October</answer>",
+    "response": "<answer>October</answer>",
+    "em": 0.0,
+    "f1": 0.0,
+    "sub_em": 0.0,
+    "predicted_answer": "October",
+    "gold_answers": [
+      "December"
+    ],
+    "hard": 0,
+    "soft": 0.0,
+    "format_ok": true,
+    "error": "",
+    "provider_refusal": false,
+    "refusal_reason": "",
+    "fail_reason": "EM=0",
+    "latency_seconds": 0.9680000000007567,
+    "generation_config": {
+      "model": {
+        "id": "qwen3.5-9b",
+        "revision": "Team deployment; weight revision undisclosed",
+        "base_url": "http://10.4.162.57:19198/v1",
+        "api_key_env": "PROJECT5_TEAM_QWEN_API_KEY",
+        "tokenizer_path": "F:\\Document\\HKUST\\2026fall\\NLP\\Project\\AIAA4051_Project\\api\\runtime\\tokenizer",
+        "precision": "team-managed; undisclosed",
+        "server_version": "Team OpenAI-compatible API; deployment version undisclosed",
+        "extra_body": {
+          "chat_template_kwargs": {
+            "enable_thinking": false
+          }
+        },
+        "structured_operators": "json_schema",
+        "tokenizer_note": "Qwen/Qwen3.5-9B@c202236235762e1c871ad0ccb60c8ee5ba337b9a proxy for skill/feedback lengths only; hosted server usage is authoritative for request tokens",
+        "allow_private_http": true,
+        "context_window": 32768,
+        "context_safety_tokens": 512
+      },
+      "temperature": 0.0,
+      "seed": 42,
+      "max_tokens": 2048,
+      "tokenizer_hash": "5f434e57da7403bc8232613f565c8d3de0bf56be57ff8326a83ebd76ee1f1e9c"
+    },
+    "attempts": [
+      {
+        "attempt": 1,
+        "status": "ok",
+        "usage": {
+          "prompt_tokens": 2058,
+          "total_tokens": 2066,
+          "completion_tokens": 8,
+          "prompt_tokens_details": null,
+          "completion_tokens_details": null,
+          "call_id": "7fbf5394b6404157aef0ab4eb82e783c",
+          "finish_reason": "stop"
+        }
+      }
+    ],
+    "observation_id": "e2861425b25718326fd351520829230536c9b537042557c212e9081fc6978bb9",
+    "cached": false,
+    "observation_condition": "B",
+    "manual": {
+      "dataset": "searchqa",
+      "split": "test",
+      "condition": "B",
+      "id": "7ec750061ca34bbc927c07fd28f2cefa",
+      "predicted_answer": "October",
+      "category": "冲突片段与时间范围",
+      "note": "可见片段同时写 tenth month became October 和 December meaning the tenth month，题目又用宽泛的 before Caesar。预测采用 October，参考为 December；需要区分历法阶段和名称词源，不能把多个阶段的片段直接等同。",
+      "skill_nodes": [
+        "Parse Question",
+        "Verify Evidence"
+      ],
+      "response_sha256": "651262c835fe45f2731017c7a88d46a388f5777fd6643f964fe2872676a57b49"
+    },
+    "skill_diagnosis": {
+      "nodes": [
+        "Parse Question",
+        "Verify Evidence"
+      ],
+      "instruction_quotes": {
+        "Parse Question": "- Extract the core intent and key entities from the QUESTION.\n- Identify the specific information required to form an answer.\n- Note any constraints on the answer format.",
+        "Verify Evidence": "- Cross-check the extracted evidence against the original question to ensure it fully addresses the intent.\n- Confirm that the evidence is explicitly present in the provided CONTEXT.\n- If the evidence is ambiguous or partial, flag it for the next step."
+      },
+      "note": "可见片段同时写 tenth month became October 和 December meaning the tenth month，题目又用宽泛的 before Caesar。预测采用 October，参考为 December；需要区分历法阶段和名称词源，不能把多个阶段的片段直接等同。",
+      "status": "post_freeze_descriptive_only_not_optimizer_feedback",
+      "skill_hash": "c4ab24a9c4550a970e68d42b0ba0ab5b46b4170ed5bfbb363693a6a1e0c606cb"
+    }
+  },
+  {
+    "id": "113ef1dcda894e588b26f9e31a1be728",
+    "dataset": "searchqa",
+    "split": "test",
+    "condition": "B",
+    "round": -1,
+    "skill_hash": "c4ab24a9c4550a970e68d42b0ba0ab5b46b4170ed5bfbb363693a6a1e0c606cb",
+    "question": "Sons of the Tundra",
+    "visible_context": "[DOC] [TLE] Suns of the Tundra (album) - Wikipedia [PAR] Suns of the Tundra is the eponymous debut by London band Suns of the Tundra \n(previously Peach), released in 2004. It was released as a limited edition ... [DOC] [TLE] \"Northern Exposure\" Sons of the Tundra (TV Episode 1994) - IMDb [PAR] Comedy ... [DOC] [TLE] Suns of the Tundra | Suns of the Tundra formerly Peach GB | Home [PAR] WE are excited to announce our first LONDON UK show in quite a while. Tickets \nfrom SEE TICKETS. THANK YOU to everyone who stayed up to watch us at ATP\n... [DOC] [TLE] Watch Northern Exposure Season 6 Episode 9: Sons of the Tundra ... [PAR] Watch Northern Exposure: Sons of the Tundra from Season 6 at TVGuide.com. [DOC] [TLE] Northern Exposure: 6.9 Sons of the Tundra [PAR] Nov 28, 1994 ... Holling desperately wants to join the exclusive men's club, Sons of the Tundra, \nand is willing to pay the ten thousand dollars to do it. [DOC] [TLE] Suns Of The Tundra Discography at Discogs [PAR] Complete your Suns Of The Tundra record collection. Discover Suns Of The \nTundra's full discography. Shop new and used Vinyl and CDs. [DOC] [TLE] Sons Of The Tundra Discography at Discogs [PAR] Complete your Sons Of The Tundra record collection. Discover Sons Of The \nTundra's full discography. Shop new and used Vinyl and CDs. [DOC] [TLE] TV ACRES: Social Groups and Organizations > Sons of the Tundra ... [PAR] Sons of the Tundra - Fraternal lodge located in the town of Cicely, Alaska \nmentioned on episode \"Sons of the Tundra\" (episode # 6.9 aired 11/28/1994) on \nthe ... [DOC] [TLE] Suns Of The Tundra | LyricWikia | Fandom powered by Wikia [PAR] Self Titled (2004) Paper Wraps Stone, Telescopic Misanthropy, Minus, Redeye, \nBottlenecked... [DOC] [TLE] Al Murray To Join Suns Of The Tundra On Stage This Week - Prog [PAR] Oct 20, 2016 ... This Thursday, October 20, ambitious four-piece London proggers Suns Of The \nTundra  formerly known as Peach, featuring Tool's Justin ... [DOC] [TLE] Sons of the Tundra: Dynasty Rankings: Cincinnati-Style Chili Recipe ... [PAR] Sons of the Tundra: Dynasty Rankings: Cincinnati-Style Chili Recipe | See more \nabout Chili Recipes, Chilis and Cincinnati. [DOC] [TLE] Tundra Climate - Blue Planet Biomes [PAR] But even the sun can't warm the tundra much. ... The tundra climate spans from \nmost of Greenland to parts of Alaska, northern ... John Wiley & Sons, 1984. [DOC] [TLE] Biomes - Introduction and the Tundra [PAR] Arctic tundra represents one of the newest communities or ecosystems in the .... \nJohn Wiley & Sons, Inc. See especially the extensive references at the end of [DOC] [TLE] The Tundra - EP by Sons of Caliber on iTunes [PAR] Preview, buy, and download songs from the album The Tundra - EP, including \nYoung Dove, Falling for You, My Way of Thinking, and many more. Buy the ... [DOC] [TLE] Sons of Caliber [PAR] Sons of Caliber The Tundra by Sons Of Caliber, released 23 April 2012 1. Young \nDove 2. Falling For You 3. My Way Of Thinking 4. Irish Wolf 5. Ship Aground ... [DOC] [TLE] Suns of the Tundra  Free listening, videos, concerts, stats and ... [PAR] Watch videos & listen free to Suns of the Tundra: Paper Wraps Stone, Caught \nTelling The Truth & more. The four core members of Suns of the Tundra are \nSimon ... [DOC] [TLE] Suns of the Tundra | Illuminate - EP | CD Baby Music Store [PAR] This EP consists of out-takes from 2006 album Tunguska (Shiny Mack SM003), \nreviewed by caughtinthecrossfire.com as follows: \"Suns Of The Tundra evolved ... [DOC] [TLE] Where do the treeless tundra areas of northern highlands fit in the ... [PAR] tude mountains (alpine) and high-latitude tundra vegetation, including its \naltitudinal ... Ecology and Evolution published by John Wiley & Sons Ltd. This is \nan ... [DOC] [TLE] Amazon.com: Seven Songs from the Tundra: Gregory Anaguritsi ... [PAR] Editorial Reviews. France released, NTSC/Region 0 DVD: LANGUAGES: \nRussian (",
+    "visible_context_hash": "a4c4b4a6358d25cf0774bc5ee6ddf9af57c0e76f317b2ea7cca1c34c77486840",
+    "context_truncated": false,
+    "raw_response": "<answer>Sons of the Tundra</answer>",
+    "response": "<answer>Sons of the Tundra</answer>",
+    "em": 0.0,
+    "f1": 0.0,
+    "sub_em": 0.0,
+    "predicted_answer": "Sons of the Tundra",
+    "gold_answers": [
+      "Northern Exposure"
+    ],
+    "hard": 0,
+    "soft": 0.0,
+    "format_ok": true,
+    "error": "",
+    "provider_refusal": false,
+    "refusal_reason": "",
+    "fail_reason": "EM=0",
+    "latency_seconds": 1.2340000000003783,
+    "generation_config": {
+      "model": {
+        "id": "qwen3.5-9b",
+        "revision": "Team deployment; weight revision undisclosed",
+        "base_url": "http://10.4.162.57:19198/v1",
+        "api_key_env": "PROJECT5_TEAM_QWEN_API_KEY",
+        "tokenizer_path": "F:\\Document\\HKUST\\2026fall\\NLP\\Project\\AIAA4051_Project\\api\\runtime\\tokenizer",
+        "precision": "team-managed; undisclosed",
+        "server_version": "Team OpenAI-compatible API; deployment version undisclosed",
+        "extra_body": {
+          "chat_template_kwargs": {
+            "enable_thinking": false
+          }
+        },
+        "structured_operators": "json_schema",
+        "tokenizer_note": "Qwen/Qwen3.5-9B@c202236235762e1c871ad0ccb60c8ee5ba337b9a proxy for skill/feedback lengths only; hosted server usage is authoritative for request tokens",
+        "allow_private_http": true,
+        "context_window": 32768,
+        "context_safety_tokens": 512
+      },
+      "temperature": 0.0,
+      "seed": 42,
+      "max_tokens": 2048,
+      "tokenizer_hash": "5f434e57da7403bc8232613f565c8d3de0bf56be57ff8326a83ebd76ee1f1e9c"
+    },
+    "attempts": [
+      {
+        "attempt": 1,
+        "status": "ok",
+        "usage": {
+          "prompt_tokens": 2183,
+          "total_tokens": 2195,
+          "completion_tokens": 12,
+          "prompt_tokens_details": null,
+          "completion_tokens_details": null,
+          "call_id": "abf3293ac4ba48b2b2229c76ccdb8b78",
+          "finish_reason": "stop"
+        }
+      }
+    ],
+    "observation_id": "136504318a7215f1fa2f8258238e97eff9e1f4339f95382cd1d702dcc3e16484",
+    "cached": false,
+    "observation_condition": "B",
+    "manual": {
+      "dataset": "searchqa",
+      "split": "test",
+      "condition": "B",
+      "id": "113ef1dcda894e588b26f9e31a1be728",
+      "predicted_answer": "Sons of the Tundra",
+      "category": "短题意图不明确",
+      "note": "输入只有 Sons of the Tundra，没有明确问句或类别。上下文存在电视剧、剧中组织及同名乐队。N/I 给出扩展解释，B 复述题目；均不符合参考要求的电视剧名 Northern Exposure。",
+      "skill_nodes": [
+        "Parse Question",
+        "Formulate Answer"
+      ],
+      "response_sha256": "f9e96b69ba005d4fac91189ffeb72bad77381dee5a0e1fe5da33445fb149544a"
+    },
+    "skill_diagnosis": {
+      "nodes": [
+        "Parse Question",
+        "Formulate Answer"
+      ],
+      "instruction_quotes": {
+        "Parse Question": "- Extract the core intent and key entities from the QUESTION.\n- Identify the specific information required to form an answer.\n- Note any constraints on the answer format.",
+        "Formulate Answer": "- Synthesize the verified evidence into a concise, direct answer.\n- Remove any context-specific references (e.g., \"According to the text...\") unless necessary for clarity.\n- Ensure the answer is a few words or a short phrase."
+      },
+      "note": "输入只有 Sons of the Tundra，没有明确问句或类别。上下文存在电视剧、剧中组织及同名乐队。N/I 给出扩展解释，B 复述题目；均不符合参考要求的电视剧名 Northern Exposure。",
+      "status": "post_freeze_descriptive_only_not_optimizer_feedback",
+      "skill_hash": "c4ab24a9c4550a970e68d42b0ba0ab5b46b4170ed5bfbb363693a6a1e0c606cb"
+    }
+  },
+  {
+    "id": "c6b75f3d0e3247aca276bac0180e28ad",
+    "dataset": "searchqa",
+    "split": "test",
+    "condition": "B",
+    "round": -1,
+    "skill_hash": "c4ab24a9c4550a970e68d42b0ba0ab5b46b4170ed5bfbb363693a6a1e0c606cb",
+    "question": "This czar may have been \"great\", but biographer Robert K. Massie says he was deathly afraid of cockroaches",
+    "visible_context": "[DOC] [TLE] Jeopary Questions page 1325 - TV GUIDE'S 50 GREATEST ... [PAR] FICTIONAL CHARACTERS: He's the character mentioned in the first line of \"Atlas \nShrugged\"  \"USC\": At age 88 King ... ROYALTY: This czar may have been \"great\"\n, but biographer Robert K. Massie says he was deathly afraid of cockroaches. [DOC] [TLE] Best Books of 2011, #4: 'Catherine the Great' by Robert K. Massie [PAR] Nov 12, 2013 ... Since his death in 2005, Richard Pryor has been named as the No. ... Posted by \nTrisha, Managing Editor on May 01, 2013 ... and her most recent book was a \nbiography of Vladimir Putin. As her ... Read our interview with Robert K. Massie \nabout Catherine the Great. .... Peter the Great was afraid of roaches! [DOC] [TLE] The Great War . Historians . Robert K. Massie | PBS [PAR] Historians Overview Robert K. Massie ... And then when bad things would \nhappen, he would say: 'As God wills. ... They feel that Nicholas was not a great \nTsar  that he permitted Communism to rise ... He did this because of the Franco-\nRussian alliance, which had been created ... \"Russia and France were afraid of \nGermany. [DOC] [TLE] Nicholas and Alexandra by Robert K. Massie  Reviews ... [PAR] For what purpose did Robert K. Massie write 'Nicholas and Alexandra'? ... the \nTsar and Tsaritsa, but their memories have been so dragged through the mud .... \nHe led Russia from a great power into revolution, a long slide that saw the ...... \nShelves: own, historical, non-fiction, american, biography, 2000s, novel, male-\nauthor. [DOC] [TLE] China, the Philippines, Vietnam, and International Arbitration in the ... [PAR] Oct 28, 2015 ... Hanoi's decision to address the PAC may have been a compromise ... an incident \ncould spiral out of control and lead to deadly force. ... said he welcomed the \ntalks but was concerned that Beijing might be ...... Robert K. Massie, Peter the \nGreat: His Life and World, (New York: Ballantine Books, 1986), pp. [DOC] [TLE] Marie Antoinette: The Journey - very interesting biographical novel ... [PAR] See more about Marie Antoinette, The Journey and Biography. ... Another pinned \nsays: Just finished this book, I seriously couldn't put it down! .... It was good, but \nlooking back, I think there might have been quite a few things I didn't like ..... \nGoodreads | Catherine the Great: Portrait of a Woman by Robert K. Massie - \nReviews,... [DOC] [TLE] Google+ [PAR] A great line that's been attributed incorrectly to the wrong person (John ... You \njust need to enjoy it for what it is, not a bad little film, but it isn't the worst. ... \"When \nan architect's wife and daughter are murdered and raped he go. .... Starring \nRobert Mitchum, Peter Boyle, Richard Jordan, Steven Keats, Alex Rocco .... \nszerepl(k): [DOC] [TLE] Ebooksclub.org Concerto for the Left Hand Disability and the ... [PAR] Disability studies has largely been developed in frst world countries and ..... with \nembodiment, we might say that disability becomes the ethos of the social insofar\n... [DOC] [TLE] LauraBrook's 1010 Challenge | 1010 Category Challenge ... [PAR] Nicholas and Alexandra by Robert K. Massie (August 21) 613 pgs .... Reading \nwhat everyone else has to say and seeing what everyone else is reading ..... He \nwas FANTASTIC and just the perfect choice to read this book. .... This is terrible \nand shameful, but it has been over a month since I've posted on my... [DOC] [TLE] Bookshelf - I'm Charmoiselle [PAR] In 1848 he organized a Polish legion in Italy and upon his return to Paris founded \na radical ... This richly illustrated biography the first scholarly biography of the \npoet to be ..... Though his name may be familiar to all of us, his work has been \nhabitually detested ... Catherine the Great: Portrait of a Woman by Robert K. \nMassie. [DOC] [TLE] Leveled Reading - Booksource [PAR] For more than 35 years, Booksource",
+    "visible_context_hash": "8256b16e4a425fa15b9ffad0c02d44f20465e7c6b4c804303df61b6f3959cf8d",
+    "context_truncated": false,
+    "raw_response": "<answer>Robert K. Massie</answer>",
+    "response": "<answer>Robert K. Massie</answer>",
+    "em": 0.0,
+    "f1": 0.0,
+    "sub_em": 0.0,
+    "predicted_answer": "Robert K. Massie",
+    "gold_answers": [
+      "Peter the Great"
+    ],
+    "hard": 0,
+    "soft": 0.0,
+    "format_ok": true,
+    "error": "",
+    "provider_refusal": false,
+    "refusal_reason": "",
+    "fail_reason": "EM=0",
+    "latency_seconds": 1.2040000000015425,
+    "generation_config": {
+      "model": {
+        "id": "qwen3.5-9b",
+        "revision": "Team deployment; weight revision undisclosed",
+        "base_url": "http://10.4.162.57:19198/v1",
+        "api_key_env": "PROJECT5_TEAM_QWEN_API_KEY",
+        "tokenizer_path": "F:\\Document\\HKUST\\2026fall\\NLP\\Project\\AIAA4051_Project\\api\\runtime\\tokenizer",
+        "precision": "team-managed; undisclosed",
+        "server_version": "Team OpenAI-compatible API; deployment version undisclosed",
+        "extra_body": {
+          "chat_template_kwargs": {
+            "enable_thinking": false
+          }
+        },
+        "structured_operators": "json_schema",
+        "tokenizer_note": "Qwen/Qwen3.5-9B@c202236235762e1c871ad0ccb60c8ee5ba337b9a proxy for skill/feedback lengths only; hosted server usage is authoritative for request tokens",
+        "allow_private_http": true,
+        "context_window": 32768,
+        "context_safety_tokens": 512
+      },
+      "temperature": 0.0,
+      "seed": 42,
+      "max_tokens": 2048,
+      "tokenizer_hash": "5f434e57da7403bc8232613f565c8d3de0bf56be57ff8326a83ebd76ee1f1e9c"
+    },
+    "attempts": [
+      {
+        "attempt": 1,
+        "status": "ok",
+        "usage": {
+          "prompt_tokens": 2128,
+          "total_tokens": 2140,
+          "completion_tokens": 12,
+          "prompt_tokens_details": null,
+          "completion_tokens_details": null,
+          "call_id": "d7f6e22ca9104db2af2947b015ac252a",
+          "finish_reason": "stop"
+        }
+      }
+    ],
+    "observation_id": "c7a703200ce5e9250b2fbc8221e8b7cc78f97bf2fc66b303ec3bec67701dfa01",
+    "cached": false,
+    "observation_condition": "B",
+    "manual": {
+      "dataset": "searchqa",
+      "split": "test",
+      "condition": "B",
+      "id": "c6b75f3d0e3247aca276bac0180e28ad",
+      "predicted_answer": "Robert K. Massie",
+      "category": "人物角色混淆",
+      "note": "题目问沙皇，B 输出传记作者 Robert K. Massie；同一上下文明确写 Peter the Great was afraid of roaches。回答人物角色与问题不符，是 B 相对 N 新增的一道 EM 退化。",
+      "skill_nodes": [
+        "Parse Question",
+        "Verify Evidence"
+      ],
+      "response_sha256": "745d9847d8b8c0dbbb8d0d4d89a34248a66ac211951284a55a2ef4fc916b1b03"
+    },
+    "skill_diagnosis": {
+      "nodes": [
+        "Parse Question",
+        "Verify Evidence"
+      ],
+      "instruction_quotes": {
+        "Parse Question": "- Extract the core intent and key entities from the QUESTION.\n- Identify the specific information required to form an answer.\n- Note any constraints on the answer format.",
+        "Verify Evidence": "- Cross-check the extracted evidence against the original question to ensure it fully addresses the intent.\n- Confirm that the evidence is explicitly present in the provided CONTEXT.\n- If the evidence is ambiguous or partial, flag it for the next step."
+      },
+      "note": "题目问沙皇，B 输出传记作者 Robert K. Massie；同一上下文明确写 Peter the Great was afraid of roaches。回答人物角色与问题不符，是 B 相对 N 新增的一道 EM 退化。",
+      "status": "post_freeze_descriptive_only_not_optimizer_feedback",
+      "skill_hash": "c4ab24a9c4550a970e68d42b0ba0ab5b46b4170ed5bfbb363693a6a1e0c606cb"
+    }
+  },
+  {
+    "id": "8c3bc713dc724f5f907694e2d2583526",
+    "dataset": "searchqa",
+    "split": "test",
+    "condition": "B",
+    "round": -1,
+    "skill_hash": "c4ab24a9c4550a970e68d42b0ba0ab5b46b4170ed5bfbb363693a6a1e0c606cb",
+    "question": "I bought a special log to grow the shiitake type of these; let's grill some right now",
+    "visible_context": "[DOC] [TLE] jeopardy/2574_Qs.txt at master  jedoublen/jeopardy  GitHub [PAR] MOTHER GOOSE | Some speculate that this \"merry old soul\" of nursery .... I \nbought a special log to grow the shiitake type of these; let's grill some right now | \n... Revolution proudly called themselves these, now describing people who use \nfear... [DOC] [TLE] The Shiitake Mushroom Kit - Indoor Mushroom Growing Kit [PAR] Easy & Fun Mush Room Garden Patch Grow Kits : Mushroom Growing Kit : Patio, \nLawn ... Grow your own edible organic shiitake mushrooms for all your Chinese \nand ... I was intimidated by the negative reviews on Amazon, but these \nmushrooms ... I have eight 4-5 inch sprouts all over the log, and some more \nsmaller ones. [DOC] [TLE] Thy Hand Hath Provided: Growing Shiitake Mushrooms [PAR] Apr 25, 2012 ... It seems like the perfect project for us right now when life feels very full but ... the \nshiitake fungus to logs (where the mushrooms will grow and be harvested from). \n... The kind folks (in the next state over) that we ordered our spawn .... do not \npurchase store bought canned mushrooms, these are actually pretty... [DOC] [TLE] Like eating mushrooms? Here's how to grow your own - Jsonline [PAR] Apr 15, 2015 ... But these edible fungi often come with a hefty per-pound price tag. Some wild \nmushrooms such as morels and chanterelles are in fact just that: wild. ... \"We are \nnow the exclusive dealer for Okuda's shiitake tools,\" she said, adding that ... and \nrange in price from $24 to $32, depending on type of mushroom. [DOC] [TLE] How to Make a Meatier, Juicier, Tastier Grilled Mushroom | Serious ... [PAR] Jun 30, 2015 ... As much as I love a good steak or spicy chicken wings hot off the barbecue, a \nmeal cooked outside isn't complete without some grilled... [DOC] [TLE] for Log-Based Shiitake Cultivation for Log-Based Shiitake Cultivation [PAR] Some of the growers involved in this project have been growing and selling .... \ntion, log-grown shiitake mushrooms were selling for $10 to $18 per pound .... our \narea that if they are ever taking down oak in our area let me know .... These \nspecies might be appropriate for other types of mushroom ..... are coming on \nstrong now. [DOC] [TLE] Blog  East End Mushroom Company [PAR] Last week we had some of the East End's best chefs come by for a special ... \nThank you to all who came out to see how are mushrooms grow, and learn ... \nOyster Bags.jpg Picking Mushrooms.jpg Shiitake GIlls.jpg Shiitake Logs.jpg ... We \nrecently had a cooking demo at the farm in Cutchogue, and now the recipe is \navailable! [DOC] [TLE] Back to the Roots: Herb & Shroom Growing Kit for Growing Edible ... [PAR] Back to the Roots makes kits that are perfect for growing a bit of it right at home. ... \nI'm growing mine right now & just plucked my first havest -- bought at my .... We \ndo have a shiitake mushroom kit coming out soon and a DIY coffee-to-mushroom \nkit that lets ... I bought these mushrooms and followed the directions accordingly. [DOC] [TLE] Cookbook Author Julia Turshen's Grub Street Diet [PAR] Sep 23, 2016 ... I nodded yes, and then right when I was done with the call, she had ... He ordered \na bowl for himself and concurred, which was kind of sweet. ... to get some chicken \nand pork tenderloin (more on these things later). .... shiitake mushrooms and then \nadded the very last of our grilled .... LOG IN; REGISTER. [DOC] [TLE] 2 Angels Mushroom Farm | Facebook [PAR] If you want to plant a bed of your own, send us a private message. We are \nrunning a special on Wine Cap mushroom kits right now! PS...it yours having... [DOC] [TLE] home | red alder ranch [PAR] Jul 17, 2016 ... I've often been asked about how to grow shiitake mushrooms, and since ... I cut \nthe logs right where the tree falls and carefully carry and load them ... compound",
+    "visible_context_hash": "67b5b20dee6a81f676bdf61c3ae7b2c71586db8b2da4860c3fbf647a4e9b3ade",
+    "context_truncated": false,
+    "raw_response": "<answer>shiitake mushrooms</answer>",
+    "response": "<answer>shiitake mushrooms</answer>",
+    "em": 0.0,
+    "f1": 0.6666666666666666,
+    "sub_em": 1.0,
+    "predicted_answer": "shiitake mushrooms",
+    "gold_answers": [
+      "mushrooms"
+    ],
+    "hard": 0,
+    "soft": 0.6666666666666666,
+    "format_ok": true,
+    "error": "",
+    "provider_refusal": false,
+    "refusal_reason": "",
+    "fail_reason": "EM=0",
+    "latency_seconds": 1.139999999999418,
+    "generation_config": {
+      "model": {
+        "id": "qwen3.5-9b",
+        "revision": "Team deployment; weight revision undisclosed",
+        "base_url": "http://10.4.162.57:19198/v1",
+        "api_key_env": "PROJECT5_TEAM_QWEN_API_KEY",
+        "tokenizer_path": "F:\\Document\\HKUST\\2026fall\\NLP\\Project\\AIAA4051_Project\\api\\runtime\\tokenizer",
+        "precision": "team-managed; undisclosed",
+        "server_version": "Team OpenAI-compatible API; deployment version undisclosed",
+        "extra_body": {
+          "chat_template_kwargs": {
+            "enable_thinking": false
+          }
+        },
+        "structured_operators": "json_schema",
+        "tokenizer_note": "Qwen/Qwen3.5-9B@c202236235762e1c871ad0ccb60c8ee5ba337b9a proxy for skill/feedback lengths only; hosted server usage is authoritative for request tokens",
+        "allow_private_http": true,
+        "context_window": 32768,
+        "context_safety_tokens": 512
+      },
+      "temperature": 0.0,
+      "seed": 42,
+      "max_tokens": 2048,
+      "tokenizer_hash": "5f434e57da7403bc8232613f565c8d3de0bf56be57ff8326a83ebd76ee1f1e9c"
+    },
+    "attempts": [
+      {
+        "attempt": 1,
+        "status": "ok",
+        "usage": {
+          "prompt_tokens": 2090,
+          "total_tokens": 2101,
+          "completion_tokens": 11,
+          "prompt_tokens_details": null,
+          "completion_tokens_details": null,
+          "call_id": "2f372bc80bb54e0f959013d749622e6b",
+          "finish_reason": "stop"
+        }
+      }
+    ],
+    "observation_id": "d99983880629dd00763db29483f6e668e68ce2c8ca435d6573e8d5e51156efe2",
+    "cached": false,
+    "observation_condition": "B",
+    "manual": {
+      "dataset": "searchqa",
+      "split": "test",
+      "condition": "B",
+      "id": "8c3bc713dc724f5f907694e2d2583526",
+      "predicted_answer": "shiitake mushrooms",
+      "category": "答案名称或粒度差异",
+      "note": "参考要求上位类别 mushrooms，预测 shiitake mushrooms 多了题目已给出的品种限定词。语义相关，但严格 EM=0，F1=0.667。",
+      "skill_nodes": [
+        "Formulate Answer"
+      ],
+      "response_sha256": "29812e1702f64c25c65187ddb55e6e68271f7c7b95ce99e4a2dd355ce122e8fe"
+    },
+    "skill_diagnosis": {
+      "nodes": [
+        "Formulate Answer"
+      ],
+      "instruction_quotes": {
+        "Formulate Answer": "- Synthesize the verified evidence into a concise, direct answer.\n- Remove any context-specific references (e.g., \"According to the text...\") unless necessary for clarity.\n- Ensure the answer is a few words or a short phrase."
+      },
+      "note": "参考要求上位类别 mushrooms，预测 shiitake mushrooms 多了题目已给出的品种限定词。语义相关，但严格 EM=0，F1=0.667。",
+      "status": "post_freeze_descriptive_only_not_optimizer_feedback",
+      "skill_hash": "c4ab24a9c4550a970e68d42b0ba0ab5b46b4170ed5bfbb363693a6a1e0c606cb"
+    }
+  }
+]

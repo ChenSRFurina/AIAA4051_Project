@@ -1,0 +1,22 @@
+{
+  "method": "pre_test_sealed_success_failure_contrastive",
+  "method_changes": false,
+  "baseline_limits": "exact same frozen config, calls and generation-token caps",
+  "main_comparison": "final validation-selected skills after at most 3 rounds / 2 new candidates per round",
+  "matched_prefix": "Set a common rectangle of min(B final calls,C final calls) and min(B final generated tokens,C final generated tokens), including shared initialization once per logical method. Select each method's latest COMPLETE round inside BOTH caps (initialization is round 0). Use that checkpoint's validation-selected best, never test scores. Partial rounds are excluded. Report unused headroom. This is an accounting-based secondary analysis, not exact equal realized-token consumption.",
+  "pairing_denominator": "selected failures of actual mutation parents; reused parent feedback counted once per operator exposure, plus unique parent-feedback counts separately",
+  "test_rule": "SearchQA existing N/I/B test observations are reused with their freeze provenance. Execute C test only after its final and matched-prefix choices are frozen. If the prefix selected skill differs from an already evaluated condition, evaluate it separately with the same limits and label secondary. HotpotQA test requires course labels/partition.",
+  "test_noninterference": "No test outputs, answers, reviews or scores are used to change C or to select any checkpoint.",
+  "limitations": "Baseline test was exposed before this run, but C method/config were sealed beforehand. Service weight revision/precision unknown. Public HotpotQA is development only.",
+  "dataset": "hotpotqa",
+  "created_at": "2026-11-10T08:51:11.369909+00:00",
+  "baseline": "F:\\Document\\HKUST\\2026fall\\NLP\\Project\\AIAA4051_Project\\Baseline\\runs\\api\\hotpotqa\\20261109-153042-871031-7652",
+  "protocol_root": "F:\\Document\\HKUST\\2026fall\\NLP\\Project\\AIAA4051_Project\\api\\runtime\\protocol-067f9db47e18",
+  "driver_sha256": "e6f51f81985ca8864a802c92b580151cdbdd75d312f4dd1284c6eb77b01e9d96",
+  "prior_method_seal": "1ec2c803df557ccb5d5c28f0a7f9cf7dcaa524d2aa3211d40f036120402b1448",
+  "code_hash": "067f9db47e18c15f7f78975f73896c4ca6b25f6c477514214bae5889d3fb0f5e",
+  "config_hash": "16be27c13abe928b1deafb458703e90dd09c42313b90f649623ee6bfd66b9e7b",
+  "source_ip": "10.4.144.134",
+  "python": "E:\\Anaconda\\envs\\qwen3.5\\python.exe",
+  "policy_id": "1ab1ba245db15a504564987958f571e24443e5c6d1b3b4d6d5140e97b4dde417"
+}

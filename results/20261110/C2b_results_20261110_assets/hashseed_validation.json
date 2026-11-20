@@ -1,0 +1,26 @@
+{
+  "status": "passed",
+  "checks": [
+    {
+      "python_hash_seed": "1",
+      "feedbacks": {
+        "searchqa": 6,
+        "hotpotqa": 2
+      }
+    },
+    {
+      "python_hash_seed": "2",
+      "feedbacks": {
+        "searchqa": 6,
+        "hotpotqa": 2
+      }
+    },
+    {
+      "python_hash_seed": "17",
+      "feedbacks": {
+        "searchqa": 6,
+        "hotpotqa": 2
+      }
+    }
+  ]
+}

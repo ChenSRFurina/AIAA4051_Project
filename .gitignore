@@ -6,7 +6,7 @@
 /local_model/state.json
 /models/
 
-# Code-only GitHub publication
+# Source and curated results publication; local runtime/data remain private
 __pycache__/
 *.py[cod]
 .pytest_cache/
@@ -45,3 +45,21 @@ __pycache__/
 /local_model/backups/
 /local_model/latest_pilot.json
 /local_model/deployment_validation.json
+
+# Credentials and additional model/checkpoint formats (including uppercase .ENV)
+.[eE][nN][vV]
+.[eE][nN][vV].*
+*.pem
+*.key
+*.p12
+*.pfx
+id_rsa*
+id_ed25519*
+*.bin
+*.ckpt
+*.h5
+*.hdf5
+*.msgpack
+*.tflite
+*.npz
+*.npy

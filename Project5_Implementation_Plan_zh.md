@@ -1,5 +1,7 @@
 # Project 5 实施方案
 
+> **2026-11-10 最新状态：** 下文 v2 保留本机部署阶段的历史方案，当前进度以本段及运行文档为准。现使用队友的 `qwen3.5-9b` API；两套数据的 N/I/B 开发实验、18 道 B dev 错题复核，以及 SearchQA 50 题 N/I/B test 已完成（EM 70% / 72% / 68%），见 `Baseline/runs/reports/part12_20261110.html` 与 [api/PART12.md](api/PART12.md)。本日又完成封存 C 的两套三轮对照、实际反馈审计、共同预算截点及 SearchQA C test：SearchQA dev B/C 为 23/30、22/30，test 为 34/50、32/50；HotpotQA dev 均为 19/30。两套 C 都保留初始化最佳技能，当前结果不支持 C 优于 B。详细报告见 `Baseline/runs/reports/part3_20261110.html`，运行与预算规则见 [api/PART3.md](api/PART3.md)。C 算法未根据已公开的 test 改动；后续改方法需独立评估或标为探索性分析。HotpotQA 课程划分/test、最终课程报告与演示仍待完成。
+
 **课程题目：Evolving Graph-Structured Skills for LLM Agents**
 
 **方案版本：v2，2026 年 10 月 27 日；本机真实 pilot 验证日期：2026 年 10 月 25 日。**

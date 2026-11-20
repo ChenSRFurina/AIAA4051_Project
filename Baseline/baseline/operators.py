@@ -32,9 +32,17 @@ class CourseOperators(EvolutionOperators):
             + ("" if initializing and self.config.get("backend") == "api" else
                "For mutation, return the complete new_skill string and a short notes list. ") +
             "Every workflow item must be an exact defined node name; every defined node must be used. "
+            "In Task Graphs, each task must start with its own '### <Task Name>' heading. "
+            "The next line must be '**Use when:** <nonempty condition>', followed by '**Workflow:**' on its own line. "
+            "Use when and Workflow are bold labels, never headings; do not prefix them with #. "
             "Workflow numbering must start at 1 and increase consecutively without duplicate numbers. "
             "After each **Workflow:** marker, include only numbered node names until the next task heading or end of document. "
-            "Put all explanations, notes and fallback instructions in node definitions or Global Guidance, never after a workflow."
+            "Put all explanations, notes and fallback instructions in node definitions or Global Guidance, never after a workflow.\n"
+            "Task graph syntax example (replace names and condition with your own, defined nodes):\n"
+            "### Task Name\n"
+            "**Use when:** The question matches this task.\n"
+            "**Workflow:**\n"
+            "1. Defined Node Name\n"
         )
 
     def validate(self, skill):

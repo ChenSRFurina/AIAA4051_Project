@@ -1,5 +1,7 @@
 # Project 5 Qwen API 实施方案
 
+> **历史方案说明（2026-11-10）：** 以下正文描述早期阿里云接入，当前以队友部署的 `qwen3.5-9b`、环境 `qwen3.5`、[api/README.md](api/README.md) 及固定 API 配置为准。已完成 [Part 1/2](api/PART12.md) 和 [封存 C 的 Part 3 对照](api/PART3.md)：SearchQA 50 题 test 的 N/I/B/C EM 为 70% / 72% / 68% / 64%；HotpotQA dev B/C 均 19/30，课程 test 仍缺。两套 C 均完成三轮但保留初始化最佳技能，本次结果不支持 C 优于 B。报告为 `Baseline/runs/reports/part3_20261110.html`，当前方法与配置保持 test 前封存版本。
+
 本方案使用阿里云 Qwen API 完成现有 GraphSkillEvo 实验流程，本机只负责数据、图结构校验、经验记忆和评测，无需部署模型或配备 NVIDIA 显卡。原本的 [本地模型方案](Project5_Implementation_Plan_zh.md) 保留；本方案的运行目录与本地实验分开。
 
 研究问题仍是：在相同模型与预算上限下，成功与失败对照能否帮助技能优化器修复错误、减少退化。API 负责生成答案和修改技能文档；训练记忆、配对、反馈构造、EM/F1 评分及选择规则继续使用仓库代码。这里不训练模型权重，也不实现 logits 修改或数值奖励惩罚。

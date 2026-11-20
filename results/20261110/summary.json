@@ -1,0 +1,179 @@
+{
+  "experiment_date": "2026-11-10",
+  "publication_date": "2026-11-20",
+  "model": "qwen3.5-9b",
+  "dev": {
+    "searchqa": {
+      "B": {
+        "n": 30,
+        "correct": 23,
+        "em": 0.7666666666666667,
+        "f1": 0.8155555555555555,
+        "mean_latency_seconds": 1.3807333333333796,
+        "p50_latency_seconds": 0.992500000000291,
+        "p95_latency_seconds": 1.219000000000051,
+        "infrastructure_errors": 0,
+        "provider_refusals": 0,
+        "format_failures": 0
+      },
+      "C": {
+        "n": 30,
+        "correct": 22,
+        "em": 0.7333333333333333,
+        "f1": 0.7822222222222222,
+        "mean_latency_seconds": 1.5661333333333307,
+        "p50_latency_seconds": 1.0705000000000382,
+        "p95_latency_seconds": 2.2946000000000093,
+        "infrastructure_errors": 0,
+        "provider_refusals": 0,
+        "format_failures": 0
+      },
+      "C2b": {
+        "n": 30,
+        "correct": 22,
+        "em": 0.7333333333333333,
+        "f1": 0.7822222222222222,
+        "mean_latency_seconds": 1.5661333333333307,
+        "p50_latency_seconds": 1.0705000000000382,
+        "p95_latency_seconds": 2.2946000000000093,
+        "infrastructure_errors": 0,
+        "provider_refusals": 0,
+        "format_failures": 0
+      }
+    },
+    "hotpotqa": {
+      "B": {
+        "n": 30,
+        "correct": 19,
+        "em": 0.6333333333333333,
+        "f1": 0.7488888888888889,
+        "mean_latency_seconds": 38.74533333333323,
+        "p50_latency_seconds": 34.01549999999952,
+        "p95_latency_seconds": 54.663249999999046,
+        "infrastructure_errors": 0,
+        "provider_refusals": 0,
+        "format_failures": 0
+      },
+      "C": {
+        "n": 30,
+        "correct": 19,
+        "em": 0.6333333333333333,
+        "f1": 0.7488888888888889,
+        "mean_latency_seconds": 38.74533333333323,
+        "p50_latency_seconds": 34.01549999999952,
+        "p95_latency_seconds": 54.663249999999046,
+        "infrastructure_errors": 0,
+        "provider_refusals": 0,
+        "format_failures": 0
+      },
+      "C2b": {
+        "n": 30,
+        "correct": 19,
+        "em": 0.6333333333333333,
+        "f1": 0.7488888888888889,
+        "mean_latency_seconds": 38.74533333333323,
+        "p50_latency_seconds": 34.01549999999952,
+        "p95_latency_seconds": 54.663249999999046,
+        "infrastructure_errors": 0,
+        "provider_refusals": 0,
+        "format_failures": 0
+      }
+    }
+  },
+  "searchqa_test": {
+    "N": {
+      "n": 50,
+      "correct": 35,
+      "em": 0.7,
+      "f1": 0.8059999999999999,
+      "mean_latency_seconds": 6.932180000000008,
+      "p50_latency_seconds": 1.069999999999709,
+      "p95_latency_seconds": 9.356249999999998,
+      "infrastructure_errors": 0,
+      "provider_refusals": 0,
+      "format_failures": 0,
+      "cost": {
+        "calls": 50,
+        "prompt_tokens": 57327,
+        "generated_tokens": 4485,
+        "reasoning_tokens": 0,
+        "physical_calls": 50
+      },
+      "gpu_hours": null
+    },
+    "I": {
+      "n": 50,
+      "correct": 36,
+      "em": 0.72,
+      "f1": 0.8075757575757576,
+      "mean_latency_seconds": 6.944720000000161,
+      "p50_latency_seconds": 6.516000000001441,
+      "p95_latency_seconds": 13.953549999999813,
+      "infrastructure_errors": 0,
+      "provider_refusals": 0,
+      "format_failures": 0,
+      "cost": {
+        "calls": 50,
+        "prompt_tokens": 69577,
+        "generated_tokens": 4453,
+        "reasoning_tokens": 0,
+        "physical_calls": 50
+      },
+      "gpu_hours": null
+    },
+    "B": {
+      "n": 50,
+      "correct": 34,
+      "em": 0.68,
+      "f1": 0.778,
+      "mean_latency_seconds": 1.4975200000000768,
+      "p50_latency_seconds": 1.0470000000004802,
+      "p95_latency_seconds": 5.688100000000301,
+      "infrastructure_errors": 0,
+      "provider_refusals": 0,
+      "format_failures": 0,
+      "cost": {
+        "calls": 50,
+        "prompt_tokens": 104077,
+        "generated_tokens": 789,
+        "reasoning_tokens": 0,
+        "physical_calls": 50
+      },
+      "gpu_hours": null
+    },
+    "C": {
+      "n": 50,
+      "correct": 32,
+      "em": 0.64,
+      "f1": 0.7168571428571429,
+      "mean_latency_seconds": 1.557779999999475,
+      "p50_latency_seconds": 1.125,
+      "p95_latency_seconds": 3.2118500000029595,
+      "infrastructure_errors": 0,
+      "provider_refusals": 0,
+      "format_failures": 0,
+      "new_calls": 50,
+      "cost": {
+        "calls": 50,
+        "prompt_tokens": 99727,
+        "generated_tokens": 784,
+        "reasoning_tokens": 0,
+        "physical_calls": 50
+      },
+      "reused_from": null
+    }
+  },
+  "hotpotqa_test_status": "pending_course_data",
+  "C2b_test_status": "not_run",
+  "C2b_new_cost": {
+    "physical_calls": 615,
+    "prompt_tokens": 1509898,
+    "generated_tokens": 109882
+  },
+  "limitations": [
+    "Dev participates in selection; one seed and n=30 per dataset",
+    "Historical B/C controls; hosted model revision undisclosed",
+    "C2b was developed after prior test exposure and evaluated only on train/dev",
+    "No new inference performed for publication"
+  ]
+}

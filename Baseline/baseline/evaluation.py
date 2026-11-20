@@ -28,10 +28,29 @@ def truncate_context(context, max_chars=6000):
     return result or context[:max_chars] + "\n...[truncated]"
 
 
-def qa_prompts(item, skill):
+def truncate_context_tokens(context, counter, limit):
+    """Keep the original prefix, preferring complete documents within the token cap."""
+    if counter.count(context) <= limit:
+        return context
+    result = ""
+    for document in re.split(r"(?=\[DOC\])", context):
+        candidate = result + document
+        if counter.count(candidate) > limit:
+            break
+        result = candidate
+    # If even the first document is too long, use the tokenizer's bounded prefix.
+    return result if result.strip() else counter.clip(context, limit)
+
+
+def qa_prompts(item, skill, *, config=None, counter=None):
     section = f"## Skill\n{skill.strip()}\n\n" if skill.strip() else ""
     system = load_prompt("rollout_system", env="searchqa").format(skill_section=section)
-    visible = truncate_context(item["context"])
+    if config is not None and "qa_context_max_tokens" in config:
+        if counter is None:
+            raise ValueError("Token-based QA context requires the pinned token counter")
+        visible = truncate_context_tokens(item["context"], counter, config["qa_context_max_tokens"])
+    else:
+        visible = truncate_context(item["context"])
     return system, f"## Context\n{visible}\n\n## Question\n{item['question']}", visible
 
 
@@ -48,7 +67,7 @@ def score(response, answers, dataset):
 
 
 def run_qa(client, item, skill, *, split, round_no, seed, condition, out_dir):
-    system, user, visible = qa_prompts(item, skill)
+    system, user, visible = qa_prompts(item, skill, config=client.config, counter=client.counter)
     start, response, error, usage = time.monotonic(), "", "", {}
     attempts, provider_refusal = [], False
     for attempt in range(client.config["max_attempts"]):

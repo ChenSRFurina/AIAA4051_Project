@@ -1,0 +1,33 @@
+{
+  "verified_at": "2026-11-10T18:55:39.978178+08:00",
+  "unit_tests": {
+    "command": "python -m unittest discover -s api/tests -v",
+    "passed": 12,
+    "failed": 0
+  },
+  "html": {
+    "paired_rows": 220,
+    "full_comparison_rows": 110,
+    "C_failures": 37,
+    "changed_full_rows": 7,
+    "feedback_exposures": 36,
+    "same_question_pair_exposures": 6,
+    "svg": 20,
+    "download_links": 26,
+    "javascript_errors": 0,
+    "mobile_width_px": 390,
+    "horizontal_overflow": false
+  },
+  "manual_review": {
+    "C_failures": 37,
+    "additional_repaired": 2,
+    "distinct_training_pairs": 3
+  },
+  "protocols": {
+    "searchqa": "e6291efca3c706dcd41b5e6319a1568afe5f0d6b0d0193483e5f9df59b67fb89",
+    "hotpotqa": "067f9db47e18c15f7f78975f73896c4ca6b25f6c477514214bae5889d3fb0f5e"
+  },
+  "method_files_match_pre_test_seal": true,
+  "test_freeze_verified": true,
+  "gpu_hours": null
+}

@@ -1,0 +1,407 @@
+{
+  "status": "verified",
+  "method_changed": false,
+  "selection_policy": "Up to five distinct paired training failure IDs per dataset, ordered by round then operator then packet; all available final C dev failures and changed cases are reviewed. Test review is descriptive only.",
+  "pairs": [
+    {
+      "dataset": "searchqa",
+      "round": 1,
+      "failure_id": "691178453c884f98a9205ef3d143bc42",
+      "note": "同题、同上下文的两个父代输出分别为 True 和 Smithsonian Institution。实际包保留成功答案及机构归属片段，能够对照回答类型错误。相同配对被本轮两个算子使用，属于两次曝光、一组独立题目材料。显式引文字面检测为 false：上下文在 Smithsonian 与 Institution 之间有换行，不能据该标记断言无证据。未观察到节点内部执行。"
+    },
+    {
+      "dataset": "hotpotqa",
+      "round": 1,
+      "failure_id": "5ab2de5d5542991669774116",
+      "note": "失败与成功都列出 Codding Enterprises 和 Simon Property Group，仅顺序相反，失败 EM=0 但 F1=1；这组标签差异不证明多跳推理出了错。实际反馈包保留两组答案，却将可见上下文截成前部 Santa Rosa Rancheria 干扰段，相关商场证据不在该片段内。完整 Coddingtown 段还明确说 Simon 也拥有 Santa Rosa Plaza，相关证据在前缀截断中丢失。适合作为避免从严格 EM 差异过度推断原因的例子；未修改评分、配对规则或技能。"
+    },
+    {
+      "dataset": "hotpotqa",
+      "round": 2,
+      "failure_id": "5ab5dba3554299494045f086",
+      "note": "成功答案为 Verona，失败为 Stephen Verona，两份完整响应均沿 Janet Leigh → Boardwalk → Verona 得到同一导演，主要表现为姓名粒度差异；不能把 EM=0 直接解释成多跳链错误。实际包中的两份推理都截在识别 Janet Leigh 的前部，未展示后续电影到导演的完整链；可见上下文又截取了另一部 1960 年电影的段落。包保留了预测答案字段，但不能据截断的响应认定失败发生于第一跳。原始完整响应与输入保留，评分和方法均未修改。"
+    }
+  ],
+  "cases": [
+    {
+      "dataset": "searchqa",
+      "split": "dev",
+      "id": "24143f01e7dd455e86c34a4a6f4ed3b9",
+      "C": "True",
+      "C_response_sha256": "8220e293800681f807a84be08cad6643f422034939b31cd6c305e32935ae0e94",
+      "category": "回答类型错误",
+      "note": "题目要填出眼部结构，C 只给 True；可见文本直接包含 cornea 与 stroma、折叠角膜瓣的关系。B 返回 cornea。Parse Question 要求识别所需信息，但保留技能没有明确约束陈述式线索必须补出实体。响应未提供过程，不能断言具体节点执行错误。"
+    },
+    {
+      "dataset": "searchqa",
+      "split": "dev",
+      "id": "f0c26f4f2e9f4d1d84b4f13cb201cbeb",
+      "C": "money for nothing",
+      "C_response_sha256": "e171cee7eb42bdb83bdafe180ddd55b226deb4e027d69604a097201734d312d1",
+      "category": "检索片段字段混淆",
+      "note": "可见片段为 MONEY FOR NOTHING | 题目 | a handout，C 与 B 都把栏目名当成答案。Extract Evidence 的忽略噪声要求未能防止这种输出；这是可观察的字段混淆，不是不可见节点轨迹的证明。"
+    },
+    {
+      "dataset": "searchqa",
+      "split": "dev",
+      "id": "f03757766e034c539bf2595428c03626",
+      "C": "be/bee",
+      "C_response_sha256": "e2c588984f7d64ee338c1abd7d4df1dd568645779f0e9626605581e145ea5792",
+      "category": "双答案完整性修复",
+      "note": "C 返回 be/bee，保留 Exist 与 bonnet intruder 两个线索；B 只返回 bee。上下文直接给出 be/bee。C 最终技能仍来自共同初始化，不能把这项 B→C 差异解释成 C 三轮新学到的修复。"
+    },
+    {
+      "dataset": "searchqa",
+      "split": "dev",
+      "id": "e3b96fc1b99247ebada09a84fa5fd205",
+      "C": "is a famous dictum attributed to Socrates, uttered at his trial for impiety and corrupting youth, as described in Plato's Apology.",
+      "C_response_sha256": "1e4068790f8d43bd15f5b4f238a6ae1bd43d14e3bfa2fd0df6c4112897f61d52",
+      "category": "题干目标欠明确",
+      "note": "题干只有引文，参考为 Greek。C 扩写为苏格拉底、审判及柏拉图的介绍，B 为 Socrates；可见文本同时含 Ancient Greek 和归属信息。题干未说明要求语言或作者，因此保留标注歧义，不将其简单归为知识错误。C 的长句也没有遵守短答案要求。"
+    },
+    {
+      "dataset": "searchqa",
+      "split": "dev",
+      "id": "1a78a8cf476c4a0dbf551558da1d879b",
+      "C": "Black Licorice",
+      "C_response_sha256": "31a66b2ab2215b3e60f517c22d589b88d8260910d3eb2a58dd24342f6cfc115a",
+      "category": "答案粒度差异",
+      "note": "C 与 B 都答 Black Licorice，参考只含 licorice，F1 为 2/3。属于额外颜色修饰带来的严格 EM 差异；Formulate Answer 的精简要求没有指定应删除哪些限定词，不擅自改为正确。"
+    },
+    {
+      "dataset": "searchqa",
+      "split": "dev",
+      "id": "c7bd32aee95f485d85d0b6749d542c51",
+      "C": "True",
+      "C_response_sha256": "8220e293800681f807a84be08cad6643f422034939b31cd6c305e32935ae0e94",
+      "category": "回答类型错误",
+      "note": "陈述式线索需要人名，C 与 B 都答 True。上下文含 Sirhan Sirhan 及假释报道；缺少显式输出槽位约束是待验证的技能局限，当前只能观察到答案类型错误。"
+    },
+    {
+      "dataset": "searchqa",
+      "split": "dev",
+      "id": "5324041c25d04316a800ccba2d79a2c7",
+      "C": "True",
+      "C_response_sha256": "8220e293800681f807a84be08cad6643f422034939b31cd6c305e32935ae0e94",
+      "category": "回答类型错误",
+      "note": "题干要填人物，B 回答 Mickey Spillane，C 只答 True。上下文含 Spillane 与相关作品。Parse Question 的通用意图要求不足以保证陈述式线索得到实体答案；无输出推理，不能定位实际内部路径。"
+    },
+    {
+      "dataset": "searchqa",
+      "split": "dev",
+      "id": "c9f3a971abe64853aca3e0bb1fea6962",
+      "C": "Senator Joseph McCarthy",
+      "C_response_sha256": "d5c9e3110e5c6d1f865a77ad92cb4a5c2e54182655405e73fc90ea1fa3a085b4",
+      "category": "称谓与名称粒度",
+      "note": "参考 (Joseph) McCarthy，C 与 B 都输出 Senator Joseph McCarthy，F1=0.8。人名主体一致但多了 Senator；严格评分不忽略该称谓，保留原分数。"
+    },
+    {
+      "dataset": "searchqa",
+      "split": "dev",
+      "id": "982e414b371248788c72732975949957",
+      "C": "Not found in context",
+      "C_response_sha256": "0c85ad907532385aaecc313ce7447e8cc5f72f21d470fed2e8008dfdc4c18ed6",
+      "category": "过强的显式证据要求",
+      "note": "C 的原响应已将 Pastor Alemn 解释为 German Shepherd，却要求片段明确证实 Chile dogs 的完整关系，最终答 Not found in context；B 同样失败。与 Verify Evidence 的显式证据要求及 Recovery 回退相容，但不能据此证明某节点导致错误。"
+    },
+    {
+      "dataset": "hotpotqa",
+      "split": "dev",
+      "id": "5a733b835542991f9a20c6b2",
+      "C": "The Princess and the Frog",
+      "C_response_sha256": "78e9b58f24cf08ec21cc97d49c761e5657162c518441477090f5ac5b54feaf7f",
+      "category": "题意与参考答案需回查",
+      "note": "可见上下文把 The Princess and the Frog 明确描述为电影，把 The Frog Prince / Iron Henry 描述为其童话来源。题目问电影而参考答案给出 The Frog Prince，存在答案类型或标注歧义；需回查原题，不能直接把这次 EM=0 当作事实推理错误。",
+      "annotation_reused_from": "Baseline\\runs\\reports\\baseline_review_20261109.json",
+      "reuse_basis": "Identical skill, input and raw output; earlier verified B review applies to the same cached observation."
+    },
+    {
+      "dataset": "hotpotqa",
+      "split": "dev",
+      "id": "5a793bc95542994bb9456fc3",
+      "C": "Andy Roddick",
+      "C_response_sha256": "95450e5bf4dd55afd2ae2dc91b16f16c438debb43c8c5129b671faf8da2adc57",
+      "category": "同一人物的名称表述差异",
+      "note": "出生年份比较为 1982 早于 1987，模型选中了题目中的 Andy Roddick；参考答案要求文档正文的全名 Andrew Stephen Roddick。同一实体的常用名与全名不被当前严格 EM 合并，F1 为 0.4。",
+      "annotation_reused_from": "Baseline\\runs\\reports\\baseline_review_20261109.json",
+      "reuse_basis": "Identical skill, input and raw output; earlier verified B review applies to the same cached observation."
+    },
+    {
+      "dataset": "hotpotqa",
+      "split": "dev",
+      "id": "5add3fe05542992c1e3a2580",
+      "C": "In Another's Eyes",
+      "C_response_sha256": "bf4b53b0ff3bd9dac71e04c46ef154430cbfbe670d714ba878e9b557f37b9ca3",
+      "category": "歌曲选择与年份口径需复核",
+      "note": "模型选择专辑段落提到的 In Another's Eyes，并称没有其他相关歌曲，但独立 Two Piña Coladas 段落明确关联 Sevens。该段落又写单曲于 1998 年发行，题目称 1997 song，年份口径也需回查。保留参考答案及原始零分，不直接将此归因为某个内部节点。",
+      "annotation_reused_from": "Baseline\\runs\\reports\\baseline_review_20261109.json",
+      "reuse_basis": "Identical skill, input and raw output; earlier verified B review applies to the same cached observation."
+    },
+    {
+      "dataset": "hotpotqa",
+      "split": "dev",
+      "id": "5a776b82554299373536026f",
+      "C": "Japanese yen",
+      "C_response_sha256": "37f966a0e12e50a59f4f7ccb085ad83f9b4e4db3bb0c20d43399033646bf9036",
+      "category": "答案粒度与参考不一致",
+      "note": "已完成赛事→日本→日元的关系链；输出 Japanese yen，参考为 yen。多出的 Japanese 导致 EM=0，F1=0.667，不能据此认定币种识别错误。",
+      "annotation_reused_from": "Baseline\\runs\\reports\\baseline_review_20261109.json",
+      "reuse_basis": "Identical skill, input and raw output; earlier verified B review applies to the same cached observation."
+    },
+    {
+      "dataset": "hotpotqa",
+      "split": "dev",
+      "id": "5adf62d05542992d7e9f932d",
+      "C": "None",
+      "C_response_sha256": "a6cb18e327e354c0122449ed88449d82a226a680cc27c969c46ba356ffa70896",
+      "category": "同名实体混淆",
+      "note": "原始响应先引入 RNC 主席 Michael Steele，又把 The Bangles 成员 Michael Steele 的音乐语境与之混用，并误读 Ezo 影响关系的方向，最后回答 None。可见文本中的 The Bangles 段落包含参考单曲 Walk Like an Egyptian。",
+      "annotation_reused_from": "Baseline\\runs\\reports\\baseline_review_20261109.json",
+      "reuse_basis": "Identical skill, input and raw output; earlier verified B review applies to the same cached observation."
+    },
+    {
+      "dataset": "hotpotqa",
+      "split": "dev",
+      "id": "5ac2cdaa554299657fa29070",
+      "C": "Neoregelia is native to South American rainforests, and Aloysia is native to the Americas.",
+      "C_response_sha256": "819dac2914279e65e3a006afcf4e224e45bca03126c234de86b203725efd05ab",
+      "category": "题意与参考答案需回查",
+      "note": "模型按原生地回答 South American rainforests / Americas；参考答案则选择 temperate climates。可见文本只明确把温带分布用于 Aloysia，Neoregelia 段落描述南美雨林。题目 where 的地理/气候维度以及参考是否适用于两者均需回查，原始评分保持不变。",
+      "annotation_reused_from": "Baseline\\runs\\reports\\baseline_review_20261109.json",
+      "reuse_basis": "Identical skill, input and raw output; earlier verified B review applies to the same cached observation."
+    },
+    {
+      "dataset": "hotpotqa",
+      "split": "dev",
+      "id": "5ae788fa55429952e35ea964",
+      "C": "Cannot be determined from the text",
+      "C_response_sha256": "39f45e3b58f07bc23a7c347e27215345c424656b1bf740aa9b8bfc820634b5a1",
+      "category": "多跳关系未完成",
+      "note": "可见文档给出 On Tour Forever 是 Blues Traveler 的现场 EP，并在乐队段落描述现场演出以 extensive use of segues 著称。模型要求文本直接把专辑和 trademark 写在同一句，因而拒答，未完成这条跨文档关联。",
+      "annotation_reused_from": "Baseline\\runs\\reports\\baseline_review_20261109.json",
+      "reuse_basis": "Identical skill, input and raw output; earlier verified B review applies to the same cached observation."
+    },
+    {
+      "dataset": "hotpotqa",
+      "split": "dev",
+      "id": "5ab236645542993be8fa98c9",
+      "C": "two",
+      "C_response_sha256": "69a486364a4311175542e353ff83b9c686de8e656ad30767598d239430462ec6",
+      "category": "答案粒度与参考不一致",
+      "note": "模型已找到 UNHCR 并回答正确数量 two；参考答案是完整短语 two Nobel Peace Prizes。问题问 how many，数量正确仍被当前 EM 判零，F1 为 0.4。",
+      "annotation_reused_from": "Baseline\\runs\\reports\\baseline_review_20261109.json",
+      "reuse_basis": "Identical skill, input and raw output; earlier verified B review applies to the same cached observation."
+    },
+    {
+      "dataset": "hotpotqa",
+      "split": "dev",
+      "id": "5a81e8ea5542995ce29dcc73",
+      "C": "Akosua Busia",
+      "C_response_sha256": "4b29f8a072abd216f293ccf0a127671b3bb5d3fc51f704de0add6be9f7d20595",
+      "category": "同一人物的名称表述差异",
+      "note": "模型正确找到扮演 Nettie Harris 的演员，但输出文档标题 Akosua Busia，参考答案使用正文全名 Akosua Gyamama Busia。遗漏中间名导致 EM=0，F1=0.8。",
+      "annotation_reused_from": "Baseline\\runs\\reports\\baseline_review_20261109.json",
+      "reuse_basis": "Identical skill, input and raw output; earlier verified B review applies to the same cached observation."
+    },
+    {
+      "dataset": "hotpotqa",
+      "split": "dev",
+      "id": "5adf34d35542993a75d26425",
+      "C": "Gerry Adams",
+      "C_response_sha256": "0a432a4e08e341e1b93ffe7696ff6ea91f92825bdb0aaea523ee9b20aafe202f",
+      "category": "同一人物的名称表述差异",
+      "note": "模型已找到 Hume–Adams 对话中的 Sinn Féin 领导人 Gerry Adams，参考答案写作 Gerard \"Gerry\" Adams。两者在提供的正文中指向同一人，名称形式差异导致 EM=0、F1=0.8。",
+      "annotation_reused_from": "Baseline\\runs\\reports\\baseline_review_20261109.json",
+      "reuse_basis": "Identical skill, input and raw output; earlier verified B review applies to the same cached observation."
+    },
+    {
+      "dataset": "hotpotqa",
+      "split": "dev",
+      "id": "5abe87cb5542993f32c2a156",
+      "C": "National Lottery",
+      "C_response_sha256": "e5687703a61847fdae89c335a52650ef3cac4d36d0167522e97d39e6a845e492",
+      "category": "多跳关系未完成",
+      "note": "模型停在资助来源 National Lottery，没有继续读取 National Lottery (United Kingdom) 段落中的类型 state-franchised。题目问彩票类型，输出了中间实体名称。",
+      "annotation_reused_from": "Baseline\\runs\\reports\\baseline_review_20261109.json",
+      "reuse_basis": "Identical skill, input and raw output; earlier verified B review applies to the same cached observation."
+    },
+    {
+      "dataset": "searchqa",
+      "split": "test",
+      "id": "59ec0cf2e15944659c77b96d911ceab0",
+      "C": "structure",
+      "C_response_sha256": "e74c78765c4e3dbb2c96e2b35777cc0b66cdf5f9e17c563ffb47c7c4859c0738",
+      "category": "术语粒度不符",
+      "note": "C 与 B 都给出泛称 structure，参考要求句子词语安排及关系的术语 syntax。两者语义相关，但当前严格匹配不视为同义；无输出推理，不能确定具体选择过程。"
+    },
+    {
+      "dataset": "searchqa",
+      "split": "test",
+      "id": "273e54aff0a149e08852c43ca2c5ea89",
+      "C": "orange blossom water",
+      "C_response_sha256": "efc556108d77eaafec7cb97c236615d68176bd07803a93b0175b522bd83b8821",
+      "category": "同词语境混淆",
+      "note": "题目提示 bartenders，输入含明确的 Orange Blossom cocktail、gin 与 orange juice 配方；C 却答 orange blossom water，B 答 water。可观察为鸡尾酒与花水语境混淆，原响应没有解释其选择依据。"
+    },
+    {
+      "dataset": "searchqa",
+      "split": "test",
+      "id": "218c4e7c031049cf8e40caa3ef4d03a5",
+      "C": "Coen brothers",
+      "C_response_sha256": "a76a2d32dabf926fadf61398b90f2a7d90c255f223f4f96fffb2fd273e8d0d61",
+      "category": "答案粒度差异",
+      "note": "C 与 B 都回答 Coen brothers，参考只要求 Coen；多出 brothers，F1=2/3。保留严格评分，不把名称主体相同自动改成 EM=1。"
+    },
+    {
+      "dataset": "searchqa",
+      "split": "test",
+      "id": "0cbceee80bee448c8c5d40f39d12d434",
+      "C": "Catherine de' Medici",
+      "C_response_sha256": "3fba5e240d6710c49b014ab0e0c8030b22fd15282f5a33b16f8c4049d3d5adac",
+      "category": "名称表述差异",
+      "note": "C 与 B 都输出 Catherine de’ Medici，参考仅为 Catherine。属于全名与给定短名的差异，F1=0.5；不能仅据零 EM 判定人物识别错误。"
+    },
+    {
+      "dataset": "searchqa",
+      "split": "test",
+      "id": "23a9f0f9823f4c6ba66163b1652a6b05",
+      "C": "Rachmaninoff wrote \"Rhapsody on a Theme of Paganini\" and Gershwin wrote \"Rhapsody in Blue\"",
+      "C_response_sha256": "94bf8ac1cc19d6ffb121afab92bee0b238645a51e2a8357f1b78c5c3e1946f7c",
+      "category": "答案范围过大",
+      "note": "B 输出共同类别 Rhapsody；C 把两部作品及作者写成整句，虽包含 rhapsody，但未提炼题目要求的共同名词，F1=1/7。与 Formulate Answer 的短语精简要求不一致；无法从最终输出观察实际节点。"
+    },
+    {
+      "dataset": "searchqa",
+      "split": "test",
+      "id": "e006f1243e0e486e8bab439af1d1ffd0",
+      "C": "7 or 11",
+      "C_response_sha256": "f9e22b426bf7e896941a1a5b6506c02a7108b5f8d746cad156d90a5a7e104626",
+      "category": "连接词导致严格匹配差异",
+      "note": "C 为 7 or 11，B 为 7 and 11，参考为 7 & 11。两个数字均正确；归一化删除 & 后保留 or/and，导致 EM=0、F1=0.8。属于输出形式差异，不证明数值推理错误。"
+    },
+    {
+      "dataset": "searchqa",
+      "split": "test",
+      "id": "491fe356172c4f0f8899595cd13426db",
+      "C": "Faraday",
+      "C_response_sha256": "6e9d2c8b9561a34800444d3e70011363a51dcca487dc53fb756cb95abef59714",
+      "category": "人物与效应名称范围修复",
+      "note": "C 根据磁场与偏振相关段落返回 Faraday；B 输出效应名称 Faraday rotation。题目要求物理学家，C 的最终答案匹配参考。C 最终仍是初始化技能，因此这是冻结技能间的 B→C 输出差异，不是三轮新学到的修复。"
+    },
+    {
+      "dataset": "searchqa",
+      "split": "test",
+      "id": "9ba40aba1544434b900db2758db2eded",
+      "C": "True",
+      "C_response_sha256": "8220e293800681f807a84be08cad6643f422034939b31cd6c305e32935ae0e94",
+      "category": "回答类型错误",
+      "note": "线索要求大西洋海域名称；B 返回 Bermuda Triangle，C 只返回 True。这是实体槽位被布尔回答替代，C 未给出过程，不能归因为某个已观测节点。"
+    },
+    {
+      "dataset": "searchqa",
+      "split": "test",
+      "id": "671f3c2e406f4ca7b41cb69fefe72e66",
+      "C": "Yes, in the 1940 film Pinocchio, bad boys at Pleasure Island are turned into donkeys.",
+      "C_response_sha256": "e29b289267bcf45d6eb8d5e5b301ccfe06565aaa6412ea4eb68fb48b0baed76f",
+      "category": "答案范围过大",
+      "note": "C 的整句包含正确电影名 Pinocchio，同时加上 Yes、年份、地点与情节说明，因此严格 EM=0、F1≈0.133。B 只答 True。两者都错于严格评分，但 C 已包含目标实体，不能等同于没有识别电影。"
+    },
+    {
+      "dataset": "searchqa",
+      "split": "test",
+      "id": "021a105fde2040e6878900394ac1fe98",
+      "C": "Salvatore Ferragamo Museum",
+      "C_response_sha256": "103e2dd68f2545d6868de8999898806d20588d574f53a8b1ee72563f9db76a4c",
+      "category": "答案实体类型不符",
+      "note": "题目问 footwear designer；C 原响应将任务改述成找博物馆，最终答 Salvatore Ferragamo Museum，B 也答馆名。可见原响应已提及设计师 Salvatore Ferragamo，却没有以人物作最终答案。"
+    },
+    {
+      "dataset": "searchqa",
+      "split": "test",
+      "id": "3b118e16845f4c09a5c0ad28fa40b006",
+      "C": "55",
+      "C_response_sha256": "82353240fd0c5fbfce8c98df81755384652d6d8f12c53ce0b3a5791edffd5b18",
+      "category": "题目目标误识别",
+      "note": "参考要求 Prius 的品牌 Toyota，C 与 B 都抄出线索中的 MPG 数值 55。最终输出没有推理说明，只能确认回答目标类型不符。"
+    },
+    {
+      "dataset": "searchqa",
+      "split": "test",
+      "id": "7d249f57e28e4719aaec9d223e0a27e7",
+      "C": "Not found in context",
+      "C_response_sha256": "aa1668c44787527444353bbe1d4ece06dfcbc6f98692ba37231cb257aa2b76f2",
+      "category": "视觉线索缺失与证据限制",
+      "note": "题目含 seen here，但输入没有对应图像；可见文字出现 cornrows，却未直接建立题目所述的全部 1979 年关系。C 与 B 都拒答。保留原始零分，同时指出输入缺失和语境关联的不确定性。"
+    },
+    {
+      "dataset": "searchqa",
+      "split": "test",
+      "id": "39f0fe99cde247619b4057d0084ba9e1",
+      "C": "He had a big beef",
+      "C_response_sha256": "538eef2ffa1fdff2350f66c1da7815909ff38ba48ac3d539b2a5131fd63c18a3",
+      "category": "复制题干而未回答目标",
+      "note": "C 直接抄出 He had a big beef，B 仅答人物 Dantes；输入包含 The Count of Monte Cristo 标题及 Château d’If、Danglars 等相关材料，参考为作品名。C 的输出没有完成从线索到作品名的答案构造。"
+    },
+    {
+      "dataset": "searchqa",
+      "split": "test",
+      "id": "23a6c1fda8fc4c5fbb3b7740bee62ead",
+      "C": "Mau Mau",
+      "C_response_sha256": "d63eb7b7b43c27ab155b06105831c51c6323752386ed65d220498fabe0be5f98",
+      "category": "答案粒度差异",
+      "note": "C 与 B 都答 Mau Mau，参考为 the Mau Mau movement；归一化删除冠词后仍缺少 movement，F1=0.8。名称主体一致，原评分不变。"
+    },
+    {
+      "dataset": "searchqa",
+      "split": "test",
+      "id": "255522dc506241a18970f20c859f4431",
+      "C": "Not found in context",
+      "C_response_sha256": "aa1668c44787527444353bbe1d4ece06dfcbc6f98692ba37231cb257aa2b76f2",
+      "category": "相关证据下拒答",
+      "note": "B 输出 seminary，C 输出 Not found in context。可见片段包含 priest training、seminary 和 after a year，但未直接串起题目的全部线索，包括拉丁词源。与保留技能的显式证据要求和 Recovery 回退相容；C 没有解释，拒答动因仍属假设。"
+    },
+    {
+      "dataset": "searchqa",
+      "split": "test",
+      "id": "7ec750061ca34bbc927c07fd28f2cefa",
+      "C": "October",
+      "C_response_sha256": "651262c835fe45f2731017c7a88d46a388f5777fd6643f964fe2872676a57b49",
+      "category": "历史口径与材料冲突需复核",
+      "note": "C 与 B 都答 October，参考为 December。可见检索片段混有不同日历阶段的月份排序说明，部分片段直接支持 October，另有 December 源于第十月的描述。保留参考和评分，未把这一样例当成无争议的事实错误。"
+    },
+    {
+      "dataset": "searchqa",
+      "split": "test",
+      "id": "113ef1dcda894e588b26f9e31a1be728",
+      "C": "Sons of the Tundra is the eponymous debut album by the London band Suns of the Tundra (formerly Peach), released in 2004.",
+      "C_response_sha256": "4337916a8711923d8296c90549af442d1a3f45335139c6d4757eb498cf51edcf",
+      "category": "近似名称混淆与题干欠明确",
+      "note": "题干只有 Sons of the Tundra。输入既有 Suns of the Tundra 乐队/专辑，也有 Northern Exposure 的 Sons of the Tundra 集名。C 选择专辑描述并将 Suns 写成 Sons；参考要求剧集所属作品 Northern Exposure。需同时记录近似名称干扰和题干缺少目标类型，不能只归为知识缺失。"
+    },
+    {
+      "dataset": "searchqa",
+      "split": "test",
+      "id": "c6b75f3d0e3247aca276bac0180e28ad",
+      "C": "Robert K. Massie",
+      "C_response_sha256": "745d9847d8b8c0dbbb8d0d4d89a34248a66ac211951284a55a2ef4fc916b1b03",
+      "category": "关系角色混淆",
+      "note": "题干问 czar，C 与 B 都回答传记作者 Robert K. Massie，而参考是 Peter the Great。可观察为作者与传主角色混淆；没有逐节点执行证据。"
+    },
+    {
+      "dataset": "searchqa",
+      "split": "test",
+      "id": "8c3bc713dc724f5f907694e2d2583526",
+      "C": "Not found in context",
+      "C_response_sha256": "aa1668c44787527444353bbe1d4ece06dfcbc6f98692ba37231cb257aa2b76f2",
+      "category": "已有相关证据但拒答",
+      "note": "可见上下文多次出现 shiitake 与 mushroom growing kit，C 却答 Not found in context。B 回答 shiitake mushrooms，虽严格 EM 同为零但含参考 mushrooms。该例在 EM 修复/退化计数中属于均错，F1 则从 B 的部分匹配降到 C 的零分；C 拒答原因未在响应中说明。"
+    }
+  ],
+  "coverage": {
+    "all_final_C_failures": 37,
+    "additional_repaired_cases": 2,
+    "total_case_reviews": 39,
+    "all_unique_used_paired_training_questions": 3
+  },
+  "scoring_changed": false
+}

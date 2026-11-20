@@ -2,14 +2,24 @@
 
 本项目复现课程规模的 GraphSkillEvo，并研究成功与失败对照反馈能否改善图结构技能。模型负责回答问题和生成技能文档，代码负责评分、选优和经验记忆，不训练模型权重。
 
+## 当前结果与报告（实验 2026-11-10，发布 2026-11-20）
+
+[全部结果与离线报告入口](results/README.md) · [机器可读结果](results/20261110/summary.json)
+
+- Part 1/2：N/I/B 的开发实验、SearchQA 固定 50 题 test 和失败分析已完成。SearchQA test 正确数为 N 35/50、I 36/50、B 34/50；HotpotQA 课程 test 仍缺失。
+- 原版 C：两套数据均完成三轮。SearchQA dev 为 B 23/30、C 22/30，test 为 B 34/50、C 32/50；HotpotQA dev 为 B/C 均 19/30。
+- C2b：保留原预算、抽样和选择规则，仅改进训练反馈；两套数据均完成三轮 train/dev。SearchQA 22/30、HotpotQA 19/30，与 C 相同，没有取得最终 dev 提升，未运行 C2b test。
+- `results/20261110/` 包含完整 HTML、图表、逐题结果、反馈审计、校验清单和历史协议源码快照。下载仓库后用浏览器打开 HTML；GitHub 文件页只展示源码。模型、原始数据下载、运行环境与 `.env` 不随仓库发布。
+
 | 条件 | 含义 | 入口 |
 | --- | --- | --- |
 | N | 无技能文档 | Baseline |
 | I | 上游原始初始技能 | Baseline |
 | B | 原版失败反馈优化器，三轮进化 | Baseline |
 | C | 成功与失败对照反馈优化器 | Explore |
+| C2b | 诊断与证据反馈，原预算的后续 train/dev 验证 | Explore/explore_v2 |
 
-**当前这台 Mac 使用 Qwen API 路线**，环境名是 `NLP_project`。完整 Baseline 指 pilot、共享初始化和 N/I/B 的训练及 dev 评估；最终 test 要等 C 完成后四组统一冻结。
+**当前报告使用队友部署的 `qwen3.5-9b` API**，Windows 环境名为 `qwen3.5`。早期 Mac / 阿里云配置和历史结果保留在下文，不与本次报告混合。固定评测、封存 C 和 C2b 的具体入口分别见 [Part 1/2](api/PART12.md)、[Part 3](api/PART3.md)、[C2b](api/C2B.md)。
 
 ## 1 两种模型运行方式
 
@@ -57,16 +67,16 @@ Python 版本为 3.11。API 客户端不需要 PyTorch；启动时提示 `PyTorc
 
 ## 3 配置并检查 Qwen API
 
-本机根目录 `.env` 已有 `QWEN_API_KEY`，无需修改或 `source`。新机器需要自行在根目录 `.env` 设置这个变量；不要把真实密钥写进 JSON、脚本或 Git。已有进程环境变量优先于 `.env`，程序不打印密钥。
+本地 Windows 已改用队友部署的服务。运行前激活 `qwen3.5`。程序从仓库根目录的 `.env` 读取 `PROJECT5_TEAM_QWEN_API_KEY`，同名进程环境变量优先。
 
 两份 `Baseline/configs/*_api.json` 已配置：
 
 ```text
 backend = api
-base_url = https://llm-ps7f58n2fo6d73fm.cn-beijing.maas.aliyuncs.com/compatible-mode/v1
-model.id = qwen3.5-flash-2026-02-23
-model.api_key_env = QWEN_API_KEY
-enable_thinking = false
+base_url = http://10.4.162.57:19198/v1
+model.id = qwen3.5-9b
+model.api_key_env = PROJECT5_TEAM_QWEN_API_KEY
+model.context_window = 32768
 ```
 
 新工作空间应同时修改两份配置中的地址和模型 ID，并确认密钥有权限。正式实验开始后保持配置不变。
@@ -89,6 +99,14 @@ python api/check.py --operators
 
 ## 4 一条命令运行完整 Baseline
 
+Windows PowerShell 中激活 `qwen3.5` 后，运行以下入口即可顺序完成 SearchQA 和 HotpotQA。
+
+```powershell
+python -u api/run_baseline.py
+```
+
+当前 API 配置采用 4096-token 文档上限和 2048-token QA 输出上限，窗口检查预留 512 tokens。入口为每个数据集新建时间戳目录、保存配置和阶段日志，并确认 B 完成三轮。只跑 HotpotQA 可执行 `python -u api/run_baseline.py hotpotqa`。
+
 激活环境后，在仓库根目录执行：
 
 ```bash
@@ -109,7 +127,7 @@ bash api/run_baseline.sh
 5. I：在完整 dev 上评估原始初始技能条件。
 6. B：运行三轮优化，每轮两个新候选，按完整 dev 选优。
 
-每轮两个父代使用相同的 20 题 train batch，失败抽样 k=3。QA 最多生成 1024 tokens，技能生成最多 3072 tokens，单个技能/反馈长度上限各 2048，最多两次尝试。
+每轮两个父代使用相同的 20 题 train batch，失败抽样 k=3。当前 QA 最多生成 2048 tokens，技能生成最多 3072 tokens，单个技能/反馈长度上限各 2048，最多两次尝试。
 
 **查看进度可以另开终端，不会产生 API 调用：**
 
@@ -151,7 +169,7 @@ Baseline/runs/api/<dataset>/<时间戳>-<进程号>/
 
 API 出错后，下一次请求至少等待配置中的 `api_retry_delay_seconds`（当前为 2 秒），不增加隐藏重试。某道 QA 的网络故障或未知 HTTP 错误在两次尝试后仍未恢复，程序保留诊断并停止。服务商明确返回 `data_inspection_failed` 时，按同一两次尝试上限执行；最终仍拒答则记为 `provider_refusal`、EM/F1 为 0，并继续下一题。拒答仍在分母中，单独计入 `provider_refusals`，不改写输入或绕过审核。非空目录不能直接续写；保留失败目录，用新输出目录重跑失败阶段。复用 `shared_init` 必须保持代码、配置、数据及分词器签名一致。
 
-### 本机完整结果（2026-11-02）
+### 历史 Mac / 阿里云结果（2026-11-02，非当前对照）
 
 [完整结果、成本和版本核对](api/runs/baseline-20261102/RESULTS.md) · [机器可读汇总](api/runs/baseline-20261102/summary.json)
 
@@ -160,9 +178,9 @@ API 出错后，下一次请求至少等待配置中的 `api_retry_delay_seconds
 | searchqa | 76.7% | 80.0% | 86.7% | [Baseline/runs/api/searchqa/20261102_191626-83154](Baseline/runs/api/searchqa/20261102_191626-83154/) |
 | hotpotqa | 63.3% | 60.0% | 60.0% | [Baseline/runs/api/hotpotqa/20261102_191628-83182](Baseline/runs/api/hotpotqa/20261102_191628-83182/) |
 
-两组均完成 pilot、共享初始化、N/I 和三轮 B。以上为各 30 题 dev 结果；C 和最终 test 尚未运行。本次两数据集并行、各自内部串行，延迟只代表这次运行的实际观察。
+两组均完成 pilot、共享初始化、N/I 和三轮 B。以上为各 30 题 dev 历史结果；在该次运行时 C 和最终 test 尚未运行。该次两数据集并行、各自内部串行，延迟只代表该次运行的实际观察。当前完成状态以页面顶部及 `results/` 为准。
 
-这些输出和历史诊断目录均被 Git 忽略，只保存在当前机器。正式汇总使用上表中的统一代码版本，不混入旧版本和中断运行。
+这些早期输出和诊断目录仍被 Git 忽略。当前发布的是 `results/20261110/` 中经过审计的独立对照，不将上述旧模型结果混入其中。
 
 ## 6 数据与最终测试边界
 
@@ -190,4 +208,4 @@ python Baseline/run.py demo --output Baseline/runs/demo-check
 | [API 实施方案](Project5_API_Plan_zh.md) | 研究设计与 API 条件说明 |
 | [原本地方案](Project5_Implementation_Plan_zh.md) | 原 Windows 本地部署与研究计划 |
 
-模型、分词器缓存、真实数据、运行日志和 `.env` 均被 Git 忽略。上游代码固定于 `Baseline/UPSTREAM.json`，`vendor` 中的轻量划分 ID 是恢复数据所需配方。
+模型、分词器缓存、原始及准备后的数据集、运行日志和 `.env` 均被 Git 忽略；`results/` 单独收录报告及其评测证据，包含报告所需的题目、可见上下文和模型响应。上游代码固定于 `Baseline/UPSTREAM.json`，`vendor` 中的轻量划分 ID 是恢复数据所需配方。

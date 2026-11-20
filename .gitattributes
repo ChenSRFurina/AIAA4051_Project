@@ -1,0 +1,4 @@
+# Preserve the exact bytes used by report checksums and frozen method hashes.
+/results/** -text
+/Explore/explore_v2/*.py -text
+/api/*.py -text

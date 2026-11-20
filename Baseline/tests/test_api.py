@@ -63,6 +63,27 @@ class APITests(unittest.TestCase):
             os.environ["QWEN_API_KEY"] = FAKE_KEY
             self.assertEqual(api_key(self.config()), FAKE_KEY)
 
+    def test_schema_mode_constrains_initial_skill_array_and_mutation_fields(self):
+        with tempfile.TemporaryDirectory() as folder:
+            config = self.config()
+            config["model"]["structured_operators"] = "json_schema"
+            with patch("baseline.client.api_key", return_value=FAKE_KEY):
+                client = ChatClient(config, Budget(Path(folder) / "ledger.jsonl", config["budget"]),
+                                    ByteCounter(), Path(folder) / "calls.jsonl")
+            with patch("urllib.request.urlopen", return_value=self.response()) as request:
+                client.chat("s", "u", maximum=16, stage="initialize", seed=42, temperature=0)
+            response_format = json.loads(request.call_args.args[0].data)["response_format"]
+            self.assertEqual(response_format["type"], "json_schema")
+            self.assertTrue(response_format["json_schema"]["strict"])
+            schema = response_format["json_schema"]["schema"]
+            self.assertEqual(schema["required"], ["skills"])
+            self.assertFalse(schema["additionalProperties"])
+            self.assertEqual(schema["properties"]["skills"],
+                             {"type": "array", "items": {"type": "string"}, "minItems": 1, "maxItems": 1})
+            mutation = operator_response_format("graphskillevo_graph_mutation_graph", "json_schema")
+            self.assertEqual(mutation["json_schema"]["schema"]["required"], ["new_skill", "notes"])
+            self.assertIsNone(operator_response_format("qa", "json_schema"))
+
     def test_missing_credentials_fail_before_any_network_or_accounting(self):
         with tempfile.TemporaryDirectory() as folder, patch.dict(os.environ, {}, clear=True), \
              patch("baseline.credentials.REPO_ROOT", Path(folder)), patch("urllib.request.urlopen") as request:
@@ -117,6 +138,47 @@ class APITests(unittest.TestCase):
                     client.chat("s", "u", maximum=16, stage="qa", seed=42, temperature=0)
             self.assertEqual(read_jsonl(root / "ledger.jsonl")[0]["status"], "error")
             self.assertEqual(budget.totals()["generated_tokens"], 3)
+
+    def test_window_guard_releases_reservation_without_a_physical_call(self):
+        with tempfile.TemporaryDirectory() as folder, patch("baseline.client.api_key", return_value=FAKE_KEY):
+            root, config = Path(folder), self.config()
+            config["model"].update(context_window=100, context_safety_tokens=16)
+            budget = Budget(root / "ledger.jsonl", config["budget"])
+            client = ChatClient(config, budget, ByteCounter(), root / "calls.jsonl")
+            with patch("urllib.request.urlopen", return_value=self.response()) as request:
+                with self.assertRaisesRegex(ValueError, "exceeds context window"):
+                    client.chat("s" * 60, "u" * 30, maximum=16, stage="qa", seed=42, temperature=0)
+                request.assert_not_called()
+                self.assertEqual(budget.reserved, 0)
+                self.assertEqual(budget.totals()["physical_calls"], 0)
+                client.chat("s" * 30, "u" * 38, maximum=16, stage="qa", seed=42, temperature=0)
+                self.assertEqual(request.call_count, 1)
+                config["model"]["structured_operators"] = "json_schema"
+                with self.assertRaisesRegex(ValueError, "exceeds context window"):
+                    client.chat("s", "u", maximum=16, stage="initialize", seed=42, temperature=0)
+                self.assertEqual(request.call_count, 1)
+            self.assertEqual(budget.reserved, 0)
+            self.assertEqual(budget.totals()["physical_calls"], 1)
+
+    def test_token_policy_requires_valid_window_and_budget(self):
+        with tempfile.TemporaryDirectory() as folder:
+            path = Path(folder) / "config.json"
+            for override in (
+                {"qa_context_max_tokens": 4096},
+                {"qa_context_max_tokens": True, "model": {"context_window": 32768}},
+                {"qa_context_max_tokens": -1, "model": {"context_window": 32768}},
+                {"model": {"context_window": 32768, "context_safety_tokens": -1}},
+                {"model": {"context_window": 100, "context_safety_tokens": 512}},
+            ):
+                with self.subTest(override=override):
+                    path.write_text(json.dumps(override), encoding="utf-8")
+                    with self.assertRaises(ValueError):
+                        load_config(path, demo=True)
+            for dataset in ("searchqa", "hotpotqa"):
+                config = load_config(BASELINE / "configs" / f"{dataset}_api.json", demo=True)
+                self.assertEqual(config["qa_context_max_tokens"], 4096)
+                self.assertEqual(config["qa_max_tokens"], 2048)
+                self.assertEqual(config["model"]["context_safety_tokens"], 512)
 
     def test_extra_initialization_items_are_rejected_without_silent_repair(self):
         from baseline.operators import CourseOperators

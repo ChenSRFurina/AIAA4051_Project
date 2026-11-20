@@ -1,0 +1,436 @@
+[
+  {
+    "dataset": "searchqa",
+    "round": 1,
+    "parent": "g0000_i0001",
+    "child": "g0001_i0000",
+    "operator": "mutation_other",
+    "parent_em": 0.7333333333333333,
+    "child_em": 0.7333333333333333,
+    "changed_nodes": [],
+    "routes_changed": false,
+    "paired": {
+      "counts": {
+        "repaired": 0,
+        "regressed": 0,
+        "both_correct": 22,
+        "both_wrong": 8
+      },
+      "delta": 0.0,
+      "ci": [
+        0.0,
+        0.0
+      ],
+      "changed_ids": []
+    },
+    "diff": "--- g0000_i0001\n+++ g0001_i0000\n@@ -7,14 +7,14 @@\n \n ### General Principles\n - **Context First**: Always prioritize the provided CONTEXT over external knowledge.\n-- **Evidence-Based**: Answers must be derived solely from the supplied passages.\n-- **Conciseness**: Final answers should be short phrases or sentences, enclosed in `<answer>...</answer>` tags.\n-- **Recovery**: If evidence is missing, explicitly state that the answer is not found in the context.\n+- **Evidence-Based**: Answers must be derived solely from the supplied passages. If information is absent, explicitly state \"Not found in context\" inside the answer tags.\n+- **Conciseness**: Final answers should be short phrases or sentences, enclosed in `<answer>...</answer>` tags. Do not add extra explanation outside the tags.\n+- **Strict Adherence**: Do not hallucinate answers or use outside knowledge even if the context seems incomplete or ambiguous.\n \n ### Graph-structured Skill Execution Guide\n This skill uses a graph of reusable nodes to solve tasks.\n - **Global Guidance** applies to all operations.\n-- **Node Lists** define reusable steps like parsing, searching, and verifying.\n+- **Node Lists** define reusable steps like parsing, searching, extracting, verifying, and formulating.\n - **Task Graphs** define workflows by selecting the appropriate task type and executing the ordered list of node names.\n - To execute: Identify the relevant **Task Graph**, then follow its **Workflow** (e.g., `1. Parse Question`, `2. Search Context`) using the instructions in **Node Lists**.\n "
+  },
+  {
+    "dataset": "searchqa",
+    "round": 1,
+    "parent": "g0000_i0001",
+    "child": "g0001_i0001",
+    "operator": "mutation_graph",
+    "parent_em": 0.7333333333333333,
+    "child_em": 0.7333333333333333,
+    "changed_nodes": [
+      "Verify Evidence"
+    ],
+    "routes_changed": true,
+    "paired": {
+      "counts": {
+        "repaired": 0,
+        "regressed": 0,
+        "both_correct": 22,
+        "both_wrong": 8
+      },
+      "delta": 0.0,
+      "ci": [
+        0.0,
+        0.0
+      ],
+      "changed_ids": []
+    },
+    "diff": "--- g0000_i0001\n+++ g0001_i0001\n@@ -38,7 +38,7 @@\n ### Verify Evidence\n - Cross-check the extracted evidence against the original question to ensure it fully addresses the intent.\n - Confirm that the evidence is explicitly present in the provided CONTEXT.\n-- If the evidence is ambiguous or partial, flag it for the next step.\n+- If the evidence is ambiguous, partial, or missing, flag it for the next step.\n \n ### Formulate Answer\n - Synthesize the verified evidence into a concise, direct answer.\n@@ -53,7 +53,7 @@\n ## Task Graphs\n \n ### Direct Evidence Question\n-**Use when:** The question can be answered by locating a specific fact or phrase directly within the context.\n+**Use when:** The question asks for a specific fact, entity, or phrase explicitly stated in the context.\n **Workflow:**\n 1. Parse Question\n 2. Search Context\n@@ -62,8 +62,8 @@\n 5. Formulate Answer\n 6. Wrap Answer\n \n-### Multi-Hop Fact Retrieval\n-**Use when:** The question requires combining information from different parts of the context or inferring a relationship between two entities mentioned in the text.\n+### Multi-Hop Reasoning Query\n+**Use when:** The question requires combining information from different parts of the context or inferring a relationship between entities.\n **Workflow:**\n 1. Parse Question\n 2. Search Context\n@@ -72,21 +72,11 @@\n 5. Formulate Answer\n 6. Wrap Answer\n \n-### Negative Evidence Query\n-**Use when:** The question asks for information that might not be present in the context, or asks for a negation (e.g., \"What is NOT included...\").\n+### Negative or Absence Query\n+**Use when:** The question asks for information that might not be present, asks for a negation, or implies an absence in the context.\n **Workflow:**\n 1. Parse Question\n 2. Search Context\n 3. Verify Evidence\n 4. Formulate Answer\n 5. Wrap Answer\n-\n-### Implicit Relationship Query\n-**Use when:** The question asks about a relationship or calculation not explicitly stated as a sentence but derivable from the context (e.g., comparing values).\n-**Workflow:**\n-1. Parse Question\n-2. Search Context\n-3. Extract Evidence\n-4. Verify Evidence\n-5. Formulate Answer\n-6. Wrap Answer"
+  },
+  {
+    "dataset": "searchqa",
+    "round": 2,
+    "parent": "g0001_i0000",
+    "child": "g0002_i0000",
+    "operator": "mutation_other",
+    "parent_em": 0.7333333333333333,
+    "child_em": 0.7666666666666667,
+    "changed_nodes": [],
+    "routes_changed": false,
+    "paired": {
+      "counts": {
+        "repaired": 2,
+        "regressed": 1,
+        "both_correct": 21,
+        "both_wrong": 6
+      },
+      "delta": 0.03333333333333333,
+      "ci": [
+        -0.06666666666666667,
+        0.13333333333333333
+      ],
+      "changed_ids": [
+        {
+          "id": "24143f01e7dd455e86c34a4a6f4ed3b9",
+          "transition": "repaired"
+        },
+        {
+          "id": "5324041c25d04316a800ccba2d79a2c7",
+          "transition": "repaired"
+        },
+        {
+          "id": "f03757766e034c539bf2595428c03626",
+          "transition": "regressed"
+        }
+      ]
+    },
+    "diff": "--- g0001_i0000\n+++ g0002_i0000\n@@ -10,6 +10,7 @@\n - **Evidence-Based**: Answers must be derived solely from the supplied passages. If information is absent, explicitly state \"Not found in context\" inside the answer tags.\n - **Conciseness**: Final answers should be short phrases or sentences, enclosed in `<answer>...</answer>` tags. Do not add extra explanation outside the tags.\n - **Strict Adherence**: Do not hallucinate answers or use outside knowledge even if the context seems incomplete or ambiguous.\n+- **Exact Matching**: The final answer must match the gold standard exactly. Do not output the question text, the entire context passage, or boolean values (True/False) unless the gold answer is exactly that. Extract the specific entity or fact name requested.\n \n ### Graph-structured Skill Execution Guide\n This skill uses a graph of reusable nodes to solve tasks."
+  },
+  {
+    "dataset": "searchqa",
+    "round": 2,
+    "parent": "g0000_i0001",
+    "child": "g0002_i0001",
+    "operator": "mutation_graph",
+    "parent_em": 0.7333333333333333,
+    "child_em": 0.7,
+    "changed_nodes": [],
+    "routes_changed": true,
+    "paired": {
+      "counts": {
+        "repaired": 0,
+        "regressed": 1,
+        "both_correct": 21,
+        "both_wrong": 8
+      },
+      "delta": -0.03333333333333333,
+      "ci": [
+        -0.1,
+        0.0
+      ],
+      "changed_ids": [
+        {
+          "id": "db73ca2786684b9e92deb1fcc796effd",
+          "transition": "regressed"
+        }
+      ]
+    },
+    "diff": "--- g0000_i0001\n+++ g0002_i0001\n@@ -80,13 +80,3 @@\n 3. Verify Evidence\n 4. Formulate Answer\n 5. Wrap Answer\n-\n-### Implicit Relationship Query\n-**Use when:** The question asks about a relationship or calculation not explicitly stated as a sentence but derivable from the context (e.g., comparing values).\n-**Workflow:**\n-1. Parse Question\n-2. Search Context\n-3. Extract Evidence\n-4. Verify Evidence\n-5. Formulate Answer\n-6. Wrap Answer"
+  },
+  {
+    "dataset": "searchqa",
+    "round": 3,
+    "parent": "g0002_i0000",
+    "child": "g0003_i0000",
+    "operator": "mutation_other",
+    "parent_em": 0.7666666666666667,
+    "child_em": 0.7333333333333333,
+    "changed_nodes": [],
+    "routes_changed": false,
+    "paired": {
+      "counts": {
+        "repaired": 0,
+        "regressed": 1,
+        "both_correct": 22,
+        "both_wrong": 7
+      },
+      "delta": -0.03333333333333333,
+      "ci": [
+        -0.1,
+        0.0
+      ],
+      "changed_ids": [
+        {
+          "id": "db73ca2786684b9e92deb1fcc796effd",
+          "transition": "regressed"
+        }
+      ]
+    },
+    "diff": "--- g0002_i0000\n+++ g0003_i0000\n@@ -9,8 +9,8 @@\n - **Context First**: Always prioritize the provided CONTEXT over external knowledge.\n - **Evidence-Based**: Answers must be derived solely from the supplied passages. If information is absent, explicitly state \"Not found in context\" inside the answer tags.\n - **Conciseness**: Final answers should be short phrases or sentences, enclosed in `<answer>...</answer>` tags. Do not add extra explanation outside the tags.\n+- **Exact Matching**: The final answer must match the gold standard exactly. Extract the specific entity or fact name requested. Do not output explanatory text, reasoning, or context references within the tags.\n - **Strict Adherence**: Do not hallucinate answers or use outside knowledge even if the context seems incomplete or ambiguous.\n-- **Exact Matching**: The final answer must match the gold standard exactly. Do not output the question text, the entire context passage, or boolean values (True/False) unless the gold answer is exactly that. Extract the specific entity or fact name requested.\n \n ### Graph-structured Skill Execution Guide\n This skill uses a graph of reusable nodes to solve tasks."
+  },
+  {
+    "dataset": "searchqa",
+    "round": 3,
+    "parent": "g0002_i0000",
+    "child": "g0003_i0001",
+    "operator": "mutation_graph",
+    "parent_em": 0.7666666666666667,
+    "child_em": 0.7333333333333333,
+    "changed_nodes": [
+      "Extract Evidence",
+      "Formulate Answer",
+      "Verify Evidence",
+      "Wrap Answer"
+    ],
+    "routes_changed": true,
+    "paired": {
+      "counts": {
+        "repaired": 0,
+        "regressed": 1,
+        "both_correct": 22,
+        "both_wrong": 7
+      },
+      "delta": -0.03333333333333333,
+      "ci": [
+        -0.1,
+        0.0
+      ],
+      "changed_ids": [
+        {
+          "id": "db73ca2786684b9e92deb1fcc796effd",
+          "transition": "regressed"
+        }
+      ]
+    },
+    "diff": "--- g0002_i0000\n+++ g0003_i0001\n@@ -35,26 +35,27 @@\n - Isolate the specific sentence or phrase within the retrieved context that directly answers the question.\n - Ignore surrounding noise or unrelated text in the passage.\n - Ensure the extracted text is a complete thought or fact.\n+- If the extracted text is a full sentence, isolate the specific noun phrase or entity representing the answer.\n \n ### Verify Evidence\n - Cross-check the extracted evidence against the original question to ensure it fully addresses the intent.\n - Confirm that the evidence is explicitly present in the provided CONTEXT.\n-- If the evidence is ambiguous or partial, flag it for the next step.\n+- If the evidence is ambiguous, partial, or does not directly answer the question, mark as \"Not found\".\n \n ### Formulate Answer\n - Synthesize the verified evidence into a concise, direct answer.\n - Remove any context-specific references (e.g., \"According to the text...\") unless necessary for clarity.\n - Ensure the answer is a few words or a short phrase.\n+- If verification failed, use \"Not found in context\".\n \n ### Wrap Answer\n - Enclose the final concise answer in `<answer>...</answer>` tags.\n-- If no evidence was found, enclose \"Not found in context\" in the tags.\n - Do not add extra explanation outside the tags.\n \n ## Task Graphs\n \n-### Direct Evidence Question\n-**Use when:** The question can be answered by locating a specific fact or phrase directly within the context.\n+### Direct Fact Retrieval\n+**Use when:** The question asks for a specific entity, fact, or phrase explicitly stated in the context.\n **Workflow:**\n 1. Parse Question\n 2. Search Context\n@@ -63,8 +64,17 @@\n 5. Formulate Answer\n 6. Wrap Answer\n \n-### Multi-Hop Fact Retrieval\n-**Use when:** The question requires combining information from different parts of the context or inferring a relationship between two entities mentioned in the text.\n+### Negative or Missing Information Query\n+**Use when:** The question asks for information that might not be present, asks for a negation (e.g., \"What is NOT included\"), or the search yields no relevant matches.\n+**Workflow:**\n+1. Parse Question\n+2. Search Context\n+3. Verify Evidence\n+4. Formulate Answer\n+5. Wrap Answer\n+\n+### Multi-Hop or Relationship Query\n+**Use when:** The question requires combining information from different parts of the context or deriving a relationship/calculation not explicitly stated as a single sentence.\n **Workflow:**\n 1. Parse Question\n 2. Search Context\n@@ -72,22 +82,3 @@\n 4. Verify Evidence\n 5. Formulate Answer\n 6. Wrap Answer\n-\n-### Negative Evidence Query\n-**Use when:** The question asks for information that might not be present in the context, or asks for a negation (e.g., \"What is NOT included...\").\n-**Workflow:**\n-1. Parse Question\n-2. Search Context\n-3. Verify Evidence\n-4. Formulate Answer\n-5. Wrap Answer\n-\n-### Implicit Relationship Query\n-**Use when:** The question asks about a relationship or calculation not explicitly stated as a sentence but derivable from the context (e.g., comparing values).\n-**Workflow:**\n-1. Parse Question\n-2. Search Context\n-3. Extract Evidence\n-4. Verify Evidence\n-5. Formulate Answer\n-6. Wrap Answer"
+  },
+  {
+    "dataset": "hotpotqa",
+    "round": 1,
+    "parent": "g0000_i0001",
+    "child": "g0001_i0000",
+    "operator": "mutation_other",
+    "parent_em": 0.6333333333333333,
+    "child_em": 0.5666666666666667,
+    "changed_nodes": [],
+    "routes_changed": false,
+    "paired": {
+      "counts": {
+        "repaired": 0,
+        "regressed": 2,
+        "both_correct": 17,
+        "both_wrong": 11
+      },
+      "delta": -0.06666666666666667,
+      "ci": [
+        -0.16666666666666666,
+        0.0
+      ],
+      "changed_ids": [
+        {
+          "id": "5a78bd515542990784727749",
+          "transition": "regressed"
+        },
+        {
+          "id": "5adf53dc5542995534e8c791",
+          "transition": "regressed"
+        }
+      ]
+    },
+    "diff": "--- g0000_i0001\n+++ g0001_i0000\n@@ -11,6 +11,8 @@\n - **Evidence Verification**: Every claim must be supported by a specific sentence or fact in the context.\n - **Exact Matching**: Final answers should match the text exactly unless formatting (like removing quotes) is necessary for clarity.\n - **Error Recovery**: If a path leads to a contradiction or missing information, backtrack to the previous inference step and try an alternative path.\n+- **Entity Precision**: When identifying entities (e.g., academics, publications, property groups), ensure the full name or specific descriptor from the text is used to avoid partial matches.\n+- **Logical Bridge Validation**: Before synthesizing a final answer, explicitly verify that the intermediate entities in the fact chain (e.g., Subject-Object in Fact 1) match the Subject in Fact 2.\n \n ### Graph-structured Skill Execution Guide\n This skill operates as a directed acyclic graph of reusable nodes."
+  },
+  {
+    "dataset": "hotpotqa",
+    "round": 1,
+    "parent": "g0000_i0001",
+    "child": "g0001_i0001",
+    "operator": "mutation_graph",
+    "parent_em": 0.6333333333333333,
+    "child_em": 0.5333333333333333,
+    "changed_nodes": [
+      "Extract Facts",
+      "Infer Intermediate Conclusion",
+      "Parse Goal",
+      "Retrieve Relevant Passages",
+      "Synthesize Final Answer",
+      "Verify Against Context"
+    ],
+    "routes_changed": true,
+    "paired": {
+      "counts": {
+        "repaired": 0,
+        "regressed": 3,
+        "both_correct": 16,
+        "both_wrong": 11
+      },
+      "delta": -0.1,
+      "ci": [
+        -0.2,
+        0.0
+      ],
+      "changed_ids": [
+        {
+          "id": "5a78bd515542990784727749",
+          "transition": "regressed"
+        },
+        {
+          "id": "5adbf69c55429947ff173871",
+          "transition": "regressed"
+        },
+        {
+          "id": "5adf53dc5542995534e8c791",
+          "transition": "regressed"
+        }
+      ]
+    },
+    "diff": "--- g0000_i0001\n+++ g0001_i0001\n@@ -30,36 +30,42 @@\n - Determine if the question is a single-hop retrieval or a multi-hop chain requiring intermediate facts.\n - Identify the target entity for the final answer.\n - Note any constraints such as \"according to the text\" or specific entity types.\n+- Identify specific entities to be compared if the question asks for commonalities or differences.\n \n ### Retrieve Relevant Passages\n - Scan the provided titled context passages for keywords related to the entities and relationships identified in `Parse Goal`.\n - Select passages that contain explicit mentions of the starting entity or the intermediate entities.\n - Prioritize passages that link entities together (e.g., \"X is a type of Y\" or \"X was born in Y\").\n - If no direct match exists, look for synonyms or cross-references within the titles and first sentences.\n+- Ensure selected passages cover all entities involved in the comparison or chain.\n \n ### Extract Facts\n - From the selected passages, isolate specific sentences that state facts about the entities.\n - Record the fact as a triplet: (Subject, Relation, Object) if the structure permits.\n - Ensure the fact is explicitly stated in the text, not inferred.\n - Discard irrelevant sentences that do not contribute to the logical chain.\n+- For comparison tasks, extract attributes (e.g., publication type, ownership) for each identified entity.\n \n ### Infer Intermediate Conclusion\n - Combine the extracted facts to form a logical bridge between the start and end of the query chain.\n - If the question requires connecting Entity A to Entity B via Entity C, verify that the fact linking A to C and C to B both exist in the extracted facts.\n - Formulate a temporary statement representing this intermediate connection.\n - Check for consistency: ensure the intermediate entity matches in both facts.\n+- For comparison tasks, synthesize the shared attributes or differences found in the extracted facts to form the conclusion.\n \n ### Synthesize Final Answer\n-- Based on the inferred intermediate conclusion, determine the final answer entity.\n+- Based on the inferred intermediate conclusion, determine the final answer entity or statement.\n - Extract the exact string representing the answer from the context passages.\n - If the answer is a list, ensure all items are included and formatted correctly.\n - Prepare the answer string for output, ensuring it stands alone as a complete response.\n+- Format the answer to directly address the specific phrasing of the question (e.g., providing names for owners, types for publications).\n \n ### Verify Against Context\n - Re-read the original question and the synthesized answer to ensure alignment.\n - Trace the logical path one last time: Does the answer directly follow from the extracted facts?\n - Check for hallucinations: Is every word in the answer present in the context?\n - If verification fails, return to `Retrieve Relevant Passages` or `Extract Facts` to find missing links.\n+- Confirm that all constraints from `Parse Goal` are met in the final answer.\n \n ## Task Graphs\n \n@@ -82,7 +88,7 @@\n 5. Synthesize Final Answer\n 6. Verify Against Context\n \n-### Complex Multi-Entity Comparison\n+### Entity Comparison\n **Use when:** The question requires comparing two or more entities or finding commonalities/differences between them based on the provided text.\n **Workflow:**\n 1. Parse Goal"
+  },
+  {
+    "dataset": "hotpotqa",
+    "round": 2,
+    "parent": "g0001_i0000",
+    "child": "g0002_i0000",
+    "operator": "mutation_other",
+    "parent_em": 0.5666666666666667,
+    "child_em": 0.6,
+    "changed_nodes": [],
+    "routes_changed": false,
+    "paired": {
+      "counts": {
+        "repaired": 1,
+        "regressed": 0,
+        "both_correct": 17,
+        "both_wrong": 12
+      },
+      "delta": 0.03333333333333333,
+      "ci": [
+        0.0,
+        0.1
+      ],
+      "changed_ids": [
+        {
+          "id": "5a776b82554299373536026f",
+          "transition": "repaired"
+        }
+      ]
+    },
+    "diff": "--- g0001_i0000\n+++ g0002_i0000\n@@ -13,6 +13,7 @@\n - **Error Recovery**: If a path leads to a contradiction or missing information, backtrack to the previous inference step and try an alternative path.\n - **Entity Precision**: When identifying entities (e.g., academics, publications, property groups), ensure the full name or specific descriptor from the text is used to avoid partial matches.\n - **Logical Bridge Validation**: Before synthesizing a final answer, explicitly verify that the intermediate entities in the fact chain (e.g., Subject-Object in Fact 1) match the Subject in Fact 2.\n+- **Passage Selection Priority**: When retrieving passages, prioritize those that explicitly link the entities mentioned in the goal. If multiple passages contain the entity, select the one providing the relevant relationship or attribute needed for the next hop.\n \n ### Graph-structured Skill Execution Guide\n This skill operates as a directed acyclic graph of reusable nodes."
+  },
+  {
+    "dataset": "hotpotqa",
+    "round": 2,
+    "parent": "g0000_i0001",
+    "child": "g0002_i0001",
+    "operator": "mutation_graph",
+    "parent_em": 0.6333333333333333,
+    "child_em": 0.5333333333333333,
+    "changed_nodes": [
+      "Extract Facts",
+      "Infer Intermediate Conclusion",
+      "Parse Goal",
+      "Retrieve Relevant Passages",
+      "Synthesize Final Answer",
+      "Verify Against Context"
+    ],
+    "routes_changed": true,
+    "paired": {
+      "counts": {
+        "repaired": 1,
+        "regressed": 4,
+        "both_correct": 15,
+        "both_wrong": 10
+      },
+      "delta": -0.1,
+      "ci": [
+        -0.23333333333333334,
+        0.03333333333333333
+      ],
+      "changed_ids": [
+        {
+          "id": "5a776b82554299373536026f",
+          "transition": "repaired"
+        },
+        {
+          "id": "5a78bd515542990784727749",
+          "transition": "regressed"
+        },
+        {
+          "id": "5adbf69c55429947ff173871",
+          "transition": "regressed"
+        },
+        {
+          "id": "5ade0bc55542997545bbbe30",
+          "transition": "regressed"
+        },
+        {
+          "id": "5adf53dc5542995534e8c791",
+          "transition": "regressed"
+        }
+      ]
+    },
+    "diff": "--- g0000_i0001\n+++ g0002_i0001\n@@ -30,40 +30,46 @@\n - Determine if the question is a single-hop retrieval or a multi-hop chain requiring intermediate facts.\n - Identify the target entity for the final answer.\n - Note any constraints such as \"according to the text\" or specific entity types.\n+- Explicitly identify the starting entity and the final target entity to guide the search.\n \n ### Retrieve Relevant Passages\n-- Scan the provided titled context passages for keywords related to the entities and relationships identified in `Parse Goal`.\n+- Scan the provided titled context passages for keywords related to the starting entity, intermediate entities, and target entity identified in `Parse Goal`.\n - Select passages that contain explicit mentions of the starting entity or the intermediate entities.\n - Prioritize passages that link entities together (e.g., \"X is a type of Y\" or \"X was born in Y\").\n - If no direct match exists, look for synonyms or cross-references within the titles and first sentences.\n+- Ensure selected passages cover the full chain required to reach the final answer.\n \n ### Extract Facts\n - From the selected passages, isolate specific sentences that state facts about the entities.\n - Record the fact as a triplet: (Subject, Relation, Object) if the structure permits.\n - Ensure the fact is explicitly stated in the text, not inferred.\n - Discard irrelevant sentences that do not contribute to the logical chain.\n+- Verify that the extracted facts contain the necessary links to connect the starting entity to the target entity.\n \n ### Infer Intermediate Conclusion\n - Combine the extracted facts to form a logical bridge between the start and end of the query chain.\n - If the question requires connecting Entity A to Entity B via Entity C, verify that the fact linking A to C and C to B both exist in the extracted facts.\n - Formulate a temporary statement representing this intermediate connection.\n-- Check for consistency: ensure the intermediate entity matches in both facts.\n+- Check for consistency: ensure the intermediate entity matches in both facts and that the chain is unbroken.\n+- If the chain is broken or inconsistent, return to `Retrieve Relevant Passages` to find missing links.\n \n ### Synthesize Final Answer\n - Based on the inferred intermediate conclusion, determine the final answer entity.\n - Extract the exact string representing the answer from the context passages.\n - If the answer is a list, ensure all items are included and formatted correctly.\n - Prepare the answer string for output, ensuring it stands alone as a complete response.\n+- Ensure the answer directly addresses the specific question asked (e.g., \"What army...\", \"When was... born\").\n \n ### Verify Against Context\n - Re-read the original question and the synthesized answer to ensure alignment.\n - Trace the logical path one last time: Does the answer directly follow from the extracted facts?\n - Check for hallucinations: Is every word in the answer present in the context?\n - If verification fails, return to `Retrieve Relevant Passages` or `Extract Facts` to find missing links.\n+- Confirm that the final answer satisfies all constraints identified in `Parse Goal`.\n \n ## Task Graphs\n \n-### Single-Hop Entity Retrieval\n+### Direct Attribute Retrieval\n **Use when:** The question asks for a direct attribute, definition, or relationship of a single entity that is explicitly mentioned in the provided text without requiring intermediate steps.\n **Workflow:**\n 1. Parse Goal\n@@ -82,8 +88,8 @@\n 5. Synthesize Final Answer\n 6. Verify Against Context\n \n-### Complex Multi-Entity Comparison\n-**Use when:** The question requires comparing two or more entities or finding commonalities/differences between them based on the provided text.\n+### Entity Attribute Lookup\n+**Use when:** The question asks for a specific attribute (like birth year, name, or property) of an entity that requires identifying the entity first and then looking up its attribute.\n **Workflow:**\n 1. Parse Goal\n 2. Retrieve Relevant Passages"
+  },
+  {
+    "dataset": "hotpotqa",
+    "round": 3,
+    "parent": "g0000_i0001",
+    "child": "g0003_i0000",
+    "operator": "mutation_other",
+    "parent_em": 0.6333333333333333,
+    "child_em": 0.5333333333333333,
+    "changed_nodes": [],
+    "routes_changed": false,
+    "paired": {
+      "counts": {
+        "repaired": 0,
+        "regressed": 3,
+        "both_correct": 16,
+        "both_wrong": 11
+      },
+      "delta": -0.1,
+      "ci": [
+        -0.2,
+        0.0
+      ],
+      "changed_ids": [
+        {
+          "id": "5a78bd515542990784727749",
+          "transition": "regressed"
+        },
+        {
+          "id": "5adbf69c55429947ff173871",
+          "transition": "regressed"
+        },
+        {
+          "id": "5adf53dc5542995534e8c791",
+          "transition": "regressed"
+        }
+      ]
+    },
+    "diff": "--- g0000_i0001\n+++ g0003_i0000\n@@ -8,9 +8,9 @@\n ### General Principles\n - **Context First**: Always rely strictly on the provided titled context passages. Do not use external knowledge unless explicitly permitted by the prompt.\n - **Step-by-Step Inference**: Break complex questions into atomic steps. Solve sub-questions before combining results.\n-- **Evidence Verification**: Every claim must be supported by a specific sentence or fact in the context.\n-- **Exact Matching**: Final answers should match the text exactly unless formatting (like removing quotes) is necessary for clarity.\n-- **Error Recovery**: If a path leads to a contradiction or missing information, backtrack to the previous inference step and try an alternative path.\n+- **Evidence Verification**: Every claim must be supported by a specific sentence or fact in the context. Check for hallucinations by ensuring every word in the final answer exists in the source text.\n+- **Exact Matching**: Final answers should match the text exactly unless formatting (like removing quotes) is necessary for clarity. If the gold answer includes specific phrasing (e.g., \"X is an academic...\"), preserve that structure.\n+- **Error Recovery**: If a path leads to a contradiction or missing information, backtrack to the previous inference step and try an alternative path or re-examine the extracted facts for synonyms or related entities.\n \n ### Graph-structured Skill Execution Guide\n This skill operates as a directed acyclic graph of reusable nodes."
+  },
+  {
+    "dataset": "hotpotqa",
+    "round": 3,
+    "parent": "g0000_i0001",
+    "child": "g0003_i0001",
+    "operator": "mutation_graph",
+    "parent_em": 0.6333333333333333,
+    "child_em": 0.6,
+    "changed_nodes": [
+      "Extract Facts",
+      "Infer Intermediate Conclusion",
+      "Parse Goal",
+      "Retrieve Relevant Passages",
+      "Synthesize Final Answer",
+      "Verify Against Context"
+    ],
+    "routes_changed": false,
+    "paired": {
+      "counts": {
+        "repaired": 0,
+        "regressed": 1,
+        "both_correct": 18,
+        "both_wrong": 11
+      },
+      "delta": -0.03333333333333333,
+      "ci": [
+        -0.1,
+        0.0
+      ],
+      "changed_ids": [
+        {
+          "id": "5adf53dc5542995534e8c791",
+          "transition": "regressed"
+        }
+      ]
+    },
+    "diff": "--- g0000_i0001\n+++ g0003_i0001\n@@ -30,36 +30,42 @@\n - Determine if the question is a single-hop retrieval or a multi-hop chain requiring intermediate facts.\n - Identify the target entity for the final answer.\n - Note any constraints such as \"according to the text\" or specific entity types.\n+- Explicitly identify the starting entity and the specific relationship or attribute being queried (e.g., \"ruler of\", \"born in\").\n \n ### Retrieve Relevant Passages\n - Scan the provided titled context passages for keywords related to the entities and relationships identified in `Parse Goal`.\n - Select passages that contain explicit mentions of the starting entity or the intermediate entities.\n - Prioritize passages that link entities together (e.g., \"X is a type of Y\" or \"X was born in Y\").\n - If no direct match exists, look for synonyms or cross-references within the titles and first sentences.\n+- Ensure the selected passages cover the full scope of the query chain.\n \n ### Extract Facts\n - From the selected passages, isolate specific sentences that state facts about the entities.\n - Record the fact as a triplet: (Subject, Relation, Object) if the structure permits.\n - Ensure the fact is explicitly stated in the text, not inferred.\n - Discard irrelevant sentences that do not contribute to the logical chain.\n+- If the question asks for a specific attribute (like a birth year), extract the exact sentence containing that attribute.\n \n ### Infer Intermediate Conclusion\n - Combine the extracted facts to form a logical bridge between the start and end of the query chain.\n - If the question requires connecting Entity A to Entity B via Entity C, verify that the fact linking A to C and C to B both exist in the extracted facts.\n - Formulate a temporary statement representing this intermediate connection.\n - Check for consistency: ensure the intermediate entity matches in both facts.\n+- If the chain is complete, confirm the path from start to target is valid.\n \n ### Synthesize Final Answer\n-- Based on the inferred intermediate conclusion, determine the final answer entity.\n+- Based on the inferred intermediate conclusion, determine the final answer entity or value.\n - Extract the exact string representing the answer from the context passages.\n - If the answer is a list, ensure all items are included and formatted correctly.\n - Prepare the answer string for output, ensuring it stands alone as a complete response.\n+- Do not add introductory phrases; provide only the direct answer derived from the text.\n \n ### Verify Against Context\n - Re-read the original question and the synthesized answer to ensure alignment.\n - Trace the logical path one last time: Does the answer directly follow from the extracted facts?\n - Check for hallucinations: Is every word in the answer present in the context?\n - If verification fails, return to `Retrieve Relevant Passages` or `Extract Facts` to find missing links.\n+- Confirm the final answer matches the gold standard format if available (e.g., specific phrasing).\n \n ## Task Graphs\n "
+  }
+]

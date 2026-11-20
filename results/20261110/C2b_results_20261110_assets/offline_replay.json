@@ -1,0 +1,2976 @@
+{
+  "searchqa": {
+    "status": "passed",
+    "parent_feedbacks": 6,
+    "records": [
+      {
+        "id": "f8a442980c55415b82527160422a2688",
+        "pair": "unpaired",
+        "diagnosis": "name_or_granularity_overlap",
+        "actual_packet": {
+          "failure_id": "f8a442980c55415b82527160422a2688",
+          "pair_type": "unpaired",
+          "question": "...in American History, if you know that this man was the only U.S. President named Chester",
+          "predicted": "Chester A. Arthur",
+          "train_gold": [
+            "Arthur"
+          ],
+          "EM": 0.0,
+          "F1": 0.6666666666666666,
+          "diagnosis": {
+            "kind": "name_or_granularity_overlap",
+            "confidence": "medium",
+            "check": "Check the referent and requested granularity against the question and source. Do not infer a missing hop solely from the answer-string difference.",
+            "preserve": "Retain correctly supported intermediate relations; do not globally shorten names or remove needed qualifiers."
+          },
+          "success": null,
+          "evidence": {
+            "failure_context": [
+              {
+                "at": [
+                  2281,
+                  2346
+                ],
+                "text": "For Chester Alan Arthur, a man with some stunning muttonchop ....",
+                "doc": "Chester Alan Arthur: The Underrated President With Three First ..."
+              },
+              {
+                "at": [
+                  2419,
+                  2528
+                ],
+                "text": "[DOC] [TLE] The American PresidentsJohnson to McKinley - Wait But Why [PAR] Sure, you know a bit about Grant.",
+                "doc": "Chester Alan Arthur: The Underrated President With Three First ..."
+              },
+              {
+                "at": [
+                  1849,
+                  1903
+                ],
+                "text": "He is the only American President to be elected to the",
+                "doc": "List of nicknames of Presidents of the United States - Wikipedia"
+              },
+              {
+                "at": [
+                  3115,
+                  3156
+                ],
+                "text": "44 Obscure Facts You Didn't Know About U.",
+                "doc": "44 Obscure Facts About U.S. Presidents - Mashable"
+              }
+            ],
+            "failure_response": [
+              {
+                "at": [
+                  0,
+                  130
+                ],
+                "text": "Based on the context provided, specifically the document titled \"Chester Alan Arthur: The Underrated President With Three First..."
+              },
+              {
+                "at": [
+                  328,
+                  346
+                ],
+                "text": "<answer>Chester A."
+              },
+              {
+                "at": [
+                  285,
+                  326
+                ],
+                "text": "President and the only one named Chester."
+              }
+            ]
+          },
+          "omitted": []
+        },
+        "feedback_tokens": 1758
+      },
+      {
+        "id": "3154424fc756402986578589696e0cea",
+        "pair": "same_question",
+        "diagnosis": "name_or_granularity_overlap",
+        "actual_packet": {
+          "failure_id": "3154424fc756402986578589696e0cea",
+          "pair_type": "same_question",
+          "question": "Edmund White wrote a definitive biography of this French thief, novelist & playwright of \"The Maids\"",
+          "predicted": "Jean Genet",
+          "train_gold": [
+            "Genet"
+          ],
+          "EM": 0.0,
+          "F1": 0.6666666666666666,
+          "diagnosis": {
+            "kind": "name_or_granularity_overlap",
+            "confidence": "medium",
+            "check": "Check the referent and requested granularity against the question and source. Do not infer a missing hop solely from the answer-string difference.",
+            "preserve": "Retain correctly supported intermediate relations; do not globally shorten names or remove needed qualifiers."
+          },
+          "success": {
+            "id": "3154424fc756402986578589696e0cea",
+            "predicted": "Genet",
+            "question": "same question/context",
+            "EM": 1
+          },
+          "evidence": {
+            "failure_context": [
+              {
+                "at": [
+                  523,
+                  604
+                ],
+                "text": "definitive biography of this French thief, novelist & playwright of \"The Maids\" |",
+                "doc": "jeopardy/14_Qs.txt at master  jedoublen/jeopardy  GitHub"
+              },
+              {
+                "at": [
+                  1874,
+                  2010
+                ],
+                "text": "[DOC] [TLE] Free Flashcards about PLAYS & PLAYWRIGHTS - StudyStack [PAR] EDMUND WHITE WROTE A DEFINITIVE BIOGRAPHY OF THIS FRENCH THIEF,",
+                "doc": "EXCITABLE BOY : GENET: A Biography, By Edmund White (Alfred A ..."
+              },
+              {
+                "at": [
+                  2012,
+                  2059
+                ],
+                "text": "NOVELIST, AND PLAYWRIGHT OF \"THE MAIDS\", GENET.",
+                "doc": "Free Flashcards about PLAYS & PLAYWRIGHTS - StudyStack"
+              }
+            ],
+            "failure_response": [
+              {
+                "at": [
+                  92,
+                  332
+                ],
+                "text": "Multiple passages in the text confirm this, such as: \"Edmund White wrote a definitive biography of this French thief, novelist & playwright of 'The Maids' | Genet\" and \"Edmund White has written an extraordinarily lucid biography of this ..."
+              },
+              {
+                "at": [
+                  453,
+                  480
+                ],
+                "text": "<answer>Jean Genet</answer>"
+              },
+              {
+                "at": [
+                  0,
+                  91
+                ],
+                "text": "Based on the context provided, Edmund White wrote a definitive biography of **Jean Genet**."
+              }
+            ],
+            "success_response": [
+              {
+                "at": [
+                  0,
+                  22
+                ],
+                "text": "<answer>Genet</answer>"
+              }
+            ]
+          },
+          "omitted": []
+        },
+        "feedback_tokens": 1758
+      },
+      {
+        "id": "0d73382067a64ea4a6ed320ae386accb",
+        "pair": "unpaired",
+        "diagnosis": "name_or_granularity_overlap",
+        "actual_packet": {
+          "failure_id": "0d73382067a64ea4a6ed320ae386accb",
+          "pair_type": "unpaired",
+          "question": "February 6, 1911 in Tampico, Illinois",
+          "predicted": "Ronald Reagan was born",
+          "train_gold": [
+            "Ronald Reagan"
+          ],
+          "EM": 0.0,
+          "F1": 0.6666666666666666,
+          "diagnosis": {
+            "kind": "name_or_granularity_overlap",
+            "confidence": "medium",
+            "check": "Check the referent and requested granularity against the question and source. Do not infer a missing hop solely from the answer-string difference.",
+            "preserve": "Retain correctly supported intermediate relations; do not globally shorten names or remove needed qualifiers."
+          },
+          "success": null,
+          "evidence": {
+            "failure_context": [
+              {
+                "at": [
+                  1006,
+                  1078
+                ],
+                "text": "Born in Tampico, Illinois, on February 6, 1911, Ronald Reagan and his...",
+                "doc": "Ronald Reagan's Boyhood Home--Presidents: A Discover Our ..."
+              },
+              {
+                "at": [
+                  1179,
+                  1251
+                ],
+                "text": "Ronald Wilson Reagan was born in Tampico, Illinois, on February 6, 1911.",
+                "doc": "This Day in History February 6, 1911 | Mystic Stamp Discovery ..."
+              },
+              {
+                "at": [
+                  1317,
+                  1394
+                ],
+                "text": "[DOC] [TLE] Born in Tampico, Illinois, on February 6, 1911, Ronald Reagan ...",
+                "doc": "This Day in History February 6, 1911 | Mystic Stamp Discovery ..."
+              },
+              {
+                "at": [
+                  1395,
+                  1480
+                ],
+                "text": "[PAR] Born in Tampico, Illinois, on February 6, 1911, Ronald Reagan initially chose a",
+                "doc": "Born in Tampico, Illinois, on February 6, 1911, Ronald Reagan ..."
+              }
+            ],
+            "failure_response": [
+              {
+                "at": [
+                  126,
+                  239
+                ],
+                "text": "Multiple documents confirm that \"President Ronald Reagan was born here on February 6, 1911\" in Tampico, Illinois."
+              },
+              {
+                "at": [
+                  0,
+                  125
+                ],
+                "text": "Based on the provided context, February 6, 1911, in Tampico, Illinois, is the birth date and birthplace of **Ronald Reagan**."
+              },
+              {
+                "at": [
+                  241,
+                  280
+                ],
+                "text": "<answer>Ronald Reagan was born</answer>"
+              }
+            ]
+          },
+          "omitted": []
+        },
+        "feedback_tokens": 1758
+      },
+      {
+        "id": "f8a442980c55415b82527160422a2688",
+        "pair": "unpaired",
+        "diagnosis": "unresolved_content_error",
+        "actual_packet": {
+          "failure_id": "f8a442980c55415b82527160422a2688",
+          "pair_type": "unpaired",
+          "question": "...in American History, if you know that this man was the only U.S. President named Chester",
+          "predicted": "Not found in context",
+          "train_gold": [
+            "Arthur"
+          ],
+          "EM": 0.0,
+          "F1": 0.0,
+          "diagnosis": {
+            "kind": "unresolved_content_error",
+            "confidence": "low",
+            "check": "Verify the requested target and each necessary relation against the supplied passages; keep the diagnosis uncertain where evidence is missing.",
+            "preserve": "Preserve supported evidence and valid reasoning; do not invent a new task-wide restriction."
+          },
+          "success": null,
+          "evidence": {
+            "failure_context": [
+              {
+                "at": [
+                  2419,
+                  2528
+                ],
+                "text": "[DOC] [TLE] The American PresidentsJohnson to McKinley - Wait But Why [PAR] Sure, you know a bit about Grant.",
+                "doc": "Chester Alan Arthur: The Underrated President With Three First ..."
+              },
+              {
+                "at": [
+                  2281,
+                  2346
+                ],
+                "text": "For Chester Alan Arthur, a man with some stunning muttonchop ....",
+                "doc": "Chester Alan Arthur: The Underrated President With Three First ..."
+              },
+              {
+                "at": [
+                  1849,
+                  1903
+                ],
+                "text": "He is the only American President to be elected to the",
+                "doc": "List of nicknames of Presidents of the United States - Wikipedia"
+              },
+              {
+                "at": [
+                  3115,
+                  3156
+                ],
+                "text": "44 Obscure Facts You Didn't Know About U.",
+                "doc": "44 Obscure Facts About U.S. Presidents - Mashable"
+              }
+            ],
+            "failure_response": [
+              {
+                "at": [
+                  0,
+                  37
+                ],
+                "text": "<answer>Not found in context</answer>"
+              }
+            ]
+          },
+          "omitted": []
+        },
+        "feedback_tokens": 1575
+      },
+      {
+        "id": "691178453c884f98a9205ef3d143bc42",
+        "pair": "same_question",
+        "diagnosis": "answer_type_mismatch",
+        "actual_packet": {
+          "failure_id": "691178453c884f98a9205ef3d143bc42",
+          "pair_type": "same_question",
+          "question": "The National Air & Space Museum in Washington is the largest museum of this institution",
+          "predicted": "True",
+          "train_gold": [
+            "Smithsonian Institution"
+          ],
+          "EM": 0.0,
+          "F1": 0.0,
+          "diagnosis": {
+            "kind": "answer_type_mismatch",
+            "confidence": "high",
+            "check": "Infer the requested answer type from the question or clue; for an entity/fact request extract the missing entity/fact rather than confirming the clue.",
+            "preserve": "Keep yes/no responses for genuine yes/no questions. Do not copy the training answer into the skill."
+          },
+          "success": {
+            "id": "691178453c884f98a9205ef3d143bc42",
+            "predicted": "Smithsonian Institution",
+            "question": "same question/context",
+            "EM": 1
+          },
+          "evidence": {
+            "failure_context": [
+              {
+                "at": [
+                  1129,
+                  1306
+                ],
+                "text": "[DOC] [TLE] National Air and Space Museum - Wikipedia [PAR] The National Air and Space Museum of the Smithsonian Institution, also called the NASM, is a museum in Washington, D.",
+                "doc": "Visit - National Air and Space Museum - Smithsonian"
+              },
+              {
+                "at": [
+                  3652,
+                  3727
+                ],
+                "text": "and Space Museum (NASM) of the Smithsonian Institution holds the largest...",
+                "doc": "Smithsonian National Air and Space Museum - Melrose Georgetown ..."
+              },
+              {
+                "at": [
+                  508,
+                  655
+                ],
+                "text": "[DOC] [TLE] History | National Air and Space Museum [PAR] The Smithsonian's connection to flight began with the birth of the Institution, first ...",
+                "doc": "About | National Air and Space Museum"
+              },
+              {
+                "at": [
+                  1474,
+                  1551
+                ],
+                "text": "[PAR] By Eric Long/National Air and Space Museum, Smithsonian Institution ...",
+                "doc": "Visiting the Smithsonian National Air & Space Museum | Washington ..."
+              }
+            ],
+            "failure_response": [
+              {
+                "at": [
+                  0,
+                  21
+                ],
+                "text": "<answer>True</answer>"
+              }
+            ],
+            "success_response": [
+              {
+                "at": [
+                  0,
+                  148
+                ],
+                "text": "Based on the context provided, the National Air and Space Museum is described as \"the largest of 19 museums included in the Smithsonian Institution."
+              },
+              {
+                "at": [
+                  151,
+                  191
+                ],
+                "text": "<answer>Smithsonian Institution</answer>"
+              },
+              {
+                "at": [
+                  148,
+                  149
+                ],
+                "text": "\""
+              }
+            ]
+          },
+          "omitted": []
+        },
+        "feedback_tokens": 1575
+      },
+      {
+        "id": "0d73382067a64ea4a6ed320ae386accb",
+        "pair": "unpaired",
+        "diagnosis": "name_or_granularity_overlap",
+        "actual_packet": {
+          "failure_id": "0d73382067a64ea4a6ed320ae386accb",
+          "pair_type": "unpaired",
+          "question": "February 6, 1911 in Tampico, Illinois",
+          "predicted": "President Ronald Reagan was born",
+          "train_gold": [
+            "Ronald Reagan"
+          ],
+          "EM": 0.0,
+          "F1": 0.5714285714285715,
+          "diagnosis": {
+            "kind": "name_or_granularity_overlap",
+            "confidence": "medium",
+            "check": "Check the referent and requested granularity against the question and source. Do not infer a missing hop solely from the answer-string difference.",
+            "preserve": "Retain correctly supported intermediate relations; do not globally shorten names or remove needed qualifiers."
+          },
+          "success": null,
+          "evidence": {
+            "failure_context": [
+              {
+                "at": [
+                  1006,
+                  1078
+                ],
+                "text": "Born in Tampico, Illinois, on February 6, 1911, Ronald Reagan and his...",
+                "doc": "Ronald Reagan's Boyhood Home--Presidents: A Discover Our ..."
+              },
+              {
+                "at": [
+                  1567,
+                  1661
+                ],
+                "text": "[DOC] [TLE] February 6, 1911: President Reagan born in Tampico, Illinois [PAR] Feb 6, 2010 ...",
+                "doc": "Born in Tampico, Illinois, on February 6, 1911, Ronald Reagan ..."
+              },
+              {
+                "at": [
+                  1179,
+                  1251
+                ],
+                "text": "Ronald Wilson Reagan was born in Tampico, Illinois, on February 6, 1911.",
+                "doc": "This Day in History February 6, 1911 | Mystic Stamp Discovery ..."
+              },
+              {
+                "at": [
+                  1317,
+                  1394
+                ],
+                "text": "[DOC] [TLE] Born in Tampico, Illinois, on February 6, 1911, Ronald Reagan ...",
+                "doc": "This Day in History February 6, 1911 | Mystic Stamp Discovery ..."
+              }
+            ],
+            "failure_response": [
+              {
+                "at": [
+                  0,
+                  49
+                ],
+                "text": "<answer>President Ronald Reagan was born</answer>"
+              }
+            ]
+          },
+          "omitted": []
+        },
+        "feedback_tokens": 1575
+      },
+      {
+        "id": "84ab80ab3c5d47a58ddda464d62c5694",
+        "pair": "unpaired",
+        "diagnosis": "unresolved_content_error",
+        "actual_packet": {
+          "failure_id": "84ab80ab3c5d47a58ddda464d62c5694",
+          "pair_type": "unpaired",
+          "question": "He spun straw into gold(15)",
+          "predicted": "He spun straw into gold",
+          "train_gold": [
+            "Rumpelstiltskin"
+          ],
+          "EM": 0.0,
+          "F1": 0.0,
+          "diagnosis": {
+            "kind": "unresolved_content_error",
+            "confidence": "low",
+            "check": "Verify the requested target and each necessary relation against the supplied passages; keep the diagnosis uncertain where evidence is missing.",
+            "preserve": "Preserve supported evidence and valid reasoning; do not invent a new task-wide restriction."
+          },
+          "success": null,
+          "evidence": {
+            "failure_context": [
+              {
+                "at": [
+                  2960,
+                  2992
+                ],
+                "text": "(he spun the straw into gold) p.",
+                "doc": "Rumpelstiltskin"
+              },
+              {
+                "at": [
+                  546,
+                  629
+                ],
+                "text": "straw, and gave her a spinning-wheel, and said, 'All this must be spun into gold...",
+                "doc": "Rumpelstiltskin | Grimm's Fairy Tales | Grimm Brothers | Lit2Go ETC"
+              },
+              {
+                "at": [
+                  287,
+                  369
+                ],
+                "text": "marriage to the children who can spin straw into gold; he is captured by the three",
+                "doc": "Rumpelstiltskin - Wikipedia"
+              },
+              {
+                "at": [
+                  1045,
+                  1108
+                ],
+                "text": "imp had that he could turn raw materials like straw, into gold?",
+                "doc": "Spinning Straw into Gold | Bear Skin"
+              }
+            ],
+            "failure_response": [
+              {
+                "at": [
+                  0,
+                  40
+                ],
+                "text": "<answer>He spun straw into gold</answer>"
+              }
+            ]
+          },
+          "omitted": []
+        },
+        "feedback_tokens": 1457
+      },
+      {
+        "id": "1f6f687c79a642328a742e61154c9d90",
+        "pair": "unpaired",
+        "diagnosis": "name_or_granularity_overlap",
+        "actual_packet": {
+          "failure_id": "1f6f687c79a642328a742e61154c9d90",
+          "pair_type": "unpaired",
+          "question": "\"Tippecanoe and Tyler too\"",
+          "predicted": "1840 U.S. Presidential Campaign slogan for William Henry Harrison and John Tyler",
+          "train_gold": [
+            "William Henry Harrison"
+          ],
+          "EM": 0.0,
+          "F1": 0.4,
+          "diagnosis": {
+            "kind": "name_or_granularity_overlap",
+            "confidence": "medium",
+            "check": "Check the referent and requested granularity against the question and source. Do not infer a missing hop solely from the answer-string difference.",
+            "preserve": "Retain correctly supported intermediate relations; do not globally shorten names or remove needed qualifiers."
+          },
+          "success": null,
+          "evidence": {
+            "failure_context": [
+              {
+                "at": [
+                  326,
+                  460
+                ],
+                "text": "[PAR] 'Tippecanoe and Tyler Too' was a campaign slogan for William Henry Harrison and John Tyler in the presidential election of 1840.",
+                "doc": "Tippecanoe and Tyler Too: Meaning, History & Significance - Video ..."
+              },
+              {
+                "at": [
+                  1063,
+                  1217
+                ],
+                "text": "[DOC] [TLE] Tippecanoe and Tyler Too 1840 Campaign slogan - Presidents [PAR] Tippecanoe and Tyler Too - William Henry Harrison; William Henry Harrison was",
+                "doc": "Tippecanoe and Tyler Too! - Dictionary definition of Tippecanoe and ..."
+              },
+              {
+                "at": [
+                  466,
+                  610
+                ],
+                "text": "William Henry Harrison became the ninth president of the United States, and he did so with a winning campaign slogan: 'Tippecanoe and Tyler Too.",
+                "doc": "Tippecanoe and Tyler Too: Meaning, History & Significance - Video ..."
+              },
+              {
+                "at": [
+                  3354,
+                  3424
+                ],
+                "text": "[DOC] [TLE] William Henry Harrison 'Tippecanoe and Tyler Too' 1840 ...",
+                "doc": "Tippecanoe and Tyler Too, a song by They Might Be Giants on Spotify"
+              }
+            ],
+            "failure_response": [
+              {
+                "at": [
+                  18,
+                  97
+                ],
+                "text": "Presidential Campaign slogan for William Henry Harrison and John Tyler</answer>"
+              },
+              {
+                "at": [
+                  0,
+                  15
+                ],
+                "text": "<answer>1840 U."
+              },
+              {
+                "at": [
+                  15,
+                  17
+                ],
+                "text": "S."
+              }
+            ]
+          },
+          "omitted": []
+        },
+        "feedback_tokens": 1457
+      },
+      {
+        "id": "1c2cc13e0fa745d6b541f6c7eb9f5619",
+        "pair": "unpaired",
+        "diagnosis": "unresolved_content_error",
+        "actual_packet": {
+          "failure_id": "1c2cc13e0fa745d6b541f6c7eb9f5619",
+          "pair_type": "unpaired",
+          "question": "A \"hasty\" dessert, or perhaps you'd prefer the tapioca",
+          "predicted": "A \"hasty\" dessert, or perhaps you'd prefer the tapioca",
+          "train_gold": [
+            "pudding"
+          ],
+          "EM": 0.0,
+          "F1": 0.0,
+          "diagnosis": {
+            "kind": "unresolved_content_error",
+            "confidence": "low",
+            "check": "Verify the requested target and each necessary relation against the supplied passages; keep the diagnosis uncertain where evidence is missing.",
+            "preserve": "Preserve supported evidence and valid reasoning; do not invent a new task-wide restriction."
+          },
+          "success": null,
+          "evidence": {
+            "failure_context": [
+              {
+                "at": [
+                  148,
+                  216
+                ],
+                "text": "DOUBLE \"D\"s: A \"hasty\" dessert, or perhaps you'd prefer the tapioca.",
+                "doc": "Jeopary Questions page 527 - MUSIC - TriviaBistro.com"
+              },
+              {
+                "at": [
+                  484,
+                  550
+                ],
+                "text": "another reason you need to avoid making hasty judgements about ...",
+                "doc": "MasterChef 3: Don't Trifle with Walmart | Have YOU Ben Starr Struck?"
+              },
+              {
+                "at": [
+                  699,
+                  769
+                ],
+                "text": "So, 'Previously on hasty, smudgy phone photos from a glorious, gut ...",
+                "doc": "Michael Booth: September 2010"
+              },
+              {
+                "at": [
+                  2061,
+                  2141
+                ],
+                "text": "17th century, the English settlers brought with them their love of English hasty",
+                "doc": "Recipe  We All Scream for Ouce Cream"
+              }
+            ],
+            "failure_response": [
+              {
+                "at": [
+                  0,
+                  71
+                ],
+                "text": "<answer>A \"hasty\" dessert, or perhaps you'd prefer the tapioca</answer>"
+              }
+            ]
+          },
+          "omitted": []
+        },
+        "feedback_tokens": 1457
+      },
+      {
+        "id": "84ab80ab3c5d47a58ddda464d62c5694",
+        "pair": "unpaired",
+        "diagnosis": "unresolved_content_error",
+        "actual_packet": {
+          "failure_id": "84ab80ab3c5d47a58ddda464d62c5694",
+          "pair_type": "unpaired",
+          "question": "He spun straw into gold(15)",
+          "predicted": "He spun straw into gold",
+          "train_gold": [
+            "Rumpelstiltskin"
+          ],
+          "EM": 0.0,
+          "F1": 0.0,
+          "diagnosis": {
+            "kind": "unresolved_content_error",
+            "confidence": "low",
+            "check": "Verify the requested target and each necessary relation against the supplied passages; keep the diagnosis uncertain where evidence is missing.",
+            "preserve": "Preserve supported evidence and valid reasoning; do not invent a new task-wide restriction."
+          },
+          "success": null,
+          "evidence": {
+            "failure_context": [
+              {
+                "at": [
+                  2960,
+                  2992
+                ],
+                "text": "(he spun the straw into gold) p.",
+                "doc": "Rumpelstiltskin"
+              },
+              {
+                "at": [
+                  546,
+                  629
+                ],
+                "text": "straw, and gave her a spinning-wheel, and said, 'All this must be spun into gold...",
+                "doc": "Rumpelstiltskin | Grimm's Fairy Tales | Grimm Brothers | Lit2Go ETC"
+              },
+              {
+                "at": [
+                  287,
+                  369
+                ],
+                "text": "marriage to the children who can spin straw into gold; he is captured by the three",
+                "doc": "Rumpelstiltskin - Wikipedia"
+              },
+              {
+                "at": [
+                  1045,
+                  1108
+                ],
+                "text": "imp had that he could turn raw materials like straw, into gold?",
+                "doc": "Spinning Straw into Gold | Bear Skin"
+              }
+            ],
+            "failure_response": [
+              {
+                "at": [
+                  0,
+                  40
+                ],
+                "text": "<answer>He spun straw into gold</answer>"
+              }
+            ]
+          },
+          "omitted": []
+        },
+        "feedback_tokens": 1435
+      },
+      {
+        "id": "1f6f687c79a642328a742e61154c9d90",
+        "pair": "unpaired",
+        "diagnosis": "unresolved_content_error",
+        "actual_packet": {
+          "failure_id": "1f6f687c79a642328a742e61154c9d90",
+          "pair_type": "unpaired",
+          "question": "\"Tippecanoe and Tyler too\"",
+          "predicted": "1840 U.S. Presidential Campaign slogan",
+          "train_gold": [
+            "William Henry Harrison"
+          ],
+          "EM": 0.0,
+          "F1": 0.0,
+          "diagnosis": {
+            "kind": "unresolved_content_error",
+            "confidence": "low",
+            "check": "Verify the requested target and each necessary relation against the supplied passages; keep the diagnosis uncertain where evidence is missing.",
+            "preserve": "Preserve supported evidence and valid reasoning; do not invent a new task-wide restriction."
+          },
+          "success": null,
+          "evidence": {
+            "failure_context": [
+              {
+                "at": [
+                  326,
+                  460
+                ],
+                "text": "[PAR] 'Tippecanoe and Tyler Too' was a campaign slogan for William Henry Harrison and John Tyler in the presidential election of 1840.",
+                "doc": "Tippecanoe and Tyler Too: Meaning, History & Significance - Video ..."
+              },
+              {
+                "at": [
+                  1063,
+                  1217
+                ],
+                "text": "[DOC] [TLE] Tippecanoe and Tyler Too 1840 Campaign slogan - Presidents [PAR] Tippecanoe and Tyler Too - William Henry Harrison; William Henry Harrison was",
+                "doc": "Tippecanoe and Tyler Too! - Dictionary definition of Tippecanoe and ..."
+              },
+              {
+                "at": [
+                  466,
+                  610
+                ],
+                "text": "William Henry Harrison became the ninth president of the United States, and he did so with a winning campaign slogan: 'Tippecanoe and Tyler Too.",
+                "doc": "Tippecanoe and Tyler Too: Meaning, History & Significance - Video ..."
+              },
+              {
+                "at": [
+                  3354,
+                  3424
+                ],
+                "text": "[DOC] [TLE] William Henry Harrison 'Tippecanoe and Tyler Too' 1840 ...",
+                "doc": "Tippecanoe and Tyler Too, a song by They Might Be Giants on Spotify"
+              }
+            ],
+            "failure_response": [
+              {
+                "at": [
+                  0,
+                  15
+                ],
+                "text": "<answer>1840 U."
+              },
+              {
+                "at": [
+                  18,
+                  55
+                ],
+                "text": "Presidential Campaign slogan</answer>"
+              },
+              {
+                "at": [
+                  15,
+                  17
+                ],
+                "text": "S."
+              }
+            ]
+          },
+          "omitted": []
+        },
+        "feedback_tokens": 1435
+      },
+      {
+        "id": "1c2cc13e0fa745d6b541f6c7eb9f5619",
+        "pair": "unpaired",
+        "diagnosis": "name_or_granularity_overlap",
+        "actual_packet": {
+          "failure_id": "1c2cc13e0fa745d6b541f6c7eb9f5619",
+          "pair_type": "unpaired",
+          "question": "A \"hasty\" dessert, or perhaps you'd prefer the tapioca",
+          "predicted": "hasty pudding",
+          "train_gold": [
+            "pudding"
+          ],
+          "EM": 0.0,
+          "F1": 0.6666666666666666,
+          "diagnosis": {
+            "kind": "name_or_granularity_overlap",
+            "confidence": "medium",
+            "check": "Check the referent and requested granularity against the question and source. Do not infer a missing hop solely from the answer-string difference.",
+            "preserve": "Retain correctly supported intermediate relations; do not globally shorten names or remove needed qualifiers."
+          },
+          "success": null,
+          "evidence": {
+            "failure_context": [
+              {
+                "at": [
+                  148,
+                  216
+                ],
+                "text": "DOUBLE \"D\"s: A \"hasty\" dessert, or perhaps you'd prefer the tapioca.",
+                "doc": "Jeopary Questions page 527 - MUSIC - TriviaBistro.com"
+              },
+              {
+                "at": [
+                  484,
+                  550
+                ],
+                "text": "another reason you need to avoid making hasty judgements about ...",
+                "doc": "MasterChef 3: Don't Trifle with Walmart | Have YOU Ben Starr Struck?"
+              },
+              {
+                "at": [
+                  699,
+                  769
+                ],
+                "text": "So, 'Previously on hasty, smudgy phone photos from a glorious, gut ...",
+                "doc": "Michael Booth: September 2010"
+              },
+              {
+                "at": [
+                  2061,
+                  2141
+                ],
+                "text": "17th century, the English settlers brought with them their love of English hasty",
+                "doc": "Recipe  We All Scream for Ouce Cream"
+              }
+            ],
+            "failure_response": [
+              {
+                "at": [
+                  0,
+                  30
+                ],
+                "text": "<answer>hasty pudding</answer>"
+              }
+            ]
+          },
+          "omitted": []
+        },
+        "feedback_tokens": 1435
+      },
+      {
+        "id": "a234f47261f14ab9aed867375bddc652",
+        "pair": "unpaired",
+        "diagnosis": "unresolved_content_error",
+        "actual_packet": {
+          "failure_id": "a234f47261f14ab9aed867375bddc652",
+          "pair_type": "unpaired",
+          "question": "Rubber is an ingredient in this type of chewing gum",
+          "predicted": "Modern chewing gum",
+          "train_gold": [
+            "bubble gum"
+          ],
+          "EM": 0.0,
+          "F1": 0.4,
+          "diagnosis": {
+            "kind": "unresolved_content_error",
+            "confidence": "low",
+            "check": "Verify the requested target and each necessary relation against the supplied passages; keep the diagnosis uncertain where evidence is missing.",
+            "preserve": "Preserve supported evidence and valid reasoning; do not invent a new task-wide restriction."
+          },
+          "success": null,
+          "evidence": {
+            "failure_context": [
+              {
+                "at": [
+                  1151,
+                  1219
+                ],
+                "text": "the most common ingredient in chewing gum is some type of sweetener.",
+                "doc": "How chewing gum is made - manufacture, making, history, used ..."
+              },
+              {
+                "at": [
+                  361,
+                  483
+                ],
+                "text": "[DOC] [TLE] Chewing Gum Ingredients - Chewing Gum Facts [PAR] Today many modern chewing gums use rubber instead of chicle.",
+                "doc": "Chewing gum - Wikipedia"
+              },
+              {
+                "at": [
+                  1395,
+                  1444
+                ],
+                "text": "Modern chewing gum is made from synthetic rubber.",
+                "doc": "What Is in Chewing Gum? - Ingredients Then & Now - Chemistry"
+              },
+              {
+                "at": [
+                  2843,
+                  2897
+                ],
+                "text": "a type of chewing gum that aims to aid in weight loss.",
+                "doc": "Is chewing gum made from whale fat? | Reference.com"
+              }
+            ],
+            "failure_response": [
+              {
+                "at": [
+                  0,
+                  35
+                ],
+                "text": "<answer>Modern chewing gum</answer>"
+              }
+            ]
+          },
+          "omitted": []
+        },
+        "feedback_tokens": 1310
+      },
+      {
+        "id": "6252b238d9554d45bc4eb9b9978543c5",
+        "pair": "unpaired",
+        "diagnosis": "unresolved_content_error",
+        "actual_packet": {
+          "failure_id": "6252b238d9554d45bc4eb9b9978543c5",
+          "pair_type": "unpaired",
+          "question": "\"...on my mind\"",
+          "predicted": "Ellie Goulding",
+          "train_gold": [
+            "Georgia"
+          ],
+          "EM": 0.0,
+          "F1": 0.0,
+          "diagnosis": {
+            "kind": "unresolved_content_error",
+            "confidence": "low",
+            "check": "Verify the requested target and each necessary relation against the supplied passages; keep the diagnosis uncertain where evidence is missing.",
+            "preserve": "Preserve supported evidence and valid reasoning; do not invent a new task-wide restriction."
+          },
+          "success": null,
+          "evidence": {
+            "failure_context": [
+              {
+                "at": [
+                  0,
+                  142
+                ],
+                "text": "[DOC] [TLE] On My Mind (Ellie Goulding song) - Wikipedia [PAR] \"On My Mind\" is a song recorded by English singer and songwriter Ellie Goulding"
+              },
+              {
+                "at": [
+                  224,
+                  367
+                ],
+                "text": "[DOC] [TLE] ELLIE GOULDING - On My Mind lyrics [PAR] Ellie Goulding On My Mind is the lead single from the British singer's third studio album.",
+                "doc": "On My Mind (Ellie Goulding song) - Wikipedia"
+              },
+              {
+                "at": [
+                  432,
+                  538
+                ],
+                "text": "[DOC] [TLE] Ellie Goulding - On My Mind lyrics | Musixmatch [PAR] Lyrics for On My Mind by Ellie Goulding.",
+                "doc": "ELLIE GOULDING - On My Mind lyrics"
+              },
+              {
+                "at": [
+                  665,
+                  743
+                ],
+                "text": "[DOC] [TLE] Spotify Web Player - On My Mind - Ellie Goulding [PAR] On My Mind.",
+                "doc": "Ellie Goulding - On My Mind lyrics | Musixmatch"
+              }
+            ],
+            "failure_response": [
+              {
+                "at": [
+                  0,
+                  31
+                ],
+                "text": "<answer>Ellie Goulding</answer>"
+              }
+            ]
+          },
+          "omitted": []
+        },
+        "feedback_tokens": 1310
+      },
+      {
+        "id": "84ab80ab3c5d47a58ddda464d62c5694",
+        "pair": "unpaired",
+        "diagnosis": "unresolved_content_error",
+        "actual_packet": {
+          "failure_id": "84ab80ab3c5d47a58ddda464d62c5694",
+          "pair_type": "unpaired",
+          "question": "He spun straw into gold(15)",
+          "predicted": "He spun straw into gold",
+          "train_gold": [
+            "Rumpelstiltskin"
+          ],
+          "EM": 0.0,
+          "F1": 0.0,
+          "diagnosis": {
+            "kind": "unresolved_content_error",
+            "confidence": "low",
+            "check": "Verify the requested target and each necessary relation against the supplied passages; keep the diagnosis uncertain where evidence is missing.",
+            "preserve": "Preserve supported evidence and valid reasoning; do not invent a new task-wide restriction."
+          },
+          "success": null,
+          "evidence": {
+            "failure_context": [
+              {
+                "at": [
+                  2960,
+                  2992
+                ],
+                "text": "(he spun the straw into gold) p.",
+                "doc": "Rumpelstiltskin"
+              },
+              {
+                "at": [
+                  546,
+                  629
+                ],
+                "text": "straw, and gave her a spinning-wheel, and said, 'All this must be spun into gold...",
+                "doc": "Rumpelstiltskin | Grimm's Fairy Tales | Grimm Brothers | Lit2Go ETC"
+              },
+              {
+                "at": [
+                  287,
+                  369
+                ],
+                "text": "marriage to the children who can spin straw into gold; he is captured by the three",
+                "doc": "Rumpelstiltskin - Wikipedia"
+              },
+              {
+                "at": [
+                  1045,
+                  1108
+                ],
+                "text": "imp had that he could turn raw materials like straw, into gold?",
+                "doc": "Spinning Straw into Gold | Bear Skin"
+              }
+            ],
+            "failure_response": [
+              {
+                "at": [
+                  0,
+                  40
+                ],
+                "text": "<answer>He spun straw into gold</answer>"
+              }
+            ]
+          },
+          "omitted": []
+        },
+        "feedback_tokens": 1310
+      },
+      {
+        "id": "a40a4414307640f4a89cc84e00e56ea2",
+        "pair": "unpaired",
+        "diagnosis": "name_or_granularity_overlap",
+        "actual_packet": {
+          "failure_id": "a40a4414307640f4a89cc84e00e56ea2",
+          "pair_type": "unpaired",
+          "question": "In 1720 bad investments in this \"bubble\" burst the British economy",
+          "predicted": "South Sea",
+          "train_gold": [
+            "the South Sea Bubble"
+          ],
+          "EM": 0.0,
+          "F1": 0.8,
+          "diagnosis": {
+            "kind": "name_or_granularity_overlap",
+            "confidence": "medium",
+            "check": "Check the referent and requested granularity against the question and source. Do not infer a missing hop solely from the answer-string difference.",
+            "preserve": "Retain correctly supported intermediate relations; do not globally shorten names or remove needed qualifiers."
+          },
+          "success": null,
+          "evidence": {
+            "failure_context": [
+              {
+                "at": [
+                  918,
+                  979
+                ],
+                "text": "INVESTMENTS IN THIS \"BUBBLE\" BURST THE BRITISH ECONOMY, SOUTH",
+                "doc": "Free Flashcards about ECONOMICS - StudyStack"
+              },
+              {
+                "at": [
+                  1371,
+                  1505
+                ],
+                "text": "[DOC] [TLE] China's Bubble Economy or \"The China Bubble\" | [PAR] The Dutch Tulip Mania Bubble (1634-1637)  The South Sea Bubble (1720)",
+                "doc": "Financial crises | The Economist"
+              },
+              {
+                "at": [
+                  3559,
+                  3636
+                ],
+                "text": "Sea Bubble 1711-1720 A company set up to profit from British trade with South",
+                "doc": "Different types of economic and financial bubbles | Economics Help"
+              },
+              {
+                "at": [
+                  2809,
+                  2881
+                ],
+                "text": "Not since the South Sea Bubble in 1720 has Britain seen such a prolonged",
+                "doc": "Britain has taken longer to recover from recession than at any time ..."
+              }
+            ],
+            "failure_response": [
+              {
+                "at": [
+                  0,
+                  26
+                ],
+                "text": "<answer>South Sea</answer>"
+              }
+            ]
+          },
+          "omitted": []
+        },
+        "feedback_tokens": 1502
+      },
+      {
+        "id": "a234f47261f14ab9aed867375bddc652",
+        "pair": "unpaired",
+        "diagnosis": "unresolved_content_error",
+        "actual_packet": {
+          "failure_id": "a234f47261f14ab9aed867375bddc652",
+          "pair_type": "unpaired",
+          "question": "Rubber is an ingredient in this type of chewing gum",
+          "predicted": "Modern",
+          "train_gold": [
+            "bubble gum"
+          ],
+          "EM": 0.0,
+          "F1": 0.0,
+          "diagnosis": {
+            "kind": "unresolved_content_error",
+            "confidence": "low",
+            "check": "Verify the requested target and each necessary relation against the supplied passages; keep the diagnosis uncertain where evidence is missing.",
+            "preserve": "Preserve supported evidence and valid reasoning; do not invent a new task-wide restriction."
+          },
+          "success": null,
+          "evidence": {
+            "failure_context": [
+              {
+                "at": [
+                  1151,
+                  1219
+                ],
+                "text": "the most common ingredient in chewing gum is some type of sweetener.",
+                "doc": "How chewing gum is made - manufacture, making, history, used ..."
+              },
+              {
+                "at": [
+                  361,
+                  483
+                ],
+                "text": "[DOC] [TLE] Chewing Gum Ingredients - Chewing Gum Facts [PAR] Today many modern chewing gums use rubber instead of chicle.",
+                "doc": "Chewing gum - Wikipedia"
+              },
+              {
+                "at": [
+                  1395,
+                  1444
+                ],
+                "text": "Modern chewing gum is made from synthetic rubber.",
+                "doc": "What Is in Chewing Gum? - Ingredients Then & Now - Chemistry"
+              },
+              {
+                "at": [
+                  2325,
+                  2479
+                ],
+                "text": "[DOC] [TLE] How It's Made - Bubble Gum - YouTube [PAR] Jul 30, 2008 - 5 min - Uploaded by juliuswaagPrisms DUDe U Stupid its edible plastic and rubber ...",
+                "doc": "How is chewing gum made? | Reference.com"
+              }
+            ],
+            "failure_response": [
+              {
+                "at": [
+                  0,
+                  23
+                ],
+                "text": "<answer>Modern</answer>"
+              }
+            ]
+          },
+          "omitted": []
+        },
+        "feedback_tokens": 1502
+      },
+      {
+        "id": "3ca738c4497e48e0a746bcdb81beec97",
+        "pair": "unpaired",
+        "diagnosis": "unresolved_content_error",
+        "actual_packet": {
+          "failure_id": "3ca738c4497e48e0a746bcdb81beec97",
+          "pair_type": "unpaired",
+          "question": "Of the U.S. coins currently being minted, it's the smallest in size",
+          "predicted": "Not found in context",
+          "train_gold": [
+            "a dime"
+          ],
+          "EM": 0.0,
+          "F1": 0.0,
+          "diagnosis": {
+            "kind": "unresolved_content_error",
+            "confidence": "low",
+            "check": "Verify the requested target and each necessary relation against the supplied passages; keep the diagnosis uncertain where evidence is missing.",
+            "preserve": "Preserve supported evidence and valid reasoning; do not invent a new task-wide restriction."
+          },
+          "success": null,
+          "evidence": {
+            "failure_context": [
+              {
+                "at": [
+                  1432,
+                  1489
+                ],
+                "text": "coin currently minted, in both size and weight, being ...",
+                "doc": "Half dollar (United States coin) - Wikipedia"
+              },
+              {
+                "at": [
+                  3009,
+                  3083
+                ],
+                "text": "were, in fact, about half the size of a dime as well as being half the ...",
+                "doc": "10 Lesser-Known U.S. Coins | Mental Floss"
+              },
+              {
+                "at": [
+                  3160,
+                  3262
+                ],
+                "text": "[DOC] [TLE] Guide to United States Coinage - Littleton Coin Company [PAR] The smallest denomination U.",
+                "doc": "10 Lesser-Known U.S. Coins | Mental Floss"
+              },
+              {
+                "at": [
+                  925,
+                  1001
+                ],
+                "text": "second largest American coin currently minted in terms of physical size ....",
+                "doc": "Dollar coin (United States) - Wikipedia"
+              }
+            ],
+            "failure_response": [
+              {
+                "at": [
+                  376,
+                  649
+                ],
+                "text": "The text does not explicitly state which of the *currently minted* coins is the smallest in size, nor does it confirm if the half-cent is still being minted (it mentions it was the smallest value coin in history, but the current list of denominations starts with the cent)."
+              },
+              {
+                "at": [
+                  5738,
+                  5972
+                ],
+                "text": "Given the strict constraint \"based strictly on that evidence\", and the evidence does not explicitly name the smallest *currently minted* coin (it only names the largest and second largest), the answer is likely \"Not found in context\"."
+              },
+              {
+                "at": [
+                  6519,
+                  6563
+                ],
+                "text": "Therefore, the answer is not in the context."
+              }
+            ]
+          },
+          "omitted": []
+        },
+        "feedback_tokens": 1502
+      }
+    ],
+    "diagnoses": {
+      "name_or_granularity_overlap": 7,
+      "unresolved_content_error": 10,
+      "answer_type_mismatch": 1
+    },
+    "max_feedback_tokens": 1758,
+    "checks": [
+      "same selected failures",
+      "same success observation",
+      "exact source substrings",
+      "2048-token cap",
+      "all selected packets retained"
+    ],
+    "scope": "historical train-only offline packing validation, no API calls"
+  },
+  "hotpotqa": {
+    "status": "passed",
+    "parent_feedbacks": 6,
+    "records": [
+      {
+        "id": "5ab847ab5542990e739ec8aa",
+        "pair": "same_question",
+        "diagnosis": "unresolved_content_error",
+        "actual_packet": {
+          "failure_id": "5ab847ab5542990e739ec8aa",
+          "pair_type": "same_question",
+          "question": "Who has more musical talents, Serj Tankian or Pete Doherty?",
+          "predicted": "Cannot be determined from the text",
+          "train_gold": [
+            "Serj Tankian"
+          ],
+          "EM": 0.0,
+          "F1": 0.0,
+          "diagnosis": {
+            "kind": "unresolved_content_error",
+            "confidence": "low",
+            "check": "Verify the requested target and each necessary relation against the supplied passages; keep the diagnosis uncertain where evidence is missing.",
+            "preserve": "Preserve supported evidence and valid reasoning; do not invent a new task-wide restriction."
+          },
+          "success": {
+            "id": "5ab847ab5542990e739ec8aa",
+            "predicted": "Serj Tankian",
+            "question": "same question/context",
+            "EM": 1
+          },
+          "evidence": {
+            "failure_context": [
+              {
+                "at": [
+                  13,
+                  205
+                ],
+                "text": "[0] Serart is a collaboration album by two international Armenian musicians: Serj Tankian (\"Ser-\"), lead singer of System of a Down, and folk multi-instrumentalist Arto Tunçboyacıyan (\"-art\").",
+                "doc": "[DOC] Serart"
+              },
+              {
+                "at": [
+                  3066,
+                  3164
+                ],
+                "text": "[2]  His other musical projects are indie band Babyshambles and Peter Doherty and the Puta Madres.",
+                "doc": "[DOC] Pete Doherty"
+              },
+              {
+                "at": [
+                  303,
+                  347
+                ],
+                "text": "[0] \"Sky Is Over\" is a song by Serj Tankian.",
+                "doc": "[DOC] Sky Is Over"
+              }
+            ],
+            "failure_response": [
+              {
+                "at": [
+                  0,
+                  127
+                ],
+                "text": "Based on the provided text, it is impossible to determine who has \"more\" musical talents between Serj Tankian and Pete Doherty."
+              },
+              {
+                "at": [
+                  786,
+                  837
+                ],
+                "text": "<answer>Cannot be determined from the text</answer>"
+              }
+            ],
+            "success_response": [
+              {
+                "at": [
+                  798,
+                  1065
+                ],
+                "text": "While both have diverse talents (including songwriting and poetry), the text explicitly uses the term \"multi-instrumentalist\" for Serj Tankian and lists \"composer\" for him, whereas for Pete Doherty, the roles are musician, songwriter, actor, poet, writer, and artist."
+              },
+              {
+                "at": [
+                  1672,
+                  1951
+                ],
+                "text": "If forced to choose based on the explicit label \"multi-instrumentalist\" and \"composer\" which implies a breadth of musical technical skills often associated with \"talent\" in a musical context, Serj Tankian is described with more specific musical production and instrumental roles."
+              }
+            ]
+          },
+          "omitted": []
+        },
+        "feedback_tokens": 1858
+      },
+      {
+        "id": "5a7219e155429971e9dc926e",
+        "pair": "unpaired",
+        "diagnosis": "name_or_granularity_overlap",
+        "actual_packet": {
+          "failure_id": "5a7219e155429971e9dc926e",
+          "pair_type": "unpaired",
+          "question": "Which postcolonial literature academic specializes in Victorian and Modern English literature?",
+          "predicted": "Ankhi Mukherjee",
+          "train_gold": [
+            "Ankhi Mukherjee is an academic specialising in Victorian and Modern English literature,"
+          ],
+          "EM": 0.0,
+          "F1": 0.3076923076923077,
+          "diagnosis": {
+            "kind": "name_or_granularity_overlap",
+            "confidence": "medium",
+            "check": "Check the referent and requested granularity against the question and source. Do not infer a missing hop solely from the answer-string difference.",
+            "preserve": "Retain correctly supported intermediate relations; do not globally shorten names or remove needed qualifiers."
+          },
+          "success": null,
+          "evidence": {
+            "failure_context": [
+              {
+                "at": [
+                  5280,
+                  5426
+                ],
+                "text": "[0] Ankhi Mukherjee is an academic specialising in Victorian and Modern English literature, critical theory and postcolonial and world literature.",
+                "doc": "[DOC] Ankhi Mukherjee"
+              },
+              {
+                "at": [
+                  3788,
+                  3909
+                ],
+                "text": "[1]  He specializes in early modern English literature, particularly early modern English Catholicism and Edmund Spenser.",
+                "doc": "[DOC] Lowell Gallagher"
+              },
+              {
+                "at": [
+                  92,
+                  316
+                ],
+                "text": "[1]  She is Professor of Modern Literatures in English and Head of School of Literature and Languages at the University of Reading, where she also founded the research theme \"Minority Identities: Rights and Representations\".",
+                "doc": "[DOC] Alison Donnell"
+              },
+              {
+                "at": [
+                  1750,
+                  1991
+                ],
+                "text": "[0] Sara Suleri Goodyear, born Sara Suleri (born June 12, 1953), is an author and professor emeritus of English at Yale University, where her fields of study and teaching include Romantic and Victorian poetry and an interest in Edmund Burke.",
+                "doc": "[DOC] Sara Suleri"
+              }
+            ],
+            "failure_response": [
+              {
+                "at": [
+                  0,
+                  182
+                ],
+                "text": "Based on the context provided, **Ankhi Mukherjee** is the academic who specializes in Victorian and Modern English literature, critical theory, and postcolonial and world literature."
+              },
+              {
+                "at": [
+                  184,
+                  216
+                ],
+                "text": "<answer>Ankhi Mukherjee</answer>"
+              }
+            ]
+          },
+          "omitted": []
+        },
+        "feedback_tokens": 1858
+      },
+      {
+        "id": "5ae8153555429952e35eaa00",
+        "pair": "same_question",
+        "diagnosis": "unresolved_content_error",
+        "actual_packet": {
+          "failure_id": "5ae8153555429952e35eaa00",
+          "pair_type": "same_question",
+          "question": "What movie features the actor who played the title character based on Ken Bruen's novels as Jarrod Slade?",
+          "predicted": "Jack Taylor",
+          "train_gold": [
+            "Cleverman"
+          ],
+          "EM": 0.0,
+          "F1": 0.0,
+          "diagnosis": {
+            "kind": "unresolved_content_error",
+            "confidence": "low",
+            "check": "Verify the requested target and each necessary relation against the supplied passages; keep the diagnosis uncertain where evidence is missing.",
+            "preserve": "Preserve supported evidence and valid reasoning; do not invent a new task-wide restriction."
+          },
+          "success": {
+            "id": "5ae8153555429952e35eaa00",
+            "predicted": "Cleverman",
+            "question": "same question/context",
+            "EM": 1
+          },
+          "evidence": {
+            "failure_context": [
+              {
+                "at": [
+                  891,
+                  1076
+                ],
+                "text": "[2]  Other notable roles include John Hanning Speke in \"Mountains of the Moon\", Sir Richard Carlisle in \"Downton Abbey\", the title role in \"Jack Taylor\" and Jarrod Slade in \"Cleverman\".",
+                "doc": "[DOC] Iain Glen"
+              },
+              {
+                "at": [
+                  2623,
+                  2709
+                ],
+                "text": "[0] Jack Taylor is an Irish mystery television drama based on the novels by Ken Bruen.",
+                "doc": "[DOC] Jack Taylor (TV series)"
+              },
+              {
+                "at": [
+                  462,
+                  632
+                ],
+                "text": "[2]  The film is based on the novel of the same name by Ken Bruen, which features his recurring characters Detective Sergeant Tom Brant and Chief Inspector James Roberts.",
+                "doc": "[DOC] Blitz (film)"
+              }
+            ],
+            "failure_response": [
+              {
+                "at": [
+                  1314,
+                  1443
+                ],
+                "text": "The question asks: \"What **movie** features the actor who played the title character based on Ken Bruen's novels as Jarrod Slade?"
+              },
+              {
+                "at": [
+                  2806,
+                  2912
+                ],
+                "text": "\"What movie features the actor who played the title character based on Ken Bruen's novels as Jarrod Slade?"
+              },
+              {
+                "at": [
+                  3271,
+                  3406
+                ],
+                "text": "The description \"the actor who played the title character based on Ken Bruen's novels\" uniquely identifies Iain Glen via *Jack Taylor*."
+              }
+            ],
+            "success_response": [
+              {
+                "at": [
+                  65,
+                  143
+                ],
+                "text": "Identify the actor who played the title character based on Ken Bruen's novels."
+              },
+              {
+                "at": [
+                  1173,
+                  1209
+                ],
+                "text": "Therefore, the movie is \"Cleverman\"."
+              }
+            ]
+          },
+          "omitted": []
+        },
+        "feedback_tokens": 1858
+      },
+      {
+        "id": "5a7219e155429971e9dc926e",
+        "pair": "unpaired",
+        "diagnosis": "name_or_granularity_overlap",
+        "actual_packet": {
+          "failure_id": "5a7219e155429971e9dc926e",
+          "pair_type": "unpaired",
+          "question": "Which postcolonial literature academic specializes in Victorian and Modern English literature?",
+          "predicted": "Ankhi Mukherjee",
+          "train_gold": [
+            "Ankhi Mukherjee is an academic specialising in Victorian and Modern English literature,"
+          ],
+          "EM": 0.0,
+          "F1": 0.3076923076923077,
+          "diagnosis": {
+            "kind": "name_or_granularity_overlap",
+            "confidence": "medium",
+            "check": "Check the referent and requested granularity against the question and source. Do not infer a missing hop solely from the answer-string difference.",
+            "preserve": "Retain correctly supported intermediate relations; do not globally shorten names or remove needed qualifiers."
+          },
+          "success": null,
+          "evidence": {
+            "failure_context": [
+              {
+                "at": [
+                  5280,
+                  5426
+                ],
+                "text": "[0] Ankhi Mukherjee is an academic specialising in Victorian and Modern English literature, critical theory and postcolonial and world literature.",
+                "doc": "[DOC] Ankhi Mukherjee"
+              },
+              {
+                "at": [
+                  3788,
+                  3909
+                ],
+                "text": "[1]  He specializes in early modern English literature, particularly early modern English Catholicism and Edmund Spenser.",
+                "doc": "[DOC] Lowell Gallagher"
+              },
+              {
+                "at": [
+                  92,
+                  316
+                ],
+                "text": "[1]  She is Professor of Modern Literatures in English and Head of School of Literature and Languages at the University of Reading, where she also founded the research theme \"Minority Identities: Rights and Representations\".",
+                "doc": "[DOC] Alison Donnell"
+              },
+              {
+                "at": [
+                  1750,
+                  1991
+                ],
+                "text": "[0] Sara Suleri Goodyear, born Sara Suleri (born June 12, 1953), is an author and professor emeritus of English at Yale University, where her fields of study and teaching include Romantic and Victorian poetry and an interest in Edmund Burke.",
+                "doc": "[DOC] Sara Suleri"
+              }
+            ],
+            "failure_response": [
+              {
+                "at": [
+                  1116,
+                  1312
+                ],
+                "text": "*   **Ankhi Mukherjee**: The text explicitly states: \"Ankhi Mukherjee is an academic specialising in Victorian and Modern English literature, critical theory and postcolonial and world literature."
+              },
+              {
+                "at": [
+                  1436,
+                  1538
+                ],
+                "text": "*   Ankhi Mukherjee specializes in Victorian and Modern English literature (confirmed in passage [0])."
+              },
+              {
+                "at": [
+                  459,
+                  590
+                ],
+                "text": "*   Ankhi Mukherjee: Specialises in Victorian and Modern English literature, critical theory and postcolonial and world literature."
+              }
+            ]
+          },
+          "omitted": []
+        },
+        "feedback_tokens": 1847
+      },
+      {
+        "id": "5a89d7d05542992e4fca83df",
+        "pair": "unpaired",
+        "diagnosis": "name_or_granularity_overlap",
+        "actual_packet": {
+          "failure_id": "5a89d7d05542992e4fca83df",
+          "pair_type": "unpaired",
+          "question": "What type of publication does The Writer and Wired and have in common?",
+          "predicted": "monthly magazine",
+          "train_gold": [
+            "magazine"
+          ],
+          "EM": 0.0,
+          "F1": 0.6666666666666666,
+          "diagnosis": {
+            "kind": "name_or_granularity_overlap",
+            "confidence": "medium",
+            "check": "Check the referent and requested granularity against the question and source. Do not infer a missing hop solely from the answer-string difference.",
+            "preserve": "Retain correctly supported intermediate relations; do not globally shorten names or remove needed qualifiers."
+          },
+          "success": null,
+          "evidence": {
+            "failure_context": [
+              {
+                "at": [
+                  7461,
+                  7537
+                ],
+                "text": "[0] The Writer is a monthly magazine for writers published by Madavor Media.",
+                "doc": "[DOC] The Writer"
+              },
+              {
+                "at": [
+                  4248,
+                  4363
+                ],
+                "text": "[0] Gary Wolf is a writer, contributing editor at America's \"Wired\" magazine and co-founder of the Quantified Self.",
+                "doc": "[DOC] Gary Wolf (journalist)"
+              },
+              {
+                "at": [
+                  121,
+                  339
+                ],
+                "text": "[1]  It can refer to several types of cancer, with cervical cancer (arising from the lower portion of the uterus) being the most common type worldwide and the second most common cancer in women in developing countries.",
+                "doc": "[DOC] Uterine cancer"
+              },
+              {
+                "at": [
+                  3808,
+                  3974
+                ],
+                "text": "[0] Wired is a monthly American magazine, published in print and online editions, that focuses on how emerging technologies affect culture, the economy, and politics.",
+                "doc": "[DOC] Wired (magazine)"
+              }
+            ],
+            "failure_response": [
+              {
+                "at": [
+                  1018,
+                  1051
+                ],
+                "text": "<answer>monthly magazine</answer>"
+              },
+              {
+                "at": [
+                  0,
+                  151
+                ],
+                "text": "To answer this question, I need to identify the publication type for both \"The Writer\" and \"Wired\" based on the provided text and find the commonality."
+              },
+              {
+                "at": [
+                  232,
+                  333
+                ],
+                "text": "*   Passage [0] states: \"The Writer is a **monthly magazine** for writers published by Madavor Media."
+              }
+            ]
+          },
+          "omitted": []
+        },
+        "feedback_tokens": 1847
+      },
+      {
+        "id": "5ab2de5d5542991669774116",
+        "pair": "same_question",
+        "diagnosis": "token_order_only",
+        "actual_packet": {
+          "failure_id": "5ab2de5d5542991669774116",
+          "pair_type": "same_question",
+          "question": "What two property groups own the enclosed shopping malls in Santa Rosa, California?",
+          "predicted": "Simon Property Group and Codding Enterprises",
+          "train_gold": [
+            "Codding Enterprises and Simon Property Group"
+          ],
+          "EM": 0.0,
+          "F1": 1.0,
+          "diagnosis": {
+            "kind": "token_order_only",
+            "confidence": "high",
+            "check": "Check whether the question or evidence requires an order; do not impose an arbitrary reference order on unrelated questions.",
+            "preserve": "Preserve all supported entities and relations. Exact-match scoring is unchanged."
+          },
+          "success": {
+            "id": "5ab2de5d5542991669774116",
+            "predicted": "Codding Enterprises and Simon Property Group",
+            "question": "same question/context",
+            "EM": 1
+          },
+          "evidence": {
+            "failure_context": [
+              {
+                "at": [
+                  3923,
+                  4036
+                ],
+                "text": "[2]  It is owned by Codding Enterprises and Simon Property Group, the latter of which also owns Santa Rosa Plaza.",
+                "doc": "[DOC] Coddingtown Mall"
+              },
+              {
+                "at": [
+                  628,
+                  713
+                ],
+                "text": "[0] Santa Rosa Plaza is one of two enclosed shopping malls in Santa Rosa, California.",
+                "doc": "[DOC] Santa Rosa Plaza"
+              },
+              {
+                "at": [
+                  3726,
+                  3811
+                ],
+                "text": "[0] Coddingtown Mall is one of two enclosed shopping malls in Santa Rosa, California.",
+                "doc": "[DOC] Coddingtown Mall"
+              },
+              {
+                "at": [
+                  784,
+                  833
+                ],
+                "text": "[2]  The mall is managed by Simon Property Group.",
+                "doc": "[DOC] Santa Rosa Plaza"
+              }
+            ],
+            "failure_response": [
+              {
+                "at": [
+                  0,
+                  176
+                ],
+                "text": "To answer this question, I need to identify the enclosed shopping malls in Santa Rosa, California, and then determine which property groups own them based on the provided text."
+              },
+              {
+                "at": [
+                  1117,
+                  1178
+                ],
+                "text": "<answer>Simon Property Group and Codding Enterprises</answer>"
+              },
+              {
+                "at": [
+                  475,
+                  546
+                ],
+                "text": "*   Therefore, the two malls are Santa Rosa Plaza and Coddingtown Mall."
+              }
+            ],
+            "success_response": [
+              {
+                "at": [
+                  277,
+                  395
+                ],
+                "text": "Therefore, the two property groups involved in owning/operating them are Codding Enterprises and Simon Property Group."
+              },
+              {
+                "at": [
+                  189,
+                  276
+                ],
+                "text": "Both malls are identified as the two enclosed shopping malls in Santa Rosa, California."
+              },
+              {
+                "at": [
+                  397,
+                  458
+                ],
+                "text": "<answer>Codding Enterprises and Simon Property Group</answer>"
+              }
+            ]
+          },
+          "omitted": []
+        },
+        "feedback_tokens": 1847
+      },
+      {
+        "id": "5a8e1f4955429917b4a5bd2f",
+        "pair": "unpaired",
+        "diagnosis": "answer_format",
+        "actual_packet": {
+          "failure_id": "5a8e1f4955429917b4a5bd2f",
+          "pair_type": "unpaired",
+          "question": "What army did the uncle of Jean Gordon command?",
+          "predicted": "Jean Gordon (politician).",
+          "train_gold": [
+            "U.S. Seventh Army"
+          ],
+          "EM": 0.0,
+          "F1": 0.0,
+          "diagnosis": {
+            "kind": "answer_format",
+            "confidence": "high",
+            "check": "Keep evidence-based reasoning and place the final answer in the required answer tag.",
+            "preserve": "Preserve supported evidence and valid reasoning; do not invent a new task-wide restriction."
+          },
+          "success": null,
+          "evidence": {
+            "failure_context": [
+              {
+                "at": [
+                  4517,
+                  4682
+                ],
+                "text": "Hernandez is a retired officer in the United States Army and the former commander of the United States Army Cyber Command which is the Army’s service component to U.",
+                "doc": "[DOC] Rhett A. Hernandez"
+              },
+              {
+                "at": [
+                  3155,
+                  3185
+                ],
+                "text": "[DOC] Jean Gordon (politician)",
+                "doc": "[DOC] James Hamilton, 3rd Baron Hamilton of Strabane"
+              },
+              {
+                "at": [
+                  3186,
+                  3273
+                ],
+                "text": "[0] Gertrude Jean Gordon (March 6, 1918 – September 5, 2008) was a Canadian politician.",
+                "doc": "[DOC] Jean Gordon (politician)"
+              },
+              {
+                "at": [
+                  2707,
+                  2826
+                ],
+                "text": "Seventh Army in the Mediterranean and European theaters of World War II, but is best known for his leadership of the U.",
+                "doc": "[DOC] George S. Patton"
+              }
+            ],
+            "failure_response": [
+              {
+                "at": [
+                  2688,
+                  2758
+                ],
+                "text": "*   The question asks \"What army did the uncle of Jean Gordon command?"
+              },
+              {
+                "at": [
+                  5594,
+                  5642
+                ],
+                "text": "\"What army did the uncle of Jean Gordon command?"
+              },
+              {
+                "at": [
+                  0,
+                  122
+                ],
+                "text": "To answer this question, I need to identify who Jean Gordon's uncle is and then determine which army that uncle commanded."
+              }
+            ]
+          },
+          "omitted": []
+        },
+        "feedback_tokens": 1796
+      },
+      {
+        "id": "5a7bcd09554299294a54aaeb",
+        "pair": "unpaired",
+        "diagnosis": "name_or_granularity_overlap",
+        "actual_packet": {
+          "failure_id": "5a7bcd09554299294a54aaeb",
+          "pair_type": "unpaired",
+          "question": "When was the actor who starred in The Finest Hours born?",
+          "predicted": "August 26, 1980 (Chris Pine) and December 19, 1991 (Keiynan Lonsdale)",
+          "train_gold": [
+            "1980"
+          ],
+          "EM": 0.0,
+          "F1": 0.16666666666666669,
+          "diagnosis": {
+            "kind": "name_or_granularity_overlap",
+            "confidence": "medium",
+            "check": "Check the referent and requested granularity against the question and source. Do not infer a missing hop solely from the answer-string difference.",
+            "preserve": "Retain correctly supported intermediate relations; do not globally shorten names or remove needed qualifiers."
+          },
+          "success": null,
+          "evidence": {
+            "failure_context": [
+              {
+                "at": [
+                  4095,
+                  4163
+                ],
+                "text": "[0] Keiynan Lonsdale (born December 19 1991) is an Australian actor.",
+                "doc": "[DOC] Keiynan Lonsdale"
+              },
+              {
+                "at": [
+                  4565,
+                  4639
+                ],
+                "text": "[0] Christopher Whitelaw Pine (born August 26, 1980) is an American actor.",
+                "doc": "[DOC] Chris Pine"
+              },
+              {
+                "at": [
+                  1843,
+                  1961
+                ],
+                "text": "[4]  Tougias' book inspired the 2016 film \"The Finest Hours\" with Chris Pine, which focuses on the \"Pendelton\" rescue.",
+                "doc": "[DOC] SS Pendleton"
+              },
+              {
+                "at": [
+                  3058,
+                  3130
+                ],
+                "text": "[0] Casey Sherman (born January 19, 1969) is an American author, journal",
+                "doc": "[DOC] Casey Sherman"
+              }
+            ],
+            "failure_response": [
+              {
+                "at": [
+                  1611,
+                  1697
+                ],
+                "text": "<answer>August 26, 1980 (Chris Pine) and December 19, 1991 (Keiynan Lonsdale)</answer>"
+              },
+              {
+                "at": [
+                  1106,
+                  1260
+                ],
+                "text": "The text provides birth dates for two of the actors listed as starring in the film: Chris Pine (August 26, 1980) and Keiynan Lonsdale (December 19, 1991)."
+              },
+              {
+                "at": [
+                  566,
+                  654
+                ],
+                "text": "*   **Chris Pine**: The passage `[DOC] Chris Pine` states he was \"born August 26, 1980\"."
+              }
+            ]
+          },
+          "omitted": []
+        },
+        "feedback_tokens": 1796
+      },
+      {
+        "id": "5ab2de5d5542991669774116",
+        "pair": "same_question",
+        "diagnosis": "token_order_only",
+        "actual_packet": {
+          "failure_id": "5ab2de5d5542991669774116",
+          "pair_type": "same_question",
+          "question": "What two property groups own the enclosed shopping malls in Santa Rosa, California?",
+          "predicted": "Simon Property Group and Codding Enterprises",
+          "train_gold": [
+            "Codding Enterprises and Simon Property Group"
+          ],
+          "EM": 0.0,
+          "F1": 1.0,
+          "diagnosis": {
+            "kind": "token_order_only",
+            "confidence": "high",
+            "check": "Check whether the question or evidence requires an order; do not impose an arbitrary reference order on unrelated questions.",
+            "preserve": "Preserve all supported entities and relations. Exact-match scoring is unchanged."
+          },
+          "success": {
+            "id": "5ab2de5d5542991669774116",
+            "predicted": "Codding Enterprises and Simon Property Group",
+            "question": "same question/context",
+            "EM": 1
+          },
+          "evidence": {
+            "failure_context": [
+              {
+                "at": [
+                  3923,
+                  4036
+                ],
+                "text": "[2]  It is owned by Codding Enterprises and Simon Property Group, the latter of which also owns Santa Rosa Plaza.",
+                "doc": "[DOC] Coddingtown Mall"
+              },
+              {
+                "at": [
+                  628,
+                  713
+                ],
+                "text": "[0] Santa Rosa Plaza is one of two enclosed shopping malls in Santa Rosa, California.",
+                "doc": "[DOC] Santa Rosa Plaza"
+              },
+              {
+                "at": [
+                  3726,
+                  3811
+                ],
+                "text": "[0] Coddingtown Mall is one of two enclosed shopping malls in Santa Rosa, California.",
+                "doc": "[DOC] Coddingtown Mall"
+              },
+              {
+                "at": [
+                  784,
+                  833
+                ],
+                "text": "[2]  The mall is managed by Simon Property Group.",
+                "doc": "[DOC] Santa Rosa Plaza"
+              }
+            ],
+            "failure_response": [
+              {
+                "at": [
+                  0,
+                  176
+                ],
+                "text": "To answer this question, I need to identify the enclosed shopping malls in Santa Rosa, California, and then determine which property groups own them based on the provided text."
+              },
+              {
+                "at": [
+                  1117,
+                  1178
+                ],
+                "text": "<answer>Simon Property Group and Codding Enterprises</answer>"
+              },
+              {
+                "at": [
+                  475,
+                  546
+                ],
+                "text": "*   Therefore, the two malls are Santa Rosa Plaza and Coddingtown Mall."
+              }
+            ],
+            "success_response": [
+              {
+                "at": [
+                  277,
+                  395
+                ],
+                "text": "Therefore, the two property groups involved in owning/operating them are Codding Enterprises and Simon Property Group."
+              },
+              {
+                "at": [
+                  189,
+                  276
+                ],
+                "text": "Both malls are identified as the two enclosed shopping malls in Santa Rosa, California."
+              },
+              {
+                "at": [
+                  397,
+                  458
+                ],
+                "text": "<answer>Codding Enterprises and Simon Property Group</answer>"
+              }
+            ]
+          },
+          "omitted": []
+        },
+        "feedback_tokens": 1796
+      },
+      {
+        "id": "5ab5dba3554299494045f086",
+        "pair": "same_question",
+        "diagnosis": "name_or_granularity_overlap",
+        "actual_packet": {
+          "failure_id": "5ab5dba3554299494045f086",
+          "pair_type": "same_question",
+          "question": "Who directed the 1979 American drama film that starred the actress who won the Golden Globe Award for Best Supporting Actress for \"Psycho\"?",
+          "predicted": "Stephen Verona",
+          "train_gold": [
+            "Verona"
+          ],
+          "EM": 0.0,
+          "F1": 0.6666666666666666,
+          "diagnosis": {
+            "kind": "name_or_granularity_overlap",
+            "confidence": "medium",
+            "check": "Check the referent and requested granularity against the question and source. Do not infer a missing hop solely from the answer-string difference.",
+            "preserve": "Retain correctly supported intermediate relations; do not globally shorten names or remove needed qualifiers."
+          },
+          "success": {
+            "id": "5ab5dba3554299494045f086",
+            "predicted": "Verona",
+            "question": "same question/context",
+            "EM": 1
+          },
+          "evidence": {
+            "failure_context": [
+              {
+                "at": [
+                  5035,
+                  5265
+                ],
+                "text": "[2]  Her breakthrough came in 2011, when she starred as Minny Jackson in the period drama film \"The Help\", for which she won the Academy Award, Golden Globe, SAG, BAFTA, and Critics' Choice Movie Award for Best Supporting Actress.",
+                "doc": "[DOC] Octavia Spencer"
+              },
+              {
+                "at": [
+                  7239,
+                  7350
+                ],
+                "text": "[0] Boardwalk is a 1979 American drama film written by Stephen Verona and Leigh Chapman and directed by Verona.",
+                "doc": "[DOC] Boardwalk (film)"
+              },
+              {
+                "at": [
+                  800,
+                  903
+                ],
+                "text": "[1]  She is best remembered for her performance in \"Psycho\", for which she was awarded the Golden Globe",
+                "doc": "[DOC] Janet Leigh"
+              }
+            ],
+            "failure_response": [
+              {
+                "at": [
+                  59,
+                  161
+                ],
+                "text": "Identify the actress who won the Golden Globe Award for Best Supporting Actress for the film \"Psycho\"."
+              },
+              {
+                "at": [
+                  899,
+                  1013
+                ],
+                "text": "- \"[0] Boardwalk is a 1979 American drama film written by Stephen Verona and Leigh Chapman and directed by Verona."
+              }
+            ],
+            "success_response": [
+              {
+                "at": [
+                  66,
+                  190
+                ],
+                "text": "**Identify the actress:** Find the actress who won the Golden Globe Award for Best Supporting Actress for the film \"Psycho\"."
+              },
+              {
+                "at": [
+                  195,
+                  402
+                ],
+                "text": "*   Looking at the document **[DOC] Janet Leigh**, passage [1] states: \"She is best remembered for her performance in 'Psycho', for which she was awarded the Golden Globe Award for Best Supporting Actress..."
+              }
+            ]
+          },
+          "omitted": []
+        },
+        "feedback_tokens": 1915
+      },
+      {
+        "id": "5ade88ca55429939a52fe8e7",
+        "pair": "unpaired",
+        "diagnosis": "name_or_granularity_overlap",
+        "actual_packet": {
+          "failure_id": "5ade88ca55429939a52fe8e7",
+          "pair_type": "unpaired",
+          "question": "What city is the university located where Lester J. Reed received his Bachelors of Science from?",
+          "predicted": "New Orleans",
+          "train_gold": [
+            "New Orleans, Louisiana"
+          ],
+          "EM": 0.0,
+          "F1": 0.8,
+          "diagnosis": {
+            "kind": "name_or_granularity_overlap",
+            "confidence": "medium",
+            "check": "Check the referent and requested granularity against the question and source. Do not infer a missing hop solely from the answer-string difference.",
+            "preserve": "Retain correctly supported intermediate relations; do not globally shorten names or remove needed qualifiers."
+          },
+          "success": null,
+          "evidence": {
+            "failure_context": [
+              {
+                "at": [
+                  4523,
+                  4715
+                ],
+                "text": "[1]  He received his Bachelors of Science from Tulane University in 1943, where he worked with William Shive, and earned his doctorate from the University of Illinois in 1946 at the age of 21.",
+                "doc": "[DOC] Lester J. Reed"
+              },
+              {
+                "at": [
+                  4293,
+                  4522
+                ],
+                "text": "Reed (January 3, 1925, New Orleans, Louisiana - January 14, 2015) was an American biochemist, having been the Ashbel Smith Professor Emeritus at University of Texas at Austin (UTA), and also a National Academy of Sciences member.",
+                "doc": "[DOC] Lester J. Reed"
+              },
+              {
+                "at": [
+                  1640,
+                  1830
+                ],
+                "text": "[1] North China University of Science and Technology, located in Tangshan the most promising city at the center of Bohai Bay Rim, is one of the ten key universities of Hebei Province, China.",
+                "doc": "[DOC] North China University of Science and Technology"
+              },
+              {
+                "at": [
+                  2414,
+                  2559
+                ],
+                "text": "[2]  He received his bachelors from the University of Texas at Austin in 1977 and his PhD from the Massachusetts Institute of Technology in 1983.",
+                "doc": "[DOC] Joseph Francisco"
+              }
+            ],
+            "failure_response": [
+              {
+                "at": [
+                  261,
+                  357
+                ],
+                "text": "Reed\", sentence [1]: \"He received his Bachelors of Science from **Tulane University** in 1943..."
+              },
+              {
+                "at": [
+                  591,
+                  626
+                ],
+                "text": "Therefore, the city is New Orleans."
+              },
+              {
+                "at": [
+                  628,
+                  656
+                ],
+                "text": "<answer>New Orleans</answer>"
+              }
+            ]
+          },
+          "omitted": []
+        },
+        "feedback_tokens": 1915
+      },
+      {
+        "id": "5a7bcd09554299294a54aaeb",
+        "pair": "unpaired",
+        "diagnosis": "name_or_granularity_overlap",
+        "actual_packet": {
+          "failure_id": "5a7bcd09554299294a54aaeb",
+          "pair_type": "unpaired",
+          "question": "When was the actor who starred in The Finest Hours born?",
+          "predicted": "August 26, 1980 (Chris Pine) and December 19, 1991 (Keiynan Lonsdale)",
+          "train_gold": [
+            "1980"
+          ],
+          "EM": 0.0,
+          "F1": 0.16666666666666669,
+          "diagnosis": {
+            "kind": "name_or_granularity_overlap",
+            "confidence": "medium",
+            "check": "Check the referent and requested granularity against the question and source. Do not infer a missing hop solely from the answer-string difference.",
+            "preserve": "Retain correctly supported intermediate relations; do not globally shorten names or remove needed qualifiers."
+          },
+          "success": null,
+          "evidence": {
+            "failure_context": [
+              {
+                "at": [
+                  4095,
+                  4163
+                ],
+                "text": "[0] Keiynan Lonsdale (born December 19 1991) is an Australian actor.",
+                "doc": "[DOC] Keiynan Lonsdale"
+              },
+              {
+                "at": [
+                  4565,
+                  4639
+                ],
+                "text": "[0] Christopher Whitelaw Pine (born August 26, 1980) is an American actor.",
+                "doc": "[DOC] Chris Pine"
+              },
+              {
+                "at": [
+                  1843,
+                  1961
+                ],
+                "text": "[4]  Tougias' book inspired the 2016 film \"The Finest Hours\" with Chris Pine, which focuses on the \"Pendelton\" rescue.",
+                "doc": "[DOC] SS Pendleton"
+              },
+              {
+                "at": [
+                  3058,
+                  3201
+                ],
+                "text": "[0] Casey Sherman (born January 19, 1969) is an American author, journalist and screenwriter most famous for his 2009 novel \"The Finest Hours\".",
+                "doc": "[DOC] Casey Sherman"
+              }
+            ],
+            "failure_response": [
+              {
+                "at": [
+                  1196,
+                  1282
+                ],
+                "text": "<answer>August 26, 1980 (Chris Pine) and December 19, 1991 (Keiynan Lonsdale)</answer>"
+              },
+              {
+                "at": [
+                  567,
+                  655
+                ],
+                "text": "*   **Chris Pine**: The passage `[DOC] Chris Pine` states he was \"born August 26, 1980\"."
+              },
+              {
+                "at": [
+                  660,
+                  761
+                ],
+                "text": "*   **Keiynan Lonsdale**: The passage `[DOC] Keiynan Lonsdale` states he was \"born December 19 1991\"."
+              }
+            ]
+          },
+          "omitted": []
+        },
+        "feedback_tokens": 1915
+      },
+      {
+        "id": "5ae160125542990adbacf778",
+        "pair": "unpaired",
+        "diagnosis": "name_or_granularity_overlap",
+        "actual_packet": {
+          "failure_id": "5ae160125542990adbacf778",
+          "pair_type": "unpaired",
+          "question": "Who was the ruler of an ancient city located Northwest of the junction of the Euphrates and Tigris and had several statues found in southern Mesopotamia?",
+          "predicted": "Gudea",
+          "train_gold": [
+            "Gudea ruled"
+          ],
+          "EM": 0.0,
+          "F1": 0.6666666666666666,
+          "diagnosis": {
+            "kind": "name_or_granularity_overlap",
+            "confidence": "medium",
+            "check": "Check the referent and requested granularity against the question and source. Do not infer a missing hop solely from the answer-string difference.",
+            "preserve": "Retain correctly supported intermediate relations; do not globally shorten names or remove needed qualifiers."
+          },
+          "success": null,
+          "evidence": {
+            "failure_context": [
+              {
+                "at": [
+                  13,
+                  219
+                ],
+                "text": "[0] Lagash (cuneiform: 𒉢𒁓𒆷𒆠 ; <a href=\"Sumerian%20language\">Sumerian</a>: \"Lagaš\") is an ancient city located northwest of the junction of the <a href=\"Euphrates\">Euphrates</a> and <a href=\"Tigris\">Tigris</",
+                "doc": "[DOC] Lagash"
+              },
+              {
+                "at": [
+                  2007,
+                  2134
+                ],
+                "text": "[0] Approximately twenty-seven statues of Gudea, a ruler (ensi) of the state of Lagash have been found in southern Mesopotamia.",
+                "doc": "[DOC] Statues of Gudea"
+              },
+              {
+                "at": [
+                  4962,
+                  5262
+                ],
+                "text": "[0] The architecture of Mesopotamia is ancient architecture of the region of the Tigris–Euphrates river system (also known as Mesopotamia), encompassing several distinct cultures and spanning a period from the 10th millennium BC, when the first permanent structures were built, to the 6th century BC.",
+                "doc": "[DOC] Architecture of Mesopotamia"
+              }
+            ],
+            "failure_response": [
+              {
+                "at": [
+                  97,
+                  292
+                ],
+                "text": "**Identify the city**: The question describes an ancient city located \"Northwest of the junction of the Euphrates and Tigris\" and notes that \"several statues [were] found in southern Mesopotamia."
+              },
+              {
+                "at": [
+                  461,
+                  617
+                ],
+                "text": "*   The same document mentions: \"Approximately twenty-seven statues of Gudea, a ruler (ensi) of the state of Lagash have been found in southern Mesopotamia."
+              }
+            ]
+          },
+          "omitted": []
+        },
+        "feedback_tokens": 1929
+      },
+      {
+        "id": "5a7219e155429971e9dc926e",
+        "pair": "unpaired",
+        "diagnosis": "name_or_granularity_overlap",
+        "actual_packet": {
+          "failure_id": "5a7219e155429971e9dc926e",
+          "pair_type": "unpaired",
+          "question": "Which postcolonial literature academic specializes in Victorian and Modern English literature?",
+          "predicted": "Ankhi Mukherjee",
+          "train_gold": [
+            "Ankhi Mukherjee is an academic specialising in Victorian and Modern English literature,"
+          ],
+          "EM": 0.0,
+          "F1": 0.3076923076923077,
+          "diagnosis": {
+            "kind": "name_or_granularity_overlap",
+            "confidence": "medium",
+            "check": "Check the referent and requested granularity against the question and source. Do not infer a missing hop solely from the answer-string difference.",
+            "preserve": "Retain correctly supported intermediate relations; do not globally shorten names or remove needed qualifiers."
+          },
+          "success": null,
+          "evidence": {
+            "failure_context": [
+              {
+                "at": [
+                  5280,
+                  5426
+                ],
+                "text": "[0] Ankhi Mukherjee is an academic specialising in Victorian and Modern English literature, critical theory and postcolonial and world literature.",
+                "doc": "[DOC] Ankhi Mukherjee"
+              },
+              {
+                "at": [
+                  3788,
+                  3909
+                ],
+                "text": "[1]  He specializes in early modern English literature, particularly early modern English Catholicism and Edmund Spenser.",
+                "doc": "[DOC] Lowell Gallagher"
+              },
+              {
+                "at": [
+                  92,
+                  316
+                ],
+                "text": "[1]  She is Professor of Modern Literatures in English and Head of School of Literature and Languages at the University of Reading, where she also founded the research theme \"Minority Identities: Rights and Representations\".",
+                "doc": "[DOC] Alison Donnell"
+              },
+              {
+                "at": [
+                  1750,
+                  1991
+                ],
+                "text": "[0] Sara Suleri Goodyear, born Sara Suleri (born June 12, 1953), is an author and professor emeritus of English at Yale University, where her fields of study and teaching include Romantic and Victorian poetry and an interest in Edmund Burke.",
+                "doc": "[DOC] Sara Suleri"
+              }
+            ],
+            "failure_response": [
+              {
+                "at": [
+                  1116,
+                  1312
+                ],
+                "text": "*   **Ankhi Mukherjee**: The text explicitly states: \"Ankhi Mukherjee is an academic specialising in Victorian and Modern English literature, critical theory and postcolonial and world literature."
+              },
+              {
+                "at": [
+                  1436,
+                  1538
+                ],
+                "text": "*   Ankhi Mukherjee specializes in Victorian and Modern English literature (confirmed in passage [0])."
+              },
+              {
+                "at": [
+                  459,
+                  590
+                ],
+                "text": "*   Ankhi Mukherjee: Specialises in Victorian and Modern English literature, critical theory and postcolonial and world literature."
+              }
+            ]
+          },
+          "omitted": []
+        },
+        "feedback_tokens": 1929
+      },
+      {
+        "id": "5a7bcd09554299294a54aaeb",
+        "pair": "unpaired",
+        "diagnosis": "name_or_granularity_overlap",
+        "actual_packet": {
+          "failure_id": "5a7bcd09554299294a54aaeb",
+          "pair_type": "unpaired",
+          "question": "When was the actor who starred in The Finest Hours born?",
+          "predicted": "August 26, 1980 (Chris Pine) and December 19, 1991 (Keiynan Lonsdale)",
+          "train_gold": [
+            "1980"
+          ],
+          "EM": 0.0,
+          "F1": 0.16666666666666669,
+          "diagnosis": {
+            "kind": "name_or_granularity_overlap",
+            "confidence": "medium",
+            "check": "Check the referent and requested granularity against the question and source. Do not infer a missing hop solely from the answer-string difference.",
+            "preserve": "Retain correctly supported intermediate relations; do not globally shorten names or remove needed qualifiers."
+          },
+          "success": null,
+          "evidence": {
+            "failure_context": [
+              {
+                "at": [
+                  4095,
+                  4163
+                ],
+                "text": "[0] Keiynan Lonsdale (born December 19 1991) is an Australian actor.",
+                "doc": "[DOC] Keiynan Lonsdale"
+              },
+              {
+                "at": [
+                  4565,
+                  4639
+                ],
+                "text": "[0] Christopher Whitelaw Pine (born August 26, 1980) is an American actor.",
+                "doc": "[DOC] Chris Pine"
+              },
+              {
+                "at": [
+                  1843,
+                  1961
+                ],
+                "text": "[4]  Tougias' book inspired the 2016 film \"The Finest Hours\" with Chris Pine, which focuses on the \"Pendelton\" rescue.",
+                "doc": "[DOC] SS Pendleton"
+              },
+              {
+                "at": [
+                  3058,
+                  3130
+                ],
+                "text": "[0] Casey Sherman (born January 19, 1969) is an American author, journal",
+                "doc": "[DOC] Casey Sherman"
+              }
+            ],
+            "failure_response": [
+              {
+                "at": [
+                  1611,
+                  1697
+                ],
+                "text": "<answer>August 26, 1980 (Chris Pine) and December 19, 1991 (Keiynan Lonsdale)</answer>"
+              },
+              {
+                "at": [
+                  1106,
+                  1260
+                ],
+                "text": "The text provides birth dates for two of the actors listed as starring in the film: Chris Pine (August 26, 1980) and Keiynan Lonsdale (December 19, 1991)."
+              },
+              {
+                "at": [
+                  566,
+                  654
+                ],
+                "text": "*   **Chris Pine**: The passage `[DOC] Chris Pine` states he was \"born August 26, 1980\"."
+              }
+            ]
+          },
+          "omitted": []
+        },
+        "feedback_tokens": 1929
+      },
+      {
+        "id": "5ae160125542990adbacf778",
+        "pair": "unpaired",
+        "diagnosis": "name_or_granularity_overlap",
+        "actual_packet": {
+          "failure_id": "5ae160125542990adbacf778",
+          "pair_type": "unpaired",
+          "question": "Who was the ruler of an ancient city located Northwest of the junction of the Euphrates and Tigris and had several statues found in southern Mesopotamia?",
+          "predicted": "Gudea",
+          "train_gold": [
+            "Gudea ruled"
+          ],
+          "EM": 0.0,
+          "F1": 0.6666666666666666,
+          "diagnosis": {
+            "kind": "name_or_granularity_overlap",
+            "confidence": "medium",
+            "check": "Check the referent and requested granularity against the question and source. Do not infer a missing hop solely from the answer-string difference.",
+            "preserve": "Retain correctly supported intermediate relations; do not globally shorten names or remove needed qualifiers."
+          },
+          "success": null,
+          "evidence": {
+            "failure_context": [
+              {
+                "at": [
+                  13,
+                  219
+                ],
+                "text": "[0] Lagash (cuneiform: 𒉢𒁓𒆷𒆠 ; <a href=\"Sumerian%20language\">Sumerian</a>: \"Lagaš\") is an ancient city located northwest of the junction of the <a href=\"Euphrates\">Euphrates</a> and <a href=\"Tigris\">Tigris</",
+                "doc": "[DOC] Lagash"
+              },
+              {
+                "at": [
+                  2007,
+                  2134
+                ],
+                "text": "[0] Approximately twenty-seven statues of Gudea, a ruler (ensi) of the state of Lagash have been found in southern Mesopotamia.",
+                "doc": "[DOC] Statues of Gudea"
+              },
+              {
+                "at": [
+                  4962,
+                  5262
+                ],
+                "text": "[0] The architecture of Mesopotamia is ancient architecture of the region of the Tigris–Euphrates river system (also known as Mesopotamia), encompassing several distinct cultures and spanning a period from the 10th millennium BC, when the first permanent structures were built, to the 6th century BC.",
+                "doc": "[DOC] Architecture of Mesopotamia"
+              }
+            ],
+            "failure_response": [
+              {
+                "at": [
+                  97,
+                  292
+                ],
+                "text": "**Identify the city**: The question describes an ancient city located \"Northwest of the junction of the Euphrates and Tigris\" and notes that \"several statues [were] found in southern Mesopotamia."
+              },
+              {
+                "at": [
+                  462,
+                  638
+                ],
+                "text": "*   The passage titled **Statues of Gudea** states: \"Approximately twenty-seven statues of Gudea, a ruler (ensi) of the state of Lagash have been found in southern Mesopotamia."
+              }
+            ]
+          },
+          "omitted": []
+        },
+        "feedback_tokens": 1943
+      },
+      {
+        "id": "5a7219e155429971e9dc926e",
+        "pair": "unpaired",
+        "diagnosis": "name_or_granularity_overlap",
+        "actual_packet": {
+          "failure_id": "5a7219e155429971e9dc926e",
+          "pair_type": "unpaired",
+          "question": "Which postcolonial literature academic specializes in Victorian and Modern English literature?",
+          "predicted": "Ankhi Mukherjee",
+          "train_gold": [
+            "Ankhi Mukherjee is an academic specialising in Victorian and Modern English literature,"
+          ],
+          "EM": 0.0,
+          "F1": 0.3076923076923077,
+          "diagnosis": {
+            "kind": "name_or_granularity_overlap",
+            "confidence": "medium",
+            "check": "Check the referent and requested granularity against the question and source. Do not infer a missing hop solely from the answer-string difference.",
+            "preserve": "Retain correctly supported intermediate relations; do not globally shorten names or remove needed qualifiers."
+          },
+          "success": null,
+          "evidence": {
+            "failure_context": [
+              {
+                "at": [
+                  5280,
+                  5426
+                ],
+                "text": "[0] Ankhi Mukherjee is an academic specialising in Victorian and Modern English literature, critical theory and postcolonial and world literature.",
+                "doc": "[DOC] Ankhi Mukherjee"
+              },
+              {
+                "at": [
+                  3788,
+                  3909
+                ],
+                "text": "[1]  He specializes in early modern English literature, particularly early modern English Catholicism and Edmund Spenser.",
+                "doc": "[DOC] Lowell Gallagher"
+              },
+              {
+                "at": [
+                  92,
+                  316
+                ],
+                "text": "[1]  She is Professor of Modern Literatures in English and Head of School of Literature and Languages at the University of Reading, where she also founded the research theme \"Minority Identities: Rights and Representations\".",
+                "doc": "[DOC] Alison Donnell"
+              },
+              {
+                "at": [
+                  1750,
+                  1991
+                ],
+                "text": "[0] Sara Suleri Goodyear, born Sara Suleri (born June 12, 1953), is an author and professor emeritus of English at Yale University, where her fields of study and teaching include Romantic and Victorian poetry and an interest in Edmund Burke.",
+                "doc": "[DOC] Sara Suleri"
+              }
+            ],
+            "failure_response": [
+              {
+                "at": [
+                  1116,
+                  1312
+                ],
+                "text": "*   **Ankhi Mukherjee**: The text explicitly states: \"Ankhi Mukherjee is an academic specialising in Victorian and Modern English literature, critical theory and postcolonial and world literature."
+              },
+              {
+                "at": [
+                  1436,
+                  1538
+                ],
+                "text": "*   Ankhi Mukherjee specializes in Victorian and Modern English literature (confirmed in passage [0])."
+              },
+              {
+                "at": [
+                  459,
+                  590
+                ],
+                "text": "*   Ankhi Mukherjee: Specialises in Victorian and Modern English literature, critical theory and postcolonial and world literature."
+              }
+            ]
+          },
+          "omitted": []
+        },
+        "feedback_tokens": 1943
+      },
+      {
+        "id": "5a7bcd09554299294a54aaeb",
+        "pair": "unpaired",
+        "diagnosis": "name_or_granularity_overlap",
+        "actual_packet": {
+          "failure_id": "5a7bcd09554299294a54aaeb",
+          "pair_type": "unpaired",
+          "question": "When was the actor who starred in The Finest Hours born?",
+          "predicted": "August 26, 1980 (Chris Pine) and December 19, 1991 (Keiynan Lonsdale)",
+          "train_gold": [
+            "1980"
+          ],
+          "EM": 0.0,
+          "F1": 0.16666666666666669,
+          "diagnosis": {
+            "kind": "name_or_granularity_overlap",
+            "confidence": "medium",
+            "check": "Check the referent and requested granularity against the question and source. Do not infer a missing hop solely from the answer-string difference.",
+            "preserve": "Retain correctly supported intermediate relations; do not globally shorten names or remove needed qualifiers."
+          },
+          "success": null,
+          "evidence": {
+            "failure_context": [
+              {
+                "at": [
+                  4095,
+                  4163
+                ],
+                "text": "[0] Keiynan Lonsdale (born December 19 1991) is an Australian actor.",
+                "doc": "[DOC] Keiynan Lonsdale"
+              },
+              {
+                "at": [
+                  4565,
+                  4639
+                ],
+                "text": "[0] Christopher Whitelaw Pine (born August 26, 1980) is an American actor.",
+                "doc": "[DOC] Chris Pine"
+              },
+              {
+                "at": [
+                  1843,
+                  1961
+                ],
+                "text": "[4]  Tougias' book inspired the 2016 film \"The Finest Hours\" with Chris Pine, which focuses on the \"Pendelton\" rescue.",
+                "doc": "[DOC] SS Pendleton"
+              },
+              {
+                "at": [
+                  3058,
+                  3201
+                ],
+                "text": "[0] Casey Sherman (born January 19, 1969) is an American author, journalist and screenwriter most famous for his 2009 novel \"The Finest Hours\".",
+                "doc": "[DOC] Casey Sherman"
+              }
+            ],
+            "failure_response": [
+              {
+                "at": [
+                  1196,
+                  1282
+                ],
+                "text": "<answer>August 26, 1980 (Chris Pine) and December 19, 1991 (Keiynan Lonsdale)</answer>"
+              },
+              {
+                "at": [
+                  567,
+                  655
+                ],
+                "text": "*   **Chris Pine**: The passage `[DOC] Chris Pine` states he was \"born August 26, 1980\"."
+              },
+              {
+                "at": [
+                  660,
+                  761
+                ],
+                "text": "*   **Keiynan Lonsdale**: The passage `[DOC] Keiynan Lonsdale` states he was \"born December 19 1991\"."
+              }
+            ]
+          },
+          "omitted": []
+        },
+        "feedback_tokens": 1943
+      }
+    ],
+    "diagnoses": {
+      "unresolved_content_error": 2,
+      "name_or_granularity_overlap": 13,
+      "token_order_only": 2,
+      "answer_format": 1
+    },
+    "max_feedback_tokens": 1943,
+    "checks": [
+      "same selected failures",
+      "same success observation",
+      "exact source substrings",
+      "2048-token cap",
+      "all selected packets retained"
+    ],
+    "scope": "historical train-only offline packing validation, no API calls"
+  }
+}

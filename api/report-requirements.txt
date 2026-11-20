@@ -1,0 +1,2 @@
+# Rendering only; not imported by the frozen training protocol.
+matplotlib==3.11.2

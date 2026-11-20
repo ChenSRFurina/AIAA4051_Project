@@ -6,7 +6,8 @@
   "train_batch_size": 20,
   "failure_k": 3,
   "max_attempts": 2,
-  "qa_max_tokens": 1024,
+  "qa_max_tokens": 2048,
+  "qa_context_max_tokens": 4096,
   "operator_max_tokens": 3072,
   "skill_max_tokens": 2048,
   "feedback_max_tokens": 2048,
@@ -26,18 +27,21 @@
     "per_outcome_limit": 2
   },
   "model": {
-    "id": "qwen3.5-flash-2026-02-23",
-    "revision": "Alibaba Cloud dated model ID qwen3.5-flash-2026-02-23; provider weight revision undisclosed",
-    "base_url": "https://llm-ps7f58n2fo6d73fm.cn-beijing.maas.aliyuncs.com/compatible-mode/v1",
-    "api_key_env": "QWEN_API_KEY",
+    "id": "qwen3.5-9b",
+    "revision": "Team deployment; weight revision undisclosed",
+    "base_url": "http://10.4.162.57:19198/v1",
+    "api_key_env": "PROJECT5_TEAM_QWEN_API_KEY",
     "tokenizer_path": "api/runtime/tokenizer",
     "tokenizer_note": "Qwen/Qwen3.5-9B@c202236235762e1c871ad0ccb60c8ee5ba337b9a proxy for skill/feedback lengths only; hosted server usage is authoritative for request tokens",
-    "precision": "provider-managed; undisclosed",
-    "server_version": "Alibaba Cloud OpenAI-compatible API; provider deployment version undisclosed",
+    "precision": "team-managed; undisclosed",
+    "server_version": "Team OpenAI-compatible API; deployment version undisclosed",
     "extra_body": {
-      "enable_thinking": false
+      "chat_template_kwargs": {"enable_thinking": false}
     },
-    "structured_operators": "json_object"
+    "allow_private_http": true,
+    "context_window": 32768,
+    "context_safety_tokens": 512,
+    "structured_operators": "json_schema"
   },
   "backend": "api",
   "api_retry_delay_seconds": 2.0

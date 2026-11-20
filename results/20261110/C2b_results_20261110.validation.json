@@ -1,0 +1,12 @@
+{
+  "status": "passed",
+  "report_sha256": "4ab8c1851d46c38da75e690ee81d44279a5519a227a558535fe17c1b65a350ce",
+  "dev_questions": 60,
+  "responses": 180,
+  "candidate_slots": 36,
+  "feedback_exposures": 24,
+  "download_links": 12,
+  "images": 9,
+  "page_errors": [],
+  "mobile_overflow": false
+}

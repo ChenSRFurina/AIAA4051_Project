@@ -1,0 +1,44 @@
+{
+  "method": "C2b_diagnostic_evidence_feedback_v1",
+  "dataset": "searchqa",
+  "created_at": "2026-11-10T12:08:32.508224+00:00",
+  "baseline": "F:\\Document\\HKUST\\2026fall\\NLP\\Project\\AIAA4051_Project\\Baseline\\runs\\api\\searchqa\\20261107-125241-971323-38572",
+  "protocol_root": "F:\\Document\\HKUST\\2026fall\\NLP\\Project\\AIAA4051_Project\\api\\runtime\\protocol-e6291efca3c7",
+  "protocol_code_hash": "e6291efca3c706dcd41b5e6319a1568afe5f0d6b0d0193483e5f9df59b67fb89",
+  "config_hash": "4218e6505955258455225a37a8a7ec290d615d4dd284edc38d322f6dbca0ded1",
+  "method_files": {
+    "Explore/explore_v2/__init__.py": "dc7469a3f0dab63a31bac1061f050aa75942d2489b398f6a3bbb895b86becab5",
+    "Explore/explore_v2/diagnostics.py": "2404bbce75bb700360221e8568a42aca99e855233b881c4d0b55a09f4609edec",
+    "Explore/explore_v2/evidence.py": "7e7d615ecc9d4ed20b9bf4f67dc1a77c557acb552fdc8e6a0c69f9a8d2fdcb3b",
+    "Explore/explore_v2/feedback.py": "ba1b733863b8b7defeac8e38099c46b15f2dd5a4846efb7c3e1ff6ec3ad71aa3",
+    "api/run_c2b.py": "90de2777c494a646a722542e1fc238b67e28ff41bd319e8dd556e8336e722117"
+  },
+  "method_hash": "e933b717538cd39a312de3fc8d7b5f53ca9563cfe9219baa2727a01af3df15df",
+  "source_ip": "10.4.144.134",
+  "python": "E:\\Anaconda\\envs\\qwen3.5\\python.exe",
+  "scope": "train_dev_only_no_test_evaluation",
+  "changes": [
+    "train diagnostic categories",
+    "relevant exact evidence spans with provenance",
+    "conditional executable and operator-scope instructions",
+    "diagnostic failure-only input for unpaired cases instead of verbatim B fallback"
+  ],
+  "unchanged": [
+    "pair_failure and threshold",
+    "own train memory and capacity",
+    "random k=3 failure selection",
+    "shared initialization",
+    "QA prompts and decoding",
+    "upstream survivor/final selection and tie handling",
+    "3 rounds x 2 candidates",
+    "operator retry cap",
+    "all config and budget limits"
+  ],
+  "no_new_judge_calls": true,
+  "semantic_audits_are_read_only": true,
+  "comparison": "Historical B and C, exact shared initialization/config/protocol per dataset; not contemporaneous reruns. Hosted model revision remains undisclosed.",
+  "matched_budget": "Secondary: minimum final logical calls and generated tokens across B,C,C2b; latest complete round within both ceilings; no test-based choice.",
+  "train_metrics": "Parent rollouts on fixed per-round train batches; not a full-train final-model evaluation.",
+  "selection": "Unchanged archived validation EM rules; dev is used for selection and cannot establish held-out generalization.",
+  "policy_id": "3511d95bbf37953a083613b82311f732a6a01ee31c1cbc72118db56e995b9ca6"
+}

@@ -1,0 +1,10 @@
+{
+  "status": "blocked_missing_course_test",
+  "reason": "Missing course held-out test partition/labels; dev cannot substitute for test",
+  "new_model_calls": 0,
+  "pdf_pages": "19-23",
+  "pdf_dataset_statement": "HotpotQA (provided)",
+  "pdf_data_links": [],
+  "pdf_embedded_attachments": [],
+  "course_contact": "jchen349@connect.hkust-gz.edu.cn"
+}

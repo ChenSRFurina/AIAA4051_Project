@@ -28,7 +28,7 @@ def inspect(run):
         folder = run / name
         rows = ledger_rows(folder / "ledger.jsonl")
         summary_path = folder / ("pilot_summary.json" if name == "pilot" else "summary.json")
-        summary = json.loads(summary_path.read_text()) if summary_path.exists() else {}
+        summary = json.loads(summary_path.read_text(encoding="utf-8")) if summary_path.exists() else {}
         status = summary.get("status") or ("completed" if name == "pilot" and summary else
                                            "incomplete_or_running" if folder.exists() else "not_started")
         stages[name] = {"status": status, "calls": sum(row.get("calls", 0) for row in rows),

@@ -2,6 +2,8 @@ from __future__ import annotations
 
 import hashlib
 import json
+import tempfile
+import time
 from pathlib import Path
 
 
@@ -18,10 +20,24 @@ def read_json(path):
 
 def write_json(path, value):
     path = Path(path)
+    payload = json.dumps(value, ensure_ascii=False, indent=2, allow_nan=False) + "\n"
     path.parent.mkdir(parents=True, exist_ok=True)
-    temporary = path.with_suffix(path.suffix + ".tmp")
-    temporary.write_text(json.dumps(value, ensure_ascii=False, indent=2, allow_nan=False) + "\n", encoding="utf-8")
-    temporary.replace(path)
+    # A reader/virus scanner can briefly deny replacement on Windows. Keep the
+    # old file intact and retry only the atomic replacement, never truncate it.
+    # Unique names also prevent separate writers from sharing a temporary file.
+    with tempfile.NamedTemporaryFile(mode="w", encoding="utf-8", dir=path.parent,
+                                     prefix=f".{path.name}.", suffix=".tmp", delete=False) as stream:
+        temporary = Path(stream.name)
+        stream.write(payload)
+    for attempt in range(8):
+        try:
+            temporary.replace(path)
+            return
+        except PermissionError:
+            if attempt == 7:
+                # Preserve the completed temporary file for manual recovery.
+                raise
+            time.sleep(min(0.1 * 2 ** attempt, 1.0))
 
 
 def append_jsonl(path, value):

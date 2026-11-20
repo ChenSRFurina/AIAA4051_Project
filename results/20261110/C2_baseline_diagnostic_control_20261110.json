@@ -1,0 +1,78 @@
+{
+  "searchqa": [
+    {
+      "id": "g0001_i0000",
+      "scope_discard": true,
+      "gold_added": false,
+      "noop": false
+    },
+    {
+      "id": "g0001_i0001",
+      "scope_discard": false,
+      "gold_added": false,
+      "noop": false
+    },
+    {
+      "id": "g0002_i0000",
+      "scope_discard": true,
+      "gold_added": true,
+      "noop": false
+    },
+    {
+      "id": "g0002_i0001",
+      "scope_discard": false,
+      "gold_added": false,
+      "noop": false
+    },
+    {
+      "id": "g0003_i0000",
+      "scope_discard": false,
+      "gold_added": true,
+      "noop": false
+    },
+    {
+      "id": "g0003_i0001",
+      "scope_discard": false,
+      "gold_added": false,
+      "noop": false
+    }
+  ],
+  "hotpotqa": [
+    {
+      "id": "g0001_i0000",
+      "scope_discard": true,
+      "gold_added": false,
+      "noop": false
+    },
+    {
+      "id": "g0001_i0001",
+      "scope_discard": false,
+      "gold_added": false,
+      "noop": false
+    },
+    {
+      "id": "g0002_i0000",
+      "scope_discard": false,
+      "gold_added": false,
+      "noop": false
+    },
+    {
+      "id": "g0002_i0001",
+      "scope_discard": false,
+      "gold_added": false,
+      "noop": false
+    },
+    {
+      "id": "g0003_i0000",
+      "scope_discard": true,
+      "gold_added": true,
+      "noop": false
+    },
+    {
+      "id": "g0003_i0001",
+      "scope_discard": false,
+      "gold_added": true,
+      "noop": false
+    }
+  ]
+}

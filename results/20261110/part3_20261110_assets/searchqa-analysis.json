@@ -1,0 +1,2020 @@
+{
+  "status": "passed",
+  "dataset": "searchqa",
+  "B": {
+    "status": "completed",
+    "condition": "B",
+    "dataset": "searchqa",
+    "best": {
+      "id": "g0002_i0000",
+      "content": "# SearchQA Question Answering Skill\n\n## Global Guidance\n\n### Overview\nThis skill supports agents in the SearchQA benchmark. The agent receives a CONTEXT of document passages and a QUESTION. The goal is to locate evidence within the context and formulate a concise answer based strictly on that evidence.\n\n### General Principles\n- **Context First**: Always prioritize the provided CONTEXT over external knowledge.\n- **Evidence-Based**: Answers must be derived solely from the supplied passages. If information is absent, explicitly state \"Not found in context\" inside the answer tags.\n- **Conciseness**: Final answers should be short phrases or sentences, enclosed in `<answer>...</answer>` tags. Do not add extra explanation outside the tags.\n- **Strict Adherence**: Do not hallucinate answers or use outside knowledge even if the context seems incomplete or ambiguous.\n- **Exact Matching**: The final answer must match the gold standard exactly. Do not output the question text, the entire context passage, or boolean values (True/False) unless the gold answer is exactly that. Extract the specific entity or fact name requested.\n\n### Graph-structured Skill Execution Guide\nThis skill uses a graph of reusable nodes to solve tasks.\n- **Global Guidance** applies to all operations.\n- **Node Lists** define reusable steps like parsing, searching, extracting, verifying, and formulating.\n- **Task Graphs** define workflows by selecting the appropriate task type and executing the ordered list of node names.\n- To execute: Identify the relevant **Task Graph**, then follow its **Workflow** (e.g., `1. Parse Question`, `2. Search Context`) using the instructions in **Node Lists**.\n\n## Node Lists\n\n### Parse Question\n- Extract the core intent and key entities from the QUESTION.\n- Identify the specific information required to form an answer.\n- Note any constraints on the answer format.\n\n### Search Context\n- Scan the provided CONTEXT passages for keywords or concepts matching the parsed question intent.\n- Retrieve relevant sentences or paragraphs that appear to contain the answer.\n- If multiple passages are relevant, prioritize the one with the most direct information.\n\n### Extract Evidence\n- Isolate the specific sentence or phrase within the retrieved context that directly answers the question.\n- Ignore surrounding noise or unrelated text in the passage.\n- Ensure the extracted text is a complete thought or fact.\n\n### Verify Evidence\n- Cross-check the extracted evidence against the original question to ensure it fully addresses the intent.\n- Confirm that the evidence is explicitly present in the provided CONTEXT.\n- If the evidence is ambiguous or partial, flag it for the next step.\n\n### Formulate Answer\n- Synthesize the verified evidence into a concise, direct answer.\n- Remove any context-specific references (e.g., \"According to the text...\") unless necessary for clarity.\n- Ensure the answer is a few words or a short phrase.\n\n### Wrap Answer\n- Enclose the final concise answer in `<answer>...</answer>` tags.\n- If no evidence was found, enclose \"Not found in context\" in the tags.\n- Do not add extra explanation outside the tags.\n\n## Task Graphs\n\n### Direct Evidence Question\n**Use when:** The question can be answered by locating a specific fact or phrase directly within the context.\n**Workflow:**\n1. Parse Question\n2. Search Context\n3. Extract Evidence\n4. Verify Evidence\n5. Formulate Answer\n6. Wrap Answer\n\n### Multi-Hop Fact Retrieval\n**Use when:** The question requires combining information from different parts of the context or inferring a relationship between two entities mentioned in the text.\n**Workflow:**\n1. Parse Question\n2. Search Context\n3. Extract Evidence\n4. Verify Evidence\n5. Formulate Answer\n6. Wrap Answer\n\n### Negative Evidence Query\n**Use when:** The question asks for information that might not be present in the context, or asks for a negation (e.g., \"What is NOT included...\").\n**Workflow:**\n1. Parse Question\n2. Search Context\n3. Verify Evidence\n4. Formulate Answer\n5. Wrap Answer\n\n### Implicit Relationship Query\n**Use when:** The question asks about a relationship or calculation not explicitly stated as a sentence but derivable from the context (e.g., comparing values).\n**Workflow:**\n1. Parse Question\n2. Search Context\n3. Extract Evidence\n4. Verify Evidence\n5. Formulate Answer\n6. Wrap Answer\n",
+      "origin": "mutation_other",
+      "parent_ids": [
+        "g0001_i0000"
+      ],
+      "generation": 2,
+      "train_hard": 0.55,
+      "train_soft": 0.6914102564102564,
+      "val_hard": 0.7666666666666667,
+      "val_soft": 0.8155555555555555,
+      "survivor_score": 0.7666666666666667,
+      "rank_score": 0.7666666666666667,
+      "train_eval_dir": "F:\\Document\\HKUST\\2026fall\\NLP\\Project\\AIAA4051_Project\\Baseline\\runs\\api\\searchqa\\20261107-125241-971323-38572\\B\\evaluations\\g3\\g0002_i0000\\train",
+      "val_eval_dir": "",
+      "train_examples": [
+        {
+          "id": "a40a4414307640f4a89cc84e00e56ea2"
+        },
+        {
+          "id": "a234f47261f14ab9aed867375bddc652"
+        },
+        {
+          "id": "3ca738c4497e48e0a746bcdb81beec97"
+        }
+      ],
+      "val_examples": [],
+      "train_reflection_context": "\n\n### Trajectory 1 (id=a40a4414307640f4a89cc84e00e56ea2)\nTask: In 1720 bad investments in this \"bubble\" burst the British economy\nTask type: \nFailure reason: EM=0\nSteps: ?\n\n#### Hidden Reference\nGold answers: ['the South Sea Bubble']\n\n[assistant] <answer>South Sea</answer>\n[verification] [EVALUATION RESULT]\nGold answers: ['the South Sea Bubble']\nEM: 0.0\nF1: 0.8\n\n---\n\n### Trajectory 1 (id=a234f47261f14ab9aed867375bddc652)\nTask: Rubber is an ingredient in this type of chewing gum\nTask type: \nFailure reason: EM=0\nSteps: ?\n\n#### Hidden Reference\nGold answers: ['bubble gum']\n\n[assistant] <answer>Modern chewing gum</answer>\n[verification] [EVALUATION RESULT]\nGold answers: ['bubble gum']\nEM: 0.0\nF1: 0.4\n\n---\n\n### Trajectory 1 (id=3ca738c4497e48e0a746bcdb81beec97)\nTask: Of the U.S. coins currently being minted, it's the smallest in size\nTask type: \nFailure reason: EM=0\nSteps: ?\n\n#### Hidden Reference\nGold answers: ['a dime']\n\n[assistant] Based on the provided context, the text mentions that the \"half-cent\" was the \"smallest value coin in American history\" but notes it was produced previously. It also states that the \"dollar coin is the second largest American coin currently minted\" and the \"half dollar... is the largest U.S. coin currently minted.\"\n\nThe text does not explicitly state which of the coins *currently* being minted is the smallest in size. It lists current denominations (cent, dime, quarter, half dollar, dollar) but ...[truncated]\n[verification] [EVALUATION RESULT]\nGold answers: ['a dime']\nEM: 0.0\nF1: 0.0",
+      "token_cumulative_run": {}
+    },
+    "completed_rounds": 3,
+    "cost": {
+      "calls": 367,
+      "prompt_tokens": 709032,
+      "generated_tokens": 19383,
+      "reasoning_tokens": 0,
+      "physical_calls": 306
+    },
+    "config_hash": "4218e6505955258455225a37a8a7ec290d615d4dd284edc38d322f6dbca0ded1",
+    "data_hash": "7b84bf7c7eaab7c2c2cd00ec7148d85cde3dfdac9127f0802ddf4cb20bb6a899",
+    "code_hash": "e6291efca3c706dcd41b5e6319a1568afe5f0d6b0d0193483e5f9df59b67fb89",
+    "tokenizer_hash": "5f434e57da7403bc8232613f565c8d3de0bf56be57ff8326a83ebd76ee1f1e9c",
+    "upstream_commit": "722a8a913b05dc9d1b4078f0bec604cde4dc7529",
+    "demo": false,
+    "dev": {
+      "n": 30,
+      "correct": 23,
+      "em": 0.7666666666666667,
+      "f1": 0.8155555555555555,
+      "mean_latency_seconds": 1.3807333333333796,
+      "p50_latency_seconds": 0.992500000000291,
+      "p95_latency_seconds": 1.219000000000051,
+      "infrastructure_errors": 0,
+      "provider_refusals": 0,
+      "format_failures": 0
+    },
+    "gpu_hours": null,
+    "finalization_recovery": "recovery/audit.json"
+  },
+  "C": {
+    "status": "completed",
+    "condition": "C",
+    "dataset": "searchqa",
+    "best": {
+      "id": "g0000_i0001",
+      "content": "# SearchQA Question Answering Skill\n\n## Global Guidance\n\n### Overview\nThis skill supports agents in the SearchQA benchmark. The agent receives a CONTEXT of document passages and a QUESTION. The goal is to locate evidence within the context and formulate a concise answer based strictly on that evidence.\n\n### General Principles\n- **Context First**: Always prioritize the provided CONTEXT over external knowledge.\n- **Evidence-Based**: Answers must be derived solely from the supplied passages.\n- **Conciseness**: Final answers should be short phrases or sentences, enclosed in `<answer>...</answer>` tags.\n- **Recovery**: If evidence is missing, explicitly state that the answer is not found in the context.\n\n### Graph-structured Skill Execution Guide\nThis skill uses a graph of reusable nodes to solve tasks.\n- **Global Guidance** applies to all operations.\n- **Node Lists** define reusable steps like parsing, searching, and verifying.\n- **Task Graphs** define workflows by selecting the appropriate task type and executing the ordered list of node names.\n- To execute: Identify the relevant **Task Graph**, then follow its **Workflow** (e.g., `1. Parse Question`, `2. Search Context`) using the instructions in **Node Lists**.\n\n## Node Lists\n\n### Parse Question\n- Extract the core intent and key entities from the QUESTION.\n- Identify the specific information required to form an answer.\n- Note any constraints on the answer format.\n\n### Search Context\n- Scan the provided CONTEXT passages for keywords or concepts matching the parsed question intent.\n- Retrieve relevant sentences or paragraphs that appear to contain the answer.\n- If multiple passages are relevant, prioritize the one with the most direct information.\n\n### Extract Evidence\n- Isolate the specific sentence or phrase within the retrieved context that directly answers the question.\n- Ignore surrounding noise or unrelated text in the passage.\n- Ensure the extracted text is a complete thought or fact.\n\n### Verify Evidence\n- Cross-check the extracted evidence against the original question to ensure it fully addresses the intent.\n- Confirm that the evidence is explicitly present in the provided CONTEXT.\n- If the evidence is ambiguous or partial, flag it for the next step.\n\n### Formulate Answer\n- Synthesize the verified evidence into a concise, direct answer.\n- Remove any context-specific references (e.g., \"According to the text...\") unless necessary for clarity.\n- Ensure the answer is a few words or a short phrase.\n\n### Wrap Answer\n- Enclose the final concise answer in `<answer>...</answer>` tags.\n- If no evidence was found, enclose \"Not found in context\" in the tags.\n- Do not add extra explanation outside the tags.\n\n## Task Graphs\n\n### Direct Evidence Question\n**Use when:** The question can be answered by locating a specific fact or phrase directly within the context.\n**Workflow:**\n1. Parse Question\n2. Search Context\n3. Extract Evidence\n4. Verify Evidence\n5. Formulate Answer\n6. Wrap Answer\n\n### Multi-Hop Fact Retrieval\n**Use when:** The question requires combining information from different parts of the context or inferring a relationship between two entities mentioned in the text.\n**Workflow:**\n1. Parse Question\n2. Search Context\n3. Extract Evidence\n4. Verify Evidence\n5. Formulate Answer\n6. Wrap Answer\n\n### Negative Evidence Query\n**Use when:** The question asks for information that might not be present in the context, or asks for a negation (e.g., \"What is NOT included...\").\n**Workflow:**\n1. Parse Question\n2. Search Context\n3. Verify Evidence\n4. Formulate Answer\n5. Wrap Answer\n\n### Implicit Relationship Query\n**Use when:** The question asks about a relationship or calculation not explicitly stated as a sentence but derivable from the context (e.g., comparing values).\n**Workflow:**\n1. Parse Question\n2. Search Context\n3. Extract Evidence\n4. Verify Evidence\n5. Formulate Answer\n6. Wrap Answer\n",
+      "origin": "llm_initialization",
+      "parent_ids": [],
+      "generation": 0,
+      "train_hard": 0.5,
+      "train_soft": 0.5981818181818183,
+      "val_hard": 0.7333333333333333,
+      "val_soft": 0.7822222222222222,
+      "survivor_score": 0.7333333333333333,
+      "rank_score": 0.7333333333333333,
+      "train_eval_dir": "F:\\Document\\HKUST\\2026fall\\NLP\\Project\\AIAA4051_Project\\Explore\\runs\\api\\part3-20261110\\searchqa\\C\\evaluations\\g3\\g0000_i0001\\train",
+      "val_eval_dir": "",
+      "train_examples": [
+        {
+          "id": "a234f47261f14ab9aed867375bddc652"
+        },
+        {
+          "id": "6252b238d9554d45bc4eb9b9978543c5"
+        },
+        {
+          "id": "84ab80ab3c5d47a58ddda464d62c5694"
+        }
+      ],
+      "val_examples": [],
+      "train_reflection_context": "\n\n### Trajectory 1 (id=a234f47261f14ab9aed867375bddc652)\nTask: Rubber is an ingredient in this type of chewing gum\nTask type: \nFailure reason: EM=0\nSteps: ?\n\n#### Hidden Reference\nGold answers: ['bubble gum']\n\n[assistant] <answer>Modern chewing gum</answer>\n[verification] [EVALUATION RESULT]\nGold answers: ['bubble gum']\nEM: 0.0\nF1: 0.4\n\n---\n\n### Trajectory 1 (id=6252b238d9554d45bc4eb9b9978543c5)\nTask: \"...on my mind\"\nTask type: \nFailure reason: EM=0\nSteps: ?\n\n#### Hidden Reference\nGold answers: ['Georgia']\n\n[assistant] <answer>Ellie Goulding</answer>\n[verification] [EVALUATION RESULT]\nGold answers: ['Georgia']\nEM: 0.0\nF1: 0.0\n\n---\n\n### Trajectory 1 (id=84ab80ab3c5d47a58ddda464d62c5694)\nTask: He spun straw into gold(15)\nTask type: \nFailure reason: EM=0\nSteps: ?\n\n#### Hidden Reference\nGold answers: ['Rumpelstiltskin']\n\n[assistant] <answer>He spun straw into gold</answer>\n[verification] [EVALUATION RESULT]\nGold answers: ['Rumpelstiltskin']\nEM: 0.0\nF1: 0.0",
+      "token_cumulative_run": {}
+    },
+    "completed_rounds": 3,
+    "cost": {
+      "calls": 338,
+      "prompt_tokens": 657752,
+      "generated_tokens": 19794,
+      "reasoning_tokens": 0,
+      "physical_calls": 277
+    },
+    "config_hash": "4218e6505955258455225a37a8a7ec290d615d4dd284edc38d322f6dbca0ded1",
+    "data_hash": "7b84bf7c7eaab7c2c2cd00ec7148d85cde3dfdac9127f0802ddf4cb20bb6a899",
+    "code_hash": "e6291efca3c706dcd41b5e6319a1568afe5f0d6b0d0193483e5f9df59b67fb89",
+    "tokenizer_hash": "5f434e57da7403bc8232613f565c8d3de0bf56be57ff8326a83ebd76ee1f1e9c",
+    "upstream_commit": "722a8a913b05dc9d1b4078f0bec604cde4dc7529",
+    "demo": false,
+    "dev": {
+      "n": 30,
+      "correct": 22,
+      "em": 0.7333333333333333,
+      "f1": 0.7822222222222222,
+      "mean_latency_seconds": 1.5661333333333307,
+      "p50_latency_seconds": 1.0705000000000382,
+      "p95_latency_seconds": 2.2946000000000093,
+      "infrastructure_errors": 0,
+      "provider_refusals": 0,
+      "format_failures": 0
+    },
+    "gpu_hours": null
+  },
+  "B_curve": [
+    {
+      "round": 0,
+      "best_id": "g0000_i0001",
+      "skill_hash": "0a21fc8afe52b0187c46b31af479538d39514d3486bdd828c4ae97cc7fc75100",
+      "cost": {
+        "calls": 61,
+        "prompt_tokens": 103567,
+        "generated_tokens": 3463,
+        "reasoning_tokens": 0,
+        "physical_calls": 61
+      },
+      "em": 0.7333333333333333,
+      "f1": 0.7822222222222222
+    },
+    {
+      "round": 1,
+      "best_id": "g0000_i0001",
+      "skill_hash": "0a21fc8afe52b0187c46b31af479538d39514d3486bdd828c4ae97cc7fc75100",
+      "cost": {
+        "calls": 163,
+        "prompt_tokens": 293425,
+        "generated_tokens": 10316,
+        "reasoning_tokens": 0,
+        "physical_calls": 102
+      },
+      "em": 0.7333333333333333,
+      "f1": 0.7822222222222222
+    },
+    {
+      "round": 2,
+      "best_id": "g0002_i0000",
+      "skill_hash": "c4ab24a9c4550a970e68d42b0ba0ab5b46b4170ed5bfbb363693a6a1e0c606cb",
+      "cost": {
+        "calls": 265,
+        "prompt_tokens": 497928,
+        "generated_tokens": 15618,
+        "reasoning_tokens": 0,
+        "physical_calls": 204
+      },
+      "em": 0.7666666666666667,
+      "f1": 0.8155555555555555
+    },
+    {
+      "round": 3,
+      "best_id": "g0002_i0000",
+      "skill_hash": "c4ab24a9c4550a970e68d42b0ba0ab5b46b4170ed5bfbb363693a6a1e0c606cb",
+      "cost": {
+        "calls": 367,
+        "prompt_tokens": 709032,
+        "generated_tokens": 19383,
+        "reasoning_tokens": 0,
+        "physical_calls": 306
+      },
+      "em": 0.7666666666666667,
+      "f1": 0.8155555555555555
+    }
+  ],
+  "C_curve": [
+    {
+      "round": 0,
+      "best_id": "g0000_i0001",
+      "skill_hash": "0a21fc8afe52b0187c46b31af479538d39514d3486bdd828c4ae97cc7fc75100",
+      "cost": {
+        "calls": 61,
+        "prompt_tokens": 103567,
+        "generated_tokens": 3463,
+        "reasoning_tokens": 0,
+        "physical_calls": 61
+      },
+      "em": 0.7333333333333333,
+      "f1": 0.7822222222222222
+    },
+    {
+      "round": 1,
+      "best_id": "g0000_i0001",
+      "skill_hash": "0a21fc8afe52b0187c46b31af479538d39514d3486bdd828c4ae97cc7fc75100",
+      "cost": {
+        "calls": 164,
+        "prompt_tokens": 307487,
+        "generated_tokens": 11835,
+        "reasoning_tokens": 0,
+        "physical_calls": 103
+      },
+      "em": 0.7333333333333333,
+      "f1": 0.7822222222222222
+    },
+    {
+      "round": 2,
+      "best_id": "g0000_i0001",
+      "skill_hash": "0a21fc8afe52b0187c46b31af479538d39514d3486bdd828c4ae97cc7fc75100",
+      "cost": {
+        "calls": 266,
+        "prompt_tokens": 512294,
+        "generated_tokens": 15180,
+        "reasoning_tokens": 0,
+        "physical_calls": 205
+      },
+      "em": 0.7333333333333333,
+      "f1": 0.7822222222222222
+    },
+    {
+      "round": 3,
+      "best_id": "g0000_i0001",
+      "skill_hash": "0a21fc8afe52b0187c46b31af479538d39514d3486bdd828c4ae97cc7fc75100",
+      "cost": {
+        "calls": 338,
+        "prompt_tokens": 657752,
+        "generated_tokens": 19794,
+        "reasoning_tokens": 0,
+        "physical_calls": 277
+      },
+      "em": 0.7333333333333333,
+      "f1": 0.7822222222222222
+    }
+  ],
+  "dev_comparison": {
+    "n": 30,
+    "counts": {
+      "repaired": 1,
+      "regressed": 2,
+      "both_correct": 21,
+      "both_wrong": 6
+    },
+    "repair_rate": 0.14285714285714285,
+    "regression_rate": 0.08695652173913043,
+    "em_difference_C_minus_B": -0.03333333333333333,
+    "paired_bootstrap_95": [
+      -0.13333333333333333,
+      0.06666666666666667
+    ],
+    "uncertainty_scope": "Question-level resampling; not variability across training seeds.",
+    "changes": [
+      {
+        "id": "24143f01e7dd455e86c34a4a6f4ed3b9",
+        "transition": "regressed",
+        "question": "(Jon of the Clue Crew shows an anatomical diagram on the monitor.)  When Lasik eye surgery is performed, a flap is made in the eye, folded back, & then the stroma, or middle section, of this eye part is reshaped using lasers",
+        "gold_answers": [
+          "the cornea"
+        ],
+        "B": "cornea",
+        "C": "True"
+      },
+      {
+        "id": "5324041c25d04316a800ccba2d79a2c7",
+        "transition": "regressed",
+        "question": "He wrote comic book stories for \"Captain America\" & \"Captain Marvel\" before hitting it big with \"I, the Jury\"",
+        "gold_answers": [
+          "Mickey Spillane"
+        ],
+        "B": "Mickey Spillane",
+        "C": "True"
+      },
+      {
+        "id": "f03757766e034c539bf2595428c03626",
+        "transition": "repaired",
+        "question": "Exist/unwanted \"bonnet\" intruder",
+        "gold_answers": [
+          "be/bee"
+        ],
+        "B": "bee",
+        "C": "be/bee"
+      }
+    ]
+  },
+  "matched": {
+    "call_cap": 338,
+    "generated_token_cap": 19383,
+    "B": {
+      "round": 2,
+      "best_id": "g0002_i0000",
+      "skill_hash": "c4ab24a9c4550a970e68d42b0ba0ab5b46b4170ed5bfbb363693a6a1e0c606cb",
+      "cost": {
+        "calls": 265,
+        "prompt_tokens": 497928,
+        "generated_tokens": 15618,
+        "reasoning_tokens": 0,
+        "physical_calls": 204
+      },
+      "em": 0.7666666666666667,
+      "f1": 0.8155555555555555,
+      "unused_calls": 73,
+      "unused_generated_tokens": 3765
+    },
+    "C": {
+      "round": 2,
+      "best_id": "g0000_i0001",
+      "skill_hash": "0a21fc8afe52b0187c46b31af479538d39514d3486bdd828c4ae97cc7fc75100",
+      "cost": {
+        "calls": 266,
+        "prompt_tokens": 512294,
+        "generated_tokens": 15180,
+        "reasoning_tokens": 0,
+        "physical_calls": 205
+      },
+      "em": 0.7333333333333333,
+      "f1": 0.7822222222222222,
+      "unused_calls": 72,
+      "unused_generated_tokens": 4203
+    },
+    "interpretation": "Common cumulative call/token ceilings; realized costs may differ because only complete rounds are eligible. Not exactly equal realized tokens.",
+    "dev_comparison": {
+      "n": 30,
+      "counts": {
+        "repaired": 1,
+        "regressed": 2,
+        "both_correct": 21,
+        "both_wrong": 6
+      },
+      "repair_rate": 0.14285714285714285,
+      "regression_rate": 0.08695652173913043,
+      "em_difference_C_minus_B": -0.03333333333333333,
+      "paired_bootstrap_95": [
+        -0.13333333333333333,
+        0.06666666666666667
+      ],
+      "uncertainty_scope": "Question-level resampling; not variability across training seeds.",
+      "changes": [
+        {
+          "id": "24143f01e7dd455e86c34a4a6f4ed3b9",
+          "transition": "regressed",
+          "question": "(Jon of the Clue Crew shows an anatomical diagram on the monitor.)  When Lasik eye surgery is performed, a flap is made in the eye, folded back, & then the stroma, or middle section, of this eye part is reshaped using lasers",
+          "gold_answers": [
+            "the cornea"
+          ],
+          "B": "cornea",
+          "C": "True"
+        },
+        {
+          "id": "5324041c25d04316a800ccba2d79a2c7",
+          "transition": "regressed",
+          "question": "He wrote comic book stories for \"Captain America\" & \"Captain Marvel\" before hitting it big with \"I, the Jury\"",
+          "gold_answers": [
+            "Mickey Spillane"
+          ],
+          "B": "Mickey Spillane",
+          "C": "True"
+        },
+        {
+          "id": "f03757766e034c539bf2595428c03626",
+          "transition": "repaired",
+          "question": "Exist/unwanted \"bonnet\" intruder",
+          "gold_answers": [
+            "be/bee"
+          ],
+          "B": "bee",
+          "C": "be/bee"
+        }
+      ]
+    }
+  },
+  "feedback": {
+    "status": "passed",
+    "observations": 120,
+    "memory_records": 69,
+    "unique_parent_feedbacks": 4,
+    "operator_exposures": 6,
+    "actual_attempt_exposures": 7,
+    "counts": {
+      "selected_count": 18,
+      "same_question": 2,
+      "similar_task": 0,
+      "unpaired": 16,
+      "paired_rate": 0.1111111111111111
+    },
+    "unknown_question_type": 18,
+    "verifiable_quote_in_full_reference": 0,
+    "verifiable_quote_survives_packet": 0,
+    "failure_context_survives_packet": 6,
+    "exposures": [
+      {
+        "round": 1,
+        "child_id": "g0001_i0000",
+        "parent_id": "g0000_i0001",
+        "accepted": true,
+        "verified_attempts": 1,
+        "selected_count": 3,
+        "same_question": 1,
+        "similar_task": 0,
+        "unpaired": 2,
+        "feedback_tokens": 1628,
+        "packets": [
+          {
+            "failure_id": "f8a442980c55415b82527160422a2688",
+            "pair_type": "unpaired",
+            "task_type": "unknown",
+            "similarity": null,
+            "reference_id": null,
+            "quote_in_full_reference": false,
+            "quote_survives_bounded_packet": false,
+            "context_excerpt_present": true,
+            "actual_packet": {
+              "failure_id": "f8a442980c55415b82527160422a2688",
+              "pair_type": "unpaired",
+              "failure": {
+                "question": "...in American History, if you know that this man was the only U.S. President named Chester",
+                "response_excerpt": "<answer>Not found in context</answer>",
+                "predicted_answer": "Not found in context",
+                "gold_answers": [
+                  "Arthur"
+                ],
+                "em": 0,
+                "visible_context_excerpt": "[DOC] [TLE] Chester A. Arthur - U.S. Presidents - HISTORY.com [PAR] Find out more about the history of Chester A. Arthur, including videos, ... (1829-\n1886), the 21st U.S. president, took office after the death of President ... In 1871, \nan era of political machines and patronage, Arthur was named to ... Did You \nKnow? ... American Civil War (1861-1865), he was quartermaster for the state of \nNew... [DOC] [TLE] Chester A. Arthur - Wikipedia [PAR] Chester Alan Arthur (October 5, 1829  November 18, 18"
+              },
+              "success_reference": null,
+              "observable_checks": {
+                "answer_format_ok": true,
+                "reference_has_verifiable_quote": false,
+                "diagnosis_status": "hypothesis_to_check"
+              },
+              "original_failure_feedback": "\n\n### Trajectory 1 (id=f8a442980c55415b82527160422a2688)\nTask: ...in American History, if you know that this man was the only U.S. President named Chester\nTask type: \nFailure reason: EM=0\nSteps: ?\n\n#### Hidden Reference\nGold answers: ['Arthur']\n\n[assistant] <answer>Not found in context</answer>\n[verification] [EVALUATION RESULT]\nGold answers: ['Arthur']\nEM: 0.0\nF1: 0.0"
+            },
+            "diagnostic_packet": {
+              "failure_id": "f8a442980c55415b82527160422a2688",
+              "pair_type": "unpaired",
+              "similarity": null,
+              "task_type": "unknown",
+              "failure": {
+                "example_id": "f8a442980c55415b82527160422a2688",
+                "skill_hash": "0a21fc8afe52b0187c46b31af479538d39514d3486bdd828c4ae97cc7fc75100",
+                "round": 1,
+                "visible_context_hash": "561d873944e3eec771fc7374a3ebb91dc04ada0e292135dd81cf19a84a582196",
+                "observation_id": "0a73ee2732974e50cb6663516cbdd1135324ff643139a7cdf37ac6a8c11cd9a2",
+                "question": "...in American History, if you know that this man was the only U.S. President named Chester",
+                "visible_context_excerpt": "[DOC] [TLE] Chester A. Arthur - U.S. Presidents - HISTORY.com [PAR] Find out more about the history of Chester A. Arthur, including videos, ... (1829-\n1886), the 21st U.S. president, took office after the death of President ... In 1871, \nan era of political machines and patronage, Arthur was named to ... Did You \nKnow? ... American Civil War (1861-1865), he was quartermaster for the state of \nNew... [DOC] [TLE] Chester A. Arthur - Wikipedia [PAR] Chester Alan Arthur (October 5, 1829  November 18, 18",
+                "response_excerpt": "<answer>Not found in context</answer>",
+                "predicted_answer": "Not found in context",
+                "gold_answers": [
+                  "Arthur"
+                ],
+                "em": 0.0
+              },
+              "success_reference": null,
+              "observable_checks": {
+                "answer_format_ok": true,
+                "reference_has_verifiable_quote": false,
+                "reference_evidence_status": "answer_only_or_unverified",
+                "diagnosis_status": "hypothesis_to_check",
+                "node_execution_observed": false
+              },
+              "original_failure_feedback": "\n\n### Trajectory 1 (id=f8a442980c55415b82527160422a2688)\nTask: ...in American History, if you know that this man was the only U.S. President named Chester\nTask type: \nFailure reason: EM=0\nSteps: ?\n\n#### Hidden Reference\nGold answers: ['Arthur']\n\n[assistant] <answer>Not found in context</answer>\n[verification] [EVALUATION RESULT]\nGold answers: ['Arthur']\nEM: 0.0\nF1: 0.0"
+            }
+          },
+          {
+            "failure_id": "691178453c884f98a9205ef3d143bc42",
+            "pair_type": "same_question",
+            "task_type": "unknown",
+            "similarity": 1.0,
+            "reference_id": "691178453c884f98a9205ef3d143bc42",
+            "quote_in_full_reference": false,
+            "quote_survives_bounded_packet": false,
+            "context_excerpt_present": true,
+            "actual_packet": {
+              "failure_id": "691178453c884f98a9205ef3d143bc42",
+              "pair_type": "same_question",
+              "failure": {
+                "question": "The National Air & Space Museum in Washington is the largest museum of this institution",
+                "response_excerpt": "<answer>True</answer>",
+                "predicted_answer": "True",
+                "gold_answers": [
+                  "Smithsonian Institution"
+                ],
+                "em": 0,
+                "visible_context_excerpt": "[DOC] [TLE] National Air and Space Museum | [PAR] 46 minutes ago ... Are you an air racing fan? Learn More ... National Air and Space Museum ... \nBrilliant visit to the #airandspace museum in Washington DC with... [DOC] [TLE] About | National Air and Space Museum [PAR] The Steven F. Udvar-Hazy Center, located near Washington Dulles ... The \nSmithsonian's National Air and Space Museum will assess and improve our \nprograms, ... Museum is the largest of 19 museums included in the Smithsonian \nInstitution. [DOC] [TLE] History | National Air and Space Museum [PAR] The Smithsonian's connection to flight began with the birth of the Institution, first ... \nwould later"
+              },
+              "success_reference": {
+                "example_id": "691178453c884f98a9205ef3d143bc42",
+                "response_excerpt": "Based on the context provided, the National Air and Space Museum is described as \"the largest of 19 museums included in the Smithsonian Institution.\"\n\n<answer>Smithsonian Institution</answer>",
+                "predicted_answer": "Smithsonian Institution",
+                "em": 1,
+                "question": "The National Air & Space Museum in Washington is the largest museum of this institution",
+                "visible_context_excerpt": "[DOC] [TLE] National Air and Space Museum | [PAR] 46 minutes ago ... Are you an air racing fan? Learn More ... National Air and Space Museum ... \nBrilliant visit to the #airandspace museum in Washington DC with... [DOC] [TLE] About | National Air and Space Museum [PAR] The Steven F. Udvar-Hazy Center, located near Washington Dulles ... The \nSmithsonian's National Air and Space Museum will assess and improve our \nprograms, ... Museum is the largest of 19 museums included in the Smithsonian \nInstitution. [DOC] [TLE] History | National Air and Space Museum [PAR] The Smithsonian's connection to flight began with the birth of the Institution, first ... \nwould later"
+              },
+              "observable_checks": {
+                "answer_format_ok": true,
+                "reference_has_verifiable_quote": false,
+                "diagnosis_status": "hypothesis_to_check"
+              }
+            },
+            "diagnostic_packet": {
+              "failure_id": "691178453c884f98a9205ef3d143bc42",
+              "pair_type": "same_question",
+              "similarity": 1.0,
+              "task_type": "unknown",
+              "failure": {
+                "example_id": "691178453c884f98a9205ef3d143bc42",
+                "skill_hash": "0a21fc8afe52b0187c46b31af479538d39514d3486bdd828c4ae97cc7fc75100",
+                "round": 1,
+                "visible_context_hash": "129bea06b6e6bfb71f3205add6e848aef3e8bdad3af03eb5dbb21fa87d2fd29e",
+                "observation_id": "df856ff86c07775bb086e9b2aeb46cb9dcd51c68915a1a3ea157f2a05300716b",
+                "question": "The National Air & Space Museum in Washington is the largest museum of this institution",
+                "visible_context_excerpt": "[DOC] [TLE] National Air and Space Museum | [PAR] 46 minutes ago ... Are you an air racing fan? Learn More ... National Air and Space Museum ... \nBrilliant visit to the #airandspace museum in Washington DC with... [DOC] [TLE] About | National Air and Space Museum [PAR] The Steven F. Udvar-Hazy Center, located near Washington Dulles ... The \nSmithsonian's National Air and Space Museum will assess and improve our \nprograms, ... Museum is the largest of 19 museums included in the Smithsonian \nInstitution. [DOC] [TLE] History | National Air and Space Museum [PAR] The Smithsonian's connection to flight began with the birth of the Institution, first ... \nwould later",
+                "response_excerpt": "<answer>True</answer>",
+                "predicted_answer": "True",
+                "gold_answers": [
+                  "Smithsonian Institution"
+                ],
+                "em": 0.0
+              },
+              "success_reference": {
+                "example_id": "691178453c884f98a9205ef3d143bc42",
+                "skill_hash": "98e05007c06e2c5a10bcee2a4bbbe206c291efcc2fdef0335f0c4aaf8d3613a3",
+                "round": 1,
+                "visible_context_hash": "129bea06b6e6bfb71f3205add6e848aef3e8bdad3af03eb5dbb21fa87d2fd29e",
+                "observation_id": "6f552f21002ce28d2af2bc3d44676c393edaf2d41425307dcd66be0ce9375955",
+                "question": "The National Air & Space Museum in Washington is the largest museum of this institution",
+                "visible_context_excerpt": "[DOC] [TLE] National Air and Space Museum | [PAR] 46 minutes ago ... Are you an air racing fan? Learn More ... National Air and Space Museum ... \nBrilliant visit to the #airandspace museum in Washington DC with... [DOC] [TLE] About | National Air and Space Museum [PAR] The Steven F. Udvar-Hazy Center, located near Washington Dulles ... The \nSmithsonian's National Air and Space Museum will assess and improve our \nprograms, ... Museum is the largest of 19 museums included in the Smithsonian \nInstitution. [DOC] [TLE] History | National Air and Space Museum [PAR] The Smithsonian's connection to flight began with the birth of the Institution, first ... \nwould later",
+                "response_excerpt": "Based on the context provided, the National Air and Space Museum is described as \"the largest of 19 museums included in the Smithsonian Institution.\"\n\n<answer>Smithsonian Institution</answer>",
+                "predicted_answer": "Smithsonian Institution",
+                "gold_answers": [
+                  "Smithsonian Institution"
+                ],
+                "em": 1.0
+              },
+              "observable_checks": {
+                "answer_format_ok": true,
+                "reference_has_verifiable_quote": false,
+                "reference_evidence_status": "answer_only_or_unverified",
+                "diagnosis_status": "hypothesis_to_check",
+                "node_execution_observed": false
+              }
+            }
+          },
+          {
+            "failure_id": "0d73382067a64ea4a6ed320ae386accb",
+            "pair_type": "unpaired",
+            "task_type": "unknown",
+            "similarity": null,
+            "reference_id": null,
+            "quote_in_full_reference": false,
+            "quote_survives_bounded_packet": false,
+            "context_excerpt_present": true,
+            "actual_packet": {
+              "failure_id": "0d73382067a64ea4a6ed320ae386accb",
+              "pair_type": "unpaired",
+              "failure": {
+                "question": "February 6, 1911 in Tampico, Illinois",
+                "response_excerpt": "<answer>President Ronald Reagan was born</answer>",
+                "predicted_answer": "President Ronald Reagan was born",
+                "gold_answers": [
+                  "Ronald Reagan"
+                ],
+                "em": 0,
+                "visible_context_excerpt": "[DOC] [TLE] Ronald Reagan born - Feb 06, 1911 - HISTORY.com [PAR] On this day in History, Ronald Reagan born on Feb 06, 1911. ... Ronald Reagan \nwas born on this day in 1911, in Tampico, a small town in northwestern Illinois. [DOC] [TLE] February 1911 - Wikipedia [PAR] ... was born at 4:16 a.m. in Tampico, Illinois, to Nelle Reagan and shoe salesman \nJohn Reagan. He died on... [DOC] [TLE] Tampico, Illinois - Places in the News | Library of Congress [PAR] Tampico, Illinois was founded in 185"
+              },
+              "success_reference": null,
+              "observable_checks": {
+                "answer_format_ok": true,
+                "reference_has_verifiable_quote": false,
+                "diagnosis_status": "hypothesis_to_check"
+              },
+              "original_failure_feedback": "\n\n### Trajectory 1 (id=0d73382067a64ea4a6ed320ae386accb)\nTask: February 6, 1911 in Tampico, Illinois\nTask type: \nFailure reason: EM=0\nSteps: ?\n\n#### Hidden Reference\nGold answers: ['Ronald Reagan']\n\n[assistant] <answer>President Ronald Reagan was born</answer>\n[verification] [EVALUATION RESULT]\nGold answers: ['Ronald Reagan']\nEM: 0.0\nF1: 0.5714285714285715"
+            },
+            "diagnostic_packet": {
+              "failure_id": "0d73382067a64ea4a6ed320ae386accb",
+              "pair_type": "unpaired",
+              "similarity": null,
+              "task_type": "unknown",
+              "failure": {
+                "example_id": "0d73382067a64ea4a6ed320ae386accb",
+                "skill_hash": "0a21fc8afe52b0187c46b31af479538d39514d3486bdd828c4ae97cc7fc75100",
+                "round": 1,
+                "visible_context_hash": "1d4e7befcb37f98edd396fabfa8d4a0ad863ad4e3cbc53957254c0cd84b19fee",
+                "observation_id": "546ca45640fb11341611981b8bc9194091d097fc4a5371d3532f7dd9abbcda8a",
+                "question": "February 6, 1911 in Tampico, Illinois",
+                "visible_context_excerpt": "[DOC] [TLE] Ronald Reagan born - Feb 06, 1911 - HISTORY.com [PAR] On this day in History, Ronald Reagan born on Feb 06, 1911. ... Ronald Reagan \nwas born on this day in 1911, in Tampico, a small town in northwestern Illinois. [DOC] [TLE] February 1911 - Wikipedia [PAR] ... was born at 4:16 a.m. in Tampico, Illinois, to Nelle Reagan and shoe salesman \nJohn Reagan. He died on... [DOC] [TLE] Tampico, Illinois - Places in the News | Library of Congress [PAR] Tampico, Illinois was founded in 185",
+                "response_excerpt": "<answer>President Ronald Reagan was born</answer>",
+                "predicted_answer": "President Ronald Reagan was born",
+                "gold_answers": [
+                  "Ronald Reagan"
+                ],
+                "em": 0.0
+              },
+              "success_reference": null,
+              "observable_checks": {
+                "answer_format_ok": true,
+                "reference_has_verifiable_quote": false,
+                "reference_evidence_status": "answer_only_or_unverified",
+                "diagnosis_status": "hypothesis_to_check",
+                "node_execution_observed": false
+              },
+              "original_failure_feedback": "\n\n### Trajectory 1 (id=0d73382067a64ea4a6ed320ae386accb)\nTask: February 6, 1911 in Tampico, Illinois\nTask type: \nFailure reason: EM=0\nSteps: ?\n\n#### Hidden Reference\nGold answers: ['Ronald Reagan']\n\n[assistant] <answer>President Ronald Reagan was born</answer>\n[verification] [EVALUATION RESULT]\nGold answers: ['Ronald Reagan']\nEM: 0.0\nF1: 0.5714285714285715"
+            }
+          }
+        ],
+        "actual_feedback": "Use the selected training failures and available success references to revise the parent graph-structured skill.\nIdentify shared task conditions, a supported or suspected harmful deviation, a relevant skill node or missing rule, and successful behavior to preserve.\nAdd narrowly applicable checks. Differences alone are not errors. EM=1 does not verify every reasoning step.\nSimilar-task references support abstract strategy comparison only, not causal step replacement.\nNode attribution from single-turn output is a diagnosis hypothesis, not an observed internal execution trace.\nIf unpaired, use the original failure feedback. If evidence is weak, record uncertainty and avoid broad prohibitions.\nNever copy dataset answers, question-specific entities or solved examples into the skill.\nPreserve the required structure. Return new_skill and notes linking changes to supplied evidence IDs.\n\n[{\"failure_id\":\"f8a442980c55415b82527160422a2688\",\"pair_type\":\"unpaired\",\"failure\":{\"question\":\"...in American History, if you know that this man was the only U.S. President named Chester\",\"response_excerpt\":\"<answer>Not found in context</answer>\",\"predicted_answer\":\"Not found in context\",\"gold_answers\":[\"Arthur\"],\"em\":0,\"visible_context_excerpt\":\"[DOC] [TLE] Chester A. Arthur - U.S. Presidents - HISTORY.com [PAR] Find out more about the history of Chester A. Arthur, including videos, ... (1829-\\n1886), the 21st U.S. president, took office after the death of President ... In 1871, \\nan era of political machines and patronage, Arthur was named to ... Did You \\nKnow? ... American Civil War (1861-1865), he was quartermaster for the state of \\nNew... [DOC] [TLE] Chester A. Arthur - Wikipedia [PAR] Chester Alan Arthur (October 5, 1829  November 18, 18\"},\"success_reference\":null,\"observable_checks\":{\"answer_format_ok\":true,\"reference_has_verifiable_quote\":false,\"diagnosis_status\":\"hypothesis_to_check\"},\"original_failure_feedback\":\"\\n\\n### Trajectory 1 (id=f8a442980c55415b82527160422a2688)\\nTask: ...in American History, if you know that this man was the only U.S. President named Chester\\nTask type: \\nFailure reason: EM=0\\nSteps: ?\\n\\n#### Hidden Reference\\nGold answers: ['Arthur']\\n\\n[assistant] <answer>Not found in context</answer>\\n[verification] [EVALUATION RESULT]\\nGold answers: ['Arthur']\\nEM: 0.0\\nF1: 0.0\"},{\"failure_id\":\"691178453c884f98a9205ef3d143bc42\",\"pair_type\":\"same_question\",\"failure\":{\"question\":\"The National Air & Space Museum in Washington is the largest museum of this institution\",\"response_excerpt\":\"<answer>True</answer>\",\"predicted_answer\":\"True\",\"gold_answers\":[\"Smithsonian Institution\"],\"em\":0,\"visible_context_excerpt\":\"[DOC] [TLE] National Air and Space Museum | [PAR] 46 minutes ago ... Are you an air racing fan? Learn More ... National Air and Space Museum ... \\nBrilliant visit to the #airandspace museum in Washington DC with... [DOC] [TLE] About | National Air and Space Museum [PAR] The Steven F. Udvar-Hazy Center, located near Washington Dulles ... The \\nSmithsonian's National Air and Space Museum will assess and improve our \\nprograms, ... Museum is the largest of 19 museums included in the Smithsonian \\nInstitution. [DOC] [TLE] History | National Air and Space Museum [PAR] The Smithsonian's connection to flight began with the birth of the Institution, first ... \\nwould later\"},\"success_reference\":{\"example_id\":\"691178453c884f98a9205ef3d143bc42\",\"response_excerpt\":\"Based on the context provided, the National Air and Space Museum is described as \\\"the largest of 19 museums included in the Smithsonian Institution.\\\"\\n\\n<answer>Smithsonian Institution</answer>\",\"predicted_answer\":\"Smithsonian Institution\",\"em\":1,\"question\":\"The National Air & Space Museum in Washington is the largest museum of this institution\",\"visible_context_excerpt\":\"[DOC] [TLE] National Air and Space Museum | [PAR] 46 minutes ago ... Are you an air racing fan? Learn More ... National Air and Space Museum ... \\nBrilliant visit to the #airandspace museum in Washington DC with... [DOC] [TLE] About | National Air and Space Museum [PAR] The Steven F. Udvar-Hazy Center, located near Washington Dulles ... The \\nSmithsonian's National Air and Space Museum will assess and improve our \\nprograms, ... Museum is the largest of 19 museums included in the Smithsonian \\nInstitution. [DOC] [TLE] History | National Air and Space Museum [PAR] The Smithsonian's connection to flight began with the birth of the Institution, first ... \\nwould later\"},\"observable_checks\":{\"answer_format_ok\":true,\"reference_has_verifiable_quote\":false,\"diagnosis_status\":\"hypothesis_to_check\"}},{\"failure_id\":\"0d73382067a64ea4a6ed320ae386accb\",\"pair_type\":\"unpaired\",\"failure\":{\"question\":\"February 6, 1911 in Tampico, Illinois\",\"response_excerpt\":\"<answer>President Ronald Reagan was born</answer>\",\"predicted_answer\":\"President Ronald Reagan was born\",\"gold_answers\":[\"Ronald Reagan\"],\"em\":0,\"visible_context_excerpt\":\"[DOC] [TLE] Ronald Reagan born - Feb 06, 1911 - HISTORY.com [PAR] On this day in History, Ronald Reagan born on Feb 06, 1911. ... Ronald Reagan \\nwas born on this day in 1911, in Tampico, a small town in northwestern Illinois. [DOC] [TLE] February 1911 - Wikipedia [PAR] ... was born at 4:16 a.m. in Tampico, Illinois, to Nelle Reagan and shoe salesman \\nJohn Reagan. He died on... [DOC] [TLE] Tampico, Illinois - Places in the News | Library of Congress [PAR] Tampico, Illinois was founded in 185\"},\"success_reference\":null,\"observable_checks\":{\"answer_format_ok\":true,\"reference_has_verifiable_quote\":false,\"diagnosis_status\":\"hypothesis_to_check\"},\"original_failure_feedback\":\"\\n\\n### Trajectory 1 (id=0d73382067a64ea4a6ed320ae386accb)\\nTask: February 6, 1911 in Tampico, Illinois\\nTask type: \\nFailure reason: EM=0\\nSteps: ?\\n\\n#### Hidden Reference\\nGold answers: ['Ronald Reagan']\\n\\n[assistant] <answer>President Ronald Reagan was born</answer>\\n[verification] [EVALUATION RESULT]\\nGold answers: ['Ronald Reagan']\\nEM: 0.0\\nF1: 0.5714285714285715\"}]"
+      },
+      {
+        "round": 1,
+        "child_id": "g0001_i0001",
+        "parent_id": "g0000_i0001",
+        "accepted": true,
+        "verified_attempts": 2,
+        "selected_count": 3,
+        "same_question": 1,
+        "similar_task": 0,
+        "unpaired": 2,
+        "feedback_tokens": 1628,
+        "packets": [
+          {
+            "failure_id": "f8a442980c55415b82527160422a2688",
+            "pair_type": "unpaired",
+            "task_type": "unknown",
+            "similarity": null,
+            "reference_id": null,
+            "quote_in_full_reference": false,
+            "quote_survives_bounded_packet": false,
+            "context_excerpt_present": true,
+            "actual_packet": {
+              "failure_id": "f8a442980c55415b82527160422a2688",
+              "pair_type": "unpaired",
+              "failure": {
+                "question": "...in American History, if you know that this man was the only U.S. President named Chester",
+                "response_excerpt": "<answer>Not found in context</answer>",
+                "predicted_answer": "Not found in context",
+                "gold_answers": [
+                  "Arthur"
+                ],
+                "em": 0,
+                "visible_context_excerpt": "[DOC] [TLE] Chester A. Arthur - U.S. Presidents - HISTORY.com [PAR] Find out more about the history of Chester A. Arthur, including videos, ... (1829-\n1886), the 21st U.S. president, took office after the death of President ... In 1871, \nan era of political machines and patronage, Arthur was named to ... Did You \nKnow? ... American Civil War (1861-1865), he was quartermaster for the state of \nNew... [DOC] [TLE] Chester A. Arthur - Wikipedia [PAR] Chester Alan Arthur (October 5, 1829  November 18, 18"
+              },
+              "success_reference": null,
+              "observable_checks": {
+                "answer_format_ok": true,
+                "reference_has_verifiable_quote": false,
+                "diagnosis_status": "hypothesis_to_check"
+              },
+              "original_failure_feedback": "\n\n### Trajectory 1 (id=f8a442980c55415b82527160422a2688)\nTask: ...in American History, if you know that this man was the only U.S. President named Chester\nTask type: \nFailure reason: EM=0\nSteps: ?\n\n#### Hidden Reference\nGold answers: ['Arthur']\n\n[assistant] <answer>Not found in context</answer>\n[verification] [EVALUATION RESULT]\nGold answers: ['Arthur']\nEM: 0.0\nF1: 0.0"
+            },
+            "diagnostic_packet": {
+              "failure_id": "f8a442980c55415b82527160422a2688",
+              "pair_type": "unpaired",
+              "similarity": null,
+              "task_type": "unknown",
+              "failure": {
+                "example_id": "f8a442980c55415b82527160422a2688",
+                "skill_hash": "0a21fc8afe52b0187c46b31af479538d39514d3486bdd828c4ae97cc7fc75100",
+                "round": 1,
+                "visible_context_hash": "561d873944e3eec771fc7374a3ebb91dc04ada0e292135dd81cf19a84a582196",
+                "observation_id": "0a73ee2732974e50cb6663516cbdd1135324ff643139a7cdf37ac6a8c11cd9a2",
+                "question": "...in American History, if you know that this man was the only U.S. President named Chester",
+                "visible_context_excerpt": "[DOC] [TLE] Chester A. Arthur - U.S. Presidents - HISTORY.com [PAR] Find out more about the history of Chester A. Arthur, including videos, ... (1829-\n1886), the 21st U.S. president, took office after the death of President ... In 1871, \nan era of political machines and patronage, Arthur was named to ... Did You \nKnow? ... American Civil War (1861-1865), he was quartermaster for the state of \nNew... [DOC] [TLE] Chester A. Arthur - Wikipedia [PAR] Chester Alan Arthur (October 5, 1829  November 18, 18",
+                "response_excerpt": "<answer>Not found in context</answer>",
+                "predicted_answer": "Not found in context",
+                "gold_answers": [
+                  "Arthur"
+                ],
+                "em": 0.0
+              },
+              "success_reference": null,
+              "observable_checks": {
+                "answer_format_ok": true,
+                "reference_has_verifiable_quote": false,
+                "reference_evidence_status": "answer_only_or_unverified",
+                "diagnosis_status": "hypothesis_to_check",
+                "node_execution_observed": false
+              },
+              "original_failure_feedback": "\n\n### Trajectory 1 (id=f8a442980c55415b82527160422a2688)\nTask: ...in American History, if you know that this man was the only U.S. President named Chester\nTask type: \nFailure reason: EM=0\nSteps: ?\n\n#### Hidden Reference\nGold answers: ['Arthur']\n\n[assistant] <answer>Not found in context</answer>\n[verification] [EVALUATION RESULT]\nGold answers: ['Arthur']\nEM: 0.0\nF1: 0.0"
+            }
+          },
+          {
+            "failure_id": "691178453c884f98a9205ef3d143bc42",
+            "pair_type": "same_question",
+            "task_type": "unknown",
+            "similarity": 1.0,
+            "reference_id": "691178453c884f98a9205ef3d143bc42",
+            "quote_in_full_reference": false,
+            "quote_survives_bounded_packet": false,
+            "context_excerpt_present": true,
+            "actual_packet": {
+              "failure_id": "691178453c884f98a9205ef3d143bc42",
+              "pair_type": "same_question",
+              "failure": {
+                "question": "The National Air & Space Museum in Washington is the largest museum of this institution",
+                "response_excerpt": "<answer>True</answer>",
+                "predicted_answer": "True",
+                "gold_answers": [
+                  "Smithsonian Institution"
+                ],
+                "em": 0,
+                "visible_context_excerpt": "[DOC] [TLE] National Air and Space Museum | [PAR] 46 minutes ago ... Are you an air racing fan? Learn More ... National Air and Space Museum ... \nBrilliant visit to the #airandspace museum in Washington DC with... [DOC] [TLE] About | National Air and Space Museum [PAR] The Steven F. Udvar-Hazy Center, located near Washington Dulles ... The \nSmithsonian's National Air and Space Museum will assess and improve our \nprograms, ... Museum is the largest of 19 museums included in the Smithsonian \nInstitution. [DOC] [TLE] History | National Air and Space Museum [PAR] The Smithsonian's connection to flight began with the birth of the Institution, first ... \nwould later"
+              },
+              "success_reference": {
+                "example_id": "691178453c884f98a9205ef3d143bc42",
+                "response_excerpt": "Based on the context provided, the National Air and Space Museum is described as \"the largest of 19 museums included in the Smithsonian Institution.\"\n\n<answer>Smithsonian Institution</answer>",
+                "predicted_answer": "Smithsonian Institution",
+                "em": 1,
+                "question": "The National Air & Space Museum in Washington is the largest museum of this institution",
+                "visible_context_excerpt": "[DOC] [TLE] National Air and Space Museum | [PAR] 46 minutes ago ... Are you an air racing fan? Learn More ... National Air and Space Museum ... \nBrilliant visit to the #airandspace museum in Washington DC with... [DOC] [TLE] About | National Air and Space Museum [PAR] The Steven F. Udvar-Hazy Center, located near Washington Dulles ... The \nSmithsonian's National Air and Space Museum will assess and improve our \nprograms, ... Museum is the largest of 19 museums included in the Smithsonian \nInstitution. [DOC] [TLE] History | National Air and Space Museum [PAR] The Smithsonian's connection to flight began with the birth of the Institution, first ... \nwould later"
+              },
+              "observable_checks": {
+                "answer_format_ok": true,
+                "reference_has_verifiable_quote": false,
+                "diagnosis_status": "hypothesis_to_check"
+              }
+            },
+            "diagnostic_packet": {
+              "failure_id": "691178453c884f98a9205ef3d143bc42",
+              "pair_type": "same_question",
+              "similarity": 1.0,
+              "task_type": "unknown",
+              "failure": {
+                "example_id": "691178453c884f98a9205ef3d143bc42",
+                "skill_hash": "0a21fc8afe52b0187c46b31af479538d39514d3486bdd828c4ae97cc7fc75100",
+                "round": 1,
+                "visible_context_hash": "129bea06b6e6bfb71f3205add6e848aef3e8bdad3af03eb5dbb21fa87d2fd29e",
+                "observation_id": "df856ff86c07775bb086e9b2aeb46cb9dcd51c68915a1a3ea157f2a05300716b",
+                "question": "The National Air & Space Museum in Washington is the largest museum of this institution",
+                "visible_context_excerpt": "[DOC] [TLE] National Air and Space Museum | [PAR] 46 minutes ago ... Are you an air racing fan? Learn More ... National Air and Space Museum ... \nBrilliant visit to the #airandspace museum in Washington DC with... [DOC] [TLE] About | National Air and Space Museum [PAR] The Steven F. Udvar-Hazy Center, located near Washington Dulles ... The \nSmithsonian's National Air and Space Museum will assess and improve our \nprograms, ... Museum is the largest of 19 museums included in the Smithsonian \nInstitution. [DOC] [TLE] History | National Air and Space Museum [PAR] The Smithsonian's connection to flight began with the birth of the Institution, first ... \nwould later",
+                "response_excerpt": "<answer>True</answer>",
+                "predicted_answer": "True",
+                "gold_answers": [
+                  "Smithsonian Institution"
+                ],
+                "em": 0.0
+              },
+              "success_reference": {
+                "example_id": "691178453c884f98a9205ef3d143bc42",
+                "skill_hash": "98e05007c06e2c5a10bcee2a4bbbe206c291efcc2fdef0335f0c4aaf8d3613a3",
+                "round": 1,
+                "visible_context_hash": "129bea06b6e6bfb71f3205add6e848aef3e8bdad3af03eb5dbb21fa87d2fd29e",
+                "observation_id": "6f552f21002ce28d2af2bc3d44676c393edaf2d41425307dcd66be0ce9375955",
+                "question": "The National Air & Space Museum in Washington is the largest museum of this institution",
+                "visible_context_excerpt": "[DOC] [TLE] National Air and Space Museum | [PAR] 46 minutes ago ... Are you an air racing fan? Learn More ... National Air and Space Museum ... \nBrilliant visit to the #airandspace museum in Washington DC with... [DOC] [TLE] About | National Air and Space Museum [PAR] The Steven F. Udvar-Hazy Center, located near Washington Dulles ... The \nSmithsonian's National Air and Space Museum will assess and improve our \nprograms, ... Museum is the largest of 19 museums included in the Smithsonian \nInstitution. [DOC] [TLE] History | National Air and Space Museum [PAR] The Smithsonian's connection to flight began with the birth of the Institution, first ... \nwould later",
+                "response_excerpt": "Based on the context provided, the National Air and Space Museum is described as \"the largest of 19 museums included in the Smithsonian Institution.\"\n\n<answer>Smithsonian Institution</answer>",
+                "predicted_answer": "Smithsonian Institution",
+                "gold_answers": [
+                  "Smithsonian Institution"
+                ],
+                "em": 1.0
+              },
+              "observable_checks": {
+                "answer_format_ok": true,
+                "reference_has_verifiable_quote": false,
+                "reference_evidence_status": "answer_only_or_unverified",
+                "diagnosis_status": "hypothesis_to_check",
+                "node_execution_observed": false
+              }
+            }
+          },
+          {
+            "failure_id": "0d73382067a64ea4a6ed320ae386accb",
+            "pair_type": "unpaired",
+            "task_type": "unknown",
+            "similarity": null,
+            "reference_id": null,
+            "quote_in_full_reference": false,
+            "quote_survives_bounded_packet": false,
+            "context_excerpt_present": true,
+            "actual_packet": {
+              "failure_id": "0d73382067a64ea4a6ed320ae386accb",
+              "pair_type": "unpaired",
+              "failure": {
+                "question": "February 6, 1911 in Tampico, Illinois",
+                "response_excerpt": "<answer>President Ronald Reagan was born</answer>",
+                "predicted_answer": "President Ronald Reagan was born",
+                "gold_answers": [
+                  "Ronald Reagan"
+                ],
+                "em": 0,
+                "visible_context_excerpt": "[DOC] [TLE] Ronald Reagan born - Feb 06, 1911 - HISTORY.com [PAR] On this day in History, Ronald Reagan born on Feb 06, 1911. ... Ronald Reagan \nwas born on this day in 1911, in Tampico, a small town in northwestern Illinois. [DOC] [TLE] February 1911 - Wikipedia [PAR] ... was born at 4:16 a.m. in Tampico, Illinois, to Nelle Reagan and shoe salesman \nJohn Reagan. He died on... [DOC] [TLE] Tampico, Illinois - Places in the News | Library of Congress [PAR] Tampico, Illinois was founded in 185"
+              },
+              "success_reference": null,
+              "observable_checks": {
+                "answer_format_ok": true,
+                "reference_has_verifiable_quote": false,
+                "diagnosis_status": "hypothesis_to_check"
+              },
+              "original_failure_feedback": "\n\n### Trajectory 1 (id=0d73382067a64ea4a6ed320ae386accb)\nTask: February 6, 1911 in Tampico, Illinois\nTask type: \nFailure reason: EM=0\nSteps: ?\n\n#### Hidden Reference\nGold answers: ['Ronald Reagan']\n\n[assistant] <answer>President Ronald Reagan was born</answer>\n[verification] [EVALUATION RESULT]\nGold answers: ['Ronald Reagan']\nEM: 0.0\nF1: 0.5714285714285715"
+            },
+            "diagnostic_packet": {
+              "failure_id": "0d73382067a64ea4a6ed320ae386accb",
+              "pair_type": "unpaired",
+              "similarity": null,
+              "task_type": "unknown",
+              "failure": {
+                "example_id": "0d73382067a64ea4a6ed320ae386accb",
+                "skill_hash": "0a21fc8afe52b0187c46b31af479538d39514d3486bdd828c4ae97cc7fc75100",
+                "round": 1,
+                "visible_context_hash": "1d4e7befcb37f98edd396fabfa8d4a0ad863ad4e3cbc53957254c0cd84b19fee",
+                "observation_id": "546ca45640fb11341611981b8bc9194091d097fc4a5371d3532f7dd9abbcda8a",
+                "question": "February 6, 1911 in Tampico, Illinois",
+                "visible_context_excerpt": "[DOC] [TLE] Ronald Reagan born - Feb 06, 1911 - HISTORY.com [PAR] On this day in History, Ronald Reagan born on Feb 06, 1911. ... Ronald Reagan \nwas born on this day in 1911, in Tampico, a small town in northwestern Illinois. [DOC] [TLE] February 1911 - Wikipedia [PAR] ... was born at 4:16 a.m. in Tampico, Illinois, to Nelle Reagan and shoe salesman \nJohn Reagan. He died on... [DOC] [TLE] Tampico, Illinois - Places in the News | Library of Congress [PAR] Tampico, Illinois was founded in 185",
+                "response_excerpt": "<answer>President Ronald Reagan was born</answer>",
+                "predicted_answer": "President Ronald Reagan was born",
+                "gold_answers": [
+                  "Ronald Reagan"
+                ],
+                "em": 0.0
+              },
+              "success_reference": null,
+              "observable_checks": {
+                "answer_format_ok": true,
+                "reference_has_verifiable_quote": false,
+                "reference_evidence_status": "answer_only_or_unverified",
+                "diagnosis_status": "hypothesis_to_check",
+                "node_execution_observed": false
+              },
+              "original_failure_feedback": "\n\n### Trajectory 1 (id=0d73382067a64ea4a6ed320ae386accb)\nTask: February 6, 1911 in Tampico, Illinois\nTask type: \nFailure reason: EM=0\nSteps: ?\n\n#### Hidden Reference\nGold answers: ['Ronald Reagan']\n\n[assistant] <answer>President Ronald Reagan was born</answer>\n[verification] [EVALUATION RESULT]\nGold answers: ['Ronald Reagan']\nEM: 0.0\nF1: 0.5714285714285715"
+            }
+          }
+        ],
+        "actual_feedback": "Use the selected training failures and available success references to revise the parent graph-structured skill.\nIdentify shared task conditions, a supported or suspected harmful deviation, a relevant skill node or missing rule, and successful behavior to preserve.\nAdd narrowly applicable checks. Differences alone are not errors. EM=1 does not verify every reasoning step.\nSimilar-task references support abstract strategy comparison only, not causal step replacement.\nNode attribution from single-turn output is a diagnosis hypothesis, not an observed internal execution trace.\nIf unpaired, use the original failure feedback. If evidence is weak, record uncertainty and avoid broad prohibitions.\nNever copy dataset answers, question-specific entities or solved examples into the skill.\nPreserve the required structure. Return new_skill and notes linking changes to supplied evidence IDs.\n\n[{\"failure_id\":\"f8a442980c55415b82527160422a2688\",\"pair_type\":\"unpaired\",\"failure\":{\"question\":\"...in American History, if you know that this man was the only U.S. President named Chester\",\"response_excerpt\":\"<answer>Not found in context</answer>\",\"predicted_answer\":\"Not found in context\",\"gold_answers\":[\"Arthur\"],\"em\":0,\"visible_context_excerpt\":\"[DOC] [TLE] Chester A. Arthur - U.S. Presidents - HISTORY.com [PAR] Find out more about the history of Chester A. Arthur, including videos, ... (1829-\\n1886), the 21st U.S. president, took office after the death of President ... In 1871, \\nan era of political machines and patronage, Arthur was named to ... Did You \\nKnow? ... American Civil War (1861-1865), he was quartermaster for the state of \\nNew... [DOC] [TLE] Chester A. Arthur - Wikipedia [PAR] Chester Alan Arthur (October 5, 1829  November 18, 18\"},\"success_reference\":null,\"observable_checks\":{\"answer_format_ok\":true,\"reference_has_verifiable_quote\":false,\"diagnosis_status\":\"hypothesis_to_check\"},\"original_failure_feedback\":\"\\n\\n### Trajectory 1 (id=f8a442980c55415b82527160422a2688)\\nTask: ...in American History, if you know that this man was the only U.S. President named Chester\\nTask type: \\nFailure reason: EM=0\\nSteps: ?\\n\\n#### Hidden Reference\\nGold answers: ['Arthur']\\n\\n[assistant] <answer>Not found in context</answer>\\n[verification] [EVALUATION RESULT]\\nGold answers: ['Arthur']\\nEM: 0.0\\nF1: 0.0\"},{\"failure_id\":\"691178453c884f98a9205ef3d143bc42\",\"pair_type\":\"same_question\",\"failure\":{\"question\":\"The National Air & Space Museum in Washington is the largest museum of this institution\",\"response_excerpt\":\"<answer>True</answer>\",\"predicted_answer\":\"True\",\"gold_answers\":[\"Smithsonian Institution\"],\"em\":0,\"visible_context_excerpt\":\"[DOC] [TLE] National Air and Space Museum | [PAR] 46 minutes ago ... Are you an air racing fan? Learn More ... National Air and Space Museum ... \\nBrilliant visit to the #airandspace museum in Washington DC with... [DOC] [TLE] About | National Air and Space Museum [PAR] The Steven F. Udvar-Hazy Center, located near Washington Dulles ... The \\nSmithsonian's National Air and Space Museum will assess and improve our \\nprograms, ... Museum is the largest of 19 museums included in the Smithsonian \\nInstitution. [DOC] [TLE] History | National Air and Space Museum [PAR] The Smithsonian's connection to flight began with the birth of the Institution, first ... \\nwould later\"},\"success_reference\":{\"example_id\":\"691178453c884f98a9205ef3d143bc42\",\"response_excerpt\":\"Based on the context provided, the National Air and Space Museum is described as \\\"the largest of 19 museums included in the Smithsonian Institution.\\\"\\n\\n<answer>Smithsonian Institution</answer>\",\"predicted_answer\":\"Smithsonian Institution\",\"em\":1,\"question\":\"The National Air & Space Museum in Washington is the largest museum of this institution\",\"visible_context_excerpt\":\"[DOC] [TLE] National Air and Space Museum | [PAR] 46 minutes ago ... Are you an air racing fan? Learn More ... National Air and Space Museum ... \\nBrilliant visit to the #airandspace museum in Washington DC with... [DOC] [TLE] About | National Air and Space Museum [PAR] The Steven F. Udvar-Hazy Center, located near Washington Dulles ... The \\nSmithsonian's National Air and Space Museum will assess and improve our \\nprograms, ... Museum is the largest of 19 museums included in the Smithsonian \\nInstitution. [DOC] [TLE] History | National Air and Space Museum [PAR] The Smithsonian's connection to flight began with the birth of the Institution, first ... \\nwould later\"},\"observable_checks\":{\"answer_format_ok\":true,\"reference_has_verifiable_quote\":false,\"diagnosis_status\":\"hypothesis_to_check\"}},{\"failure_id\":\"0d73382067a64ea4a6ed320ae386accb\",\"pair_type\":\"unpaired\",\"failure\":{\"question\":\"February 6, 1911 in Tampico, Illinois\",\"response_excerpt\":\"<answer>President Ronald Reagan was born</answer>\",\"predicted_answer\":\"President Ronald Reagan was born\",\"gold_answers\":[\"Ronald Reagan\"],\"em\":0,\"visible_context_excerpt\":\"[DOC] [TLE] Ronald Reagan born - Feb 06, 1911 - HISTORY.com [PAR] On this day in History, Ronald Reagan born on Feb 06, 1911. ... Ronald Reagan \\nwas born on this day in 1911, in Tampico, a small town in northwestern Illinois. [DOC] [TLE] February 1911 - Wikipedia [PAR] ... was born at 4:16 a.m. in Tampico, Illinois, to Nelle Reagan and shoe salesman \\nJohn Reagan. He died on... [DOC] [TLE] Tampico, Illinois - Places in the News | Library of Congress [PAR] Tampico, Illinois was founded in 185\"},\"success_reference\":null,\"observable_checks\":{\"answer_format_ok\":true,\"reference_has_verifiable_quote\":false,\"diagnosis_status\":\"hypothesis_to_check\"},\"original_failure_feedback\":\"\\n\\n### Trajectory 1 (id=0d73382067a64ea4a6ed320ae386accb)\\nTask: February 6, 1911 in Tampico, Illinois\\nTask type: \\nFailure reason: EM=0\\nSteps: ?\\n\\n#### Hidden Reference\\nGold answers: ['Ronald Reagan']\\n\\n[assistant] <answer>President Ronald Reagan was born</answer>\\n[verification] [EVALUATION RESULT]\\nGold answers: ['Ronald Reagan']\\nEM: 0.0\\nF1: 0.5714285714285715\"}]"
+      },
+      {
+        "round": 2,
+        "child_id": "g0002_i0000",
+        "parent_id": "g0001_i0000",
+        "accepted": true,
+        "verified_attempts": 1,
+        "selected_count": 3,
+        "same_question": 0,
+        "similar_task": 0,
+        "unpaired": 3,
+        "feedback_tokens": 423,
+        "packets": [
+          {
+            "failure_id": "84ab80ab3c5d47a58ddda464d62c5694",
+            "pair_type": "unpaired",
+            "task_type": "unknown",
+            "similarity": null,
+            "reference_id": null,
+            "quote_in_full_reference": false,
+            "quote_survives_bounded_packet": false,
+            "context_excerpt_present": false,
+            "actual_packet": null,
+            "diagnostic_packet": {
+              "failure_id": "84ab80ab3c5d47a58ddda464d62c5694",
+              "pair_type": "unpaired",
+              "similarity": null,
+              "task_type": "unknown",
+              "failure": {
+                "example_id": "84ab80ab3c5d47a58ddda464d62c5694",
+                "skill_hash": "d3bb6bcf6b756fb7449dc16cf3f7cb6369dca7a741285948b8bf9a1255614fea",
+                "round": 2,
+                "visible_context_hash": "c34487b23ef54b279dcd5145ae550e0d62804a2534c3380ef1c086d9a9a2a2c3",
+                "observation_id": "5850f6eb9eeed363dfec1d6f1f06dfaa0776ec2fc5e1df3d414592b2b64d23c7",
+                "question": "He spun straw into gold(15)",
+                "visible_context_excerpt": "[DOC] [TLE] Rumpelstiltskin - Wikipedia [PAR] Rumpelstiltskin is a fairy tale popularly associated with Germany The tale was \none collected by ... (In some versions, the imp appears and begins to turn the \nstraw into gold, paying no heed to the girl's protests .... in with promises of \nmarriage to the children who can spin straw into gold; he is captured by the three \nheroines,... [DOC] [TLE] Rumpelstiltskin | Grimm's Fairy Tales | Grimm Brothers | Lit2Go ETC [PAR] Then he led her to a chamber in his palace where there was a great heap of \nstraw, and gave her a spinning-wheel, and said, 'All this",
+                "response_excerpt": "<answer>He spun straw into gold</answer>",
+                "predicted_answer": "He spun straw into gold",
+                "gold_answers": [
+                  "Rumpelstiltskin"
+                ],
+                "em": 0.0
+              },
+              "success_reference": null,
+              "observable_checks": {
+                "answer_format_ok": true,
+                "reference_has_verifiable_quote": false,
+                "reference_evidence_status": "answer_only_or_unverified",
+                "diagnosis_status": "hypothesis_to_check",
+                "node_execution_observed": false
+              },
+              "original_failure_feedback": "\n\n### Trajectory 1 (id=84ab80ab3c5d47a58ddda464d62c5694)\nTask: He spun straw into gold(15)\nTask type: \nFailure reason: EM=0\nSteps: ?\n\n#### Hidden Reference\nGold answers: ['Rumpelstiltskin']\n\n[assistant] <answer>He spun straw into gold</answer>\n[verification] [EVALUATION RESULT]\nGold answers: ['Rumpelstiltskin']\nEM: 0.0\nF1: 0.0"
+            }
+          },
+          {
+            "failure_id": "1f6f687c79a642328a742e61154c9d90",
+            "pair_type": "unpaired",
+            "task_type": "unknown",
+            "similarity": null,
+            "reference_id": null,
+            "quote_in_full_reference": false,
+            "quote_survives_bounded_packet": false,
+            "context_excerpt_present": false,
+            "actual_packet": null,
+            "diagnostic_packet": {
+              "failure_id": "1f6f687c79a642328a742e61154c9d90",
+              "pair_type": "unpaired",
+              "similarity": null,
+              "task_type": "unknown",
+              "failure": {
+                "example_id": "1f6f687c79a642328a742e61154c9d90",
+                "skill_hash": "d3bb6bcf6b756fb7449dc16cf3f7cb6369dca7a741285948b8bf9a1255614fea",
+                "round": 2,
+                "visible_context_hash": "93284d4de29827c934851adaafe0171379ca255acb875f4ae0722c6777834028",
+                "observation_id": "bfb06ba1580ba9e139b787c936fec7e8af6d261905a80ca3cf5e426561941932",
+                "question": "\"Tippecanoe and Tyler too\"",
+                "visible_context_excerpt": "[DOC] [TLE] American History: 1840 U.S. Presidential Campaign | HistoryNet [PAR] Included was the battle hymn of the campaign, 'Tippecanoe and Tyler, Too,' \nalong with 'Buckeye Cabin,' 'The Soldier of Tippecanoe,' 'The Flag of Tippecanoe,\n'... [DOC] [TLE] Tippecanoe and Tyler Too: Meaning, History & Significance - Video ... [PAR] 'Tippecanoe and Tyler Too' was a campaign slogan for William Henry Harrison and John Tyler in the presidential election of 1840.\n ... William Henry Harrison became the ninth president of the United States, and he did so with a winning campaign slogan: 'Tip",
+                "response_excerpt": "<answer>1840 U.S. Presidential Campaign slogan</answer>",
+                "predicted_answer": "1840 U.S. Presidential Campaign slogan",
+                "gold_answers": [
+                  "William Henry Harrison"
+                ],
+                "em": 0.0
+              },
+              "success_reference": null,
+              "observable_checks": {
+                "answer_format_ok": true,
+                "reference_has_verifiable_quote": false,
+                "reference_evidence_status": "answer_only_or_unverified",
+                "diagnosis_status": "hypothesis_to_check",
+                "node_execution_observed": false
+              },
+              "original_failure_feedback": "\n\n### Trajectory 1 (id=1f6f687c79a642328a742e61154c9d90)\nTask: \"Tippecanoe and Tyler too\"\nTask type: \nFailure reason: EM=0\nSteps: ?\n\n#### Hidden Reference\nGold answers: ['William Henry Harrison']\n\n[assistant] <answer>1840 U.S. Presidential Campaign slogan</answer>\n[verification] [EVALUATION RESULT]\nGold answers: ['William Henry Harrison']\nEM: 0.0\nF1: 0.0"
+            }
+          },
+          {
+            "failure_id": "1c2cc13e0fa745d6b541f6c7eb9f5619",
+            "pair_type": "unpaired",
+            "task_type": "unknown",
+            "similarity": null,
+            "reference_id": null,
+            "quote_in_full_reference": false,
+            "quote_survives_bounded_packet": false,
+            "context_excerpt_present": false,
+            "actual_packet": null,
+            "diagnostic_packet": {
+              "failure_id": "1c2cc13e0fa745d6b541f6c7eb9f5619",
+              "pair_type": "unpaired",
+              "similarity": null,
+              "task_type": "unknown",
+              "failure": {
+                "example_id": "1c2cc13e0fa745d6b541f6c7eb9f5619",
+                "skill_hash": "d3bb6bcf6b756fb7449dc16cf3f7cb6369dca7a741285948b8bf9a1255614fea",
+                "round": 2,
+                "visible_context_hash": "bb3a95406a9161025aa932148fb26b51d36d838de58fa5a51d4d16ba6d62a0a2",
+                "observation_id": "57f54457fff136b426787ca3beac189a5fd639c2b8099755acd058d9f1df8c15",
+                "question": "A \"hasty\" dessert, or perhaps you'd prefer the tapioca",
+                "visible_context_excerpt": "[DOC] [TLE] Jeopary Questions page 527 - MUSIC - TriviaBistro.com [PAR] AROUND THE HOUSE: Room in which you'd most likely use a duvet  PLAYING \n... DOUBLE \"D\"s: A \"hasty\" dessert, or perhaps you'd prefer the tapioca. [DOC] [TLE] MasterChef 3: Don't Trifle with Walmart | Have YOU Ben Starr Struck? [PAR] Jul 5, 2012 ... But her presented dessert doesn't look like what she was making in the ... I have \nmany variationsperhaps my favorite is my pumpkin caramel tiramisu. .... This is \nanother reason you need to avoid making hasty judgements about ... typically \nstabil",
+                "response_excerpt": "<answer>hasty pudding</answer>",
+                "predicted_answer": "hasty pudding",
+                "gold_answers": [
+                  "pudding"
+                ],
+                "em": 0.0
+              },
+              "success_reference": null,
+              "observable_checks": {
+                "answer_format_ok": true,
+                "reference_has_verifiable_quote": false,
+                "reference_evidence_status": "answer_only_or_unverified",
+                "diagnosis_status": "hypothesis_to_check",
+                "node_execution_observed": false
+              },
+              "original_failure_feedback": "\n\n### Trajectory 1 (id=1c2cc13e0fa745d6b541f6c7eb9f5619)\nTask: A \"hasty\" dessert, or perhaps you'd prefer the tapioca\nTask type: \nFailure reason: EM=0\nSteps: ?\n\n#### Hidden Reference\nGold answers: ['pudding']\n\n[assistant] <answer>hasty pudding</answer>\n[verification] [EVALUATION RESULT]\nGold answers: ['pudding']\nEM: 0.0\nF1: 0.6666666666666666"
+            }
+          }
+        ],
+        "actual_feedback": "\n\n### Trajectory 1 (id=84ab80ab3c5d47a58ddda464d62c5694)\nTask: He spun straw into gold(15)\nTask type: \nFailure reason: EM=0\nSteps: ?\n\n#### Hidden Reference\nGold answers: ['Rumpelstiltskin']\n\n[assistant] <answer>He spun straw into gold</answer>\n[verification] [EVALUATION RESULT]\nGold answers: ['Rumpelstiltskin']\nEM: 0.0\nF1: 0.0\n\n---\n\n### Trajectory 1 (id=1f6f687c79a642328a742e61154c9d90)\nTask: \"Tippecanoe and Tyler too\"\nTask type: \nFailure reason: EM=0\nSteps: ?\n\n#### Hidden Reference\nGold answers: ['William Henry Harrison']\n\n[assistant] <answer>1840 U.S. Presidential Campaign slogan</answer>\n[verification] [EVALUATION RESULT]\nGold answers: ['William Henry Harrison']\nEM: 0.0\nF1: 0.0\n\n---\n\n### Trajectory 1 (id=1c2cc13e0fa745d6b541f6c7eb9f5619)\nTask: A \"hasty\" dessert, or perhaps you'd prefer the tapioca\nTask type: \nFailure reason: EM=0\nSteps: ?\n\n#### Hidden Reference\nGold answers: ['pudding']\n\n[assistant] <answer>hasty pudding</answer>\n[verification] [EVALUATION RESULT]\nGold answers: ['pudding']\nEM: 0.0\nF1: 0.6666666666666666"
+      },
+      {
+        "round": 2,
+        "child_id": "g0002_i0001",
+        "parent_id": "g0000_i0001",
+        "accepted": true,
+        "verified_attempts": 1,
+        "selected_count": 3,
+        "same_question": 0,
+        "similar_task": 0,
+        "unpaired": 3,
+        "feedback_tokens": 426,
+        "packets": [
+          {
+            "failure_id": "84ab80ab3c5d47a58ddda464d62c5694",
+            "pair_type": "unpaired",
+            "task_type": "unknown",
+            "similarity": null,
+            "reference_id": null,
+            "quote_in_full_reference": false,
+            "quote_survives_bounded_packet": false,
+            "context_excerpt_present": false,
+            "actual_packet": null,
+            "diagnostic_packet": {
+              "failure_id": "84ab80ab3c5d47a58ddda464d62c5694",
+              "pair_type": "unpaired",
+              "similarity": null,
+              "task_type": "unknown",
+              "failure": {
+                "example_id": "84ab80ab3c5d47a58ddda464d62c5694",
+                "skill_hash": "0a21fc8afe52b0187c46b31af479538d39514d3486bdd828c4ae97cc7fc75100",
+                "round": 2,
+                "visible_context_hash": "c34487b23ef54b279dcd5145ae550e0d62804a2534c3380ef1c086d9a9a2a2c3",
+                "observation_id": "8ac58c31a7c8912c0dc170235749414e587b6baa4784f59971aae7a12551875c",
+                "question": "He spun straw into gold(15)",
+                "visible_context_excerpt": "[DOC] [TLE] Rumpelstiltskin - Wikipedia [PAR] Rumpelstiltskin is a fairy tale popularly associated with Germany The tale was \none collected by ... (In some versions, the imp appears and begins to turn the \nstraw into gold, paying no heed to the girl's protests .... in with promises of \nmarriage to the children who can spin straw into gold; he is captured by the three \nheroines,... [DOC] [TLE] Rumpelstiltskin | Grimm's Fairy Tales | Grimm Brothers | Lit2Go ETC [PAR] Then he led her to a chamber in his palace where there was a great heap of \nstraw, and gave her a spinning-wheel, and said, 'All this",
+                "response_excerpt": "<answer>He spun straw into gold</answer>",
+                "predicted_answer": "He spun straw into gold",
+                "gold_answers": [
+                  "Rumpelstiltskin"
+                ],
+                "em": 0.0
+              },
+              "success_reference": null,
+              "observable_checks": {
+                "answer_format_ok": true,
+                "reference_has_verifiable_quote": false,
+                "reference_evidence_status": "answer_only_or_unverified",
+                "diagnosis_status": "hypothesis_to_check",
+                "node_execution_observed": false
+              },
+              "original_failure_feedback": "\n\n### Trajectory 1 (id=84ab80ab3c5d47a58ddda464d62c5694)\nTask: He spun straw into gold(15)\nTask type: \nFailure reason: EM=0\nSteps: ?\n\n#### Hidden Reference\nGold answers: ['Rumpelstiltskin']\n\n[assistant] <answer>He spun straw into gold</answer>\n[verification] [EVALUATION RESULT]\nGold answers: ['Rumpelstiltskin']\nEM: 0.0\nF1: 0.0"
+            }
+          },
+          {
+            "failure_id": "1f6f687c79a642328a742e61154c9d90",
+            "pair_type": "unpaired",
+            "task_type": "unknown",
+            "similarity": null,
+            "reference_id": null,
+            "quote_in_full_reference": false,
+            "quote_survives_bounded_packet": false,
+            "context_excerpt_present": false,
+            "actual_packet": null,
+            "diagnostic_packet": {
+              "failure_id": "1f6f687c79a642328a742e61154c9d90",
+              "pair_type": "unpaired",
+              "similarity": null,
+              "task_type": "unknown",
+              "failure": {
+                "example_id": "1f6f687c79a642328a742e61154c9d90",
+                "skill_hash": "0a21fc8afe52b0187c46b31af479538d39514d3486bdd828c4ae97cc7fc75100",
+                "round": 2,
+                "visible_context_hash": "93284d4de29827c934851adaafe0171379ca255acb875f4ae0722c6777834028",
+                "observation_id": "baf6a7f40d3b167470c6c079bbea526c7f60ec566d147c54b24e256f177eb0a9",
+                "question": "\"Tippecanoe and Tyler too\"",
+                "visible_context_excerpt": "[DOC] [TLE] American History: 1840 U.S. Presidential Campaign | HistoryNet [PAR] Included was the battle hymn of the campaign, 'Tippecanoe and Tyler, Too,' \nalong with 'Buckeye Cabin,' 'The Soldier of Tippecanoe,' 'The Flag of Tippecanoe,\n'... [DOC] [TLE] Tippecanoe and Tyler Too: Meaning, History & Significance - Video ... [PAR] 'Tippecanoe and Tyler Too' was a campaign slogan for William Henry Harrison and John Tyler in the presidential election of 1840.\n ... William Henry Harrison became the ninth president of the United States, and he did so with a winning campaign slogan: 'Tip",
+                "response_excerpt": "<answer>1840 U.S. Presidential Campaign slogan for William Henry Harrison and John Tyler</answer>",
+                "predicted_answer": "1840 U.S. Presidential Campaign slogan for William Henry Harrison and John Tyler",
+                "gold_answers": [
+                  "William Henry Harrison"
+                ],
+                "em": 0.0
+              },
+              "success_reference": null,
+              "observable_checks": {
+                "answer_format_ok": true,
+                "reference_has_verifiable_quote": false,
+                "reference_evidence_status": "answer_only_or_unverified",
+                "diagnosis_status": "hypothesis_to_check",
+                "node_execution_observed": false
+              },
+              "original_failure_feedback": "\n\n### Trajectory 1 (id=1f6f687c79a642328a742e61154c9d90)\nTask: \"Tippecanoe and Tyler too\"\nTask type: \nFailure reason: EM=0\nSteps: ?\n\n#### Hidden Reference\nGold answers: ['William Henry Harrison']\n\n[assistant] <answer>1840 U.S. Presidential Campaign slogan for William Henry Harrison and John Tyler</answer>\n[verification] [EVALUATION RESULT]\nGold answers: ['William Henry Harrison']\nEM: 0.0\nF1: 0.4"
+            }
+          },
+          {
+            "failure_id": "1c2cc13e0fa745d6b541f6c7eb9f5619",
+            "pair_type": "unpaired",
+            "task_type": "unknown",
+            "similarity": null,
+            "reference_id": null,
+            "quote_in_full_reference": false,
+            "quote_survives_bounded_packet": false,
+            "context_excerpt_present": false,
+            "actual_packet": null,
+            "diagnostic_packet": {
+              "failure_id": "1c2cc13e0fa745d6b541f6c7eb9f5619",
+              "pair_type": "unpaired",
+              "similarity": null,
+              "task_type": "unknown",
+              "failure": {
+                "example_id": "1c2cc13e0fa745d6b541f6c7eb9f5619",
+                "skill_hash": "0a21fc8afe52b0187c46b31af479538d39514d3486bdd828c4ae97cc7fc75100",
+                "round": 2,
+                "visible_context_hash": "bb3a95406a9161025aa932148fb26b51d36d838de58fa5a51d4d16ba6d62a0a2",
+                "observation_id": "e5afbe5b117138942d625910d351b848f134a145fde5c6581651b543fd17c485",
+                "question": "A \"hasty\" dessert, or perhaps you'd prefer the tapioca",
+                "visible_context_excerpt": "[DOC] [TLE] Jeopary Questions page 527 - MUSIC - TriviaBistro.com [PAR] AROUND THE HOUSE: Room in which you'd most likely use a duvet  PLAYING \n... DOUBLE \"D\"s: A \"hasty\" dessert, or perhaps you'd prefer the tapioca. [DOC] [TLE] MasterChef 3: Don't Trifle with Walmart | Have YOU Ben Starr Struck? [PAR] Jul 5, 2012 ... But her presented dessert doesn't look like what she was making in the ... I have \nmany variationsperhaps my favorite is my pumpkin caramel tiramisu. .... This is \nanother reason you need to avoid making hasty judgements about ... typically \nstabil",
+                "response_excerpt": "<answer>A \"hasty\" dessert, or perhaps you'd prefer the tapioca</answer>",
+                "predicted_answer": "A \"hasty\" dessert, or perhaps you'd prefer the tapioca",
+                "gold_answers": [
+                  "pudding"
+                ],
+                "em": 0.0
+              },
+              "success_reference": null,
+              "observable_checks": {
+                "answer_format_ok": true,
+                "reference_has_verifiable_quote": false,
+                "reference_evidence_status": "answer_only_or_unverified",
+                "diagnosis_status": "hypothesis_to_check",
+                "node_execution_observed": false
+              },
+              "original_failure_feedback": "\n\n### Trajectory 1 (id=1c2cc13e0fa745d6b541f6c7eb9f5619)\nTask: A \"hasty\" dessert, or perhaps you'd prefer the tapioca\nTask type: \nFailure reason: EM=0\nSteps: ?\n\n#### Hidden Reference\nGold answers: ['pudding']\n\n[assistant] <answer>A \"hasty\" dessert, or perhaps you'd prefer the tapioca</answer>\n[verification] [EVALUATION RESULT]\nGold answers: ['pudding']\nEM: 0.0\nF1: 0.0"
+            }
+          }
+        ],
+        "actual_feedback": "\n\n### Trajectory 1 (id=84ab80ab3c5d47a58ddda464d62c5694)\nTask: He spun straw into gold(15)\nTask type: \nFailure reason: EM=0\nSteps: ?\n\n#### Hidden Reference\nGold answers: ['Rumpelstiltskin']\n\n[assistant] <answer>He spun straw into gold</answer>\n[verification] [EVALUATION RESULT]\nGold answers: ['Rumpelstiltskin']\nEM: 0.0\nF1: 0.0\n\n---\n\n### Trajectory 1 (id=1f6f687c79a642328a742e61154c9d90)\nTask: \"Tippecanoe and Tyler too\"\nTask type: \nFailure reason: EM=0\nSteps: ?\n\n#### Hidden Reference\nGold answers: ['William Henry Harrison']\n\n[assistant] <answer>1840 U.S. Presidential Campaign slogan for William Henry Harrison and John Tyler</answer>\n[verification] [EVALUATION RESULT]\nGold answers: ['William Henry Harrison']\nEM: 0.0\nF1: 0.4\n\n---\n\n### Trajectory 1 (id=1c2cc13e0fa745d6b541f6c7eb9f5619)\nTask: A \"hasty\" dessert, or perhaps you'd prefer the tapioca\nTask type: \nFailure reason: EM=0\nSteps: ?\n\n#### Hidden Reference\nGold answers: ['pudding']\n\n[assistant] <answer>A \"hasty\" dessert, or perhaps you'd prefer the tapioca</answer>\n[verification] [EVALUATION RESULT]\nGold answers: ['pudding']\nEM: 0.0\nF1: 0.0"
+      },
+      {
+        "round": 3,
+        "child_id": "g0003_i0000",
+        "parent_id": "g0000_i0001",
+        "accepted": true,
+        "verified_attempts": 1,
+        "selected_count": 3,
+        "same_question": 0,
+        "similar_task": 0,
+        "unpaired": 3,
+        "feedback_tokens": 382,
+        "packets": [
+          {
+            "failure_id": "a234f47261f14ab9aed867375bddc652",
+            "pair_type": "unpaired",
+            "task_type": "unknown",
+            "similarity": null,
+            "reference_id": null,
+            "quote_in_full_reference": false,
+            "quote_survives_bounded_packet": false,
+            "context_excerpt_present": false,
+            "actual_packet": null,
+            "diagnostic_packet": {
+              "failure_id": "a234f47261f14ab9aed867375bddc652",
+              "pair_type": "unpaired",
+              "similarity": null,
+              "task_type": "unknown",
+              "failure": {
+                "example_id": "a234f47261f14ab9aed867375bddc652",
+                "skill_hash": "0a21fc8afe52b0187c46b31af479538d39514d3486bdd828c4ae97cc7fc75100",
+                "round": 3,
+                "visible_context_hash": "74ad717774dce0d1d140cd974c48327c7552e8e3ab964b69f4f93def18eb415c",
+                "observation_id": "66dd5f4c653102817a77db8b446e3f35c63ff0ba73ff202027d9008cb42b033b",
+                "question": "Rubber is an ingredient in this type of chewing gum",
+                "visible_context_excerpt": "[DOC] [TLE] Chewing gum - Wikipedia [PAR] Chewing gum is a soft, cohesive substance designed to be chewed without being \nswallowed. Humans have used chewing gum in some form for at least 100,000 \nyears. Modern chewing gum today is made from butadiene-based synthetic \nrubber. .... Other active ingredients in chewing gum include fluoride, which \nstrengthens... [DOC] [TLE] Chewing Gum Ingredients - Chewing Gum Facts [PAR] Today many modern chewing gums use rubber instead of chicle. ... A flavor \ningredient in chewing gum has been found to provide long lasting, high intensity \nand... [DOC] [TLE] What is chewing gum made of? | HowStuffWorks [PAR",
+                "response_excerpt": "<answer>Modern chewing gum</answer>",
+                "predicted_answer": "Modern chewing gum",
+                "gold_answers": [
+                  "bubble gum"
+                ],
+                "em": 0.0
+              },
+              "success_reference": null,
+              "observable_checks": {
+                "answer_format_ok": true,
+                "reference_has_verifiable_quote": false,
+                "reference_evidence_status": "answer_only_or_unverified",
+                "diagnosis_status": "hypothesis_to_check",
+                "node_execution_observed": false
+              },
+              "original_failure_feedback": "\n\n### Trajectory 1 (id=a234f47261f14ab9aed867375bddc652)\nTask: Rubber is an ingredient in this type of chewing gum\nTask type: \nFailure reason: EM=0\nSteps: ?\n\n#### Hidden Reference\nGold answers: ['bubble gum']\n\n[assistant] <answer>Modern chewing gum</answer>\n[verification] [EVALUATION RESULT]\nGold answers: ['bubble gum']\nEM: 0.0\nF1: 0.4"
+            }
+          },
+          {
+            "failure_id": "6252b238d9554d45bc4eb9b9978543c5",
+            "pair_type": "unpaired",
+            "task_type": "unknown",
+            "similarity": null,
+            "reference_id": null,
+            "quote_in_full_reference": false,
+            "quote_survives_bounded_packet": false,
+            "context_excerpt_present": false,
+            "actual_packet": null,
+            "diagnostic_packet": {
+              "failure_id": "6252b238d9554d45bc4eb9b9978543c5",
+              "pair_type": "unpaired",
+              "similarity": null,
+              "task_type": "unknown",
+              "failure": {
+                "example_id": "6252b238d9554d45bc4eb9b9978543c5",
+                "skill_hash": "0a21fc8afe52b0187c46b31af479538d39514d3486bdd828c4ae97cc7fc75100",
+                "round": 3,
+                "visible_context_hash": "45ce1c4e1a05559b583f6021dbfcdd1c2b0b70d620004e7f287da3e3e7063b9a",
+                "observation_id": "543805aae97399ab7120c744e1901f3058802a10b67ebdb64dbd621c72213a72",
+                "question": "\"...on my mind\"",
+                "visible_context_excerpt": "[DOC] [TLE] On My Mind (Ellie Goulding song) - Wikipedia [PAR] \"On My Mind\" is a song recorded by English singer and songwriter Ellie Goulding \nfrom her third studio album, Delirium (2015). It was released as the album's... [DOC] [TLE] ELLIE GOULDING - On My Mind lyrics [PAR] Ellie Goulding On My Mind is the lead single from the British singer's third studio album.\n ... It's a new sound for Ellie!\n ... Why I got you on my mind. [DOC] [TLE] Ellie Goulding - On My Mind lyrics | Musixmatch [PAR] Lyrics for On My Mind by Ellie Goulding. It's a little blurry",
+                "response_excerpt": "<answer>Ellie Goulding</answer>",
+                "predicted_answer": "Ellie Goulding",
+                "gold_answers": [
+                  "Georgia"
+                ],
+                "em": 0.0
+              },
+              "success_reference": null,
+              "observable_checks": {
+                "answer_format_ok": true,
+                "reference_has_verifiable_quote": false,
+                "reference_evidence_status": "answer_only_or_unverified",
+                "diagnosis_status": "hypothesis_to_check",
+                "node_execution_observed": false
+              },
+              "original_failure_feedback": "\n\n### Trajectory 1 (id=6252b238d9554d45bc4eb9b9978543c5)\nTask: \"...on my mind\"\nTask type: \nFailure reason: EM=0\nSteps: ?\n\n#### Hidden Reference\nGold answers: ['Georgia']\n\n[assistant] <answer>Ellie Goulding</answer>\n[verification] [EVALUATION RESULT]\nGold answers: ['Georgia']\nEM: 0.0\nF1: 0.0"
+            }
+          },
+          {
+            "failure_id": "84ab80ab3c5d47a58ddda464d62c5694",
+            "pair_type": "unpaired",
+            "task_type": "unknown",
+            "similarity": null,
+            "reference_id": null,
+            "quote_in_full_reference": false,
+            "quote_survives_bounded_packet": false,
+            "context_excerpt_present": false,
+            "actual_packet": null,
+            "diagnostic_packet": {
+              "failure_id": "84ab80ab3c5d47a58ddda464d62c5694",
+              "pair_type": "unpaired",
+              "similarity": null,
+              "task_type": "unknown",
+              "failure": {
+                "example_id": "84ab80ab3c5d47a58ddda464d62c5694",
+                "skill_hash": "0a21fc8afe52b0187c46b31af479538d39514d3486bdd828c4ae97cc7fc75100",
+                "round": 3,
+                "visible_context_hash": "c34487b23ef54b279dcd5145ae550e0d62804a2534c3380ef1c086d9a9a2a2c3",
+                "observation_id": "097cb1ecf620c02e78a3e59424f3b75814a64498469ffadb97988101216d24d6",
+                "question": "He spun straw into gold(15)",
+                "visible_context_excerpt": "[DOC] [TLE] Rumpelstiltskin - Wikipedia [PAR] Rumpelstiltskin is a fairy tale popularly associated with Germany The tale was \none collected by ... (In some versions, the imp appears and begins to turn the \nstraw into gold, paying no heed to the girl's protests .... in with promises of \nmarriage to the children who can spin straw into gold; he is captured by the three \nheroines,... [DOC] [TLE] Rumpelstiltskin | Grimm's Fairy Tales | Grimm Brothers | Lit2Go ETC [PAR] Then he led her to a chamber in his palace where there was a great heap of \nstraw, and gave her a spinning-wheel, and said, 'All this",
+                "response_excerpt": "<answer>He spun straw into gold</answer>",
+                "predicted_answer": "He spun straw into gold",
+                "gold_answers": [
+                  "Rumpelstiltskin"
+                ],
+                "em": 0.0
+              },
+              "success_reference": null,
+              "observable_checks": {
+                "answer_format_ok": true,
+                "reference_has_verifiable_quote": false,
+                "reference_evidence_status": "answer_only_or_unverified",
+                "diagnosis_status": "hypothesis_to_check",
+                "node_execution_observed": false
+              },
+              "original_failure_feedback": "\n\n### Trajectory 1 (id=84ab80ab3c5d47a58ddda464d62c5694)\nTask: He spun straw into gold(15)\nTask type: \nFailure reason: EM=0\nSteps: ?\n\n#### Hidden Reference\nGold answers: ['Rumpelstiltskin']\n\n[assistant] <answer>He spun straw into gold</answer>\n[verification] [EVALUATION RESULT]\nGold answers: ['Rumpelstiltskin']\nEM: 0.0\nF1: 0.0"
+            }
+          }
+        ],
+        "actual_feedback": "\n\n### Trajectory 1 (id=a234f47261f14ab9aed867375bddc652)\nTask: Rubber is an ingredient in this type of chewing gum\nTask type: \nFailure reason: EM=0\nSteps: ?\n\n#### Hidden Reference\nGold answers: ['bubble gum']\n\n[assistant] <answer>Modern chewing gum</answer>\n[verification] [EVALUATION RESULT]\nGold answers: ['bubble gum']\nEM: 0.0\nF1: 0.4\n\n---\n\n### Trajectory 1 (id=6252b238d9554d45bc4eb9b9978543c5)\nTask: \"...on my mind\"\nTask type: \nFailure reason: EM=0\nSteps: ?\n\n#### Hidden Reference\nGold answers: ['Georgia']\n\n[assistant] <answer>Ellie Goulding</answer>\n[verification] [EVALUATION RESULT]\nGold answers: ['Georgia']\nEM: 0.0\nF1: 0.0\n\n---\n\n### Trajectory 1 (id=84ab80ab3c5d47a58ddda464d62c5694)\nTask: He spun straw into gold(15)\nTask type: \nFailure reason: EM=0\nSteps: ?\n\n#### Hidden Reference\nGold answers: ['Rumpelstiltskin']\n\n[assistant] <answer>He spun straw into gold</answer>\n[verification] [EVALUATION RESULT]\nGold answers: ['Rumpelstiltskin']\nEM: 0.0\nF1: 0.0"
+      },
+      {
+        "round": 3,
+        "child_id": "g0003_i0001",
+        "parent_id": "g0000_i0001",
+        "accepted": true,
+        "verified_attempts": 1,
+        "selected_count": 3,
+        "same_question": 0,
+        "similar_task": 0,
+        "unpaired": 3,
+        "feedback_tokens": 382,
+        "packets": [
+          {
+            "failure_id": "a234f47261f14ab9aed867375bddc652",
+            "pair_type": "unpaired",
+            "task_type": "unknown",
+            "similarity": null,
+            "reference_id": null,
+            "quote_in_full_reference": false,
+            "quote_survives_bounded_packet": false,
+            "context_excerpt_present": false,
+            "actual_packet": null,
+            "diagnostic_packet": {
+              "failure_id": "a234f47261f14ab9aed867375bddc652",
+              "pair_type": "unpaired",
+              "similarity": null,
+              "task_type": "unknown",
+              "failure": {
+                "example_id": "a234f47261f14ab9aed867375bddc652",
+                "skill_hash": "0a21fc8afe52b0187c46b31af479538d39514d3486bdd828c4ae97cc7fc75100",
+                "round": 3,
+                "visible_context_hash": "74ad717774dce0d1d140cd974c48327c7552e8e3ab964b69f4f93def18eb415c",
+                "observation_id": "66dd5f4c653102817a77db8b446e3f35c63ff0ba73ff202027d9008cb42b033b",
+                "question": "Rubber is an ingredient in this type of chewing gum",
+                "visible_context_excerpt": "[DOC] [TLE] Chewing gum - Wikipedia [PAR] Chewing gum is a soft, cohesive substance designed to be chewed without being \nswallowed. Humans have used chewing gum in some form for at least 100,000 \nyears. Modern chewing gum today is made from butadiene-based synthetic \nrubber. .... Other active ingredients in chewing gum include fluoride, which \nstrengthens... [DOC] [TLE] Chewing Gum Ingredients - Chewing Gum Facts [PAR] Today many modern chewing gums use rubber instead of chicle. ... A flavor \ningredient in chewing gum has been found to provide long lasting, high intensity \nand... [DOC] [TLE] What is chewing gum made of? | HowStuffWorks [PAR",
+                "response_excerpt": "<answer>Modern chewing gum</answer>",
+                "predicted_answer": "Modern chewing gum",
+                "gold_answers": [
+                  "bubble gum"
+                ],
+                "em": 0.0
+              },
+              "success_reference": null,
+              "observable_checks": {
+                "answer_format_ok": true,
+                "reference_has_verifiable_quote": false,
+                "reference_evidence_status": "answer_only_or_unverified",
+                "diagnosis_status": "hypothesis_to_check",
+                "node_execution_observed": false
+              },
+              "original_failure_feedback": "\n\n### Trajectory 1 (id=a234f47261f14ab9aed867375bddc652)\nTask: Rubber is an ingredient in this type of chewing gum\nTask type: \nFailure reason: EM=0\nSteps: ?\n\n#### Hidden Reference\nGold answers: ['bubble gum']\n\n[assistant] <answer>Modern chewing gum</answer>\n[verification] [EVALUATION RESULT]\nGold answers: ['bubble gum']\nEM: 0.0\nF1: 0.4"
+            }
+          },
+          {
+            "failure_id": "6252b238d9554d45bc4eb9b9978543c5",
+            "pair_type": "unpaired",
+            "task_type": "unknown",
+            "similarity": null,
+            "reference_id": null,
+            "quote_in_full_reference": false,
+            "quote_survives_bounded_packet": false,
+            "context_excerpt_present": false,
+            "actual_packet": null,
+            "diagnostic_packet": {
+              "failure_id": "6252b238d9554d45bc4eb9b9978543c5",
+              "pair_type": "unpaired",
+              "similarity": null,
+              "task_type": "unknown",
+              "failure": {
+                "example_id": "6252b238d9554d45bc4eb9b9978543c5",
+                "skill_hash": "0a21fc8afe52b0187c46b31af479538d39514d3486bdd828c4ae97cc7fc75100",
+                "round": 3,
+                "visible_context_hash": "45ce1c4e1a05559b583f6021dbfcdd1c2b0b70d620004e7f287da3e3e7063b9a",
+                "observation_id": "543805aae97399ab7120c744e1901f3058802a10b67ebdb64dbd621c72213a72",
+                "question": "\"...on my mind\"",
+                "visible_context_excerpt": "[DOC] [TLE] On My Mind (Ellie Goulding song) - Wikipedia [PAR] \"On My Mind\" is a song recorded by English singer and songwriter Ellie Goulding \nfrom her third studio album, Delirium (2015). It was released as the album's... [DOC] [TLE] ELLIE GOULDING - On My Mind lyrics [PAR] Ellie Goulding On My Mind is the lead single from the British singer's third studio album.\n ... It's a new sound for Ellie!\n ... Why I got you on my mind. [DOC] [TLE] Ellie Goulding - On My Mind lyrics | Musixmatch [PAR] Lyrics for On My Mind by Ellie Goulding. It's a little blurry",
+                "response_excerpt": "<answer>Ellie Goulding</answer>",
+                "predicted_answer": "Ellie Goulding",
+                "gold_answers": [
+                  "Georgia"
+                ],
+                "em": 0.0
+              },
+              "success_reference": null,
+              "observable_checks": {
+                "answer_format_ok": true,
+                "reference_has_verifiable_quote": false,
+                "reference_evidence_status": "answer_only_or_unverified",
+                "diagnosis_status": "hypothesis_to_check",
+                "node_execution_observed": false
+              },
+              "original_failure_feedback": "\n\n### Trajectory 1 (id=6252b238d9554d45bc4eb9b9978543c5)\nTask: \"...on my mind\"\nTask type: \nFailure reason: EM=0\nSteps: ?\n\n#### Hidden Reference\nGold answers: ['Georgia']\n\n[assistant] <answer>Ellie Goulding</answer>\n[verification] [EVALUATION RESULT]\nGold answers: ['Georgia']\nEM: 0.0\nF1: 0.0"
+            }
+          },
+          {
+            "failure_id": "84ab80ab3c5d47a58ddda464d62c5694",
+            "pair_type": "unpaired",
+            "task_type": "unknown",
+            "similarity": null,
+            "reference_id": null,
+            "quote_in_full_reference": false,
+            "quote_survives_bounded_packet": false,
+            "context_excerpt_present": false,
+            "actual_packet": null,
+            "diagnostic_packet": {
+              "failure_id": "84ab80ab3c5d47a58ddda464d62c5694",
+              "pair_type": "unpaired",
+              "similarity": null,
+              "task_type": "unknown",
+              "failure": {
+                "example_id": "84ab80ab3c5d47a58ddda464d62c5694",
+                "skill_hash": "0a21fc8afe52b0187c46b31af479538d39514d3486bdd828c4ae97cc7fc75100",
+                "round": 3,
+                "visible_context_hash": "c34487b23ef54b279dcd5145ae550e0d62804a2534c3380ef1c086d9a9a2a2c3",
+                "observation_id": "097cb1ecf620c02e78a3e59424f3b75814a64498469ffadb97988101216d24d6",
+                "question": "He spun straw into gold(15)",
+                "visible_context_excerpt": "[DOC] [TLE] Rumpelstiltskin - Wikipedia [PAR] Rumpelstiltskin is a fairy tale popularly associated with Germany The tale was \none collected by ... (In some versions, the imp appears and begins to turn the \nstraw into gold, paying no heed to the girl's protests .... in with promises of \nmarriage to the children who can spin straw into gold; he is captured by the three \nheroines,... [DOC] [TLE] Rumpelstiltskin | Grimm's Fairy Tales | Grimm Brothers | Lit2Go ETC [PAR] Then he led her to a chamber in his palace where there was a great heap of \nstraw, and gave her a spinning-wheel, and said, 'All this",
+                "response_excerpt": "<answer>He spun straw into gold</answer>",
+                "predicted_answer": "He spun straw into gold",
+                "gold_answers": [
+                  "Rumpelstiltskin"
+                ],
+                "em": 0.0
+              },
+              "success_reference": null,
+              "observable_checks": {
+                "answer_format_ok": true,
+                "reference_has_verifiable_quote": false,
+                "reference_evidence_status": "answer_only_or_unverified",
+                "diagnosis_status": "hypothesis_to_check",
+                "node_execution_observed": false
+              },
+              "original_failure_feedback": "\n\n### Trajectory 1 (id=84ab80ab3c5d47a58ddda464d62c5694)\nTask: He spun straw into gold(15)\nTask type: \nFailure reason: EM=0\nSteps: ?\n\n#### Hidden Reference\nGold answers: ['Rumpelstiltskin']\n\n[assistant] <answer>He spun straw into gold</answer>\n[verification] [EVALUATION RESULT]\nGold answers: ['Rumpelstiltskin']\nEM: 0.0\nF1: 0.0"
+            }
+          }
+        ],
+        "actual_feedback": "\n\n### Trajectory 1 (id=a234f47261f14ab9aed867375bddc652)\nTask: Rubber is an ingredient in this type of chewing gum\nTask type: \nFailure reason: EM=0\nSteps: ?\n\n#### Hidden Reference\nGold answers: ['bubble gum']\n\n[assistant] <answer>Modern chewing gum</answer>\n[verification] [EVALUATION RESULT]\nGold answers: ['bubble gum']\nEM: 0.0\nF1: 0.4\n\n---\n\n### Trajectory 1 (id=6252b238d9554d45bc4eb9b9978543c5)\nTask: \"...on my mind\"\nTask type: \nFailure reason: EM=0\nSteps: ?\n\n#### Hidden Reference\nGold answers: ['Georgia']\n\n[assistant] <answer>Ellie Goulding</answer>\n[verification] [EVALUATION RESULT]\nGold answers: ['Georgia']\nEM: 0.0\nF1: 0.0\n\n---\n\n### Trajectory 1 (id=84ab80ab3c5d47a58ddda464d62c5694)\nTask: He spun straw into gold(15)\nTask type: \nFailure reason: EM=0\nSteps: ?\n\n#### Hidden Reference\nGold answers: ['Rumpelstiltskin']\n\n[assistant] <answer>He spun straw into gold</answer>\n[verification] [EVALUATION RESULT]\nGold answers: ['Rumpelstiltskin']\nEM: 0.0\nF1: 0.0"
+      }
+    ],
+    "checks": [
+      "exact B/C training batches",
+      "unchanged random failure IDs",
+      "train-only own observations",
+      "no future success reference",
+      "same-question context equality",
+      "feedback token cap",
+      "actual text in optimizer prompt",
+      "memory provenance"
+    ],
+    "source_policy": "Inspect actual mutation-parent exposures, not every unused parent feedback. Repeated use of one parent counts as repeated operator exposure."
+  },
+  "baseline": "F:\\Document\\HKUST\\2026fall\\NLP\\Project\\AIAA4051_Project\\Baseline\\runs\\api\\searchqa\\20261107-125241-971323-38572",
+  "experiment": "F:\\Document\\HKUST\\2026fall\\NLP\\Project\\AIAA4051_Project\\Explore\\runs\\api\\part3-20261110\\searchqa",
+  "common_config": {
+    "backend": "api",
+    "dataset": "searchqa",
+    "seed": 42,
+    "rounds": 3,
+    "population_size": 2,
+    "train_batch_size": 20,
+    "failure_k": 3,
+    "max_attempts": 2,
+    "qa_max_tokens": 2048,
+    "operator_max_tokens": 3072,
+    "skill_max_tokens": 2048,
+    "feedback_max_tokens": 2048,
+    "qa_temperature": 0.0,
+    "operator_temperature": 0.6,
+    "top_p": 1.0,
+    "timeout_seconds": 300,
+    "concurrency": 1,
+    "api_retry_delay_seconds": 2.0,
+    "gpu_ledger_path": "F:\\Document\\HKUST\\2026fall\\NLP\\Project\\AIAA4051_Project\\Baseline\\runs\\gpu_accounting.jsonl",
+    "model": {
+      "id": "qwen3.5-9b",
+      "revision": "Team deployment; weight revision undisclosed",
+      "base_url": "http://10.4.162.57:19198/v1",
+      "api_key_env": "PROJECT5_TEAM_QWEN_API_KEY",
+      "tokenizer_path": "F:\\Document\\HKUST\\2026fall\\NLP\\Project\\AIAA4051_Project\\api\\runtime\\tokenizer",
+      "precision": "team-managed; undisclosed",
+      "server_version": "Team OpenAI-compatible API; deployment version undisclosed",
+      "extra_body": {
+        "chat_template_kwargs": {
+          "enable_thinking": false
+        }
+      },
+      "structured_operators": "json_schema",
+      "tokenizer_note": "Qwen/Qwen3.5-9B@c202236235762e1c871ad0ccb60c8ee5ba337b9a proxy for skill/feedback lengths only; hosted server usage is authoritative for request tokens",
+      "allow_private_http": true,
+      "context_window": 32768,
+      "context_safety_tokens": 512
+    },
+    "budget": {
+      "max_calls": 600,
+      "max_generated_tokens": 700000,
+      "max_wall_hours": 9
+    },
+    "pairing": {
+      "jaccard_threshold": 0.2,
+      "per_outcome_limit": 2
+    },
+    "qa_context_max_tokens": 4096
+  },
+  "C_failures": [
+    {
+      "id": "24143f01e7dd455e86c34a4a6f4ed3b9",
+      "dataset": "searchqa",
+      "split": "dev",
+      "condition": "shared_initialization",
+      "round": 0,
+      "skill_hash": "0a21fc8afe52b0187c46b31af479538d39514d3486bdd828c4ae97cc7fc75100",
+      "question": "(Jon of the Clue Crew shows an anatomical diagram on the monitor.)  When Lasik eye surgery is performed, a flap is made in the eye, folded back, & then the stroma, or middle section, of this eye part is reshaped using lasers",
+      "visible_context": "[DOC] [TLE] The LASIK Procedure - How LASIK Eye Surgery Works [PAR] Dr. Brian S. Boxer Wachler explains LASIK eye surgery; what to expect before, \nduring and after the LASIK procedure; and a step-by-step slide show. ... LASIK \nslide show! The surgeon then folds back the hinged flap to access the underlying \ncornea (called the stroma) and removes some corneal tissue using an excimer \nlaser. [DOC] [TLE] LASIK - Wikipedia [PAR] LASIK or Lasik commonly referred to as laser eye surgery or laser vision \ncorrection, is a type of refractive surgery for the correction of myopia, hyperopia, \nand astigmatism. The LASIK surgery is performed by an ophthalmologist who \nuses a laser or microkeratome to reshape the eye's cornea in order to .... The \nprocedure involves creating a thin flap on the eye, folding it to enable... [DOC] [TLE] Keratoconus Surgery and Cross-linking - elibraryweb.net [PAR] with keratoconus stabilize at a stage where functional vision can be maintained \nwith spectacles, ... Medical Director, Midland Eye Institute, Solihull ..... \nRepeatability of corneal thickness measurements made by a scanning slit \ntopography system. .... stroma, a minor cross-linking effect can be assumed for \nthe posterior parts. [DOC] [TLE] The Big Bang Might Not Have Been the Beginning - FSU High ... [PAR] part of an infinite expanse that predates the big bang. ... Lasik and other laser eye \nsurgeries. .... 10+ years of Scientific Americanmore than 140 issues, .... made to \namend existing claims or add new ones .... middle of the back a fin, very stout, \nabout ... Infusing artificial organs with such complex vasculature has proved more\n... [DOC] [TLE] Dimitri T. Azar [PAR] Ron Afshari Adelman, M.D. Massachusetts Eye and Ear Infirmary, Boston, .... \ntissue can be ablated directly and reshaped with an excimer laser beam (1,2). ... \nDespite the many refractive surgeries that have been performed, the tar- .... move \nanterior stroma (left), causing corneal flattening (middle). ...... tured back to the \nbed. [DOC] [TLE] Custom Query - createrepo - Trac [PAR] Share your own self in the middle of bazaar trend together with opt a role markets\n, ..... Your entire system is not hard get the job done baby is not offer take a seat. \n...... However, the actual unusual part is regarding how these cash loans online \n...... surgery treatment eye is made idle to create a corneal flap together with the... [DOC] [TLE] Download icao_medical.pdf - Civil Aviation Safety Authority [PAR] Class 1 Medical Assessment with an operational multi-crew limitation (OML) \nthereon. .... It was not until 1957 that resting electrocardiography was made an \nICAO ...... designed to assess the effect of coronary artery bypass surgery on \nmortality ...... Diabetes mellitus is known to affect all parts of the eye, e.g. cataract, \nretinal... [DOC] [TLE] gs-101 eye drops: Topics by Science.gov [PAR] Involved News About Us Donate In This Section Eye Drop Tips en Espaol email \n.... into 20% serum eye drops, which are then returned to the patient for their own \nuse. ..... Conclusions: This prospective observational study shows significant ...... \nIt can affect the outer parts of the eye, such as the eyelid, which are made up... [DOC] [TLE] tracking scanning laser: Topics by Science.gov [PAR] Binocular eye tracking with the Tracking Scanning Laser Ophthalmoscope. ... \ndensity large parts are to be made since they are the primary building blocks. ... \nWe show a stimulus placement accuracy with a standard deviation less than 1 \narcmin. ... The proposed methods performed well on both experimental AOSLO \nvideos... [DOC] [TLE] ISBN;last name of 1st author;authors without affiliation;authors with ... [PAR] This volume is divided into four sections which thoroughly explore the most up ... \nFunctional Significance;;Advances in Anatomy, Embryology and Cell Biology Vol. \n...... The second part deals with the shared heredity of rheumatic diseases, e.g. \n...... diseases affecting the whole eye The eye and systemic disease Trauma and\n... [DOC] [TLE] The Top 5 Best Blogs on Metallic ablation - Notey [PAR] It then intelligently guides the system's laser to ablate excess copper with high \n...... substrate formed to cover at least a portion of an iris of an",
+      "visible_context_hash": "c072336b340866e276a08040a7b14aeb03aa45f53e8587593d0f9350ac960573",
+      "context_truncated": false,
+      "raw_response": "<answer>True</answer>",
+      "response": "<answer>True</answer>",
+      "em": 0.0,
+      "f1": 0.0,
+      "sub_em": 0.0,
+      "predicted_answer": "True",
+      "gold_answers": [
+        "the cornea"
+      ],
+      "hard": 0,
+      "soft": 0.0,
+      "format_ok": true,
+      "error": "",
+      "provider_refusal": false,
+      "refusal_reason": "",
+      "fail_reason": "EM=0",
+      "latency_seconds": 0.9690000000000509,
+      "generation_config": {
+        "model": {
+          "id": "qwen3.5-9b",
+          "revision": "Team deployment; weight revision undisclosed",
+          "base_url": "http://10.4.162.57:19198/v1",
+          "api_key_env": "PROJECT5_TEAM_QWEN_API_KEY",
+          "tokenizer_path": "F:\\Document\\HKUST\\2026fall\\NLP\\Project\\AIAA4051_Project\\api\\runtime\\tokenizer",
+          "precision": "team-managed; undisclosed",
+          "server_version": "Team OpenAI-compatible API; deployment version undisclosed",
+          "extra_body": {
+            "chat_template_kwargs": {
+              "enable_thinking": false
+            }
+          },
+          "structured_operators": "json_schema",
+          "tokenizer_note": "Qwen/Qwen3.5-9B@c202236235762e1c871ad0ccb60c8ee5ba337b9a proxy for skill/feedback lengths only; hosted server usage is authoritative for request tokens",
+          "allow_private_http": true,
+          "context_window": 32768,
+          "context_safety_tokens": 512
+        },
+        "temperature": 0.0,
+        "seed": 42,
+        "max_tokens": 2048,
+        "tokenizer_hash": "5f434e57da7403bc8232613f565c8d3de0bf56be57ff8326a83ebd76ee1f1e9c"
+      },
+      "attempts": [
+        {
+          "attempt": 1,
+          "status": "ok",
+          "usage": {
+            "prompt_tokens": 2070,
+            "total_tokens": 2078,
+            "completion_tokens": 8,
+            "prompt_tokens_details": null,
+            "completion_tokens_details": null,
+            "call_id": "78eca134f94e4a5fa0c2ab92baf61ca4",
+            "finish_reason": "stop"
+          }
+        }
+      ],
+      "observation_id": "1a0e2c286a6b708b8ac1b20237cb54f9381b9c0210e05dce6fcd84355b615bb9",
+      "cached": false
+    },
+    {
+      "id": "f0c26f4f2e9f4d1d84b4f13cb201cbeb",
+      "dataset": "searchqa",
+      "split": "dev",
+      "condition": "shared_initialization",
+      "round": 0,
+      "skill_hash": "0a21fc8afe52b0187c46b31af479538d39514d3486bdd828c4ae97cc7fc75100",
+      "question": "This compound noun can refer to a leaflet given at a lecture or to food given to a hobo",
+      "visible_context": "[DOC] [TLE] jeopardy/1883_Qs.txt at master  jedoublen/jeopardy  GitHub [PAR] MONEY FOR NOTHING | This compound noun can refer to a leaflet given at a \nlecture or to food given to a hobo | a handout. right: Leigh. Wrong: Value: $200. [DOC] [TLE] Compound nouns | English Grammar Guide | EF [PAR] Words can be combined to form compound nouns.\n ... Compound nouns often have a meaning that is different, or more specific, than the two separate words.\n ... A good rule of thumb is to write the most common compound nouns as one word, and the others as two words. [DOC] [TLE] Grammar Girl : Compound Nouns :: Quick and Dirty Tips  [PAR] Aug 12, 2011 ... In a compound noun such as gumball, the second noun, ball, is ... The head \nnoun tells you what kind of thing the whole compound is referring to: A ... card, \nthat could sound like a card that was given to me as a reward. .... DIY  \nEntertaining  Food  Organization  Interior Design  Housekeeping  Holidays. [DOC] [TLE] Wikipedia Terms - Princeton University [PAR] refer  community ..... compound  depict  layer ..... noun  resolve .... lecture  \norchestra .... meal  proponent ..... can  magical ...... leaflet ...... hobo ...... god-\ngiven... [DOC] [TLE] Full text of \"E-books Collection\" - Internet Archive [PAR] The addition of colour in this edition will, we are sure, be a popular change. ... \nThis lists all the words and phrases covered in the book and refers you to the \nunits where these ...... 1 token 4 blood 7 tax 10 lights 2 junk 5 tea 8 processing 11 \nfood 3 sound 6 mother 9 ... The meaning of the compound noun is given in \nbrackets. [DOC] [TLE] Full text of \"English Vocabulary in Use - Upper-Intermediate\" [PAR] This lists all the words and phrases covered in the book and refers you to the ..... \nJIM: Well, I could, except I want to go because they always have lots of food, ..... A \nlarge number of compound adjectives describe personal appearance. .... In each \ncase the preposition element of the noun is given but the other part is missing. [DOC] [TLE] Liubov Kozub | Mareks Dunctis - Academia.edu [PAR] Write out international words from the given sentences. ... Give adjectives of Latin \norigin corresponding to the following nouns. .... interesting or effective; leaflet  a \nsmall, often folded piece of printed paper, often advertising something ..... Model: \naimless The word aimless can be segmented into two morphemes: aim- + -less. [DOC] [TLE] Dutch Comprehensive Grammar | Ali Demirkaya - Academia.edu [PAR] Given that Dutch: A Comprehensive Grammar contains 400 odd pages, ... The \nWoordenlijst can also be consulted online on the site of the Nederlandse \nTaalunie. ...... 7.1.1.14 The names of musical instruments de hobo 'oboe', de \npiano 'piano', .... (for food) forefathers6 fathers waterways 3 The compound nouns \naardappel... [DOC] [TLE] British English a to Zed (Writers Reference) [PAR] lexicon of British English can ignore these, as Norman Schur recognized when .... \nMario Pei, after referring to the different meanings given to the same word in ..... \nIn the sense of 'food and lodgings,' the British use the singular. ..... back slang for '\npolice' and the origin of the slang noun slop meaning 'police.' ...... loafer; hobo. [DOC] [TLE] PENTAGRAMS - Five Letter Words - People [PAR] Sep 1, 2016 ... ... agene - a chemical compound used in bleaching flour agent - a doer; an actor \n.... in chess, originally an elephant; referring to certain catalysts alfio - a first name \n.... a derivative of nitrobenzene, chlorated napthalene and wood meal. ...... who \nwas given as much land as could be surrounded by a bull's hide... [DOC] [TLE] AIDS AIDS's African African's Africans Allah Allah's American [PAR] ... additives address address's addressed addressee addressee's addressees ..... \ncampers camping camps campus campus's campuses can can's can't canal .... \ncomposure composure's compound compound's compounded compounding ...... \ngist gist's give give's given",
+      "visible_context_hash": "cb9bab85034a0a528ba51d155dbf4cafd8fa0dfc113bb1c3abd84d9e992a739b",
+      "context_truncated": false,
+      "raw_response": "<answer>money for nothing</answer>",
+      "response": "<answer>money for nothing</answer>",
+      "em": 0.0,
+      "f1": 0.0,
+      "sub_em": 0.0,
+      "predicted_answer": "money for nothing",
+      "gold_answers": [
+        "a handout"
+      ],
+      "hard": 0,
+      "soft": 0.0,
+      "format_ok": true,
+      "error": "",
+      "provider_refusal": false,
+      "refusal_reason": "",
+      "fail_reason": "EM=0",
+      "latency_seconds": 1.125,
+      "generation_config": {
+        "model": {
+          "id": "qwen3.5-9b",
+          "revision": "Team deployment; weight revision undisclosed",
+          "base_url": "http://10.4.162.57:19198/v1",
+          "api_key_env": "PROJECT5_TEAM_QWEN_API_KEY",
+          "tokenizer_path": "F:\\Document\\HKUST\\2026fall\\NLP\\Project\\AIAA4051_Project\\api\\runtime\\tokenizer",
+          "precision": "team-managed; undisclosed",
+          "server_version": "Team OpenAI-compatible API; deployment version undisclosed",
+          "extra_body": {
+            "chat_template_kwargs": {
+              "enable_thinking": false
+            }
+          },
+          "structured_operators": "json_schema",
+          "tokenizer_note": "Qwen/Qwen3.5-9B@c202236235762e1c871ad0ccb60c8ee5ba337b9a proxy for skill/feedback lengths only; hosted server usage is authoritative for request tokens",
+          "allow_private_http": true,
+          "context_window": 32768,
+          "context_safety_tokens": 512
+        },
+        "temperature": 0.0,
+        "seed": 42,
+        "max_tokens": 2048,
+        "tokenizer_hash": "5f434e57da7403bc8232613f565c8d3de0bf56be57ff8326a83ebd76ee1f1e9c"
+      },
+      "attempts": [
+        {
+          "attempt": 1,
+          "status": "ok",
+          "usage": {
+            "prompt_tokens": 2010,
+            "total_tokens": 2020,
+            "completion_tokens": 10,
+            "prompt_tokens_details": null,
+            "completion_tokens_details": null,
+            "call_id": "af0ceaff52f545aab02aafd513a34bc2",
+            "finish_reason": "stop"
+          }
+        }
+      ],
+      "observation_id": "190af98fbb19dd57f57cb87375069607cda713352aee9f171e4d30a3133b485d",
+      "cached": false
+    },
+    {
+      "id": "e3b96fc1b99247ebada09a84fa5fd205",
+      "dataset": "searchqa",
+      "split": "dev",
+      "condition": "shared_initialization",
+      "round": 0,
+      "skill_hash": "0a21fc8afe52b0187c46b31af479538d39514d3486bdd828c4ae97cc7fc75100",
+      "question": "\"The unexamined life is not worth living\"",
+      "visible_context": "[DOC] [TLE] The unexamined life is not worth living - Wikipedia [PAR]  [DOC] [TLE] The unexamined life is not worth living - Wikipedia [PAR] The unexamined life is not worth living (Ancient Greek:  ...     ) is a famous dictum apparently uttered by Socrates at his trial for impiety and corrupting youth, for which he was subsequently sentenced to death, as described in Plato's Apology. [DOC] [TLE] The unexamined life is not worth living | New Philosopher [PAR] Jun 2, 2013 ... I have long been intrigued by the claim, attributed to Socrates, that the '\nunexamined life is not worth living'. For a start, there is the absolute and... [DOC] [TLE] What does \"the unexamined life is not worth living\" mean ... [PAR] The quote \"An unexamined life is not worth living\" was published in Plato's \"Apology.\" Sometimes called \"The Apology of Socrates,\" this book contained Plato's recollections of Socrates' last speeches. [DOC] [TLE] The Unexamined Life is Not Worth Living - Relax Focus Succeed (R) [PAR] I'm sure you've read this quote before: \"The unexamined life is not worth living.\" \nSocrates said that at his trial for heresy. He was on trial for encouraging his... [DOC] [TLE] Plato, Apology, section 38a [PAR] ... you hear me talking and examining myself and others is the greatest good to \nman, and that the unexamined life is not worth living, you will believe me still less. [DOC] [TLE] Given that the unexamined life is not worth living, could the ... - Quora [PAR] Reflection is embedded in life. I would argue that in reality there is no \nunexamined life. Part of consciousness itself is its reflective nature. As with so \nmuch of... [DOC] [TLE] SparkNotes: The Apology: 35e - 38b [PAR] Only through philosophy can he properly come to know himself, and it is here that \nhe makes his famous assertion that the unexamined life is not worth living. [DOC] [TLE] Wisdom's folly: The unexamined life is not worth living, Plato | Books ... [PAR] The unexamined life is not worth living. - Plato. Julian Baggini. Thursday 12 May \n2005 10.53 EDT Last modified on Friday 20 May 2005 10.53 EDT. Share on... [DOC] [TLE] Socrates: Philosophical Life - Philosophy Pages [PAR] \"The unexamined life is not worth living.\" ( Apology 38a) Socrates would rather \ndie than give up philosophy, and the jury seems happy to grant him that wish. [DOC] [TLE] Socrates: The Unexamined Life is Not Worth Living - YouTube [PAR] Oct 6, 2015 - 6 min - Uploaded by James SteeleA presentation discussing Socrates' exclamation that the unexamined life is not worth living. [DOC] [TLE] The Unexamined Life Is Not Worth Living Essay Sample [PAR] Here given is a custom written essay example, explaining why the unexamined \nlife is not worth living. Feel free to use this proofread paper night and day. [DOC] [TLE] The unexamined life is not worth living. - Socrates - BrainyQuote [PAR] \"The unexamined life is not worth living.\" - Socrates quotes from BrainyQuote.\ncom. [DOC] [TLE] Socrates - Wikiquote [PAR] The unexamined life is not worth living for a human being. 38a; Variant \ntranslations: (More closely) The unexamining life is not worth living for a human \nbeing [DOC] [TLE] \"The Unexamined Life Is Worth Living: A Socratic Perspective\" by ... [PAR] Jan 1, 2013 ... ABSTRACT. Socrates is famous in Apology for stating that the unexamined life is \nnot worth living,... [DOC] [TLE] On Existence: \"The unexamined life is not worth living.\" [PAR] Apr 5, 2005 ... \"The unexamined life is not worth living.\" --Socrates (quoted by Plato in Apology) \nI think what Socrates is saying here is that on some basic level... [DOC] [TLE] Part 1 of Episode 1: The Unexamined Life Is Not Worth Living ... [PAR] May 12, 2009 ... Discussing Plato's \"Apology.\" Does studying philosophy make you a better \nperson? No. [DOC] [TLE] The unexamined life is not worth living: Socrates, philosophy, and ... [PAR] Mar 14, 2013 ... Hi all. Just posted this on my blog",
+      "visible_context_hash": "76ebe741eec85ff75c79f0492a7d093df3aae926ea4b6e8466e321b852a43ddc",
+      "context_truncated": false,
+      "raw_response": "<answer>is a famous dictum attributed to Socrates, uttered at his trial for impiety and corrupting youth, as described in Plato's Apology.</answer>",
+      "response": "<answer>is a famous dictum attributed to Socrates, uttered at his trial for impiety and corrupting youth, as described in Plato's Apology.</answer>",
+      "em": 0.0,
+      "f1": 0.0,
+      "sub_em": 0.0,
+      "predicted_answer": "is a famous dictum attributed to Socrates, uttered at his trial for impiety and corrupting youth, as described in Plato's Apology.",
+      "gold_answers": [
+        "Greek"
+      ],
+      "hard": 0,
+      "soft": 0.0,
+      "format_ok": true,
+      "error": "",
+      "provider_refusal": false,
+      "refusal_reason": "",
+      "fail_reason": "EM=0",
+      "latency_seconds": 3.0470000000000255,
+      "generation_config": {
+        "model": {
+          "id": "qwen3.5-9b",
+          "revision": "Team deployment; weight revision undisclosed",
+          "base_url": "http://10.4.162.57:19198/v1",
+          "api_key_env": "PROJECT5_TEAM_QWEN_API_KEY",
+          "tokenizer_path": "F:\\Document\\HKUST\\2026fall\\NLP\\Project\\AIAA4051_Project\\api\\runtime\\tokenizer",
+          "precision": "team-managed; undisclosed",
+          "server_version": "Team OpenAI-compatible API; deployment version undisclosed",
+          "extra_body": {
+            "chat_template_kwargs": {
+              "enable_thinking": false
+            }
+          },
+          "structured_operators": "json_schema",
+          "tokenizer_note": "Qwen/Qwen3.5-9B@c202236235762e1c871ad0ccb60c8ee5ba337b9a proxy for skill/feedback lengths only; hosted server usage is authoritative for request tokens",
+          "allow_private_http": true,
+          "context_window": 32768,
+          "context_safety_tokens": 512
+        },
+        "temperature": 0.0,
+        "seed": 42,
+        "max_tokens": 2048,
+        "tokenizer_hash": "5f434e57da7403bc8232613f565c8d3de0bf56be57ff8326a83ebd76ee1f1e9c"
+      },
+      "attempts": [
+        {
+          "attempt": 1,
+          "status": "ok",
+          "usage": {
+            "prompt_tokens": 2089,
+            "total_tokens": 2125,
+            "completion_tokens": 36,
+            "prompt_tokens_details": null,
+            "completion_tokens_details": null,
+            "call_id": "8051153e613e4d0f8033335a1d0fd313",
+            "finish_reason": "stop"
+          }
+        }
+      ],
+      "observation_id": "b999861a12a4f5321992243cc50c18348f766676c04ca8f56908414699c2da7e",
+      "cached": false
+    },
+    {
+      "id": "1a78a8cf476c4a0dbf551558da1d879b",
+      "dataset": "searchqa",
+      "split": "dev",
+      "condition": "shared_initialization",
+      "round": 0,
+      "skill_hash": "0a21fc8afe52b0187c46b31af479538d39514d3486bdd828c4ae97cc7fc75100",
+      "question": "Yum!  The Chocolate Shoppe Ice Cream Co. here in Madison has a black ice cream named for this black candy",
+      "visible_context": "[DOC] [TLE] CHOCOLATE SHOPPE ICE CREAM COMPANY FLAVORS [PAR] CHOCOLATE SHOPPE ICE CREAM COMPANY FLAVORS ... Black Licorice ... \nCotton Candy Twist .... This is the best ice cream made in Wisconsin, and it tastes \nso good because it has gobs of rich Wisconsin cream, tons of real ingredients for\n... [DOC] [TLE] Chocolate Shoppe Ice Cream [PAR] Headquarters for company that makes premium ice cream, yogurt, sherbet, and \nsorbet. Includes list of flavors with nutritional information, locations and directory... [DOC] [TLE] Chocolate Shoppe Ice Cream, Madison - Menu, Prices & Restaurant ... [PAR] Chocolate Shoppe Ice Cream, Madison: See 54 unbiased reviews of ... my \nfavorite carrots cashews scoop wisconsin yippee dipped yum texture ... \nChocolate Shoppe was fun because their flavors are humorously named (I ... We \nsampled the Door Co. .... smooth, sweet ice cream bursting with fresh black \nraspberry flavor. [DOC] [TLE] Chocolate Shoppe Ice Cream - 19 Photos & 11 Reviews - Ice Cream ... [PAR] (608) 241-2747  1726 Fordem Ave Madison, WI 53704 ... Black Cherry .... Moral \nof the story, try flavors that have eccentric names. Photo of ... I had the Fat Elvis \nwhen I came here (banana ice cream with peanut butter and fudge). .... +Ice \ncream (I had the zanzimint - yum! dark chocolate and mint in perfect proportions!) [DOC] [TLE] Here's The Most Popular Ice Cream Shop In Every State - BuzzFeed [PAR] Jul 10, 2016 ... So here are 51 amazing local ice cream shops across the country ... Banana, \nPeanut Butter Chocolate Candy Swirl, and Salty Caramel. YUM. ... They have ice \ncream for dogs, which my dog LOVED. ... Island Cream Co., Lahaina, Hawaii ..... \nThe Strawberry, Honey, Balsamic Vinegar with Black Peppercorn... [DOC] [TLE] The Ice Cream Scene - Gapers Block: Detour | Chicago [PAR] Jun 27, 2005 ... Here are some of the Gapers Block staff's favorite places for frozen ... Margie's \nCandies ... they serve an ice cream concoction called Chop Suey that has two \nscoops of ice ... Based in Madison, WI, Chocolate Shoppe Ice Cream Co. boasts \n... From personal favorites like Black Raspberry and Pina Colada to... [DOC] [TLE] Best Ohio Ice Cream - Ohio Food And Travel - Country Living [PAR] May 22, 2014 ... The Buckeye State has some truly amazing ice cream: Here are the 22 spots to ... \nfavorites are black raspberry chocolate chip and the seasonal flavor ... \"A quaint \nshop with seating inside and outside, Homestead makes ... My personal favorite \nis Black Swamp, named after the little village of .... gamine co. [DOC] [TLE] Crazy dessert alert! Here's how to make an over-the-top milkshake ... [PAR] Jan 20, 2016 ... Use vanilla ice cream and milk as a base, then think about if you need a touch of \n... But first, for inspiration, here's some milkshake porn from Black Tap. ... then \ntopped with cotton candy, rock candy, a lollipop and whipped cream. ... Sweet N' \nSalty Milkshake: A chocolate or caramel milkshake that's rimmed... [DOC] [TLE] Ice Cream Perfection - Foursquare [PAR] Oct 10, 2016 ... Ice Cream Shop  Prospect Heights  339 tips and reviews ... Michael Tchou: You \ncan't go wrong with the ice cream here. All the flavors I have tried have been \nexcellent. ... Chile Pies Baking Co. is one of Ice Cream Perfection. 14. ..... (vanilla, \nchocolate) to Asian-inspired (red bean, black sesame and lychee). [DOC] [TLE] The 15 Best Places for a Licorice in New York City - Foursquare [PAR] Oct 18, 2016 ... We did the research so that you don't have to. ... Valerie D: I had the brownie \ngraham cracker vanilla ice cream. ... Burnt honey vanilla, salted pretzel caramel, \nand black ass licorice are ... I love the dark chocolate covered graham crackers. \n... Douglas Elliman: An old fashioned candy shop in Chinatown. [DOC] [TLE] Chocolate Shoppe Ice cream! Madison, WI | I LoVe Wisconsin USA ... [PAR] This Pin was discovered by Tania Lynne Sidiqi. Discover (",
+      "visible_context_hash": "12615ad2e9e99d9cbb652f834034ed9efd919f4061d81d0e5bfdd96ef735e96f",
+      "context_truncated": false,
+      "raw_response": "<answer>Black Licorice</answer>",
+      "response": "<answer>Black Licorice</answer>",
+      "em": 0.0,
+      "f1": 0.6666666666666666,
+      "sub_em": 1.0,
+      "predicted_answer": "Black Licorice",
+      "gold_answers": [
+        "licorice"
+      ],
+      "hard": 0,
+      "soft": 0.6666666666666666,
+      "format_ok": true,
+      "error": "",
+      "provider_refusal": false,
+      "refusal_reason": "",
+      "fail_reason": "EM=0",
+      "latency_seconds": 1.2040000000001783,
+      "generation_config": {
+        "model": {
+          "id": "qwen3.5-9b",
+          "revision": "Team deployment; weight revision undisclosed",
+          "base_url": "http://10.4.162.57:19198/v1",
+          "api_key_env": "PROJECT5_TEAM_QWEN_API_KEY",
+          "tokenizer_path": "F:\\Document\\HKUST\\2026fall\\NLP\\Project\\AIAA4051_Project\\api\\runtime\\tokenizer",
+          "precision": "team-managed; undisclosed",
+          "server_version": "Team OpenAI-compatible API; deployment version undisclosed",
+          "extra_body": {
+            "chat_template_kwargs": {
+              "enable_thinking": false
+            }
+          },
+          "structured_operators": "json_schema",
+          "tokenizer_note": "Qwen/Qwen3.5-9B@c202236235762e1c871ad0ccb60c8ee5ba337b9a proxy for skill/feedback lengths only; hosted server usage is authoritative for request tokens",
+          "allow_private_http": true,
+          "context_window": 32768,
+          "context_safety_tokens": 512
+        },
+        "temperature": 0.0,
+        "seed": 42,
+        "max_tokens": 2048,
+        "tokenizer_hash": "5f434e57da7403bc8232613f565c8d3de0bf56be57ff8326a83ebd76ee1f1e9c"
+      },
+      "attempts": [
+        {
+          "attempt": 1,
+          "status": "ok",
+          "usage": {
+            "prompt_tokens": 2060,
+            "total_tokens": 2071,
+            "completion_tokens": 11,
+            "prompt_tokens_details": null,
+            "completion_tokens_details": null,
+            "call_id": "f50c2ebcbed646b4afabea5ed52ccb0e",
+            "finish_reason": "stop"
+          }
+        }
+      ],
+      "observation_id": "fc58b1f7ef7a61f381aca349c981e0d8fbcda3425b1a9e4436d0d9351cf4e0a1",
+      "cached": false
+    },
+    {
+      "id": "c7bd32aee95f485d85d0b6749d542c51",
+      "dataset": "searchqa",
+      "split": "dev",
+      "condition": "shared_initialization",
+      "round": 0,
+      "skill_hash": "0a21fc8afe52b0187c46b31af479538d39514d3486bdd828c4ae97cc7fc75100",
+      "question": "In March 2006 he was denied parole for the 13th time for the murder of Robert Kennedy",
+      "visible_context": "[DOC] [TLE] Sirhan Sirhan - Wikipedia [PAR] Sirhan Sirhan is a Jordanian citizen of Palestinian descent who was convicted of \nthe 1968 assassination of U.S. Senator Robert F. Kennedy. He is currently \nserving a life sentence at the Richard J. Donovan .... Sirhan also testified that he \nhad killed Kennedy \"with 20 years of malice aforethought. ..... Retrieved March 18\n, 2013. [DOC] [TLE] Convicted RFK assassin denied parole - CNN.com [PAR] A California state panel on Wednesday denied parole for Sirhan B. Sirhan, \nsaying the convicted assassin of Robert F. Kennedy hasn't demonstrated an ... \nMarch 3, 2011 12:02 a.m. EST ... but he said Weisel's scheduled appearance \nwould mark the first time ... Sirhan was convicted of killing Kennedy and \nwounding five other... [DOC] [TLE] Where are they now?: Key RFK figures - US news - RFK: 40 Years ... [PAR] Jul 9, 2013 ... They hoped for a verdict of second-degree murder that would spare him the \ndeath ... In March 2006, Sirhan was denied parole for the 13th time. .... Image: \nJuan Romero holds Robert F. Kennedy moments after he was shot. [DOC] [TLE] Robert Kennedy assassin Sirhan denied parole | Reuters [PAR] Mar 3, 2011 ... ... 1968 assassination of Robert F. Kennedy was denied parole for a 13th time on \nWednesday, ... He was denied parole again in 2006. ... At his trial, Sirhan \ndeclared that he killed Kennedy \"with 20 years of malice aforethought. [DOC] [TLE] Sirhan Sirhan - Metapedia [PAR] Apr 8, 2016 ... 1 Personal information; 2 Robert F. Kennedy assassination ... According to \nSirhan's mother, Mary Sirhan, he killed Kennedy because of his Arab nationalism\n. ... On March 15, 2006, he was denied parole for the 13th time. [DOC] [TLE] RFK Friend to Raise Doubts About Sirhan Guilt at Parole Hearing ... [PAR] Feb 9, 2016 ... Robert F. Kennedy and Paul Schrade with Dolores Huerta Photo ... parole date \nwas rescinded and he has since been denied 13 times. ... gun was fired and \nSirhan could not have killed Robert Kennedy. .... After deductions for his time in \njail during the trial, Sirhan was given a parole date of March 1, 1985. [DOC] [TLE] The Full Story of the Sirhan Sirhan Parole Hearing - WhoWhatWhy [PAR] Feb 16, 2016 ... Philip Van Praag from Epilogue to RFK Must Die: Pruszynski Recording ... over \nRobert Kennedy's 1968 murder, at the end of Sirhan's hearing, Paul Schrade ... \nMeeting Sirhan for the first time since the 1969 trial, Schrade ... Sirhan was again \ndenied for five years because he did not show adequate... [DOC] [TLE] Sirhan Sirhan, Robert Kennedy's killer, is denied parole a 15th time ... [PAR] Feb 10, 2016 ... For the 15th time, officials denied parole for Sirhan Sirhan, the assassin of Sen. \nRobert F. Kennedy, after hearing from another person who was shot that night \nand had called ... Paul Schrade, now 91, told the panel that he believed Sirhan \nshot him but that an unidentified second shooter had killed Kennedy. [DOC] [TLE] Sirhan Bishara Sirhan | Murderpedia, the encyclopedia of murderers [PAR] Sirhan has been routinely eligible for parole, but as of 2007 parole had been \ndenied 13 times. ... Sirhan was again refused parole on March 15, 2006. He ... On \nMay 10, 1982, Sirhan Sirhan told a parole board: \"If Robert Kennedy were alive \ntoday, he ..... In 2011, he was denied parole for the fourteenth time and is \ncurrently... [DOC] [TLE] RFK Murder Cover-Up Continues After Dramatic Parole Hearing [PAR] Feb 24, 2016 ... This month for the 15th time, California officials denied parole for Sirhan, who ... (\n1978 ad 2006); and R.F.K. Must Die! by Robert Blair Kaiser (1970, updated in \n2008). ... Among such books are: The Killing of Robert F. Kennedy (1995) by .... \nAdditionally, he found that five of the 13 gunshots featured a unique... [DOC] [TLE] Lawyers: Bullet switched at trial of RFK's assassin - USA Today [PAR] Nov 28, 2011 ... Lawyers claim new forensic evidence proves more than one gunman killed Sen. \nRobert F.",
+      "visible_context_hash": "c0d096d72d315c3800a427962ad243cc58ca900cd3f96b42658f6e856fbc3fec",
+      "context_truncated": false,
+      "raw_response": "<answer>True</answer>",
+      "response": "<answer>True</answer>",
+      "em": 0.0,
+      "f1": 0.0,
+      "sub_em": 0.0,
+      "predicted_answer": "True",
+      "gold_answers": [
+        "Sirhan Sirhan"
+      ],
+      "hard": 0,
+      "soft": 0.0,
+      "format_ok": true,
+      "error": "",
+      "provider_refusal": false,
+      "refusal_reason": "",
+      "fail_reason": "EM=0",
+      "latency_seconds": 1.094000000000051,
+      "generation_config": {
+        "model": {
+          "id": "qwen3.5-9b",
+          "revision": "Team deployment; weight revision undisclosed",
+          "base_url": "http://10.4.162.57:19198/v1",
+          "api_key_env": "PROJECT5_TEAM_QWEN_API_KEY",
+          "tokenizer_path": "F:\\Document\\HKUST\\2026fall\\NLP\\Project\\AIAA4051_Project\\api\\runtime\\tokenizer",
+          "precision": "team-managed; undisclosed",
+          "server_version": "Team OpenAI-compatible API; deployment version undisclosed",
+          "extra_body": {
+            "chat_template_kwargs": {
+              "enable_thinking": false
+            }
+          },
+          "structured_operators": "json_schema",
+          "tokenizer_note": "Qwen/Qwen3.5-9B@c202236235762e1c871ad0ccb60c8ee5ba337b9a proxy for skill/feedback lengths only; hosted server usage is authoritative for request tokens",
+          "allow_private_http": true,
+          "context_window": 32768,
+          "context_safety_tokens": 512
+        },
+        "temperature": 0.0,
+        "seed": 42,
+        "max_tokens": 2048,
+        "tokenizer_hash": "5f434e57da7403bc8232613f565c8d3de0bf56be57ff8326a83ebd76ee1f1e9c"
+      },
+      "attempts": [
+        {
+          "attempt": 1,
+          "status": "ok",
+          "usage": {
+            "prompt_tokens": 2147,
+            "total_tokens": 2155,
+            "completion_tokens": 8,
+            "prompt_tokens_details": null,
+            "completion_tokens_details": null,
+            "call_id": "98403c5b3dee444e8589fe51134da66c",
+            "finish_reason": "stop"
+          }
+        }
+      ],
+      "observation_id": "59c2d631152b0fc6f7bc2dc7454d8093dd798cfcd3865ab378081e794beaf774",
+      "cached": false
+    },
+    {
+      "id": "5324041c25d04316a800ccba2d79a2c7",
+      "dataset": "searchqa",
+      "split": "dev",
+      "condition": "shared_initialization",
+      "round": 0,
+      "skill_hash": "0a21fc8afe52b0187c46b31af479538d39514d3486bdd828c4ae97cc7fc75100",
+      "question": "He wrote comic book stories for \"Captain America\" & \"Captain Marvel\" before hitting it big with \"I, the Jury\"",
+      "visible_context": "[DOC] [TLE] Mickey Spillane - You The Jury, by Steve Holland - Crime Time [PAR] He'd been touting around a new comic strip character to publishers: Mike ... \nJames Sandoe, Chicago Sun Book Week , 17 August 1947. ... \"I said [to John \nEdmondson at Dutton] 'I'd like to reprint I, the Jury. ... I shoot fast and I hit what I \nshoot at.\" ..... The Big Kill (the fifth Hammer novel) was a more atypical revenge \nstory, and... [DOC] [TLE] MICKEY SPILLANE, by Steve Holland - mystery*file on-line [PAR] He'd been touting around a new comic strip character to publishers: Mike Danger \nwas a ... It's said that at Dutton, vice-president John Edmondson took the book to \npay back a ... \"I said [to John Edmondson at Dutton] 'I'd like to reprint I, the Jury. \n..... The Big Kill (the fifth Hammer novel) was a more atypical revenge story, and... [DOC] [TLE] Mickey Spillane | Books | The Guardian [PAR] Jul 18, 2006 ... Bestselling writer of shoot-em-up crime novels. ... down\", as he later recalled, \"to \nthe comic books: Captain Marvel, Captain America, Superman,... [DOC] [TLE] Obituary: Mickey Spillane | Books | The Guardian [PAR] Jul 18, 2006 ... He claimed to have read all Melville and Dumas before he was 11. ... \"to the \ncomic books: Captain Marvel, Captain America, Superman, Batman - you name it\n, I did them all. ... I, the Jury (1947) was written in nine days. ... Story-magazines \nwere losing ground to paperback originals - pulp ... All hit the mark. [DOC] [TLE] Black Alley by Mickey Spillane - Reviews & Summaries - Books [PAR] His first stories were published mostly in comic books and pulp magazines. ... \ndetective, and also wrote for Captain America, Captain Marvel, and The Human \nTorch. During World War II, he worked as a flying instructor for the U.S. Army Air \nForce. His first novel, I, the Jury, featured Mike Hammer and was published in \n1947. [DOC] [TLE] The Goliath Bone by Max Allan Collins and Mickey Spillane - Books [PAR] A week before his death, Mickey Spillane entrusted his nearly finished \nmanuscript and ... The result is a thriller as classic as Spillane's own I, the Jury \nand as ... and also wrote for Captain America, Captain Marvel, and The Human \nTorch. ... In the mid-1990s, he returned to comic books, by co-creating a futuristic \nMike Danger. [DOC] [TLE] Free Flashcards about AUTHORS - StudyStack [PAR] HE WROTE COMIC BOOK STORIES FOR \"CAPTAIN AMERICA\" AND \"CAPTAIN \nMARVEL\" BEFORE HITTING IT BIG WITH \"I, THE JURY\", MICKEY SPILLANE. [DOC] [TLE] Mickey Spillane - Biography - IMDb [PAR] He was born Frank Morrison Spillane in Brooklyn, New York. ... In 1935 he began \nsubmitting his work to magazines before aiming lower and learning ... for comic \nbooks, including such popular titles as \"Batman\", \"Captain Marvel\", \"Captain .... \nfor a house in 1946, so he wrote detective novel \"I, The Jury\" in less than a month\n. [DOC] [TLE] Mickey Spillane- Dan Schneider - Cosmoetica [PAR] 30000 copies ... It contained MS's 1st 3 MH novels: I, the Jury, My Gun Is Quick, & Vengeance Is \nMine! ... His first stories were published mostly in comic books & pulp magazines. \n... Captain America, Blue Bolt, Batman, Captain Marvel & Plastic Man, ... Then he \nhit on doing a novel- & turned his old Mike Danger character into... [DOC] [TLE] Mickey Spillane Mike Hammer The Snake Signet T4434 1964 | eBay [PAR] Mike Hammer and written by Spillane, Ed Robbins and Joe Gill, with art by Ed ... \nincluding Captain Marvel, Superman, Batman and Captain America. ... In 19 days \nhe wrote I, the Jury. ... Two Mike Danger comic-book stories were published in \n1954 without ..... Before that you'd written comic books for",
+      "visible_context_hash": "07d1301a3db46e86bc2d184984e83fbe8fe3d10bb15c8bed3a49859d111a4b8a",
+      "context_truncated": false,
+      "raw_response": "<answer>True</answer>",
+      "response": "<answer>True</answer>",
+      "em": 0.0,
+      "f1": 0.0,
+      "sub_em": 0.0,
+      "predicted_answer": "True",
+      "gold_answers": [
+        "Mickey Spillane"
+      ],
+      "hard": 0,
+      "soft": 0.0,
+      "format_ok": true,
+      "error": "",
+      "provider_refusal": false,
+      "refusal_reason": "",
+      "fail_reason": "EM=0",
+      "latency_seconds": 0.9850000000001273,
+      "generation_config": {
+        "model": {
+          "id": "qwen3.5-9b",
+          "revision": "Team deployment; weight revision undisclosed",
+          "base_url": "http://10.4.162.57:19198/v1",
+          "api_key_env": "PROJECT5_TEAM_QWEN_API_KEY",
+          "tokenizer_path": "F:\\Document\\HKUST\\2026fall\\NLP\\Project\\AIAA4051_Project\\api\\runtime\\tokenizer",
+          "precision": "team-managed; undisclosed",
+          "server_version": "Team OpenAI-compatible API; deployment version undisclosed",
+          "extra_body": {
+            "chat_template_kwargs": {
+              "enable_thinking": false
+            }
+          },
+          "structured_operators": "json_schema",
+          "tokenizer_note": "Qwen/Qwen3.5-9B@c202236235762e1c871ad0ccb60c8ee5ba337b9a proxy for skill/feedback lengths only; hosted server usage is authoritative for request tokens",
+          "allow_private_http": true,
+          "context_window": 32768,
+          "context_safety_tokens": 512
+        },
+        "temperature": 0.0,
+        "seed": 42,
+        "max_tokens": 2048,
+        "tokenizer_hash": "5f434e57da7403bc8232613f565c8d3de0bf56be57ff8326a83ebd76ee1f1e9c"
+      },
+      "attempts": [
+        {
+          "attempt": 1,
+          "status": "ok",
+          "usage": {
+            "prompt_tokens": 2010,
+            "total_tokens": 2018,
+            "completion_tokens": 8,
+            "prompt_tokens_details": null,
+            "completion_tokens_details": null,
+            "call_id": "8cd662e113eb4b7dbb608ee76819725c",
+            "finish_reason": "stop"
+          }
+        }
+      ],
+      "observation_id": "fadbe2d22c513a20c0455ca3053dc08bf225801d0fd866e8e582b74a6813a316",
+      "cached": false
+    },
+    {
+      "id": "c9f3a971abe64853aca3e0bb1fea6962",
+      "dataset": "searchqa",
+      "split": "dev",
+      "condition": "shared_initialization",
+      "round": 0,
+      "skill_hash": "0a21fc8afe52b0187c46b31af479538d39514d3486bdd828c4ae97cc7fc75100",
+      "question": "\"Traitors are not gentlemen, my good friends. They don't understand being treated like gentlemen\"",
+      "visible_context": "[DOC] [TLE] History's Wingnuts - Sen. Joe McCarthy In Chicago - March 17, 1954 ... [PAR] Feb 4, 2011 ... Traitors are not gentlemen, my good friends. They don't understand being treated \nlike gentlemen!\" As ever - some things just never change. [DOC] [TLE] Various - Great Speeches Of The 20th Century (CD) at Discogs [PAR] \"Traitors are not gentlemen, my good friends. They don't understand being \ntreated like gentlemen.\" (Chicago, Illinois, March 17, 1954) 4-3. Khrushchev: \"\nYou... [DOC] [TLE] Red-letter days - Icon - http://www.smh.com.au/technology/ - Sydney ... [PAR] Feb 5, 2005 ... \"Traitors are not gentlemen, my good friends. They don't understand being \ntreated like gentlemen,\" fulminates Uncle Joe in an audio clip of one... [DOC] [TLE] Official Homepage Of The Joseph McCarthy Fan Club - Angelfire [PAR] I would not cry for them. Traitors are not gentlemen, my good friends. They don't \nunderstand being treated like gentlemen!\" -Senator Joseph Raymond McCarthy. [DOC] [TLE] Encyclopdie Larousse en ligne - Snateur Joseph McCarthy, 1954 [PAR] Traitors are not gentlemen, my good friends. They don't understand being treated \nlike gentlemen. May I say to you my good friends tonight, to the American... [DOC] [TLE] Vampire Joe McCarthy's Blog [PAR] May 7, 2006 ... Traitors are NOT gentlemen, my good friends! They don't understand being \ntreated like gentlemen! I don't give a tinker's damn how high or how... [DOC] [TLE] DeutschlandRadio Berlin - KalenderBlatt - McCarthys Kommunisten ... [PAR] 2. Dez. 2004 ... Kritik an solchen Maschen lie McCarthy kalt. Traitors are not gentlemen, my \ngood friends! They don't understand being treated like gentlemen! [DOC] [TLE] Great speeches of the 20th century, volume three, Dreams and ... [PAR] Note: \"This collection represents some of the most well-known speeches of the \n20th century. Each speech has been edited to include the most memorable and... [DOC] [TLE] BACK THEN...: TAIL GUNNER JOE [PAR] Feb 6, 2011 ... Traitors are not gentlemen, my good friends. They don't understand being treated \nlike gentlemen!\" As ever - some things just never change. [DOC] [TLE] Grillman and Luna [PAR] Aug 14, 2008 ... \"Right. Like Sen. McCarthy did when he said, 'Traitors are not gentlemen, my \ngood friends. They don't understand being treated like gentlemen. [DOC] [TLE] 10 Myths... [PAR] Jan 8, 2011 ... Traitors are not gentlemen, my good friends. They don't understand being treated \nlike gentlemen!\" As ever - some things just never change. [DOC] [TLE] PP Virtual Pres Assistant (U Kansas - U Hawaii) - Ace ... [PAR] Senator Joseph McCarthy, \"Traitors are not gentlemen, my good friends. They \ndon't understand being treated like gentlemen!\" President Richard M. Nixon, \"We\n... [DOC] [TLE]  - PChome  [PAR] 2004213 ... Traitors are not gentlemen, my good \nfriends. They don't understand being treated like gentlemen(... [DOC] [TLE] BACK THEN...: February 2011 [PAR] Feb 4, 2011 ... Traitors are not gentlemen, my good friends. They don't understand being treated \nlike gentlemen!\" As ever - some things just never change. [DOC] [TLE] VOA Audio Tape (2014) - Broadcasting Board of Governors [PAR] WORST OF TIMES: TRAITORS ARE NOT GENTLEMEN, MY GOOD FRIENDS. \nTHEY DON'T UNDERSTAND BEING TREATED LIKE GENTLEMEN. 12:36...",
+      "visible_context_hash": "886a990e69d18429f72e6a965c93b063ef12e70d6b1c706e9bbe6ff22abf163d",
+      "context_truncated": false,
+      "raw_response": "<answer>Senator Joseph McCarthy</answer>",
+      "response": "<answer>Senator Joseph McCarthy</answer>",
+      "em": 0.0,
+      "f1": 0.8,
+      "sub_em": 1.0,
+      "predicted_answer": "Senator Joseph McCarthy",
+      "gold_answers": [
+        "(Joseph) McCarthy"
+      ],
+      "hard": 0,
+      "soft": 0.8,
+      "format_ok": true,
+      "error": "",
+      "provider_refusal": false,
+      "refusal_reason": "",
+      "fail_reason": "EM=0",
+      "latency_seconds": 1.1089999999999236,
+      "generation_config": {
+        "model": {
+          "id": "qwen3.5-9b",
+          "revision": "Team deployment; weight revision undisclosed",
+          "base_url": "http://10.4.162.57:19198/v1",
+          "api_key_env": "PROJECT5_TEAM_QWEN_API_KEY",
+          "tokenizer_path": "F:\\Document\\HKUST\\2026fall\\NLP\\Project\\AIAA4051_Project\\api\\runtime\\tokenizer",
+          "precision": "team-managed; undisclosed",
+          "server_version": "Team OpenAI-compatible API; deployment version undisclosed",
+          "extra_body": {
+            "chat_template_kwargs": {
+              "enable_thinking": false
+            }
+          },
+          "structured_operators": "json_schema",
+          "tokenizer_note": "Qwen/Qwen3.5-9B@c202236235762e1c871ad0ccb60c8ee5ba337b9a proxy for skill/feedback lengths only; hosted server usage is authoritative for request tokens",
+          "allow_private_http": true,
+          "context_window": 32768,
+          "context_safety_tokens": 512
+        },
+        "temperature": 0.0,
+        "seed": 42,
+        "max_tokens": 2048,
+        "tokenizer_hash": "5f434e57da7403bc8232613f565c8d3de0bf56be57ff8326a83ebd76ee1f1e9c"
+      },
+      "attempts": [
+        {
+          "attempt": 1,
+          "status": "ok",
+          "usage": {
+            "prompt_tokens": 1938,
+            "total_tokens": 1948,
+            "completion_tokens": 10,
+            "prompt_tokens_details": null,
+            "completion_tokens_details": null,
+            "call_id": "220bcc65ba504446ad109165631800e8",
+            "finish_reason": "stop"
+          }
+        }
+      ],
+      "observation_id": "d7ddacd35fa0e6e22f9e3769b9696dd092777ad7dcaa483c43b58d011d04576b",
+      "cached": false
+    },
+    {
+      "id": "982e414b371248788c72732975949957",
+      "dataset": "searchqa",
+      "split": "dev",
+      "condition": "shared_initialization",
+      "round": 0,
+      "skill_hash": "0a21fc8afe52b0187c46b31af479538d39514d3486bdd828c4ae97cc7fc75100",
+      "question": "Chile dogs include the pastor aleman, this breed",
+      "visible_context": "[DOC] [TLE] Belgian Shepherd Malinois | Favorite Dog Breeds! | Pinterest ... [PAR] pastor alemn, mascotas, pastor belga, perros malinois, perro guardin, perros \nde pastor, ... Find Belgian Malinois Dog Breed all Information-Belgian Shepherd \nDog ...... perros malinois, malinois belga, perros de chile, animales. Chili dog .... \nBreeds most commonly used for detection and apprehension include the Belgian\n... [DOC] [TLE] 1000+ images about Dogs    ~ Pastor Alemn on Pinterest | German ... [PAR] Explore Pau Moreira's board \"Dogs    ~ Pastor Alemn\" on Pinterest, the world's \ncatalog of ideas. ... Breed Of The Day: German Shepherd | Dog Lovers Dogs. [DOC] [TLE] 1000+ ideas about Pastor Aleman Cachorro on Pinterest | German ... [PAR] ... catalog of ideas. | See more about German Shepherds, Pastor Aleman Venta \nand Fotos De Pastor Aleman. ...  Dogs [Photography of Animals]  Alimentacin\n... [DOC] [TLE] Pastor alemn/German Shepherds (Perritos/Dogs) (Multilingual ... [PAR] Buy Pastor alemn/German Shepherds (Perritos/Dogs) (Multilingual Edition) on \nAmazon.com  FREE SHIPPING on qualified orders. [DOC] [TLE] seattle pets - craigslist [PAR] posted today; include nearby areas. bellingham, WA (bli) .... favorite this post Oct \n21 Puppies puppy Kittens Kitten Rehome Fees? (everywhere) pic map hide this... [DOC] [TLE] el paso farm & garden - by owner - craigslist [PAR] include nearby areas ..... $50 favorite this post Oct 17 TRASH and JUNK \nREMOVAL/ Yard Clean up & dog poop removal $50 (Ne, W, Far E, C,Mesquite \nhills,... [DOC] [TLE] 1 - Canton Public Library [PAR] Jun 28, 1979 ... Survivors include daughters, Nellie Crouch of ...... Hot Dop or Chili Dog* Pork 4 \nBeen* or S a w kraut. ...... ALL BREED. <0^ ...... Begg has 25 points, three ahead \nof Gary Aleman ...... Richard Duncan, Pastor - Phone 474-0350. [DOC] [TLE] Bloom Gloom - Moorefield Examiner [PAR] $35.00 per year tax included for the Moorefield Examiner Online Edition. $50.00 \nper year tax ...... W.Va. with Pastor Lucy Webster officiating. .... Tuesday, April 15 - \nChili dog on bun, coleslaw .... tion is the largest beef breed as- sociation in the \n...... Aleman. The rest of the girls squad con- sists of: juniors - Roxanna Green-. [DOC] [TLE] NEWS - Moorefield Examiner [PAR] $35.00 per year tax included for the Moorefield Examiner Online Edition. $50.00 \nper year tax ...... Friday, May 10 - Chili Dog on. Bun, Scalloped .... with Pastor \nFrank Naglic, and Pastor. Michael ...... Call 540-459-3233. ANGUS HEIFERS \nReady to breed. Yearling Angus Bull. First ...... Exhibition. Modesty Zirk/Emely \nAleman v. [DOC] [TLE] Medicaid plan uncertain - MSU Libraries - Michigan State University [PAR] Sep 29, 1978 ... The data includes medical and occupational history examinations, physicals and \nlab tests for PBB levels ... new prime minister Th'ursday and vowed to improve ..... \nAleman that. Kennedy would not live to be re-elected. Aleman's version of that \n...... Footlong Chili Dogs 80c ...... You're a rare breed. It's been a... [DOC] [TLE] Calamo - Delta County Independent, June 5, 2013 [PAR] Jun 5, 2013 ... Highly valued items include upscale clothing, dishware, collectibles, decor, ...... \nWebb Tighan Wilkinson Fifth Grade Straight A's Emily Aleman Remi .... Friday, \nJune 7 HOT DOGS AND CHILI AVAILABLE AT THE ..... A funeral service was \nheld June 3 at El Buen Pastor in Delta. ...... Small breed of horse 47. [DOC] [TLE] Full text of \"Kansas State collegian\" - Internet Archive [PAR] A \"wish list\" would include lighting and paving with cement, instead of ...... back \nnorth to the breeding grounds which are typicallly the southern belt of Alaska, ...... \n40t \"^ HOT DOG - ^HEADQUARTERS THE BEST HOT DOGS AND CHILI \nDOGS ...... freshman in general; Nick Aleman, senior in industrial engineering; \nHoward... [DOC] [TLE] Dec noy oa 121513 by msterkel - issuu [PAR] Mar 17, 2014 ... Dallas Veliz",
+      "visible_context_hash": "966f9a82b608275345a15886eb8707ef10060d995d8ce091f84bd5272cc5e605",
+      "context_truncated": false,
+      "raw_response": "Based on the provided context, the text mentions \"Belgian Shepherd Malinois\" (also referred to as \"perros malinois\" and \"pastor belga\") in the context of breeds used for detection and apprehension. It also mentions \"Pastor Alemn\" (German Shepherd) separately in other contexts. The text does not explicitly state that \"Chile dogs include the pastor aleman\" or that the Belgian Malinois is a \"Chile dog.\" In fact, one snippet mentions \"perros de chile\" (dogs of Chile) alongside \"perros malinois,\" but it does not confirm the inclusion of the Pastor Aleman in a category called \"Chile dogs.\"\n\nTherefore, the statement that \"Chile dogs include the pastor aleman\" is not supported by the text provided.\n\n<answer>Not found in context</answer>",
+      "response": "Based on the provided context, the text mentions \"Belgian Shepherd Malinois\" (also referred to as \"perros malinois\" and \"pastor belga\") in the context of breeds used for detection and apprehension. It also mentions \"Pastor Alemn\" (German Shepherd) separately in other contexts. The text does not explicitly state that \"Chile dogs include the pastor aleman\" or that the Belgian Malinois is a \"Chile dog.\" In fact, one snippet mentions \"perros de chile\" (dogs of Chile) alongside \"perros malinois,\" but it does not confirm the inclusion of the Pastor Aleman in a category called \"Chile dogs.\"\n\nTherefore, the statement that \"Chile dogs include the pastor aleman\" is not supported by the text provided.\n\n<answer>Not found in context</answer>",
+      "em": 0.0,
+      "f1": 0.0,
+      "sub_em": 0.0,
+      "predicted_answer": "Not found in context",
+      "gold_answers": [
+        "the German shepherd"
+      ],
+      "hard": 0,
+      "soft": 0.0,
+      "format_ok": true,
+      "error": "",
+      "provider_refusal": false,
+      "refusal_reason": "",
+      "fail_reason": "EM=0",
+      "latency_seconds": 13.344000000000051,
+      "generation_config": {
+        "model": {
+          "id": "qwen3.5-9b",
+          "revision": "Team deployment; weight revision undisclosed",
+          "base_url": "http://10.4.162.57:19198/v1",
+          "api_key_env": "PROJECT5_TEAM_QWEN_API_KEY",
+          "tokenizer_path": "F:\\Document\\HKUST\\2026fall\\NLP\\Project\\AIAA4051_Project\\api\\runtime\\tokenizer",
+          "precision": "team-managed; undisclosed",
+          "server_version": "Team OpenAI-compatible API; deployment version undisclosed",
+          "extra_body": {
+            "chat_template_kwargs": {
+              "enable_thinking": false
+            }
+          },
+          "structured_operators": "json_schema",
+          "tokenizer_note": "Qwen/Qwen3.5-9B@c202236235762e1c871ad0ccb60c8ee5ba337b9a proxy for skill/feedback lengths only; hosted server usage is authoritative for request tokens",
+          "allow_private_http": true,
+          "context_window": 32768,
+          "context_safety_tokens": 512
+        },
+        "temperature": 0.0,
+        "seed": 42,
+        "max_tokens": 2048,
+        "tokenizer_hash": "5f434e57da7403bc8232613f565c8d3de0bf56be57ff8326a83ebd76ee1f1e9c"
+      },
+      "attempts": [
+        {
+          "attempt": 1,
+          "status": "ok",
+          "usage": {
+            "prompt_tokens": 2094,
+            "total_tokens": 2269,
+            "completion_tokens": 175,
+            "prompt_tokens_details": null,
+            "completion_tokens_details": null,
+            "call_id": "a18b2cce0f7e455282ac961a1649b8f4",
+            "finish_reason": "stop"
+          }
+        }
+      ],
+      "observation_id": "c846bd425f0226cb214c3b93df501e818d992de2418373d8642d73218887066d",
+      "cached": false
+    }
+  ]
+}

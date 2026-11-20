@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 from copy import deepcopy
+from ipaddress import IPv4Address, IPv4Network
 from pathlib import Path
 from urllib.parse import urlsplit
 from .io import read_json, digest
@@ -28,10 +29,12 @@ def load_config(path=None, *, demo=False):
     config = deepcopy(DEFAULT)
     if path:
         for key, value in read_json(path).items():
-            if key not in config:
+            if key not in config and key != "qa_context_max_tokens":
                 raise ValueError(f"Unknown config key: {key}")
-            if isinstance(config[key], dict):
+            if isinstance(config.get(key), dict):
                 unknown = set(value) - set(config[key])
+                if key == "model":
+                    unknown -= {"allow_private_http", "context_window", "context_safety_tokens"}
                 if unknown:
                     raise ValueError(f"Unknown {key} keys: {unknown}")
                 config[key].update(value)
@@ -41,17 +44,40 @@ def load_config(path=None, *, demo=False):
         raise ValueError("Only searchqa and hotpotqa are supported")
     if config["backend"] not in {"local", "api"}:
         raise ValueError("backend must be local or api")
-    if config["model"]["structured_operators"] not in (True, False, "json_object"):
-        raise ValueError("structured_operators must be a boolean or json_object")
+    if config["model"]["structured_operators"] not in (True, False, "json_object", "json_schema"):
+        raise ValueError("structured_operators must be a boolean, json_object or json_schema")
     if config["backend"] == "api":
-        endpoint = urlsplit(config["model"]["base_url"])
-        if endpoint.scheme != "https" or not endpoint.hostname or endpoint.username or endpoint.password or endpoint.query or endpoint.fragment:
-            raise ValueError("API base_url must be an HTTPS endpoint without credentials, query or fragment")
+        model = config["model"]
+        endpoint = urlsplit(model["base_url"])
+        private_http = False
+        if endpoint.scheme == "http" and model.get("allow_private_http") is True:
+            try:
+                address = IPv4Address(endpoint.hostname or "")
+            except ValueError:
+                pass
+            else:
+                private_http = any(address in IPv4Network(network)
+                                   for network in ("10.0.0.0/8", "172.16.0.0/12", "192.168.0.0/16"))
+        if ((endpoint.scheme != "https" and not private_http) or not endpoint.hostname
+                or endpoint.username is not None or endpoint.password is not None
+                or endpoint.query or endpoint.fragment):
+            raise ValueError("API base_url must be an HTTPS endpoint or an explicitly enabled private IPv4 HTTP endpoint, without credentials, query or fragment")
         if not config["model"]["api_key_env"]:
             raise ValueError("API mode requires model.api_key_env")
         tokenizer = Path(config["model"]["tokenizer_path"])
         if not tokenizer.is_absolute():
             config["model"]["tokenizer_path"] = str((Path(__file__).resolve().parents[2] / tokenizer).resolve())
+    context_window = config["model"].get("context_window")
+    if context_window is not None and (type(context_window) is not int or context_window <= 0):
+        raise ValueError("model.context_window must be a positive integer")
+    safety = config["model"].get("context_safety_tokens", 512)
+    if type(safety) is not int or safety <= 0:
+        raise ValueError("model.context_safety_tokens must be a positive integer")
+    if "qa_context_max_tokens" in config:
+        if type(config["qa_context_max_tokens"]) is not int or config["qa_context_max_tokens"] <= 0:
+            raise ValueError("qa_context_max_tokens must be a positive integer")
+        if context_window is None:
+            raise ValueError("Token-based QA context requires model.context_window")
     if config["population_size"] != 2 or not 0 <= config["rounds"] <= 3:
         raise ValueError("Course protocol requires population_size=2 and 0<=rounds<=3")
     for key in ["train_batch_size", "failure_k", "max_attempts", "qa_max_tokens", "operator_max_tokens",
@@ -62,6 +88,8 @@ def load_config(path=None, *, demo=False):
         raise ValueError("Use k=3, at most 2 attempts and at most 100 training IDs")
     if config["concurrency"] != 1:
         raise ValueError("This audited runner currently supports sequential concurrency=1")
+    if context_window is not None and max(config["qa_max_tokens"], config["operator_max_tokens"]) + safety >= context_window:
+        raise ValueError("Completion caps and safety margin leave no room for model input")
     if not isinstance(config["api_retry_delay_seconds"], (int, float)) or not 0 <= config["api_retry_delay_seconds"] <= 60:
         raise ValueError("api_retry_delay_seconds must be between 0 and 60")
     if config["qa_temperature"] != 0.0:

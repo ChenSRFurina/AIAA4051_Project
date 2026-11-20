@@ -15,6 +15,7 @@ from baseline.config import load_config
 from baseline.credentials import api_key
 from baseline.io import write_json
 from baseline.trainer import ensure_empty, tree_fingerprint
+from baseline.transport import open_model_request
 
 
 def main():
@@ -33,7 +34,7 @@ def main():
         request = urllib.request.Request(config["model"]["base_url"].rstrip("/") + "/models",
                                          headers={"Authorization": "Bearer " + key})
         try:
-            with urllib.request.urlopen(request, timeout=30) as response:
+            with open_model_request(request, timeout=30) as response:
                 data = json.load(response)
         except urllib.error.HTTPError as exc:
             raise ModelError(f"Model listing failed: HTTP {exc.code}") from None

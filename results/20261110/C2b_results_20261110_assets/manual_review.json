@@ -1,0 +1,198 @@
+{
+  "scope": "post_run_train_dev_review_only",
+  "summary": [
+    "SearchQA：C2b 最终保留共同初始化，与原 C 的最终技能、全部 dev 预测相同。它没有取得新增的最终修复；相对 B 的 1 修复／2 退化是两个最终技能之间的差异，不能称为 C2b 学到的修复。",
+    "SearchQA 六个候选的 dev 正确数为 20、22、21、20、21、22，起点 22。相对各自父代，六个候选均没有修复 dev 错题；退化主要集中在 relax→loosen up、Three→3 等严格答案形式变化。不能把所有变化解释为推理能力下降。",
+    "SearchQA 输入规范性改善但收益未出现：原 C 有 3/6 候选的部分范围外内容被丢弃、2/6 新增 gold 相关行、1 个 no-op；C2b 这三项均为 0。成功参照仍只有 2/18 次曝光、1 道不同题，11/18 条诊断仍无法定位具体内容错误。",
+    "SearchQA 的训练反馈要求从问题或线索识别目标类型，但第一轮 Global Guidance 候选实际写出 “Do not infer the answer type”，并将验证请求也导向事实提取；另一图候选主要以显式疑问句作为示例。最终 dev 中陈述式线索答 True 的问题仍然存在。这里说明优化器可能未准确保留反馈意图，不能凭该共现断言某一指令造成分数变化。",
+    "HotpotQA 实际给六次算子调用的 18 条失败反馈，保守分类为 13 次名称／粒度重叠、3 次 token 顺序差异、2 次格式问题。3/18 次成功配对全部来自同一道商场实体列表题，F1=1 的顺序差异反复曝光；没有形成多样的多跳修复参照。分类只反映所选样本的可观察特征，不能证明所有失败都只是表面差异。C2b 未改变检索规则，覆盖率与原 C 不同来自实际轨迹和失败集合的变化。",
+    "HotpotQA 六个 C2b 候选的 dev 正确数为 17、17、16、17、18、17，均低于起点 19，最终 B/C/C2b 都保留相同初始化技能。候选中确有有意义的多跳修复：部分候选找回 Bangles 的 Walk Like an Egyptian，另一个找回 Blues Traveler 的 extensive use of segues；但同时在频道、角色、作品归属等题目退化，收益被抵消。不能将候选中的局部修复表述为最终方法提升。",
+    "HotpotQA 新生成的 180 条候选 dev 观测中，C2b 有 4 次达到 QA 输出上限且未获得合规答案（B 为 5、原 C 为 4）；120 条父代 train 观测中有 2 次（B 为 3、C 为 2）。C2b 另有 1 次算子输出达到 3,072 token 上限，在原有两次尝试规则内重试成功。这些是运行日志证明的截断，不能都归因于推理错误；也不能因为截断就假定延长输出后一定答对。最终被选技能的格式失败为 0，原评分、输出上限和重试次数均保持不变。",
+    "两套数据合计，原 C 的 12 个候选中有 8 个生成了部分范围外内容、6 个在实际新增技能中出现 gold 相关行；C2b 降为 2/12 和 0/12，且没有 no-op。但 HotpotQA 第二轮 Global Guidance 候选仍把训练题的 New Orleans / New Orleans, Louisiana 写进通用技能；这说明消除 gold 字样不等于消除训练实体复用。该候选未获最终选择。",
+    "下一步的证据指向三点，但本轮没有追加改动或实验：一是检查多跳反馈是否同时保留两端关系证据，而非仅保证存在上下文片段；二是减少低价值的同一题顺序差异参照反复曝光，并把严格 EM 的名称差异与真正关系错误分开分析；三是在不增加输出预算的前提下让技能采用更短的核验流程，减少推理展开导致的截断。这些建议需要新的 train/dev 对照或消融，当前结果不能证明其有效。"
+  ],
+  "cases": [
+    {
+      "dataset": "searchqa",
+      "id": "24143f01e7dd455e86c34a4a6f4ed3b9",
+      "response_sha256": "8220e293800681f807a84be08cad6643f422034939b31cd6c305e32935ae0e94",
+      "category": "回答类型错误",
+      "note": "题目要填出眼部结构，C2b 只给 True；可见文本直接包含 cornea 与 stroma、折叠角膜瓣的关系。B 返回 cornea。Parse Question 要求识别所需信息，但保留技能没有明确约束陈述式线索必须补出实体。响应未提供过程，不能断言具体节点执行错误。",
+      "provenance": "Original C review reused only after exact prediction and response SHA256 equality; final C2b skill equals shared initialization."
+    },
+    {
+      "dataset": "searchqa",
+      "id": "f0c26f4f2e9f4d1d84b4f13cb201cbeb",
+      "response_sha256": "e171cee7eb42bdb83bdafe180ddd55b226deb4e027d69604a097201734d312d1",
+      "category": "检索片段字段混淆",
+      "note": "可见片段为 MONEY FOR NOTHING | 题目 | a handout，C2b 与 B 都把栏目名当成答案。Extract Evidence 的忽略噪声要求未能防止这种输出；这是可观察的字段混淆，不是不可见节点轨迹的证明。",
+      "provenance": "Original C review reused only after exact prediction and response SHA256 equality; final C2b skill equals shared initialization."
+    },
+    {
+      "dataset": "searchqa",
+      "id": "f03757766e034c539bf2595428c03626",
+      "response_sha256": "e2c588984f7d64ee338c1abd7d4df1dd568645779f0e9626605581e145ea5792",
+      "category": "双答案完整性修复",
+      "note": "C2b 返回 be/bee，保留 Exist 与 bonnet intruder 两个线索；B 只返回 bee。上下文直接给出 be/bee。C2b 最终技能仍来自共同初始化，不能把这项 B→C2b 差异解释成 C2b 三轮新学到的修复。",
+      "provenance": "Original C review reused only after exact prediction and response SHA256 equality; final C2b skill equals shared initialization."
+    },
+    {
+      "dataset": "searchqa",
+      "id": "e3b96fc1b99247ebada09a84fa5fd205",
+      "response_sha256": "1e4068790f8d43bd15f5b4f238a6ae1bd43d14e3bfa2fd0df6c4112897f61d52",
+      "category": "题干目标欠明确",
+      "note": "题干只有引文，参考为 Greek。C2b 扩写为苏格拉底、审判及柏拉图的介绍，B 为 Socrates；可见文本同时含 Ancient Greek 和归属信息。题干未说明要求语言或作者，因此保留标注歧义，不将其简单归为知识错误。C2b 的长句也没有遵守短答案要求。",
+      "provenance": "Original C review reused only after exact prediction and response SHA256 equality; final C2b skill equals shared initialization."
+    },
+    {
+      "dataset": "searchqa",
+      "id": "1a78a8cf476c4a0dbf551558da1d879b",
+      "response_sha256": "31a66b2ab2215b3e60f517c22d589b88d8260910d3eb2a58dd24342f6cfc115a",
+      "category": "答案粒度差异",
+      "note": "C2b 与 B 都答 Black Licorice，参考只含 licorice，F1 为 2/3。属于额外颜色修饰带来的严格 EM 差异；Formulate Answer 的精简要求没有指定应删除哪些限定词，不擅自改为正确。",
+      "provenance": "Original C review reused only after exact prediction and response SHA256 equality; final C2b skill equals shared initialization."
+    },
+    {
+      "dataset": "searchqa",
+      "id": "c7bd32aee95f485d85d0b6749d542c51",
+      "response_sha256": "8220e293800681f807a84be08cad6643f422034939b31cd6c305e32935ae0e94",
+      "category": "回答类型错误",
+      "note": "陈述式线索需要人名，C2b 与 B 都答 True。上下文含 Sirhan Sirhan 及假释报道；缺少显式输出槽位约束是待验证的技能局限，当前只能观察到答案类型错误。",
+      "provenance": "Original C review reused only after exact prediction and response SHA256 equality; final C2b skill equals shared initialization."
+    },
+    {
+      "dataset": "searchqa",
+      "id": "5324041c25d04316a800ccba2d79a2c7",
+      "response_sha256": "8220e293800681f807a84be08cad6643f422034939b31cd6c305e32935ae0e94",
+      "category": "回答类型错误",
+      "note": "题干要填人物，B 回答 Mickey Spillane，C2b 只答 True。上下文含 Spillane 与相关作品。Parse Question 的通用意图要求不足以保证陈述式线索得到实体答案；无输出推理，不能定位实际内部路径。",
+      "provenance": "Original C review reused only after exact prediction and response SHA256 equality; final C2b skill equals shared initialization."
+    },
+    {
+      "dataset": "searchqa",
+      "id": "c9f3a971abe64853aca3e0bb1fea6962",
+      "response_sha256": "d5c9e3110e5c6d1f865a77ad92cb4a5c2e54182655405e73fc90ea1fa3a085b4",
+      "category": "称谓与名称粒度",
+      "note": "参考 (Joseph) McCarthy，C2b 与 B 都输出 Senator Joseph McCarthy，F1=0.8。人名主体一致但多了 Senator；严格评分不忽略该称谓，保留原分数。",
+      "provenance": "Original C review reused only after exact prediction and response SHA256 equality; final C2b skill equals shared initialization."
+    },
+    {
+      "dataset": "searchqa",
+      "id": "982e414b371248788c72732975949957",
+      "response_sha256": "0c85ad907532385aaecc313ce7447e8cc5f72f21d470fed2e8008dfdc4c18ed6",
+      "category": "过强的显式证据要求",
+      "note": "C2b 的原响应已将 Pastor Alemn 解释为 German Shepherd，却要求片段明确证实 Chile dogs 的完整关系，最终答 Not found in context；B 同样失败。与 Verify Evidence 的显式证据要求及 Recovery 回退相容，但不能据此证明某节点导致错误。",
+      "provenance": "Original C review reused only after exact prediction and response SHA256 equality; final C2b skill equals shared initialization."
+    },
+    {
+      "dataset": "hotpotqa",
+      "id": "5a733b835542991f9a20c6b2",
+      "response_sha256": "78e9b58f24cf08ec21cc97d49c761e5657162c518441477090f5ac5b54feaf7f",
+      "category": "题意与参考答案需回查",
+      "note": "可见上下文把 The Princess and the Frog 明确描述为电影，把 The Frog Prince / Iron Henry 描述为其童话来源。题目问电影而参考答案给出 The Frog Prince，存在答案类型或标注歧义；需回查原题，不能直接把这次 EM=0 当作事实推理错误。",
+      "provenance": "Original C review reused only after exact prediction and response SHA256 equality; final C2b skill equals shared initialization."
+    },
+    {
+      "dataset": "hotpotqa",
+      "id": "5a793bc95542994bb9456fc3",
+      "response_sha256": "95450e5bf4dd55afd2ae2dc91b16f16c438debb43c8c5129b671faf8da2adc57",
+      "category": "同一人物的名称表述差异",
+      "note": "出生年份比较为 1982 早于 1987，模型选中了题目中的 Andy Roddick；参考答案要求文档正文的全名 Andrew Stephen Roddick。同一实体的常用名与全名不被当前严格 EM 合并，F1 为 0.4。",
+      "provenance": "Original C review reused only after exact prediction and response SHA256 equality; final C2b skill equals shared initialization."
+    },
+    {
+      "dataset": "hotpotqa",
+      "id": "5add3fe05542992c1e3a2580",
+      "response_sha256": "bf4b53b0ff3bd9dac71e04c46ef154430cbfbe670d714ba878e9b557f37b9ca3",
+      "category": "歌曲选择与年份口径需复核",
+      "note": "模型选择专辑段落提到的 In Another's Eyes，并称没有其他相关歌曲，但独立 Two Piña Coladas 段落明确关联 Sevens。该段落又写单曲于 1998 年发行，题目称 1997 song，年份口径也需回查。保留参考答案及原始零分，不直接将此归因为某个内部节点。",
+      "provenance": "Original C review reused only after exact prediction and response SHA256 equality; final C2b skill equals shared initialization."
+    },
+    {
+      "dataset": "hotpotqa",
+      "id": "5a776b82554299373536026f",
+      "response_sha256": "37f966a0e12e50a59f4f7ccb085ad83f9b4e4db3bb0c20d43399033646bf9036",
+      "category": "答案粒度与参考不一致",
+      "note": "已完成赛事→日本→日元的关系链；输出 Japanese yen，参考为 yen。多出的 Japanese 导致 EM=0，F1=0.667，不能据此认定币种识别错误。",
+      "provenance": "Original C review reused only after exact prediction and response SHA256 equality; final C2b skill equals shared initialization."
+    },
+    {
+      "dataset": "hotpotqa",
+      "id": "5adf62d05542992d7e9f932d",
+      "response_sha256": "a6cb18e327e354c0122449ed88449d82a226a680cc27c969c46ba356ffa70896",
+      "category": "同名实体混淆",
+      "note": "原始响应先引入 RNC 主席 Michael Steele，又把 The Bangles 成员 Michael Steele 的音乐语境与之混用，并误读 Ezo 影响关系的方向，最后回答 None。可见文本中的 The Bangles 段落包含参考单曲 Walk Like an Egyptian。",
+      "provenance": "Original C review reused only after exact prediction and response SHA256 equality; final C2b skill equals shared initialization."
+    },
+    {
+      "dataset": "hotpotqa",
+      "id": "5ac2cdaa554299657fa29070",
+      "response_sha256": "819dac2914279e65e3a006afcf4e224e45bca03126c234de86b203725efd05ab",
+      "category": "题意与参考答案需回查",
+      "note": "模型按原生地回答 South American rainforests / Americas；参考答案则选择 temperate climates。可见文本只明确把温带分布用于 Aloysia，Neoregelia 段落描述南美雨林。题目 where 的地理/气候维度以及参考是否适用于两者均需回查，原始评分保持不变。",
+      "provenance": "Original C review reused only after exact prediction and response SHA256 equality; final C2b skill equals shared initialization."
+    },
+    {
+      "dataset": "hotpotqa",
+      "id": "5ae788fa55429952e35ea964",
+      "response_sha256": "39f45e3b58f07bc23a7c347e27215345c424656b1bf740aa9b8bfc820634b5a1",
+      "category": "多跳关系未完成",
+      "note": "可见文档给出 On Tour Forever 是 Blues Traveler 的现场 EP，并在乐队段落描述现场演出以 extensive use of segues 著称。模型要求文本直接把专辑和 trademark 写在同一句，因而拒答，未完成这条跨文档关联。",
+      "provenance": "Original C review reused only after exact prediction and response SHA256 equality; final C2b skill equals shared initialization."
+    },
+    {
+      "dataset": "hotpotqa",
+      "id": "5ab236645542993be8fa98c9",
+      "response_sha256": "69a486364a4311175542e353ff83b9c686de8e656ad30767598d239430462ec6",
+      "category": "答案粒度与参考不一致",
+      "note": "模型已找到 UNHCR 并回答正确数量 two；参考答案是完整短语 two Nobel Peace Prizes。问题问 how many，数量正确仍被当前 EM 判零，F1 为 0.4。",
+      "provenance": "Original C review reused only after exact prediction and response SHA256 equality; final C2b skill equals shared initialization."
+    },
+    {
+      "dataset": "hotpotqa",
+      "id": "5a81e8ea5542995ce29dcc73",
+      "response_sha256": "4b29f8a072abd216f293ccf0a127671b3bb5d3fc51f704de0add6be9f7d20595",
+      "category": "同一人物的名称表述差异",
+      "note": "模型正确找到扮演 Nettie Harris 的演员，但输出文档标题 Akosua Busia，参考答案使用正文全名 Akosua Gyamama Busia。遗漏中间名导致 EM=0，F1=0.8。",
+      "provenance": "Original C review reused only after exact prediction and response SHA256 equality; final C2b skill equals shared initialization."
+    },
+    {
+      "dataset": "hotpotqa",
+      "id": "5adf34d35542993a75d26425",
+      "response_sha256": "0a432a4e08e341e1b93ffe7696ff6ea91f92825bdb0aaea523ee9b20aafe202f",
+      "category": "同一人物的名称表述差异",
+      "note": "模型已找到 Hume–Adams 对话中的 Sinn Féin 领导人 Gerry Adams，参考答案写作 Gerard \"Gerry\" Adams。两者在提供的正文中指向同一人，名称形式差异导致 EM=0、F1=0.8。",
+      "provenance": "Original C review reused only after exact prediction and response SHA256 equality; final C2b skill equals shared initialization."
+    },
+    {
+      "dataset": "hotpotqa",
+      "id": "5abe87cb5542993f32c2a156",
+      "response_sha256": "e5687703a61847fdae89c335a52650ef3cac4d36d0167522e97d39e6a845e492",
+      "category": "多跳关系未完成",
+      "note": "模型停在资助来源 National Lottery，没有继续读取 National Lottery (United Kingdom) 段落中的类型 state-franchised。题目问彩票类型，输出了中间实体名称。",
+      "provenance": "Original C review reused only after exact prediction and response SHA256 equality; final C2b skill equals shared initialization."
+    }
+  ],
+  "candidate_findings": [
+    {
+      "dataset": "hotpotqa",
+      "method": "C2b",
+      "candidate": "g0002_i0000",
+      "skill_sha256": "68b064e09acb96957d93c4719907bd5d90a55718ee59e38455838fded5e6e0ef",
+      "failure_id": "5ade88ca55429939a52fe8e7",
+      "category": "多跳证据链未完整保留",
+      "note": "原响应已完成 Lester J. Reed → Tulane University → New Orleans，EM=0 来自缺少参考中的 Louisiana（F1=0.8）。完整上下文字符 908 起是 Tulane 所在地，原响应字符 410 起也引用该句；C2b 实际反馈两处都未保留，却包含人物出生地及其他大学的干扰句。诊断仍保守标为名称／粒度重叠，但词面相关性检索不保证保留完整证据链。不能把本题判成未完成多跳推理。"
+    },
+    {
+      "dataset": "hotpotqa",
+      "method": "C2b",
+      "candidate": "g0002_i0000",
+      "skill_sha256": "68b064e09acb96957d93c4719907bd5d90a55718ee59e38455838fded5e6e0ef",
+      "failure_id": "5ade88ca55429939a52fe8e7",
+      "category": "训练实体进入通用技能",
+      "note": "g0002_i0000 实际新增 Granularity Alignment，用 New Orleans 与 New Orleans, Louisiana 举例；两者正是这道训练题的预测和参考。没有出现 gold 字样并不意味着没有复制训练实体。题目问城市，省略州名也有粒度歧义；评分保持不变，不将这种差异伪装成已经验证的推理修复。该候选未被保留。"
+    }
+  ],
+  "status": "reviewed",
+  "review_scope": "19 final C2b dev errors plus one distinct B/C comparison change; train feedback and candidate findings separately bound to source hashes"
+}

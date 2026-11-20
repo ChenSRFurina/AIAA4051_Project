@@ -47,13 +47,25 @@ def pilot(config, data_dir, output, demo=False):
     summaries["generated_initial"] = aggregate(rows)
     parent, parent_rows, parent_out = evaluated[1]
     parent.train_reflection_context, _ = runner.feedback.build(parent_rows, batch, parent_out, config["seed"], config, runner.counter)
+    mutation_errors = []
+    mutation_context = parent.train_reflection_context
     for attempt in range(config["max_attempts"]):
+        runner.operators.call_seed = config["seed"] + attempt
         try:
-            child = runner.operators.mutation_graph(parent=parent.content, context=parent.train_reflection_context)
+            child = runner.operators.mutation_graph(parent=parent.content, context=mutation_context)
             break
-        except (ValueError, RuntimeError):
+        except (ValueError, RuntimeError) as exc:
+            detail = exc.to_record() if hasattr(exc, "to_record") else {"error": str(exc)}
+            mutation_errors.append({"attempt": attempt + 1, **detail})
+            write_json(runner.output / "mutation_errors.json", mutation_errors)
             if attempt + 1 == config["max_attempts"]:
                 raise
+            mutation_context = (
+                parent.train_reflection_context
+                + "\n\n## Previous mutation validation error\n"
+                + str(exc)
+                + "\nRegenerate a complete skill that satisfies the serialization and graph format contract."
+            )
     candidate = SkillIndividual("pilot_candidate", child.new_skill, "pilot_mutation")
     rows = runner.evaluate_items(candidate, batch, "train", 0, runner.output / "candidate")
     summaries["candidate"] = aggregate(rows)

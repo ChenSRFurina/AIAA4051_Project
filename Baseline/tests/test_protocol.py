@@ -16,13 +16,13 @@ from baseline.budget import Budget, BudgetExceeded, ByteCounter
 from baseline.client import ChatClient, ModelError
 from baseline.config import load_config
 from baseline.data import normalize_item, prepare, load_data, check_splits
-from baseline.evaluation import qa_prompts, score, truncate_context
+from baseline.evaluation import qa_prompts, run_qa, score, truncate_context, truncate_context_tokens
 from baseline.feedback import selected_failures
 from baseline.io import digest, read_json, read_jsonl, write_json
 from baseline.analysis import compare
 from baseline.operators import CourseOperators
 from baseline.protocol import test_frozen, check_design
-from baseline.cli import demo_run
+from baseline.cli import demo_run, pilot
 from graphskillevo.evaluation import _sample_failure_rows
 from graphskillevo.graph_skill import split_graph_skill
 from explore.memory import TrainMemory
@@ -41,6 +41,59 @@ def observation(item_id="q1", *, hard=1, round_no=1, condition="C", context="Evi
 
 
 class ProtocolTests(unittest.TestCase):
+    def test_pilot_mutation_retries_invalid_headings_with_feedback_within_cap(self):
+        original_mock = ChatClient._mock
+        for recover in (True, False):
+            with self.subTest(recover=recover), tempfile.TemporaryDirectory() as directory:
+                root = Path(directory)
+                paths = {}
+                for split, count in (("train", 10), ("dev", 1)):
+                    paths[split] = root / f"{split}.json"
+                    write_json(paths[split], [
+                        {"id": f"{split}_{i}", "question": f"Which value belongs to {split} {i}?",
+                         "context": f"Documented value: Value{i}", "answers": [f"Value{i}"]}
+                        for i in range(count)])
+                prepare(paths, root / "data", "hotpotqa", demo=True)
+                config = load_config(demo=True)
+                config["dataset"] = "hotpotqa"
+                config["model"]["structured_operators"] = "json_schema"
+
+                def mock_response(client, system, user, maximum, stage, seed):
+                    data = original_mock(client, system, user, maximum, stage, seed)
+                    if stage.endswith("mutation_graph") and (not recover or seed == config["seed"]):
+                        message = data["choices"][0]["message"]
+                        parsed = json.loads(message["content"])
+                        parsed["new_skill"] = parsed["new_skill"].replace(
+                            "### QA\n**Use when:** A question has supplied context.",
+                            "### **Use when:**\nA question has supplied context.")
+                        message["content"] = json.dumps(parsed)
+                    return data
+
+                output = root / "pilot"
+                with patch.object(ChatClient, "_mock", mock_response):
+                    if recover:
+                        result = pilot(config, root / "data", output, demo=True)
+                        self.assertEqual(result["conditions"]["candidate"]["n"], 10)
+                    else:
+                        with self.assertRaisesRegex(ValueError, "must contain exactly one"):
+                            pilot(config, root / "data", output, demo=True)
+                        self.assertFalse((output / "pilot_summary.json").exists())
+                mutations = [row for row in read_jsonl(output / "calls.jsonl")
+                             if row["stage"].endswith("mutation_graph")]
+                self.assertEqual([row["request"]["seed"] for row in mutations], [42, 43])
+                first_prompt = mutations[0]["request"]["messages"][-1]["content"]
+                retry_prompt = mutations[1]["request"]["messages"][-1]["content"]
+                self.assertIn("### Task Name\n**Use when:**", first_prompt)
+                self.assertNotIn("Previous mutation validation error", first_prompt)
+                self.assertIn("Previous mutation validation error", retry_prompt)
+                self.assertIn("must contain exactly one", retry_prompt)
+                errors = read_json(output / "mutation_errors.json")
+                self.assertEqual(len(errors), 1 if recover else 2)
+                self.assertIn("### **Use when:**", errors[0]["candidate"])
+                self.assertTrue(errors[0]["raw_response"])
+                ledger = read_jsonl(output / "ledger.jsonl")
+                self.assertEqual(sum(row["physical_calls"] for row in ledger), 43 if recover else 33)
+
     def test_json_schema_only_applies_to_skill_generation(self):
         from baseline.client import operator_response_format
         self.assertIsNone(operator_response_format("qa"))
@@ -90,6 +143,41 @@ class ProtocolTests(unittest.TestCase):
         context = "[DOC]" + "x" * 30 + "[DOC]" + "y" * 40
         self.assertEqual(truncate_context(context, 40), scope["_truncate_context"](context, 40))
         self.assertTrue(truncate_context("z" * 50, 40).endswith("...[truncated]"))
+
+    def test_token_context_preserves_documents_and_handles_oversized_unicode_document(self):
+        counter = ByteCounter()
+        first = "[DOC] A\nA complete passage.\n"
+        context = first + "[DOC] B\n" + "Another passage. " * 30
+        self.assertEqual(truncate_context_tokens(context, counter, counter.count(context)), context)
+        self.assertEqual(truncate_context_tokens(context, counter, counter.count(first) + 10), first)
+        context = "[DOC] 长文\n" + "这是很长的段落。" * 100
+        visible = truncate_context_tokens(context, counter, 101)
+        self.assertTrue(context.startswith(visible))
+        self.assertLessEqual(counter.count(visible), 101)
+        self.assertNotIn("\ufffd", visible)
+
+    def test_qa_entrypoint_uses_same_token_context_for_different_skills(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            config = load_config(demo=True)
+            config.update(qa_context_max_tokens=100, qa_max_tokens=2048)
+            config["model"].update(context_window=32768, context_safety_tokens=512)
+            counter = ByteCounter()
+            client = ChatClient(config, Budget(root / "ledger.jsonl", config["budget"]),
+                                counter, root / "calls.jsonl", demo=True)
+            context = "[DOC] First\nDocumented value: Paris\n[DOC] Long\n" + "extra " * 100
+            item = {"id": "token-case", "dataset": "hotpotqa", "question": "Where?",
+                    "context": context, "answers": ["Paris"]}
+            rows = []
+            for condition, skill in (("N", ""), ("B", "VerifyEvidence " * 30)):
+                rows.append(run_qa(client, item, skill, split="dev", round_no=0, seed=42,
+                                   condition=condition, out_dir=root / condition))
+            self.assertEqual(rows[0]["visible_context_hash"], rows[1]["visible_context_hash"])
+            self.assertTrue(all(r["context_truncated"] for r in rows))
+            self.assertTrue(all(counter.count(r["visible_context"]) <= 100 for r in rows))
+            calls = read_jsonl(root / "calls.jsonl")
+            self.assertTrue(all(c["request"]["max_tokens"] == 2048 for c in calls))
+            self.assertIn(rows[0]["visible_context"], calls[0]["request"]["messages"][1]["content"])
 
     def test_hotpot_sentence_locations_and_labels_are_kept_off_prompt(self):
         item = normalize_item({"_id": "a1", "question": "Where?", "answer": "Paris", "context": [["Title", ["Sentence 0.", "Sentence 1."]]],
