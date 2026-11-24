@@ -2,3 +2,25 @@
 /results/** -text
 /Explore/explore_v2/*.py -text
 /api/*.py -text
+
+# The published course run's protocol hash includes working-tree line endings.
+/Baseline/baseline/*.py text eol=lf
+/Baseline/baseline/analysis.py text eol=crlf
+/Baseline/baseline/cli.py text eol=crlf
+/Baseline/baseline/client.py text eol=crlf
+/Baseline/baseline/config.py text eol=crlf
+/Baseline/baseline/credentials.py text eol=crlf
+/Baseline/baseline/evaluation.py text eol=crlf
+/Baseline/baseline/operators.py text eol=crlf
+/Baseline/baseline/trainer.py text eol=crlf
+/Baseline/tests/*.py text eol=lf
+/Baseline/tests/test_api.py text eol=crlf
+/Baseline/tests/test_protocol.py text eol=crlf
+/Baseline/vendor/GraphSkillEvo/graphskillevo/**/*.py text eol=crlf
+/Baseline/vendor/GraphSkillEvo/graphskillevo/**/*.md text eol=crlf
+/Baseline/download_data.py text eol=lf
+/Baseline/run.py text eol=lf
+/Baseline/prepare_hotpotqa_course.py text eol=lf
+/Explore/run.py text eol=lf
+/Explore/explore/*.py text eol=lf
+/Explore/explore_c2c.py text eol=lf

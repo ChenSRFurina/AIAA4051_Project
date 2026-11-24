@@ -1,0 +1,1190 @@
+{
+  "freeze_id": "7d1887cb1fb704f665e021e02d97de1aed2d62d0242c2ac7222aee01ede0907a",
+  "run_path": "../../Explore/runs/local/hotpotqa_course_20261124",
+  "data": {
+    "protocol": "hotpotqa_distractor_course_11_02",
+    "dataset": "hotpotqa",
+    "demo": false,
+    "seed": 42,
+    "source_repo": "hotpotqa/hotpot_qa",
+    "source_revision": "1908d6afbbead072334abe2965f91bd2709910ab",
+    "source_version": "HotpotQA v1.1 train and v1 distractor dev",
+    "source_sha256": {
+      "train-00000-of-00002.parquet": "76d3bb3048a7cc73c1958107c0c5872a00d7e7d00c105b81e92f6769e7822e68",
+      "train-00001-of-00002.parquet": "713661628434fbb19fff7392e2e321e4ed107e3c7c7784d0690946e5f722763f",
+      "validation-00000-of-00001.parquet": "c20b638ca82b21d04fe12e14ff417ad05153d4d215a65de54497fca4e972f7c6"
+    },
+    "source_counts": {
+      "train": 90447,
+      "validation": 7405
+    },
+    "counts": {
+      "train": 300,
+      "dev": 150,
+      "test": 1000
+    },
+    "test_source": "official distractor development set",
+    "test_pending": false,
+    "excluded_old_dev_ids": [
+      "5a72d7b35542991f9a20c5be",
+      "5a7300b85542994cef4bc41a",
+      "5a7326cd5542991f29ee2d11",
+      "5a733b835542991f9a20c6b2",
+      "5a776b82554299373536026f",
+      "5a77a65b5542992a6e59df57",
+      "5a78bd515542990784727749",
+      "5a793bc95542994bb9456fc3",
+      "5a7b443c5542992d025e67ce",
+      "5a7f79155542995d8a8dde86",
+      "5a80c79155429938b61421da",
+      "5a812d0555429938b61422e1",
+      "5a81e8ea5542995ce29dcc73",
+      "5a831fc955429954d2e2ec28",
+      "5a85a3005542991dd0999e72",
+      "5ab236645542993be8fa98c9",
+      "5ab84f2c55429934fafe6d54",
+      "5abb342055429966062416e8",
+      "5abc5951554299114383a116",
+      "5abe87cb5542993f32c2a156",
+      "5abfd5c45542994516f4550e",
+      "5ac2cdaa554299657fa29070",
+      "5ac3a76e554299741d48a2be",
+      "5adbf69c55429947ff173871",
+      "5add3fe05542992c1e3a2580",
+      "5ade0bc55542997545bbbe30",
+      "5adf34d35542993a75d26425",
+      "5adf53dc5542995534e8c791",
+      "5adf62d05542992d7e9f932d",
+      "5ae788fa55429952e35ea964"
+    ],
+    "pilot_train_ids": [
+      "5a7fc85355429969796c1b60",
+      "5a754ee65542993748c89825",
+      "5ab830bb55429919ba4e225c",
+      "5ab43d235542991779162c29",
+      "5a90712255429916514e74c1",
+      "5a8332bd5542990548d0b1c3",
+      "5a7f57245542992097ad2f27",
+      "5ae7e214554299540e5a5679",
+      "5a7d3db65542997cc2c47432",
+      "5adea91255429975fa854f59"
+    ],
+    "difficulty": {
+      "train": {
+        "easy": 100,
+        "medium": 100,
+        "hard": 100
+      },
+      "dev": {
+        "easy": 50,
+        "medium": 50,
+        "hard": 50
+      },
+      "test": {
+        "hard": 1000
+      }
+    },
+    "question_duplicates": [],
+    "sampling": "Python Random(42); easy/medium/hard in order; sample 150 sorted original train IDs per level, first 100 train, last 50 val; sample 1000 sorted official dev IDs after excluding old 30.",
+    "train_hash": "83dbb300fccc7dcda5cd7c7c35b82f43fe91b9819bec240087d6c41d12c2bde4",
+    "dev_hash": "791fe4f98280bfacc7e4fb333271d8f7a8ff1a179ddf430fb4ca89f982aaecff",
+    "test_hash": "61beb2b0d58243f197cda2ad05ffc67ae88cad132a8f028dbb8cc1831c90504c"
+  },
+  "config": {
+    "backend": "local",
+    "dataset": "hotpotqa",
+    "seed": 42,
+    "rounds": 3,
+    "population_size": 2,
+    "train_batch_size": 100,
+    "failure_k": 3,
+    "max_attempts": 2,
+    "qa_max_tokens": 2048,
+    "operator_max_tokens": 3072,
+    "skill_max_tokens": 2048,
+    "feedback_max_tokens": 2048,
+    "qa_temperature": 0,
+    "operator_temperature": 0.6,
+    "top_p": 1,
+    "timeout_seconds": 300,
+    "concurrency": 1,
+    "api_retry_delay_seconds": 2.0,
+    "gpu_ledger_path": "F:\\Document\\HKUST\\2026fall\\NLP\\Project\\AIAA4051_Project\\Baseline\\runs\\gpu_accounting.jsonl",
+    "model": {
+      "id": "Qwen3.5-9B-Q4_K_M",
+      "revision": "Qwen/Qwen3.5-9B@c202236235762e1c871ad0ccb60c8ee5ba337b9a;unsloth/Qwen3.5-9B-GGUF@3885219b6810b007914f3a7950a8d1b469d598a5",
+      "base_url": "http://127.0.0.1:8000/v1",
+      "api_key_env": "PROJECT5_API_KEY",
+      "tokenizer_path": "api/runtime/tokenizer",
+      "precision": "GGUF Q4_K_M, CUDA 12.4, all layers on RTX 4070 Ti SUPER",
+      "server_version": "llama.cpp b11871 (b3fa69955ea81c3b60e77e3c1e2224c4a826ffb9)",
+      "extra_body": {
+        "chat_template_kwargs": {
+          "enable_thinking": false
+        }
+      },
+      "structured_operators": true,
+      "tokenizer_note": "Local tokenizer for the served model",
+      "context_window": 16384,
+      "context_safety_tokens": 512
+    },
+    "budget": {
+      "max_calls": 2000,
+      "max_generated_tokens": 2000000,
+      "max_wall_hours": 12
+    },
+    "pairing": {
+      "jaccard_threshold": 0.2,
+      "per_outcome_limit": 2
+    },
+    "course_hotpotqa": true
+  },
+  "preflight": {
+    "max_unskilled_input_tokens": {
+      "train": 3572,
+      "dev": 3042,
+      "test": 4513
+    },
+    "worst_case_with_skill_completion_and_reserve": 9153,
+    "context_window": 16384,
+    "tokenizer_sha256": "5f434e57da7403bc8232613f565c8d3de0bf56be57ff8326a83ebd76ee1f1e9c"
+  },
+  "gpu": [
+    {
+      "session": "4070-qwen35-20261124-114528",
+      "start": "2026-11-24T03:45:29.091544+00:00",
+      "end": "2026-11-24T10:15:50.206987+00:00",
+      "hours": 6.505865400833333
+    }
+  ],
+  "policy": {
+    "conditions": [
+      "N",
+      "I",
+      "B",
+      "C",
+      "C2b",
+      "C2c"
+    ],
+    "primary": "B versus original C; C2b and C2c are additional comparisons",
+    "selection": "three rounds; two parents; validation EM and upstream stable tie handling",
+    "train": "one fixed permutation of 300 train IDs, shared batches of 100 without replacement",
+    "inference": "full distractor contexts; single-turn answer generation; deterministic decoding; test after simultaneous freeze",
+    "budget": {
+      "max_calls": 2000,
+      "max_generated_tokens": 2000000,
+      "max_wall_hours": 12
+    },
+    "config_hash": "da4d7caabf64749889beb2a5397c5d21d1dbf902485a4362e93081c3fefcd9ca",
+    "data_hash": "e548a3addabfd6c2a2b781126a4c07b4c808e11aaf736c773645c7c7972bcb70",
+    "protocol_hash": "58f500c20b6811f80d0952a1317c9eedc0a5474aaf5954407ef240308dde013d",
+    "source_hashes": {
+      "api/run_hotpotqa_course.py": "bbfbb7f6dc1d8247a2d4a0a4c5a009cf81a32fec52a4686a7799afb58918a1a5",
+      "Baseline/prepare_hotpotqa_course.py": "a15224f325a8aeef47d4f9989b4810eea711ad1df69bc3250246c7bf5dd58998",
+      "Explore/explore_c2c.py": "f470ee03f0a782ae72df82e188434966b43da2cd4572c5002a5d3aa1ee8de1ba",
+      "Explore/explore_v2/__init__.py": "dc7469a3f0dab63a31bac1061f050aa75942d2489b398f6a3bbb895b86becab5",
+      "Explore/explore_v2/diagnostics.py": "2404bbce75bb700360221e8568a42aca99e855233b881c4d0b55a09f4609edec",
+      "Explore/explore_v2/evidence.py": "7e7d615ecc9d4ed20b9bf4f67dc1a77c557acb552fdc8e6a0c69f9a8d2fdcb3b",
+      "Explore/explore_v2/feedback.py": "ba1b733863b8b7defeac8e38099c46b15f2dd5a4846efb7c3e1ff6ec3ad71aa3"
+    }
+  },
+  "arms": {
+    "N": {
+      "method": "无技能",
+      "best_id": "static_N",
+      "skill_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "skill": "",
+      "development_cost": {
+        "calls": 150,
+        "prompt_tokens": 263593,
+        "generated_tokens": 13205,
+        "reasoning_tokens": 0,
+        "physical_calls": 150
+      },
+      "test_cost": {
+        "physical_calls": 1000,
+        "prompt_tokens": 1748376,
+        "generated_tokens": 107802,
+        "reasoning_tokens": 0,
+        "failed_requests": 0
+      },
+      "dev": {
+        "n": 150,
+        "correct": 103,
+        "em": 0.6866666666666666,
+        "f1": 0.8121937515545943,
+        "mean_latency_seconds": 1.373446666666229,
+        "p50_latency_seconds": 1.3595000000059372,
+        "p95_latency_seconds": 2.4380000000026483,
+        "infrastructure_errors": 0,
+        "provider_refusals": 0,
+        "format_failures": 0
+      },
+      "dev_by_level": {
+        "easy": {
+          "n": 50,
+          "correct": 35,
+          "f1": 0.8156894797720082
+        },
+        "medium": {
+          "n": 50,
+          "correct": 40,
+          "f1": 0.86
+        },
+        "hard": {
+          "n": 50,
+          "correct": 28,
+          "f1": 0.7608917748917751
+        }
+      },
+      "test": {
+        "n": 1000,
+        "correct": 633,
+        "em": 0.633,
+        "f1": 0.7852074777107885,
+        "mean_latency_seconds": 1.6012569999999542,
+        "p50_latency_seconds": 1.3045000000056461,
+        "p95_latency_seconds": 2.6115500000007144,
+        "infrastructure_errors": 0,
+        "provider_refusals": 0,
+        "format_failures": 7
+      },
+      "test_by_level": {
+        "hard": {
+          "n": 1000,
+          "correct": 633,
+          "f1": 0.7852074777107885
+        }
+      }
+    },
+    "I": {
+      "method": "上游初始技能",
+      "best_id": "static_I",
+      "skill_hash": "98e05007c06e2c5a10bcee2a4bbbe206c291efcc2fdef0335f0c4aaf8d3613a3",
+      "skill": "# Question Answering Skill\n\n## Global Guidance\n\n### General Principles\n\n### Graph-structured Skill Execution Guide\n\nThis skill represents task-solving workflows as graphs of reusable subtask nodes.\n\n- The **Global Guidance** section contains instructions that apply across all nodes and workflows.\n- The **Node Lists** section defines the available nodes. Each node represents one execution step and lists the instructions to follow while performing that step.\n- The **Task Graphs** section describes the workflow needed to solve each task type. Each task type appears as a subsection with a **Use when** condition and a numbered **Workflow**.\n- In a numbered workflow, each item is a node to execute in order: `1. A 2. B 3. C` means complete node `A`, then node `B`, then node `C`.\n- Before solving a task, first identify the most relevant task type in **Task Graphs** using its **Use when** description. Then execute its **Workflow** from top to bottom.\n- When executing a node, apply and follow the instructions under that node in **Node Lists**.\n\n---\n\n## Node Lists\n\n\n\n---\n\n## Task Graphs\n\n",
+      "development_cost": {
+        "calls": 150,
+        "prompt_tokens": 300343,
+        "generated_tokens": 16347,
+        "reasoning_tokens": 0,
+        "physical_calls": 150
+      },
+      "test_cost": {
+        "physical_calls": 1000,
+        "prompt_tokens": 1993376,
+        "generated_tokens": 125653,
+        "reasoning_tokens": 0,
+        "failed_requests": 0
+      },
+      "dev": {
+        "n": 150,
+        "correct": 102,
+        "em": 0.68,
+        "f1": 0.8166108818309629,
+        "mean_latency_seconds": 1.6149866666671004,
+        "p50_latency_seconds": 1.3434999999954016,
+        "p95_latency_seconds": 2.8932000000015217,
+        "infrastructure_errors": 0,
+        "provider_refusals": 0,
+        "format_failures": 0
+      },
+      "dev_by_level": {
+        "easy": {
+          "n": 50,
+          "correct": 34,
+          "f1": 0.8053088359690793
+        },
+        "medium": {
+          "n": 50,
+          "correct": 42,
+          "f1": 0.9003333333333333
+        },
+        "hard": {
+          "n": 50,
+          "correct": 26,
+          "f1": 0.7441904761904763
+        }
+      },
+      "test": {
+        "n": 1000,
+        "correct": 626,
+        "em": 0.626,
+        "f1": 0.7844152985902972,
+        "mean_latency_seconds": 1.8003350000001375,
+        "p50_latency_seconds": 1.4380000000019209,
+        "p95_latency_seconds": 3.5795500000080196,
+        "infrastructure_errors": 0,
+        "provider_refusals": 0,
+        "format_failures": 5
+      },
+      "test_by_level": {
+        "hard": {
+          "n": 1000,
+          "correct": 626,
+          "f1": 0.7844152985902972
+        }
+      }
+    },
+    "B": {
+      "method": "原版失败反馈",
+      "best_id": "g0002_i0001",
+      "skill_hash": "9ae2340ea1528547352c24ccea0571802f42d176678e9d80dc574be123df0b08",
+      "skill": "# Question Answering Skill\n\n## Global Guidance\n\n### General Principles\n\n1. **Strict Adherence to Context**: Answers must be derived strictly from the provided context. Do not use external knowledge to fill gaps or infer answers not explicitly stated in the text.\n2. **Precision in Extraction**: Extract only the specific entity or fact requested. If the context mentions a broader category (e.g., \"United Kingdom\") but the question asks for a specific instance (e.g., \"London\"), do not generalize unless the text explicitly links them as the answer.\n3. **Complete Workflow Execution**: Every step in a selected Task Graph's **Workflow** must be executed in order. Skipping steps or assuming outcomes is prohibited.\n4. **Exact Node Matching**: When executing a workflow, use the exact node names defined in **Node Lists**. Do not paraphrase node names.\n\n### Graph-structured Skill Execution Guide\n\n1. **Task Selection**: Before solving, scan the **Task Graphs** section to identify the task type whose **Use when** condition best matches the current question.\n2. **Workflow Execution**: Once the relevant task type is identified, execute its **Workflow** sequentially from top to bottom.\n3. **Node Execution**: For each numbered item in the workflow (e.g., `1. Node A`), locate the corresponding node in the **Node Lists** section and execute its instructions.\n4. **Verification**: After completing the workflow, verify the final answer against the context to ensure it directly answers the question without hallucination or over-generalization.\n\n---\n\n## Node Lists\n\n### Identify Contextual Entities\nScan the provided context to identify all explicit mentions of entities (people, places, objects, organizations) and facts relevant to the question.\n\n### Locate Specific Attribute\nSearch the context specifically for the attribute, property, or relationship requested in the question (e.g., type, developer, location, count) linked to the identified entities.\n\n### Extract Exact Answer\nExtract the precise text segment that directly answers the question, ensuring no generalization or omission of required details (e.g., full names, specific types).\n\n### Verify Against Context\nReview the extracted answer to confirm it is explicitly supported by the text and matches the question's constraints without hallucination.\n\n---\n\n## Task Graphs\n\n### Standard Extraction Task\n**Use when:** The question asks for a specific fact, entity, attribute, or relationship that can be directly found in the text.\n**Workflow:**\n1. Identify Contextual Entities\n2. Locate Specific Attribute\n3. Extract Exact Answer\n4. Verify Against Context\n\n### Entity Relationship Task\n**Use when:** The question asks to connect two entities or determine a relationship between them (e.g., \"Who developed X?\", \"Where is Y located?\").\n**Workflow:**\n1. Identify Contextual Entities\n2. Locate Specific Attribute\n3. Extract Exact Answer\n4. Verify Against Context\n",
+      "development_cost": {
+        "calls": 1807,
+        "prompt_tokens": 4052296,
+        "generated_tokens": 196123,
+        "reasoning_tokens": 0,
+        "physical_calls": 1506
+      },
+      "test_cost": {
+        "physical_calls": 1000,
+        "prompt_tokens": 2352376,
+        "generated_tokens": 130444,
+        "reasoning_tokens": 0,
+        "failed_requests": 0
+      },
+      "dev": {
+        "n": 150,
+        "correct": 105,
+        "em": 0.7,
+        "f1": 0.8183422318422318,
+        "mean_latency_seconds": 1.830360000000122,
+        "p50_latency_seconds": 1.5625,
+        "p95_latency_seconds": 3.1774500000035815,
+        "infrastructure_errors": 0,
+        "provider_refusals": 0,
+        "format_failures": 1
+      },
+      "dev_by_level": {
+        "easy": {
+          "n": 50,
+          "correct": 36,
+          "f1": 0.8062301587301587
+        },
+        "medium": {
+          "n": 50,
+          "correct": 42,
+          "f1": 0.8933333333333333
+        },
+        "hard": {
+          "n": 50,
+          "correct": 27,
+          "f1": 0.7554632034632036
+        }
+      },
+      "test": {
+        "n": 1000,
+        "correct": 618,
+        "em": 0.618,
+        "f1": 0.7794842538094845,
+        "mean_latency_seconds": 1.8628439999999682,
+        "p50_latency_seconds": 1.5779999999940628,
+        "p95_latency_seconds": 3.7523499999995673,
+        "infrastructure_errors": 0,
+        "provider_refusals": 0,
+        "format_failures": 5
+      },
+      "test_by_level": {
+        "hard": {
+          "n": 1000,
+          "correct": 618,
+          "f1": 0.7794842538094845
+        }
+      },
+      "curve": [
+        {
+          "round": 0,
+          "correct": 102
+        },
+        {
+          "round": 1,
+          "correct": 104
+        },
+        {
+          "round": 2,
+          "correct": 105
+        },
+        {
+          "round": 3,
+          "correct": 105
+        }
+      ],
+      "candidates": [
+        {
+          "round": 1,
+          "id": "g0001_i0000",
+          "parent": [
+            "g0000_i0000"
+          ],
+          "accepted": true,
+          "survived": true,
+          "correct": 104,
+          "attempts": 1
+        },
+        {
+          "round": 1,
+          "id": "g0001_i0001",
+          "parent": [
+            "g0000_i0000"
+          ],
+          "accepted": true,
+          "survived": false,
+          "correct": 97,
+          "attempts": 1
+        },
+        {
+          "round": 2,
+          "id": "g0002_i0000",
+          "parent": [
+            "g0000_i0000"
+          ],
+          "accepted": true,
+          "survived": false,
+          "correct": 104,
+          "attempts": 1
+        },
+        {
+          "round": 2,
+          "id": "g0002_i0001",
+          "parent": [
+            "g0001_i0000"
+          ],
+          "accepted": true,
+          "survived": true,
+          "correct": 105,
+          "attempts": 1
+        },
+        {
+          "round": 3,
+          "id": "g0003_i0000",
+          "parent": [
+            "g0002_i0001"
+          ],
+          "accepted": true,
+          "survived": false,
+          "correct": 103,
+          "attempts": 1
+        },
+        {
+          "round": 3,
+          "id": "g0003_i0001",
+          "parent": [
+            "g0002_i0001"
+          ],
+          "accepted": true,
+          "survived": false,
+          "correct": 104,
+          "attempts": 1
+        }
+      ]
+    },
+    "C": {
+      "method": "成功与失败配对",
+      "best_id": "g0003_i0001",
+      "skill_hash": "c04913e6222c24f6fa93d8611e92be25122b44267a0bbd81c9ccc8541fddd84b",
+      "skill": "# Question Answering Skill\n\n## Global Guidance\n\n### General Principles\n\n1. **Strict Adherence to Context**: Answers must be derived strictly from the provided context. Do not use external knowledge to fill gaps or infer answers not explicitly stated in the text.\n2. **Precision in Extraction**: Extract only the specific entity or fact requested. If the context mentions a broader category (e.g., \"United Kingdom\") but the question asks for a specific instance (e.g., \"London\"), do not generalize unless the text explicitly links them as the answer.\n3. **Complete Workflow Execution**: Every step in a selected Task Graph's **Workflow** must be executed in order. Skipping steps or assuming outcomes is prohibited.\n4. **Exact Node Matching**: When executing a workflow, use the exact node names defined in **Node Lists**. Do not paraphrase node names.\n\n### Graph-structured Skill Execution Guide\n\n1. **Task Selection**: Before solving, scan the **Task Graphs** section to identify the task type whose **Use when** condition best matches the current question.\n2. **Workflow Execution**: Once the relevant task type is identified, execute its **Workflow** sequentially from top to bottom.\n3. **Node Execution**: For each numbered item in the workflow (e.g., `1. Node A`), locate the corresponding node in the **Node Lists** section and execute its instructions.\n4. **Verification**: After completing the workflow, verify the final answer against the context to ensure it directly answers the question without hallucination or over-generalization.\n\n---\n\n## Node Lists\n\n### Identify Contextual Entities\nScan the provided context to identify all explicit mentions of entities (people, places, objects, organizations) and facts relevant to the question.\n\n### Locate Specific Attribute\nSearch the context specifically for the attribute, property, or relationship requested in the question (e.g., type, developer, location, count, shared role) linked to the identified entities.\n\n### Extract Exact Answer\nExtract the precise text segment that directly answers the question, ensuring no generalization or omission of required details (e.g., full names, specific types).\n\n### Verify Answer Consistency\nReview the extracted answer to confirm it is explicitly supported by the text, matches the question's constraints without hallucination, and maintains grammatical consistency (singular/plural) with the query.\n\n---\n\n## Task Graphs\n\n### Standard Extraction Task\n**Use when:** The question asks for a specific fact, entity, attribute, or relationship that can be directly found in the text.\n**Workflow:**\n1. Identify Contextual Entities\n2. Locate Specific Attribute\n3. Extract Exact Answer\n4. Verify Answer Consistency\n\n### Entity Relationship Task\n**Use when:** The question asks to connect two entities, determine a relationship between them, or identify shared characteristics (e.g., \"What do X and Y have in common?\").\n**Workflow:**\n1. Identify Contextual Entities\n2. Locate Specific Attribute\n3. Extract Exact Answer\n4. Verify Answer Consistency\n",
+      "development_cost": {
+        "calls": 1807,
+        "prompt_tokens": 4070002,
+        "generated_tokens": 197892,
+        "reasoning_tokens": 0,
+        "physical_calls": 1506
+      },
+      "test_cost": {
+        "physical_calls": 1000,
+        "prompt_tokens": 2376376,
+        "generated_tokens": 146365,
+        "reasoning_tokens": 0,
+        "failed_requests": 0
+      },
+      "dev": {
+        "n": 150,
+        "correct": 106,
+        "em": 0.7066666666666667,
+        "f1": 0.811314454064454,
+        "mean_latency_seconds": 1.908713333333338,
+        "p50_latency_seconds": 1.7104999999937718,
+        "p95_latency_seconds": 3.2913000000044113,
+        "infrastructure_errors": 0,
+        "provider_refusals": 0,
+        "format_failures": 1
+      },
+      "dev_by_level": {
+        "easy": {
+          "n": 50,
+          "correct": 36,
+          "f1": 0.7944801587301588
+        },
+        "medium": {
+          "n": 50,
+          "correct": 42,
+          "f1": 0.8933333333333333
+        },
+        "hard": {
+          "n": 50,
+          "correct": 28,
+          "f1": 0.7461298701298702
+        }
+      },
+      "test": {
+        "n": 1000,
+        "correct": 618,
+        "em": 0.618,
+        "f1": 0.7841163206968458,
+        "mean_latency_seconds": 2.044261999999988,
+        "p50_latency_seconds": 1.7029999999940628,
+        "p95_latency_seconds": 3.706099999994328,
+        "infrastructure_errors": 0,
+        "provider_refusals": 0,
+        "format_failures": 6
+      },
+      "test_by_level": {
+        "hard": {
+          "n": 1000,
+          "correct": 618,
+          "f1": 0.7841163206968458
+        }
+      },
+      "curve": [
+        {
+          "round": 0,
+          "correct": 102
+        },
+        {
+          "round": 1,
+          "correct": 104
+        },
+        {
+          "round": 2,
+          "correct": 105
+        },
+        {
+          "round": 3,
+          "correct": 106
+        }
+      ],
+      "candidates": [
+        {
+          "round": 1,
+          "id": "g0001_i0000",
+          "parent": [
+            "g0000_i0000"
+          ],
+          "accepted": true,
+          "survived": true,
+          "correct": 104,
+          "attempts": 1
+        },
+        {
+          "round": 1,
+          "id": "g0001_i0001",
+          "parent": [
+            "g0000_i0000"
+          ],
+          "accepted": true,
+          "survived": false,
+          "correct": 97,
+          "attempts": 1
+        },
+        {
+          "round": 2,
+          "id": "g0002_i0000",
+          "parent": [
+            "g0000_i0000"
+          ],
+          "accepted": true,
+          "survived": false,
+          "correct": 102,
+          "attempts": 1
+        },
+        {
+          "round": 2,
+          "id": "g0002_i0001",
+          "parent": [
+            "g0001_i0000"
+          ],
+          "accepted": true,
+          "survived": true,
+          "correct": 105,
+          "attempts": 1
+        },
+        {
+          "round": 3,
+          "id": "g0003_i0000",
+          "parent": [
+            "g0002_i0001"
+          ],
+          "accepted": true,
+          "survived": false,
+          "correct": 100,
+          "attempts": 1
+        },
+        {
+          "round": 3,
+          "id": "g0003_i0001",
+          "parent": [
+            "g0002_i0001"
+          ],
+          "accepted": true,
+          "survived": true,
+          "correct": 106,
+          "attempts": 1
+        }
+      ],
+      "pairing": {
+        "selected": 18,
+        "unpaired": 12,
+        "similar_task": 5,
+        "same_question": 1,
+        "unique_failure": 4,
+        "unique_reference": 4
+      }
+    },
+    "C2b": {
+      "method": "配对、可观察诊断与证据片段",
+      "best_id": "g0003_i0000",
+      "skill_hash": "a6f29dc94907c30cac9758a7bfc44e248321f4273fc5407379a383aaac2962c4",
+      "skill": "# Question Answering Skill\n\n## Global Guidance\n\n### General Principles\n\n1.  **Strict Grounding**: Answers must be derived exclusively from the provided documents. Do not use external knowledge, assumptions, or general facts not explicitly stated in the text.\n2.  **Granularity Precision**: Ensure the retrieved information matches the specific granularity requested (e.g., exact entity names, specific dates, precise relationships). Do not answer with a broader category if a specific link is required.\n3.  **Chain Verification**: If an answer depends on a chain of reasoning (e.g., Entity A is related to Entity B, which is related to Entity C), verify that every link in the chain is explicitly stated in the text before concluding.\n4.  **Contextual Consistency**: Review surrounding context to ensure no contradictory information exists and that the answer does not rely on unverified assumptions.\n5.  **Exact Extraction**: Extract values as direct excerpts or minimal, faithful paraphrases of the source text. Avoid adding interpretation or modifying the original meaning.\n\n### Graph-structured Skill Execution Guide\n\nThis skill represents task-solving workflows as graphs of reusable subtask nodes.\n\n- The **Global Guidance** section contains instructions that apply across all nodes and workflows.\n- The **Node Lists** section defines the available nodes. Each node represents one execution step and lists the instructions to follow while performing that step.\n- The **Task Graphs** section describes the workflow needed to solve each task type. Each task type appears as a subsection with a **Use when** condition and a numbered **Workflow**.\n- In a numbered workflow, each item is a node to execute in order: `1. A 2. B 3. C` means complete node `A`, then node `B`, then `C`.\n- Before solving a task, first identify the most relevant task type in **Task Graphs** using its **Use when** description. Then execute its **Workflow** from top to bottom.\n- When executing a node, apply and follow the instructions under that node in **Node Lists**.\n\n---\n\n## Node Lists\n\n### Verify Referent and Granularity\n1. Identify the specific entity or concept explicitly requested by the question (e.g., \"town\", \"county\", \"game\", \"country\").\n2. Scan the provided documents for the exact entity name or the specific relationship connecting the entities mentioned.\n3. Ensure the retrieved information matches the requested granularity (e.g., do not answer \"Cheshire\" when \"Cheshire County\" is required, unless the text explicitly equates them).\n4. If the text provides a broader category or a related but distinct entity, verify if the specific link exists in the text before concluding.\n\n### Extract Explicit Answer\n1. Locate the sentence or phrase in the documents that directly answers the question based on the verified referent and relationships.\n2. Extract the specific value or name found in the text.\n3. Ensure the extracted text is a direct excerpt or a minimal, faithful paraphrase of the source text without adding external knowledge.\n4. If multiple entities are mentioned, select the one that satisfies the specific constraints of the question.\n\n### Cross-Check Context\n1. Review the surrounding context of the extracted answer to ensure no contradictory information exists in the provided documents.\n2. Confirm that the answer does not rely on assumptions not supported by the text.\n3. If the answer depends on a chain of reasoning (e.g., Entity A is in County B), verify each link in the chain is explicitly stated.\n\n---\n\n## Task Graphs\n\n### Entity Location Query\n**Use when:** The question asks for the location (country, state, county, city) of a specific entity or the entity associated with a specific location.\n**Workflow:**\n1. Verify Referent and Granularity\n2. Extract Explicit Answer\n\n### Entity Attribute Query\n**Use when:** The question asks for a specific attribute, event, or detail associated with a known entity (e.g., year, team name, number of participants).\n**Workflow:**\n1. Verify Referent and Granularity\n2. Extract Explicit Answer\n\n### Multi-Entity Relationship Query\n**Use when:** The question asks for a relationship between two or more entities or a common property shared by multiple named entities.\n**Workflow:**\n1. Verify Referent and Granularity\n2. Extract Explicit Answer\n3. Cross-Check Context\n",
+      "development_cost": {
+        "calls": 1809,
+        "prompt_tokens": 4252720,
+        "generated_tokens": 229651,
+        "reasoning_tokens": 0,
+        "physical_calls": 1508
+      },
+      "test_cost": {
+        "physical_calls": 1000,
+        "prompt_tokens": 2664376,
+        "generated_tokens": 163965,
+        "reasoning_tokens": 0,
+        "failed_requests": 0
+      },
+      "dev": {
+        "n": 150,
+        "correct": 105,
+        "em": 0.7,
+        "f1": 0.8020937620839581,
+        "mean_latency_seconds": 2.1368599999998694,
+        "p50_latency_seconds": 1.7734999999956926,
+        "p95_latency_seconds": 3.6106000000036143,
+        "infrastructure_errors": 0,
+        "provider_refusals": 0,
+        "format_failures": 1
+      },
+      "dev_by_level": {
+        "easy": {
+          "n": 50,
+          "correct": 35,
+          "f1": 0.7817704637410521
+        },
+        "medium": {
+          "n": 50,
+          "correct": 41,
+          "f1": 0.86
+        },
+        "hard": {
+          "n": 50,
+          "correct": 29,
+          "f1": 0.7645108225108226
+        }
+      },
+      "test": {
+        "n": 1000,
+        "correct": 620,
+        "em": 0.62,
+        "f1": 0.782424968298046,
+        "mean_latency_seconds": 2.252213999999978,
+        "p50_latency_seconds": 1.625,
+        "p95_latency_seconds": 4.0962999999974254,
+        "infrastructure_errors": 0,
+        "provider_refusals": 0,
+        "format_failures": 11
+      },
+      "test_by_level": {
+        "hard": {
+          "n": 1000,
+          "correct": 620,
+          "f1": 0.782424968298046
+        }
+      },
+      "curve": [
+        {
+          "round": 0,
+          "correct": 102
+        },
+        {
+          "round": 1,
+          "correct": 103
+        },
+        {
+          "round": 2,
+          "correct": 103
+        },
+        {
+          "round": 3,
+          "correct": 105
+        }
+      ],
+      "candidates": [
+        {
+          "round": 1,
+          "id": "g0001_i0000",
+          "parent": [
+            "g0000_i0000"
+          ],
+          "accepted": true,
+          "survived": false,
+          "correct": 101,
+          "attempts": 1
+        },
+        {
+          "round": 1,
+          "id": "g0001_i0001",
+          "parent": [
+            "g0000_i0000"
+          ],
+          "accepted": true,
+          "survived": true,
+          "correct": 103,
+          "attempts": 2
+        },
+        {
+          "round": 2,
+          "id": "g0002_i0000",
+          "parent": [
+            "g0000_i0000"
+          ],
+          "accepted": true,
+          "survived": false,
+          "correct": 98,
+          "attempts": 1
+        },
+        {
+          "round": 2,
+          "id": "g0002_i0001",
+          "parent": [
+            "g0001_i0001"
+          ],
+          "accepted": true,
+          "survived": false,
+          "correct": 100,
+          "attempts": 1
+        },
+        {
+          "round": 3,
+          "id": "g0003_i0000",
+          "parent": [
+            "g0001_i0001"
+          ],
+          "accepted": true,
+          "survived": true,
+          "correct": 105,
+          "attempts": 1
+        },
+        {
+          "round": 3,
+          "id": "g0003_i0001",
+          "parent": [
+            "g0001_i0001"
+          ],
+          "accepted": true,
+          "survived": false,
+          "correct": 103,
+          "attempts": 2
+        }
+      ],
+      "pairing": {
+        "selected": 18,
+        "unpaired": 10,
+        "similar_task": 6,
+        "same_question": 2,
+        "unique_failure": 6,
+        "unique_reference": 6
+      }
+    },
+    "C2c": {
+      "method": "C2b 加问题所求类型匹配",
+      "best_id": "g0003_i0000",
+      "skill_hash": "45176b736751b40c566e0a0cfdf87869f5bc299e7c673a6033aac54c82b70596",
+      "skill": "# Question Answering Skill\n\n## Global Guidance\n\n### General Principles\n\n1.  **Evidence-Based Verification**: Verify the requested target and all necessary relational hops strictly against the supplied passages. Do not infer a missing hop or relation solely because the final answer string differs from the source text. If evidence is missing or ambiguous, maintain uncertainty rather than inventing a new restriction or assuming a connection.\n2.  **Granularity and Qualifier Preservation**: When extracting answers, strictly adhere to the granularity requested in the question. Retain correctly supported intermediate relations to avoid false precision. Do not shorten or omit necessary qualifiers unless the question explicitly asks for the broad category.\n3.  **Exact Match Adherence**: The predicted answer must match the gold label exactly. Differences in string order, capitalization, or pluralization (e.g., \"songwriter\" vs \"songwriters\") constitute a failure if the core entity is correct but the form deviates. Ensure the output string is identical to the expected entity.\n4.  **Node Execution Fidelity**: When executing a node, apply and follow the instructions under that node in **Node Lists** exactly. Do not skip steps or combine instructions from different nodes.\n\n### Graph-structured Skill Execution Guide\n\nThis skill represents task-solving workflows as graphs of reusable subtask nodes.\n\n- The **Global Guidance** section contains instructions that apply across all nodes and workflows.\n- The **Node Lists** section defines the available nodes. Each node represents one execution step and lists the instructions to follow while performing that step.\n- The **Task Graphs** section describes the workflow needed to solve each task type. Each task type appears as a subsection with a **Use when** condition and a numbered **Workflow**.\n- In a numbered workflow, each item is a node to execute in order: `1. A 2. B 3. C` means complete node `A`, then node `B`, then `C`.\n- Before solving a task, first identify the most relevant task type in **Task Graphs** using its **Use when** description. Then execute its **Workflow** from top to bottom.\n- When executing a node, apply and follow the instructions under that node in **Node Lists**.\n\n---\n\n## Node Lists\n\n\n\n---\n\n## Task Graphs\n",
+      "development_cost": {
+        "calls": 1807,
+        "prompt_tokens": 4113516,
+        "generated_tokens": 201590,
+        "reasoning_tokens": 0,
+        "physical_calls": 1506
+      },
+      "test_cost": {
+        "physical_calls": 1000,
+        "prompt_tokens": 2222376,
+        "generated_tokens": 160311,
+        "reasoning_tokens": 0,
+        "failed_requests": 0
+      },
+      "dev": {
+        "n": 150,
+        "correct": 105,
+        "em": 0.7,
+        "f1": 0.8092205279882763,
+        "mean_latency_seconds": 2.0737666666664882,
+        "p50_latency_seconds": 1.7420000000056461,
+        "p95_latency_seconds": 3.8925999999955816,
+        "infrastructure_errors": 0,
+        "provider_refusals": 0,
+        "format_failures": 0
+      },
+      "dev_by_level": {
+        "easy": {
+          "n": 50,
+          "correct": 35,
+          "f1": 0.7981983805016258
+        },
+        "medium": {
+          "n": 50,
+          "correct": 41,
+          "f1": 0.8733333333333333
+        },
+        "hard": {
+          "n": 50,
+          "correct": 29,
+          "f1": 0.7561298701298702
+        }
+      },
+      "test": {
+        "n": 1000,
+        "correct": 639,
+        "em": 0.639,
+        "f1": 0.7932101786027577,
+        "mean_latency_seconds": 2.202938999999955,
+        "p50_latency_seconds": 1.610000000000582,
+        "p95_latency_seconds": 4.147049999998847,
+        "infrastructure_errors": 0,
+        "provider_refusals": 0,
+        "format_failures": 11
+      },
+      "test_by_level": {
+        "hard": {
+          "n": 1000,
+          "correct": 639,
+          "f1": 0.7932101786027577
+        }
+      },
+      "curve": [
+        {
+          "round": 0,
+          "correct": 102
+        },
+        {
+          "round": 1,
+          "correct": 104
+        },
+        {
+          "round": 2,
+          "correct": 104
+        },
+        {
+          "round": 3,
+          "correct": 105
+        }
+      ],
+      "candidates": [
+        {
+          "round": 1,
+          "id": "g0001_i0000",
+          "parent": [
+            "g0000_i0000"
+          ],
+          "accepted": true,
+          "survived": true,
+          "correct": 104,
+          "attempts": 1
+        },
+        {
+          "round": 1,
+          "id": "g0001_i0001",
+          "parent": [
+            "g0000_i0000"
+          ],
+          "accepted": true,
+          "survived": false,
+          "correct": 102,
+          "attempts": 1
+        },
+        {
+          "round": 2,
+          "id": "g0002_i0000",
+          "parent": [
+            "g0000_i0000"
+          ],
+          "accepted": true,
+          "survived": true,
+          "correct": 103,
+          "attempts": 1
+        },
+        {
+          "round": 2,
+          "id": "g0002_i0001",
+          "parent": [
+            "g0001_i0000"
+          ],
+          "accepted": true,
+          "survived": false,
+          "correct": 101,
+          "attempts": 1
+        },
+        {
+          "round": 3,
+          "id": "g0003_i0000",
+          "parent": [
+            "g0001_i0000"
+          ],
+          "accepted": true,
+          "survived": true,
+          "correct": 105,
+          "attempts": 1
+        },
+        {
+          "round": 3,
+          "id": "g0003_i0001",
+          "parent": [
+            "g0001_i0000"
+          ],
+          "accepted": true,
+          "survived": false,
+          "correct": 103,
+          "attempts": 1
+        }
+      ],
+      "pairing": {
+        "selected": 18,
+        "unpaired": 9,
+        "similar_task": 8,
+        "same_question": 1,
+        "unique_failure": 6,
+        "unique_reference": 6
+      }
+    }
+  },
+  "comparison": {
+    "dev": {
+      "C": {
+        "n": 150,
+        "counts": {
+          "repaired": 2,
+          "regressed": 1,
+          "both_correct": 104,
+          "both_wrong": 43
+        },
+        "repair_rate": 0.044444444444444446,
+        "regression_rate": 0.009523809523809525,
+        "em_difference_C_minus_B": 0.006666666666666667,
+        "paired_bootstrap_95": [
+          -0.013333333333333334,
+          0.02666666666666667
+        ],
+        "uncertainty_scope": "Question-level resampling; not variability across training seeds."
+      },
+      "C2b": {
+        "n": 150,
+        "counts": {
+          "repaired": 4,
+          "regressed": 4,
+          "both_correct": 101,
+          "both_wrong": 41
+        },
+        "repair_rate": 0.08888888888888889,
+        "regression_rate": 0.0380952380952381,
+        "em_difference_C_minus_B": 0.0,
+        "paired_bootstrap_95": [
+          -0.04,
+          0.03333333333333333
+        ],
+        "uncertainty_scope": "Question-level resampling; not variability across training seeds."
+      },
+      "C2c": {
+        "n": 150,
+        "counts": {
+          "repaired": 2,
+          "regressed": 2,
+          "both_correct": 103,
+          "both_wrong": 43
+        },
+        "repair_rate": 0.044444444444444446,
+        "regression_rate": 0.01904761904761905,
+        "em_difference_C_minus_B": 0.0,
+        "paired_bootstrap_95": [
+          -0.02666666666666667,
+          0.02666666666666667
+        ],
+        "uncertainty_scope": "Question-level resampling; not variability across training seeds."
+      }
+    },
+    "test": {
+      "C": {
+        "n": 1000,
+        "counts": {
+          "repaired": 20,
+          "regressed": 20,
+          "both_correct": 598,
+          "both_wrong": 362
+        },
+        "repair_rate": 0.05235602094240838,
+        "regression_rate": 0.032362459546925564,
+        "em_difference_C_minus_B": 0.0,
+        "paired_bootstrap_95": [
+          -0.013,
+          0.013
+        ],
+        "uncertainty_scope": "Question-level resampling; not variability across training seeds."
+      },
+      "C2b": {
+        "n": 1000,
+        "counts": {
+          "repaired": 39,
+          "regressed": 37,
+          "both_correct": 581,
+          "both_wrong": 343
+        },
+        "repair_rate": 0.10209424083769633,
+        "regression_rate": 0.059870550161812294,
+        "em_difference_C_minus_B": 0.002,
+        "paired_bootstrap_95": [
+          -0.015,
+          0.018
+        ],
+        "uncertainty_scope": "Question-level resampling; not variability across training seeds."
+      },
+      "C2c": {
+        "n": 1000,
+        "counts": {
+          "repaired": 55,
+          "regressed": 34,
+          "both_correct": 584,
+          "both_wrong": 327
+        },
+        "repair_rate": 0.14397905759162305,
+        "regression_rate": 0.05501618122977346,
+        "em_difference_C_minus_B": 0.021,
+        "paired_bootstrap_95": [
+          0.002,
+          0.039
+        ],
+        "uncertainty_scope": "Question-level resampling; not variability across training seeds."
+      }
+    }
+  },
+  "matched": {
+    "calls": 1807,
+    "tokens": 196123,
+    "arms": {
+      "B": {
+        "round": 3,
+        "best_id": "g0002_i0001",
+        "skill_hash": "9ae2340ea1528547352c24ccea0571802f42d176678e9d80dc574be123df0b08",
+        "cost": {
+          "calls": 1807,
+          "prompt_tokens": 4052296,
+          "generated_tokens": 196123,
+          "reasoning_tokens": 0,
+          "physical_calls": 1506
+        },
+        "em": 0.7,
+        "f1": 0.8183422318422318,
+        "unused_calls": 0,
+        "unused_generated_tokens": 0
+      },
+      "C": {
+        "round": 2,
+        "best_id": "g0002_i0001",
+        "skill_hash": "9ae2340ea1528547352c24ccea0571802f42d176678e9d80dc574be123df0b08",
+        "cost": {
+          "calls": 1305,
+          "prompt_tokens": 2903734,
+          "generated_tokens": 130623,
+          "reasoning_tokens": 0,
+          "physical_calls": 1004
+        },
+        "em": 0.7,
+        "f1": 0.8183422318422318,
+        "unused_calls": 502,
+        "unused_generated_tokens": 65500
+      },
+      "C2b": {
+        "round": 2,
+        "best_id": "g0001_i0001",
+        "skill_hash": "e1b53d39edec76dbffe5760446579a80305e90f34e46c33d7f2135e0632bcd5a",
+        "cost": {
+          "calls": 1306,
+          "prompt_tokens": 3016402,
+          "generated_tokens": 149803,
+          "reasoning_tokens": 0,
+          "physical_calls": 1005
+        },
+        "em": 0.6866666666666666,
+        "f1": 0.8066536466438428,
+        "unused_calls": 501,
+        "unused_generated_tokens": 46320
+      },
+      "C2c": {
+        "round": 2,
+        "best_id": "g0001_i0000",
+        "skill_hash": "a5ccfb5f03e50976949fb51486a7b802c446794b9c0b04ccb74a98c6a1378588",
+        "cost": {
+          "calls": 1305,
+          "prompt_tokens": 2963788,
+          "generated_tokens": 135828,
+          "reasoning_tokens": 0,
+          "physical_calls": 1004
+        },
+        "em": 0.6933333333333334,
+        "f1": 0.8016652584887878,
+        "unused_calls": 502,
+        "unused_generated_tokens": 60295
+      }
+    }
+  },
+  "physical_total": {
+    "physical_calls": 12627,
+    "prompt_tokens": 28390957,
+    "generated_tokens": 1625571,
+    "reasoning_tokens": 0,
+    "failed_requests": 0
+  },
+  "additional_test_comparisons": {
+    "N": {
+      "n": 1000,
+      "counts": {
+        "repaired": 43,
+        "regressed": 37,
+        "both_correct": 596,
+        "both_wrong": 324
+      },
+      "repair_rate": 0.11716621253405994,
+      "regression_rate": 0.05845181674565561,
+      "em_difference_C_minus_B": 0.006,
+      "paired_bootstrap_95": [
+        -0.013,
+        0.023
+      ],
+      "uncertainty_scope": "Question-level resampling; not variability across training seeds."
+    },
+    "C2b": {
+      "n": 1000,
+      "counts": {
+        "repaired": 49,
+        "regressed": 30,
+        "both_correct": 590,
+        "both_wrong": 331
+      },
+      "repair_rate": 0.12894736842105264,
+      "regression_rate": 0.04838709677419355,
+      "em_difference_C_minus_B": 0.019,
+      "paired_bootstrap_95": [
+        0.001,
+        0.037
+      ],
+      "uncertainty_scope": "Question-level resampling; not variability across training seeds."
+    }
+  }
+}

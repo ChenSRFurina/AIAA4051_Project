@@ -9,6 +9,7 @@ from . import VENDOR
 from .io import digest, read_json, write_json
 
 CAPS = {"train": 100, "dev": 30, "test": 50}
+COURSE_HOTPOT = {"train": 300, "dev": 150, "test": 1000}
 
 
 def raw_rows(path):
@@ -60,12 +61,14 @@ def normalize_item(row, dataset):
             "answers": answers, "metadata": metadata}
 
 
-def check_splits(splits, *, test_pending=False):
+def check_splits(splits, *, test_pending=False, course_hotpot=False, near_duplicates=True):
     seen_ids, seen_questions, duplicates = {}, {}, []
     for split, rows in splits.items():
         if split == "test" and test_pending and not rows:
             continue
-        if not rows or len(rows) > CAPS[split]:
+        if course_hotpot and len(rows) != COURSE_HOTPOT[split]:
+            raise ValueError(f"{split}: course HotpotQA requires {COURSE_HOTPOT[split]} records")
+        if not rows or (not course_hotpot and len(rows) > CAPS[split]):
             raise ValueError(f"{split}: expected 1..{CAPS[split]} records")
         for row in rows:
             if row["id"] in seen_ids:
@@ -76,17 +79,18 @@ def check_splits(splits, *, test_pending=False):
                 duplicates.append({"kind": "normalized_question_duplicate", "left": seen_questions[normalized], "right": [split, row["id"]]})
             seen_questions[normalized] = [split, row["id"]]
     # Record lexical near-duplicates without outcome-based filtering or resampling.
-    groups = list(splits.items())
+    if not near_duplicates:
+        return duplicates
+    groups = [(split, [(row["id"], set(re.findall(r"\w+", row["question"].lower()))) for row in rows])
+              for split, rows in splits.items()]
     for i, (left_split, left) in enumerate(groups):
         for right_split, right in groups[i + 1:]:
-            for a in left:
-                a_words = set(re.findall(r"\w+", a["question"].lower()))
-                for b in right:
-                    b_words = set(re.findall(r"\w+", b["question"].lower()))
+            for a_id, a_words in left:
+                for b_id, b_words in right:
                     similarity = len(a_words & b_words) / len(a_words | b_words) if a_words | b_words else 0
                     if .8 <= similarity < 1:
-                        duplicates.append({"kind": "lexical_near_duplicate", "left": [left_split, a["id"]],
-                                           "right": [right_split, b["id"]], "jaccard": similarity})
+                        duplicates.append({"kind": "lexical_near_duplicate", "left": [left_split, a_id],
+                                           "right": [right_split, b_id], "jaccard": similarity})
     return duplicates
 
 
@@ -136,7 +140,9 @@ def load_data(folder, dataset, *, demo=False):
     if manifest["dataset"] != dataset or bool(manifest["demo"]) != bool(demo):
         raise ValueError("Dataset/demo provenance mismatch")
     splits = {split: read_json(folder / f"{split}.json") for split in CAPS}
-    check_splits(splits, test_pending=manifest.get("test_pending", False))
+    course_hotpot = dataset == "hotpotqa" and manifest.get("protocol") == "hotpotqa_distractor_course_11_02"
+    check_splits(splits, test_pending=manifest.get("test_pending", False) and not course_hotpot,
+                 course_hotpot=course_hotpot, near_duplicates=False)
     for split, rows in splits.items():
         if digest(rows) != manifest[f"{split}_hash"] or [r["id"] for r in rows] != read_json(folder / f"{split}_ids.json"):
             raise ValueError(f"Frozen {split} data/IDs changed")

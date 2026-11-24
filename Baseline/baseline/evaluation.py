@@ -45,7 +45,9 @@ def truncate_context_tokens(context, counter, limit):
 def qa_prompts(item, skill, *, config=None, counter=None):
     section = f"## Skill\n{skill.strip()}\n\n" if skill.strip() else ""
     system = load_prompt("rollout_system", env="searchqa").format(skill_section=section)
-    if config is not None and "qa_context_max_tokens" in config:
+    if config and config.get("course_hotpotqa"):
+        visible = item["context"]
+    elif config is not None and "qa_context_max_tokens" in config:
         if counter is None:
             raise ValueError("Token-based QA context requires the pinned token counter")
         visible = truncate_context_tokens(item["context"], counter, config["qa_context_max_tokens"])

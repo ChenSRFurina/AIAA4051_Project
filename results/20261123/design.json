@@ -1,0 +1,80 @@
+{
+  "protocol": "067f9db47e18c15f7f78975f73896c4ca6b25f6c477514214bae5889d3fb0f5e",
+  "config": {
+    "backend": "local",
+    "dataset": "searchqa",
+    "seed": 42,
+    "rounds": 3,
+    "population_size": 2,
+    "train_batch_size": 20,
+    "failure_k": 3,
+    "max_attempts": 2,
+    "qa_max_tokens": 2048,
+    "operator_max_tokens": 3072,
+    "skill_max_tokens": 2048,
+    "feedback_max_tokens": 2048,
+    "qa_temperature": 0.0,
+    "operator_temperature": 0.6,
+    "top_p": 1.0,
+    "timeout_seconds": 300,
+    "concurrency": 1,
+    "api_retry_delay_seconds": 2.0,
+    "gpu_ledger_path": "F:\\Document\\HKUST\\2026fall\\NLP\\Project\\AIAA4051_Project\\Baseline\\runs\\gpu_accounting.jsonl",
+    "model": {
+      "id": "Qwen3.5-9B-Q4_K_M",
+      "revision": "Qwen/Qwen3.5-9B@c202236235762e1c871ad0ccb60c8ee5ba337b9a;unsloth/Qwen3.5-9B-GGUF@3885219b6810b007914f3a7950a8d1b469d598a5",
+      "base_url": "http://127.0.0.1:8000/v1",
+      "api_key_env": "PROJECT5_API_KEY",
+      "tokenizer_path": "F:\\Document\\HKUST\\2026fall\\NLP\\Qwen3.5_9B_4bit\\tokenizer",
+      "precision": "GGUF Q4_K_M, CUDA 12.4, all layers on RTX 4070 Ti SUPER",
+      "server_version": "llama.cpp b11871 (b3fa69955ea81c3b60e77e3c1e2224c4a826ffb9)",
+      "extra_body": {
+        "chat_template_kwargs": {
+          "enable_thinking": false
+        }
+      },
+      "structured_operators": true,
+      "tokenizer_note": "Local tokenizer for the served model",
+      "context_window": 16384,
+      "context_safety_tokens": 512
+    },
+    "budget": {
+      "max_calls": 600,
+      "max_generated_tokens": 700000,
+      "max_wall_hours": 9
+    },
+    "pairing": {
+      "jaccard_threshold": 0.2,
+      "per_outcome_limit": 2
+    },
+    "qa_context_max_tokens": 4096
+  },
+  "design": {
+    "dataset": "searchqa",
+    "stage": "exploratory_local_train_dev",
+    "model": "Qwen3.5-9B-Q4_K_M",
+    "arms": [
+      "C2b",
+      "C2c"
+    ],
+    "hypothesis": "Question-cue retrieval for successful exemplars increases paired distinct training questions and can improve final dev EM.",
+    "primary": "paired dev EM on fixed 30 IDs after three rounds; report repairs and regressions",
+    "secondary": [
+      "F1",
+      "accepted candidates and scores",
+      "paired exposures among selected failures of mutation parents",
+      "distinct paired failure and reference IDs",
+      "calls, prompt/generation tokens, real GPU allocation"
+    ],
+    "protocol": "one fresh local initialization, identical caps/selection/QA/data/seed for both arms; no test evaluation; historical hosted scores are context only",
+    "freeze": "Specify the C2c code before reading local dev scores. No method retuning during the run."
+  },
+  "files": {
+    "Explore/explore_v2/__init__.py": "dc7469a3f0dab63a31bac1061f050aa75942d2489b398f6a3bbb895b86becab5",
+    "Explore/explore_v2/diagnostics.py": "2404bbce75bb700360221e8568a42aca99e855233b881c4d0b55a09f4609edec",
+    "Explore/explore_v2/evidence.py": "7e7d615ecc9d4ed20b9bf4f67dc1a77c557acb552fdc8e6a0c69f9a8d2fdcb3b",
+    "Explore/explore_v2/feedback.py": "ba1b733863b8b7defeac8e38099c46b15f2dd5a4846efb7c3e1ff6ec3ad71aa3",
+    "Explore/explore_c2c.py": "f470ee03f0a782ae72df82e188434966b43da2cd4572c5002a5d3aa1ee8de1ba",
+    "api/run_clue_comparison.py": "38ef36cf5b31ce7db9478fac3c498c982a5c53c82c5fda7772324fa0ed2c5350"
+  }
+}

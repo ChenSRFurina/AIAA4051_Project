@@ -23,8 +23,8 @@ def artifact_hashes(run):
 def freeze(runs, data_dir, output, *, demo=False):
     if Path(output).exists():
         raise ValueError("Freeze manifest already exists; use a new explicit destination")
-    if set(runs) != {"N", "I", "B", "C"}:
-        raise ValueError("Freeze requires exactly N, I, B, C")
+    if not {"N", "I", "B", "C"} <= set(runs) <= {"N", "I", "B", "C", "C2b", "C2c"}:
+        raise ValueError("Freeze requires N/I/B/C and accepts C2b/C2c")
     result, signature = {}, None
     for condition, path in runs.items():
         path = Path(path).resolve()
@@ -47,9 +47,10 @@ def freeze(runs, data_dir, output, *, demo=False):
     if digest(manifest) != signature["data_hash"] or tree_fingerprint() != signature["code_hash"]:
         raise ValueError("Data/code changed after training")
     b_init = read_json(Path(runs["B"]) / "shared_initialization.json")
-    c_init = read_json(Path(runs["C"]) / "shared_initialization.json")
-    if b_init["population_hash"] != c_init["population_hash"]:
-        raise ValueError("B/C must start from the same initialization")
+    for name in set(runs) - {"N", "I", "B"}:
+        c_init = read_json(Path(runs[name]) / "shared_initialization.json")
+        if b_init["population_hash"] != c_init["population_hash"]:
+            raise ValueError(f"B/{name} must start from the same initialization")
     record = {"signature": signature, "conditions": result, "dataset": config["dataset"],
               "test_ids_hash": digest(read_json(Path(data_dir) / "test_ids.json")), "config": config,
               "data_dir": str(Path(data_dir).resolve()), "selection": "validation_only", "test_memory_policy": "read_only_no_update"}
@@ -71,8 +72,16 @@ def test_frozen(frozen_path, output):
     for item in frozen["conditions"].values():
         if artifact_hashes(Path(item["run"])) != item["artifacts"]:
             raise ValueError("Frozen skills/run evidence changed")
-    ensure_empty(output)
     output = Path(output)
+    course = config.get("course_hotpotqa", False)
+    marker = output / "test_freeze_id.json"
+    if course and marker.exists():
+        if read_json(marker) != frozen["freeze_id"]:
+            raise ValueError("Cannot reuse test checkpoints from a different freeze")
+    else:
+        ensure_empty(output)
+        if course:
+            write_json(marker, frozen["freeze_id"])
     counter = ByteCounter() if frozen["signature"]["demo"] else TokenCounter(config["model"]["tokenizer_path"])
     if counter.identity != frozen["signature"]["tokenizer_hash"]:
         raise ValueError("Tokenizer changed after freeze")
@@ -85,6 +94,16 @@ def test_frozen(frozen_path, output):
         rows = []
         try:
             for example in splits["test"]:
+                checkpoint = run_dir / "predictions" / example["id"] / "result.json"
+                if course and checkpoint.exists():
+                    previous = read_json(checkpoint)
+                    if (previous["condition"], previous["id"], previous["skill_hash"], previous["visible_context_hash"],
+                        previous["gold_answers"], previous["split"]) != (
+                            condition, example["id"], digest(skill), digest(example["context"]), example["answers"], "test"):
+                        raise ValueError("Test checkpoint differs from frozen question or skill")
+                    if not previous["error"]:
+                        rows.append(previous)
+                        continue
                 rows.append(run_qa(client, example, skill, split="test", round_no=-1, seed=config["seed"],
                                    condition=condition, out_dir=run_dir))
         except BudgetExceeded as exc:
@@ -94,6 +113,8 @@ def test_frozen(frozen_path, output):
         write_json(run_dir / "outputs.json", rows)
         inventory(rows, run_dir / "analysis")
         results[condition] = {**aggregate(rows), "cost": budget.totals(), "gpu_hours": None}
+        if course:
+            print(f"Completed test {condition} ({len(rows)} questions)", flush=True)
         all_rows[condition] = rows
     write_json(output / "comparison.json", compare(all_rows["B"], all_rows["C"], config["seed"]))
     report = {"freeze_id": frozen["freeze_id"], "dataset": frozen["dataset"], "demo": frozen["signature"]["demo"],

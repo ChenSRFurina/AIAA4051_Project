@@ -1,0 +1,2892 @@
+{
+  "scope": "Local SearchQA selection dev, seed 42, exploratory",
+  "model": "Qwen3.5-9B-Q4_K_M",
+  "precision": "GGUF Q4_K_M, CUDA 12.4, all layers on RTX 4070 Ti SUPER",
+  "design": {
+    "dataset": "searchqa",
+    "stage": "exploratory_local_train_dev",
+    "model": "Qwen3.5-9B-Q4_K_M",
+    "arms": [
+      "C2b",
+      "C2c"
+    ],
+    "hypothesis": "Question-cue retrieval for successful exemplars increases paired distinct training questions and can improve final dev EM.",
+    "primary": "paired dev EM on fixed 30 IDs after three rounds; report repairs and regressions",
+    "secondary": [
+      "F1",
+      "accepted candidates and scores",
+      "paired exposures among selected failures of mutation parents",
+      "distinct paired failure and reference IDs",
+      "calls, prompt/generation tokens, real GPU allocation"
+    ],
+    "protocol": "one fresh local initialization, identical caps/selection/QA/data/seed for both arms; no test evaluation; historical hosted scores are context only",
+    "freeze": "Specify the C2c code before reading local dev scores. No method retuning during the run."
+  },
+  "supplementary_B": {
+    "registered": "2026-11-23T09:16:45.745415+00:00",
+    "scope": "secondary local B comparison",
+    "rule": "Use the identical existing config, train batches, shared initialization, all three rounds and the frozen survivor choice. Compare regardless of direction of the primary result."
+  },
+  "signature": {
+    "config_hash": "4d956185b7a715ce66701362742455cefc741bce25d61828be5b4231827faa8b",
+    "data_hash": "7b84bf7c7eaab7c2c2cd00ec7148d85cde3dfdac9127f0802ddf4cb20bb6a899",
+    "code_hash": "067f9db47e18c15f7f78975f73896c4ca6b25f6c477514214bae5889d3fb0f5e",
+    "tokenizer_hash": "5f434e57da7403bc8232613f565c8d3de0bf56be57ff8326a83ebd76ee1f1e9c"
+  },
+  "method_files": {
+    "Explore/explore_v2/__init__.py": "dc7469a3f0dab63a31bac1061f050aa75942d2489b398f6a3bbb895b86becab5",
+    "Explore/explore_v2/diagnostics.py": "2404bbce75bb700360221e8568a42aca99e855233b881c4d0b55a09f4609edec",
+    "Explore/explore_v2/evidence.py": "7e7d615ecc9d4ed20b9bf4f67dc1a77c557acb552fdc8e6a0c69f9a8d2fdcb3b",
+    "Explore/explore_v2/feedback.py": "ba1b733863b8b7defeac8e38099c46b15f2dd5a4846efb7c3e1ff6ec3ad71aa3",
+    "Explore/explore_c2c.py": "f470ee03f0a782ae72df82e188434966b43da2cd4572c5002a5d3aa1ee8de1ba",
+    "api/run_clue_comparison.py": "38ef36cf5b31ce7db9478fac3c498c982a5c53c82c5fda7772324fa0ed2c5350"
+  },
+  "methods": {
+    "B": {
+      "dev": {
+        "n": 30,
+        "correct": 24,
+        "em": 0.8,
+        "f1": 0.8444444444444444,
+        "mean_latency_seconds": 0.40619999999980794,
+        "p50_latency_seconds": 0.375,
+        "p95_latency_seconds": 0.5129499999995457,
+        "infrastructure_errors": 0,
+        "provider_refusals": 0,
+        "format_failures": 0
+      },
+      "best": "g0002_i0000",
+      "best_hash": "d4af35210e57edf866ba98c47576eaf25067c70a8498de97a800f980447a3aa7",
+      "cost": {
+        "calls": 307,
+        "prompt_tokens": 609982,
+        "generated_tokens": 15145,
+        "reasoning_tokens": 0,
+        "physical_calls": 246
+      },
+      "physical_cost": {
+        "physical_calls": 246,
+        "generated_tokens": 11695,
+        "prompt_tokens": 505098
+      },
+      "errors": 0,
+      "curve": [
+        {
+          "round": 0,
+          "best_id": "g0000_i0001",
+          "skill_hash": "eac1b5a5d0bd15c10878d3535ffd9f9dd1902dd6589d7207e3d34b080ff6f6e5",
+          "cost": {
+            "calls": 61,
+            "prompt_tokens": 104884,
+            "generated_tokens": 3450,
+            "reasoning_tokens": 0,
+            "physical_calls": 61
+          },
+          "em": 0.7666666666666667,
+          "f1": 0.8222222222222223
+        },
+        {
+          "round": 1,
+          "best_id": "g0000_i0001",
+          "skill_hash": "eac1b5a5d0bd15c10878d3535ffd9f9dd1902dd6589d7207e3d34b080ff6f6e5",
+          "cost": {
+            "calls": 163,
+            "prompt_tokens": 303544,
+            "generated_tokens": 8773,
+            "reasoning_tokens": 0,
+            "physical_calls": 102
+          },
+          "em": 0.7666666666666667,
+          "f1": 0.8222222222222223
+        },
+        {
+          "round": 2,
+          "best_id": "g0002_i0000",
+          "skill_hash": "d4af35210e57edf866ba98c47576eaf25067c70a8498de97a800f980447a3aa7",
+          "cost": {
+            "calls": 235,
+            "prompt_tokens": 455482,
+            "generated_tokens": 11942,
+            "reasoning_tokens": 0,
+            "physical_calls": 174
+          },
+          "em": 0.8,
+          "f1": 0.8444444444444444
+        },
+        {
+          "round": 3,
+          "best_id": "g0002_i0000",
+          "skill_hash": "d4af35210e57edf866ba98c47576eaf25067c70a8498de97a800f980447a3aa7",
+          "cost": {
+            "calls": 307,
+            "prompt_tokens": 609982,
+            "generated_tokens": 15145,
+            "reasoning_tokens": 0,
+            "physical_calls": 246
+          },
+          "em": 0.8,
+          "f1": 0.8444444444444444
+        }
+      ],
+      "candidates": [
+        {
+          "round": 1,
+          "operator": "mutation_other",
+          "id": "g0001_i0000",
+          "parent": "g0000_i0001",
+          "accepted": true,
+          "attempts": 1,
+          "errors": [],
+          "correct": 23,
+          "f1": 0.8132616487455198,
+          "retained": true,
+          "parent_changes": {
+            "counts": {
+              "repaired": 0,
+              "regressed": 0,
+              "both_correct": 23,
+              "both_wrong": 7
+            },
+            "em_delta": 0.0,
+            "bootstrap95": [
+              0.0,
+              0.0
+            ],
+            "repair_rate": 0.0,
+            "regression_rate": 0.0,
+            "changes": []
+          },
+          "skill_diff": [
+            "--- g0000_i0001",
+            "+++ g0001_i0000",
+            "@@ -10,6 +10,8 @@",
+            " - **Evidence First**: Always locate the specific sentence or phrase in the context that supports the answer before formulating the response.",
+            " - **Conciseness**: The final answer inside `<answer>` tags should be a short phrase or sentence, avoiding repetition of the question or excessive explanation.",
+            " - **Fallback Strategy**: If the context does not contain the answer, explicitly state that the information is not available in the provided text.",
+            "+- **Entity Extraction**: When the question asks for a specific entity (e.g., a name), extract only the entity name itself from the supporting evidence, not the entire sentence containing the entity.",
+            "+- **Exact Matching**: Ensure the extracted answer matches the gold standard's expected entity or fact precisely, avoiding full sentences unless the gold answer is a full sentence.",
+            " ",
+            " ### Graph-structured Skill Execution Guide",
+            " This skill operates by selecting a relevant workflow from `## Task Graphs` based on the question type, then executing the corresponding sequence of nodes defined in `## Node Lists`.",
+            "@@ -19,6 +21,7 @@",
+            " 3. Execute the numbered nodes in the selected workflow sequentially.",
+            " 4. Apply the instructions within each node to perform the specific action (e.g., scanning, extracting, validating).",
+            " 5. Format the final result using the `<answer>` tags as required.",
+            "+6. Ensure the content inside `<answer>` tags is a direct extraction or concise summary of the evidence, not a restatement of the question.",
+            " ",
+            " ## Node Lists",
+            " "
+          ]
+        },
+        {
+          "round": 1,
+          "operator": "mutation_graph",
+          "id": "g0001_i0001",
+          "parent": "g0000_i0001",
+          "accepted": true,
+          "attempts": 1,
+          "errors": [],
+          "correct": 23,
+          "f1": 0.8211111111111111,
+          "retained": false,
+          "parent_changes": {
+            "counts": {
+              "repaired": 0,
+              "regressed": 0,
+              "both_correct": 23,
+              "both_wrong": 7
+            },
+            "em_delta": 0.0,
+            "bootstrap95": [
+              0.0,
+              0.0
+            ],
+            "repair_rate": 0.0,
+            "regression_rate": 0.0,
+            "changes": []
+          },
+          "skill_diff": [
+            "--- g0000_i0001",
+            "+++ g0001_i0001",
+            "@@ -46,6 +46,7 @@",
+            " - Synthesize the validated evidence into a direct, concise answer.",
+            " - Remove any introductory phrases or context that is not part of the direct answer.",
+            " - Ensure the answer is a few words or a short phrase, not a full paragraph.",
+            "+- If no evidence was found during validation, formulate a statement indicating the information is not in the text.",
+            " ",
+            " ### Format Final Response",
+            " - Enclose the concise answer within `<answer>...</answer>` tags."
+          ]
+        },
+        {
+          "round": 2,
+          "operator": "mutation_other",
+          "id": "g0002_i0000",
+          "parent": "g0001_i0000",
+          "accepted": true,
+          "attempts": 1,
+          "errors": [],
+          "correct": 24,
+          "f1": 0.8444444444444444,
+          "retained": true,
+          "parent_changes": {
+            "counts": {
+              "repaired": 1,
+              "regressed": 0,
+              "both_correct": 23,
+              "both_wrong": 6
+            },
+            "em_delta": 0.03333333333333333,
+            "bootstrap95": [
+              0.0,
+              0.1
+            ],
+            "repair_rate": 0.14285714285714285,
+            "regression_rate": 0.0,
+            "changes": [
+              {
+                "id": "5324041c25d04316a800ccba2d79a2c7",
+                "question": "He wrote comic book stories for \"Captain America\" & \"Captain Marvel\" before hitting it big with \"I, the Jury\"",
+                "gold": [
+                  "Mickey Spillane"
+                ],
+                "before": "True",
+                "after": "Mickey Spillane",
+                "transition": "repaired"
+              }
+            ]
+          },
+          "skill_diff": [
+            "--- g0001_i0000",
+            "+++ g0002_i0000",
+            "@@ -3,15 +3,14 @@",
+            " ## Global Guidance",
+            " ",
+            " ### Overview",
+            "-This skill enables an agent to answer questions by strictly adhering to provided context passages. The agent must locate specific evidence within the text and formulate a concise answer based solely on that information.",
+            "+This skill enables an agent to answer questions by strictly adhering to provided context passages. The agent must locate specific evidence within the text and formulate a concise answer based solely on that information, avoiding hallucination or external knowledge.",
+            " ",
+            " ### General Principles",
+            "-- **Strict Adherence**: Answers must be derived exclusively from the provided context. Do not use external knowledge.",
+            "-- **Evidence First**: Always locate the specific sentence or phrase in the context that supports the answer before formulating the response.",
+            "+- **Strict Adherence**: Answers must be derived exclusively from the provided context. Do not use external knowledge or assume facts not present.",
+            "+- **Entity Extraction**: When the question asks for a specific entity (e.g., a name, place, or person), extract only the entity name itself from the supporting evidence, not the entire sentence or descriptive phrases surrounding it.",
+            " - **Conciseness**: The final answer inside `<answer>` tags should be a short phrase or sentence, avoiding repetition of the question or excessive explanation.",
+            "+- **Exact Matching**: Ensure the extracted answer matches the gold standard's expected entity or fact precisely. Do not include titles, descriptions, or context unless the gold answer explicitly includes them.",
+            " - **Fallback Strategy**: If the context does not contain the answer, explicitly state that the information is not available in the provided text.",
+            "-- **Entity Extraction**: When the question asks for a specific entity (e.g., a name), extract only the entity name itself from the supporting evidence, not the entire sentence containing the entity.",
+            "-- **Exact Matching**: Ensure the extracted answer matches the gold standard's expected entity or fact precisely, avoiding full sentences unless the gold answer is a full sentence.",
+            " ",
+            " ### Graph-structured Skill Execution Guide",
+            " This skill operates by selecting a relevant workflow from `## Task Graphs` based on the question type, then executing the corresponding sequence of nodes defined in `## Node Lists`."
+          ]
+        },
+        {
+          "round": 2,
+          "operator": "mutation_graph",
+          "id": "g0002_i0001",
+          "parent": "g0000_i0001",
+          "accepted": true,
+          "attempts": 1,
+          "errors": [],
+          "correct": 23,
+          "f1": 0.8222222222222223,
+          "retained": false,
+          "parent_changes": {
+            "counts": {
+              "repaired": 0,
+              "regressed": 0,
+              "both_correct": 23,
+              "both_wrong": 7
+            },
+            "em_delta": 0.0,
+            "bootstrap95": [
+              0.0,
+              0.0
+            ],
+            "repair_rate": 0.0,
+            "regression_rate": 0.0,
+            "changes": []
+          },
+          "skill_diff": []
+        },
+        {
+          "round": 3,
+          "operator": "mutation_other",
+          "id": "g0003_i0000",
+          "parent": "g0002_i0000",
+          "accepted": true,
+          "attempts": 1,
+          "errors": [],
+          "correct": 24,
+          "f1": 0.8488888888888888,
+          "retained": true,
+          "parent_changes": {
+            "counts": {
+              "repaired": 0,
+              "regressed": 0,
+              "both_correct": 24,
+              "both_wrong": 6
+            },
+            "em_delta": 0.0,
+            "bootstrap95": [
+              0.0,
+              0.0
+            ],
+            "repair_rate": 0.0,
+            "regression_rate": 0.0,
+            "changes": []
+          },
+          "skill_diff": [
+            "--- g0002_i0000",
+            "+++ g0003_i0000",
+            "@@ -7,7 +7,7 @@",
+            " ",
+            " ### General Principles",
+            " - **Strict Adherence**: Answers must be derived exclusively from the provided context. Do not use external knowledge or assume facts not present.",
+            "-- **Entity Extraction**: When the question asks for a specific entity (e.g., a name, place, or person), extract only the entity name itself from the supporting evidence, not the entire sentence or descriptive phrases surrounding it.",
+            "+- **Entity Extraction**: When the question asks for a specific entity (e.g., a name, place, or person), extract only the entity name itself from the supporting evidence, not the entire sentence or descriptive phrases surrounding it. For phrases or events, extract the specific term mentioned in the text that matches the query intent.",
+            " - **Conciseness**: The final answer inside `<answer>` tags should be a short phrase or sentence, avoiding repetition of the question or excessive explanation.",
+            " - **Exact Matching**: Ensure the extracted answer matches the gold standard's expected entity or fact precisely. Do not include titles, descriptions, or context unless the gold answer explicitly includes them.",
+            " - **Fallback Strategy**: If the context does not contain the answer, explicitly state that the information is not available in the provided text."
+          ]
+        },
+        {
+          "round": 3,
+          "operator": "mutation_graph",
+          "id": "g0003_i0001",
+          "parent": "g0002_i0000",
+          "accepted": true,
+          "attempts": 1,
+          "errors": [],
+          "correct": 24,
+          "f1": 0.8444444444444444,
+          "retained": false,
+          "parent_changes": {
+            "counts": {
+              "repaired": 0,
+              "regressed": 0,
+              "both_correct": 24,
+              "both_wrong": 6
+            },
+            "em_delta": 0.0,
+            "bootstrap95": [
+              0.0,
+              0.0
+            ],
+            "repair_rate": 0.0,
+            "regression_rate": 0.0,
+            "changes": []
+          },
+          "skill_diff": []
+        }
+      ],
+      "cached_dev_rows": 60
+    },
+    "C2b": {
+      "dev": {
+        "n": 30,
+        "correct": 23,
+        "em": 0.7666666666666667,
+        "f1": 0.8222222222222223,
+        "mean_latency_seconds": 0.538933333333019,
+        "p50_latency_seconds": 0.39799999999740976,
+        "p95_latency_seconds": 1.1286999999982066,
+        "infrastructure_errors": 0,
+        "provider_refusals": 0,
+        "format_failures": 0
+      },
+      "best": "g0000_i0001",
+      "best_hash": "eac1b5a5d0bd15c10878d3535ffd9f9dd1902dd6589d7207e3d34b080ff6f6e5",
+      "cost": {
+        "calls": 307,
+        "prompt_tokens": 613227,
+        "generated_tokens": 15193,
+        "reasoning_tokens": 0,
+        "physical_calls": 246
+      },
+      "physical_cost": {
+        "physical_calls": 246,
+        "generated_tokens": 11743,
+        "prompt_tokens": 508343
+      },
+      "errors": 0,
+      "curve": [
+        {
+          "round": 0,
+          "best_id": "g0000_i0001",
+          "skill_hash": "eac1b5a5d0bd15c10878d3535ffd9f9dd1902dd6589d7207e3d34b080ff6f6e5",
+          "cost": {
+            "calls": 61,
+            "prompt_tokens": 104884,
+            "generated_tokens": 3450,
+            "reasoning_tokens": 0,
+            "physical_calls": 61
+          },
+          "em": 0.7666666666666667,
+          "f1": 0.8222222222222223
+        },
+        {
+          "round": 1,
+          "best_id": "g0000_i0001",
+          "skill_hash": "eac1b5a5d0bd15c10878d3535ffd9f9dd1902dd6589d7207e3d34b080ff6f6e5",
+          "cost": {
+            "calls": 163,
+            "prompt_tokens": 305786,
+            "generated_tokens": 8544,
+            "reasoning_tokens": 0,
+            "physical_calls": 102
+          },
+          "em": 0.7666666666666667,
+          "f1": 0.8222222222222223
+        },
+        {
+          "round": 2,
+          "best_id": "g0000_i0001",
+          "skill_hash": "eac1b5a5d0bd15c10878d3535ffd9f9dd1902dd6589d7207e3d34b080ff6f6e5",
+          "cost": {
+            "calls": 235,
+            "prompt_tokens": 458131,
+            "generated_tokens": 11932,
+            "reasoning_tokens": 0,
+            "physical_calls": 174
+          },
+          "em": 0.7666666666666667,
+          "f1": 0.8222222222222223
+        },
+        {
+          "round": 3,
+          "best_id": "g0000_i0001",
+          "skill_hash": "eac1b5a5d0bd15c10878d3535ffd9f9dd1902dd6589d7207e3d34b080ff6f6e5",
+          "cost": {
+            "calls": 307,
+            "prompt_tokens": 613227,
+            "generated_tokens": 15193,
+            "reasoning_tokens": 0,
+            "physical_calls": 246
+          },
+          "em": 0.7666666666666667,
+          "f1": 0.8222222222222223
+        }
+      ],
+      "candidates": [
+        {
+          "round": 1,
+          "operator": "mutation_other",
+          "id": "g0001_i0000",
+          "parent": "g0000_i0001",
+          "accepted": true,
+          "attempts": 1,
+          "errors": [],
+          "correct": 23,
+          "f1": 0.8132616487455198,
+          "retained": true,
+          "parent_changes": {
+            "counts": {
+              "repaired": 0,
+              "regressed": 0,
+              "both_correct": 23,
+              "both_wrong": 7
+            },
+            "em_delta": 0.0,
+            "bootstrap95": [
+              0.0,
+              0.0
+            ],
+            "repair_rate": 0.0,
+            "regression_rate": 0.0,
+            "changes": []
+          },
+          "skill_diff": [
+            "--- g0000_i0001",
+            "+++ g0001_i0000",
+            "@@ -10,6 +10,9 @@",
+            " - **Evidence First**: Always locate the specific sentence or phrase in the context that supports the answer before formulating the response.",
+            " - **Conciseness**: The final answer inside `<answer>` tags should be a short phrase or sentence, avoiding repetition of the question or excessive explanation.",
+            " - **Fallback Strategy**: If the context does not contain the answer, explicitly state that the information is not available in the provided text.",
+            "+- **Entity Extraction**: When a question asks for an entity, fact, or value, extract the specific missing entity/fact from the context rather than confirming the clue or answering with a boolean.",
+            "+- **Granularity Preservation**: Retain correctly supported intermediate relations and necessary qualifiers (e.g., full names, specific titles) as found in the source text; do not globally shorten names or remove needed qualifiers.",
+            "+- **Verification**: Verify the requested target and each necessary relation against the supplied passages; keep the diagnosis uncertain where evidence is missing.",
+            " ",
+            " ### Graph-structured Skill Execution Guide",
+            " This skill operates by selecting a relevant workflow from `## Task Graphs` based on the question type, then executing the corresponding sequence of nodes defined in `## Node Lists`."
+          ]
+        },
+        {
+          "round": 1,
+          "operator": "mutation_graph",
+          "id": "g0001_i0001",
+          "parent": "g0000_i0001",
+          "accepted": true,
+          "attempts": 1,
+          "errors": [],
+          "correct": 23,
+          "f1": 0.8222222222222223,
+          "retained": false,
+          "parent_changes": {
+            "counts": {
+              "repaired": 0,
+              "regressed": 0,
+              "both_correct": 23,
+              "both_wrong": 7
+            },
+            "em_delta": 0.0,
+            "bootstrap95": [
+              0.0,
+              0.0
+            ],
+            "repair_rate": 0.0,
+            "regression_rate": 0.0,
+            "changes": []
+          },
+          "skill_diff": [
+            "--- g0000_i0001",
+            "+++ g0001_i0001",
+            "@@ -55,7 +55,7 @@",
+            " ## Task Graphs",
+            " ",
+            " ### Direct Fact Retrieval",
+            "-**Use when:** The question asks for a single specific fact, definition, or value explicitly stated in the context.",
+            "+**Use when:** The question asks for a single specific fact, entity, definition, or value explicitly stated in the context (e.g., names, dates, locations).",
+            " **Workflow:**",
+            " 1. Analyze Question Intent",
+            " 2. Scan Context for Keywords"
+          ]
+        },
+        {
+          "round": 2,
+          "operator": "mutation_other",
+          "id": "g0002_i0000",
+          "parent": "g0001_i0000",
+          "accepted": true,
+          "attempts": 1,
+          "errors": [],
+          "correct": 23,
+          "f1": 0.8132616487455198,
+          "retained": false,
+          "parent_changes": {
+            "counts": {
+              "repaired": 0,
+              "regressed": 0,
+              "both_correct": 23,
+              "both_wrong": 7
+            },
+            "em_delta": 0.0,
+            "bootstrap95": [
+              0.0,
+              0.0
+            ],
+            "repair_rate": 0.0,
+            "regression_rate": 0.0,
+            "changes": []
+          },
+          "skill_diff": []
+        },
+        {
+          "round": 2,
+          "operator": "mutation_graph",
+          "id": "g0002_i0001",
+          "parent": "g0000_i0001",
+          "accepted": true,
+          "attempts": 1,
+          "errors": [],
+          "correct": 23,
+          "f1": 0.8272713105812685,
+          "retained": false,
+          "parent_changes": {
+            "counts": {
+              "repaired": 0,
+              "regressed": 0,
+              "both_correct": 23,
+              "both_wrong": 7
+            },
+            "em_delta": 0.0,
+            "bootstrap95": [
+              0.0,
+              0.0
+            ],
+            "repair_rate": 0.0,
+            "regression_rate": 0.0,
+            "changes": []
+          },
+          "skill_diff": [
+            "--- g0000_i0001",
+            "+++ g0002_i0001",
+            "@@ -37,10 +37,11 @@",
+            " - Ensure the evidence is complete and self-contained.",
+            " - If multiple sentences are needed, extract them all to form the evidence block.",
+            " ",
+            "-### Validate Evidence Against Question",
+            "+### Validate Evidence Granularity and Referent",
+            " - Compare the extracted evidence with the original QUESTION to ensure it addresses all parts of the query.",
+            "-- Verify that the evidence does not contradict the question or contain irrelevant information.",
+            "-- If the evidence is insufficient or missing, note that the answer cannot be derived from the text.",
+            "+- Verify that the granularity (level of detail) and referent (specific entity) of the evidence match the question requirements.",
+            "+- Ensure the evidence does not contradict the question or contain irrelevant information.",
+            "+- If the evidence is insufficient, missing, or mismatched in granularity, note that the answer cannot be derived from the text.",
+            " ",
+            " ### Formulate Concise Answer",
+            " - Synthesize the validated evidence into a direct, concise answer.",
+            "@@ -60,7 +61,7 @@",
+            " 1. Analyze Question Intent",
+            " 2. Scan Context for Keywords",
+            " 3. Extract Supporting Evidence",
+            "-4. Validate Evidence Against Question",
+            "+4. Validate Evidence Granularity and Referent",
+            " 5. Formulate Concise Answer",
+            " 6. Format Final Response",
+            " ",
+            "@@ -70,7 +71,7 @@",
+            " 1. Analyze Question Intent",
+            " 2. Scan Context for Keywords",
+            " 3. Extract Supporting Evidence",
+            "-4. Validate Evidence Against Question",
+            "+4. Validate Evidence Granularity and Referent",
+            " 5. Formulate Concise Answer",
+            " 6. Format Final Response",
+            " ",
+            "@@ -80,6 +81,6 @@",
+            " 1. Analyze Question Intent",
+            " 2. Scan Context for Keywords",
+            " 3. Extract Supporting Evidence",
+            "-4. Validate Evidence Against Question",
+            "+4. Validate Evidence Granularity and Referent",
+            " 5. Formulate Concise Answer",
+            " 6. Format Final Response"
+          ]
+        },
+        {
+          "round": 3,
+          "operator": "mutation_other",
+          "id": "g0003_i0000",
+          "parent": "g0000_i0001",
+          "accepted": true,
+          "attempts": 1,
+          "errors": [],
+          "correct": 23,
+          "f1": 0.8199283154121864,
+          "retained": false,
+          "parent_changes": {
+            "counts": {
+              "repaired": 0,
+              "regressed": 0,
+              "both_correct": 23,
+              "both_wrong": 7
+            },
+            "em_delta": 0.0,
+            "bootstrap95": [
+              0.0,
+              0.0
+            ],
+            "repair_rate": 0.0,
+            "regression_rate": 0.0,
+            "changes": []
+          },
+          "skill_diff": [
+            "--- g0000_i0001",
+            "+++ g0003_i0000",
+            "@@ -10,6 +10,8 @@",
+            " - **Evidence First**: Always locate the specific sentence or phrase in the context that supports the answer before formulating the response.",
+            " - **Conciseness**: The final answer inside `<answer>` tags should be a short phrase or sentence, avoiding repetition of the question or excessive explanation.",
+            " - **Fallback Strategy**: If the context does not contain the answer, explicitly state that the information is not available in the provided text.",
+            "+- **Granularity Preservation**: When extracting evidence, preserve the specific entity names, qualifiers, and granularity found in the supporting text. Do not infer missing intermediate relations or shorten names solely because the predicted answer string differs from the gold label.",
+            "+- **Verification**: Before finalizing an answer, verify that the extracted evidence directly addresses the specific target requested in the question.",
+            " ",
+            " ### Graph-structured Skill Execution Guide",
+            " This skill operates by selecting a relevant workflow from `## Task Graphs` based on the question type, then executing the corresponding sequence of nodes defined in `## Node Lists`."
+          ]
+        },
+        {
+          "round": 3,
+          "operator": "mutation_graph",
+          "id": "g0003_i0001",
+          "parent": "g0000_i0001",
+          "accepted": true,
+          "attempts": 1,
+          "errors": [],
+          "correct": 23,
+          "f1": 0.8222222222222223,
+          "retained": false,
+          "parent_changes": {
+            "counts": {
+              "repaired": 0,
+              "regressed": 0,
+              "both_correct": 23,
+              "both_wrong": 7
+            },
+            "em_delta": 0.0,
+            "bootstrap95": [
+              0.0,
+              0.0
+            ],
+            "repair_rate": 0.0,
+            "regression_rate": 0.0,
+            "changes": []
+          },
+          "skill_diff": []
+        }
+      ],
+      "cached_dev_rows": 60,
+      "retrieval": {
+        "counts": {
+          "selected": 18,
+          "original_pairs": 2,
+          "expanded_pairs": 8
+        },
+        "exposures": [
+          {
+            "round": 1,
+            "child": "g0001_i0000",
+            "failure": "f8a442980c55415b82527160422a2688",
+            "question": "...in American History, if you know that this man was the only U.S. President named Chester",
+            "original_reference": null,
+            "expanded_reference": "1907684788be4a09b36c6bb24812fe99",
+            "success_question": "In 1927, this Russian leader's book \"The State & Revolution\" was banned in Boston as obscene",
+            "rule": "target_kind:person"
+          },
+          {
+            "round": 1,
+            "child": "g0001_i0000",
+            "failure": "178c1b2e8450497a8fa6b0d853b885ab",
+            "question": "The 1815 Treaty of Paris was signed after his final defeat at Waterloo",
+            "original_reference": null,
+            "expanded_reference": null,
+            "success_question": null,
+            "rule": "unpaired"
+          },
+          {
+            "round": 1,
+            "child": "g0001_i0000",
+            "failure": "691178453c884f98a9205ef3d143bc42",
+            "question": "The National Air & Space Museum in Washington is the largest museum of this institution",
+            "original_reference": "691178453c884f98a9205ef3d143bc42",
+            "expanded_reference": "691178453c884f98a9205ef3d143bc42",
+            "success_question": "The National Air & Space Museum in Washington is the largest museum of this institution",
+            "rule": "original"
+          },
+          {
+            "round": 1,
+            "child": "g0001_i0001",
+            "failure": "f8a442980c55415b82527160422a2688",
+            "question": "...in American History, if you know that this man was the only U.S. President named Chester",
+            "original_reference": null,
+            "expanded_reference": "1907684788be4a09b36c6bb24812fe99",
+            "success_question": "In 1927, this Russian leader's book \"The State & Revolution\" was banned in Boston as obscene",
+            "rule": "target_kind:person"
+          },
+          {
+            "round": 1,
+            "child": "g0001_i0001",
+            "failure": "178c1b2e8450497a8fa6b0d853b885ab",
+            "question": "The 1815 Treaty of Paris was signed after his final defeat at Waterloo",
+            "original_reference": null,
+            "expanded_reference": null,
+            "success_question": null,
+            "rule": "unpaired"
+          },
+          {
+            "round": 1,
+            "child": "g0001_i0001",
+            "failure": "691178453c884f98a9205ef3d143bc42",
+            "question": "The National Air & Space Museum in Washington is the largest museum of this institution",
+            "original_reference": "691178453c884f98a9205ef3d143bc42",
+            "expanded_reference": "691178453c884f98a9205ef3d143bc42",
+            "success_question": "The National Air & Space Museum in Washington is the largest museum of this institution",
+            "rule": "original"
+          },
+          {
+            "round": 2,
+            "child": "g0002_i0000",
+            "failure": "84ab80ab3c5d47a58ddda464d62c5694",
+            "question": "He spun straw into gold(15)",
+            "original_reference": null,
+            "expanded_reference": "5c4fcaf8522d4d69812bf4f813b242b1",
+            "success_question": "In 1950 Sen. Margaret Chase Smith condemned this man for turning the Senate into a \"forum for hate\"",
+            "rule": "target_kind:person"
+          },
+          {
+            "round": 2,
+            "child": "g0002_i0000",
+            "failure": "1f6f687c79a642328a742e61154c9d90",
+            "question": "\"Tippecanoe and Tyler too\"",
+            "original_reference": null,
+            "expanded_reference": null,
+            "success_question": null,
+            "rule": "unpaired"
+          },
+          {
+            "round": 2,
+            "child": "g0002_i0000",
+            "failure": "1c2cc13e0fa745d6b541f6c7eb9f5619",
+            "question": "A \"hasty\" dessert, or perhaps you'd prefer the tapioca",
+            "original_reference": null,
+            "expanded_reference": null,
+            "success_question": null,
+            "rule": "unpaired"
+          },
+          {
+            "round": 2,
+            "child": "g0002_i0001",
+            "failure": "84ab80ab3c5d47a58ddda464d62c5694",
+            "question": "He spun straw into gold(15)",
+            "original_reference": null,
+            "expanded_reference": "5c4fcaf8522d4d69812bf4f813b242b1",
+            "success_question": "In 1950 Sen. Margaret Chase Smith condemned this man for turning the Senate into a \"forum for hate\"",
+            "rule": "target_kind:person"
+          },
+          {
+            "round": 2,
+            "child": "g0002_i0001",
+            "failure": "1f6f687c79a642328a742e61154c9d90",
+            "question": "\"Tippecanoe and Tyler too\"",
+            "original_reference": null,
+            "expanded_reference": null,
+            "success_question": null,
+            "rule": "unpaired"
+          },
+          {
+            "round": 2,
+            "child": "g0002_i0001",
+            "failure": "1c2cc13e0fa745d6b541f6c7eb9f5619",
+            "question": "A \"hasty\" dessert, or perhaps you'd prefer the tapioca",
+            "original_reference": null,
+            "expanded_reference": null,
+            "success_question": null,
+            "rule": "unpaired"
+          },
+          {
+            "round": 3,
+            "child": "g0003_i0000",
+            "failure": "4e71393e05184d6b84c4538f3d2be58e",
+            "question": "Studio A at the communications school at Ithaca College, the alma mater of this late journalist, is named for her",
+            "original_reference": null,
+            "expanded_reference": null,
+            "success_question": null,
+            "rule": "unpaired"
+          },
+          {
+            "round": 3,
+            "child": "g0003_i0000",
+            "failure": "6252b238d9554d45bc4eb9b9978543c5",
+            "question": "\"...on my mind\"",
+            "original_reference": null,
+            "expanded_reference": null,
+            "success_question": null,
+            "rule": "unpaired"
+          },
+          {
+            "round": 3,
+            "child": "g0003_i0000",
+            "failure": "84ab80ab3c5d47a58ddda464d62c5694",
+            "question": "He spun straw into gold(15)",
+            "original_reference": null,
+            "expanded_reference": "5c4fcaf8522d4d69812bf4f813b242b1",
+            "success_question": "In 1950 Sen. Margaret Chase Smith condemned this man for turning the Senate into a \"forum for hate\"",
+            "rule": "target_kind:person"
+          },
+          {
+            "round": 3,
+            "child": "g0003_i0001",
+            "failure": "4e71393e05184d6b84c4538f3d2be58e",
+            "question": "Studio A at the communications school at Ithaca College, the alma mater of this late journalist, is named for her",
+            "original_reference": null,
+            "expanded_reference": null,
+            "success_question": null,
+            "rule": "unpaired"
+          },
+          {
+            "round": 3,
+            "child": "g0003_i0001",
+            "failure": "6252b238d9554d45bc4eb9b9978543c5",
+            "question": "\"...on my mind\"",
+            "original_reference": null,
+            "expanded_reference": null,
+            "success_question": null,
+            "rule": "unpaired"
+          },
+          {
+            "round": 3,
+            "child": "g0003_i0001",
+            "failure": "84ab80ab3c5d47a58ddda464d62c5694",
+            "question": "He spun straw into gold(15)",
+            "original_reference": null,
+            "expanded_reference": "5c4fcaf8522d4d69812bf4f813b242b1",
+            "success_question": "In 1950 Sen. Margaret Chase Smith condemned this man for turning the Senate into a \"forum for hate\"",
+            "rule": "target_kind:person"
+          }
+        ],
+        "verified_attempt_prompts": 6,
+        "distinct_failed_questions_paired": {
+          "original_reference": 1,
+          "expanded_reference": 3
+        },
+        "distinct_references": {
+          "original_reference": 1,
+          "expanded_reference": 3
+        }
+      }
+    },
+    "C2c": {
+      "dev": {
+        "n": 30,
+        "correct": 23,
+        "em": 0.7666666666666667,
+        "f1": 0.8222222222222223,
+        "mean_latency_seconds": 0.538933333333019,
+        "p50_latency_seconds": 0.39799999999740976,
+        "p95_latency_seconds": 1.1286999999982066,
+        "infrastructure_errors": 0,
+        "provider_refusals": 0,
+        "format_failures": 0
+      },
+      "best": "g0000_i0001",
+      "best_hash": "eac1b5a5d0bd15c10878d3535ffd9f9dd1902dd6589d7207e3d34b080ff6f6e5",
+      "cost": {
+        "calls": 337,
+        "prompt_tokens": 674163,
+        "generated_tokens": 15571,
+        "reasoning_tokens": 0,
+        "physical_calls": 276
+      },
+      "physical_cost": {
+        "physical_calls": 276,
+        "generated_tokens": 12121,
+        "prompt_tokens": 569279
+      },
+      "errors": 0,
+      "curve": [
+        {
+          "round": 0,
+          "best_id": "g0000_i0001",
+          "skill_hash": "eac1b5a5d0bd15c10878d3535ffd9f9dd1902dd6589d7207e3d34b080ff6f6e5",
+          "cost": {
+            "calls": 61,
+            "prompt_tokens": 104884,
+            "generated_tokens": 3450,
+            "reasoning_tokens": 0,
+            "physical_calls": 61
+          },
+          "em": 0.7666666666666667,
+          "f1": 0.8222222222222223
+        },
+        {
+          "round": 1,
+          "best_id": "g0000_i0001",
+          "skill_hash": "eac1b5a5d0bd15c10878d3535ffd9f9dd1902dd6589d7207e3d34b080ff6f6e5",
+          "cost": {
+            "calls": 163,
+            "prompt_tokens": 305526,
+            "generated_tokens": 8558,
+            "reasoning_tokens": 0,
+            "physical_calls": 102
+          },
+          "em": 0.7666666666666667,
+          "f1": 0.8222222222222223
+        },
+        {
+          "round": 2,
+          "best_id": "g0000_i0001",
+          "skill_hash": "eac1b5a5d0bd15c10878d3535ffd9f9dd1902dd6589d7207e3d34b080ff6f6e5",
+          "cost": {
+            "calls": 265,
+            "prompt_tokens": 521005,
+            "generated_tokens": 12487,
+            "reasoning_tokens": 0,
+            "physical_calls": 204
+          },
+          "em": 0.7666666666666667,
+          "f1": 0.8222222222222223
+        },
+        {
+          "round": 3,
+          "best_id": "g0000_i0001",
+          "skill_hash": "eac1b5a5d0bd15c10878d3535ffd9f9dd1902dd6589d7207e3d34b080ff6f6e5",
+          "cost": {
+            "calls": 337,
+            "prompt_tokens": 674163,
+            "generated_tokens": 15571,
+            "reasoning_tokens": 0,
+            "physical_calls": 276
+          },
+          "em": 0.7666666666666667,
+          "f1": 0.8222222222222223
+        }
+      ],
+      "candidates": [
+        {
+          "round": 1,
+          "operator": "mutation_other",
+          "id": "g0001_i0000",
+          "parent": "g0000_i0001",
+          "accepted": true,
+          "attempts": 1,
+          "errors": [],
+          "correct": 22,
+          "f1": 0.7777777777777778,
+          "retained": false,
+          "parent_changes": {
+            "counts": {
+              "repaired": 0,
+              "regressed": 1,
+              "both_correct": 22,
+              "both_wrong": 7
+            },
+            "em_delta": -0.03333333333333333,
+            "bootstrap95": [
+              -0.1,
+              0.0
+            ],
+            "repair_rate": 0.0,
+            "regression_rate": 0.043478260869565216,
+            "changes": [
+              {
+                "id": "24143f01e7dd455e86c34a4a6f4ed3b9",
+                "question": "(Jon of the Clue Crew shows an anatomical diagram on the monitor.)  When Lasik eye surgery is performed, a flap is made in the eye, folded back, & then the stroma, or middle section, of this eye part is reshaped using lasers",
+                "gold": [
+                  "the cornea"
+                ],
+                "before": "cornea",
+                "after": "True",
+                "transition": "regressed"
+              }
+            ]
+          },
+          "skill_diff": [
+            "--- g0000_i0001",
+            "+++ g0001_i0000",
+            "@@ -9,7 +9,9 @@",
+            " - **Strict Adherence**: Answers must be derived exclusively from the provided context. Do not use external knowledge.",
+            " - **Evidence First**: Always locate the specific sentence or phrase in the context that supports the answer before formulating the response.",
+            " - **Conciseness**: The final answer inside `<answer>` tags should be a short phrase or sentence, avoiding repetition of the question or excessive explanation.",
+            "+- **Answer Type Inference**: Infer the required answer type (e.g., entity, fact, yes/no) from the question phrasing. Extract the missing entity/fact for entity requests rather than confirming the clue with \"False\" or \"Yes\".",
+            " - **Fallback Strategy**: If the context does not contain the answer, explicitly state that the information is not available in the provided text.",
+            "+- **Granularity Preservation**: Maintain the specific granularity requested (e.g., full name vs. title) and do not infer missing hops or shorten names based solely on answer-string differences.",
+            " ",
+            " ### Graph-structured Skill Execution Guide",
+            " This skill operates by selecting a relevant workflow from `## Task Graphs` based on the question type, then executing the corresponding sequence of nodes defined in `## Node Lists`."
+          ]
+        },
+        {
+          "round": 1,
+          "operator": "mutation_graph",
+          "id": "g0001_i0001",
+          "parent": "g0000_i0001",
+          "accepted": true,
+          "attempts": 1,
+          "errors": [],
+          "correct": 23,
+          "f1": 0.8222222222222223,
+          "retained": true,
+          "parent_changes": {
+            "counts": {
+              "repaired": 0,
+              "regressed": 0,
+              "both_correct": 23,
+              "both_wrong": 7
+            },
+            "em_delta": 0.0,
+            "bootstrap95": [
+              0.0,
+              0.0
+            ],
+            "repair_rate": 0.0,
+            "regression_rate": 0.0,
+            "changes": []
+          },
+          "skill_diff": [
+            "--- g0000_i0001",
+            "+++ g0001_i0001",
+            "@@ -55,7 +55,7 @@",
+            " ## Task Graphs",
+            " ",
+            " ### Direct Fact Retrieval",
+            "-**Use when:** The question asks for a single specific fact, definition, or value explicitly stated in the context.",
+            "+**Use when:** The question asks for a single specific fact, definition, value, or entity explicitly stated in the context (e.g., names, dates, institutions).",
+            " **Workflow:**",
+            " 1. Analyze Question Intent",
+            " 2. Scan Context for Keywords"
+          ]
+        },
+        {
+          "round": 2,
+          "operator": "mutation_other",
+          "id": "g0002_i0000",
+          "parent": "g0001_i0001",
+          "accepted": true,
+          "attempts": 1,
+          "errors": [],
+          "correct": 23,
+          "f1": 0.8222222222222223,
+          "retained": false,
+          "parent_changes": {
+            "counts": {
+              "repaired": 0,
+              "regressed": 0,
+              "both_correct": 23,
+              "both_wrong": 7
+            },
+            "em_delta": 0.0,
+            "bootstrap95": [
+              0.0,
+              0.0
+            ],
+            "repair_rate": 0.0,
+            "regression_rate": 0.0,
+            "changes": []
+          },
+          "skill_diff": [
+            "--- g0001_i0001",
+            "+++ g0002_i0000",
+            "@@ -10,12 +10,14 @@",
+            " - **Evidence First**: Always locate the specific sentence or phrase in the context that supports the answer before formulating the response.",
+            " - **Conciseness**: The final answer inside `<answer>` tags should be a short phrase or sentence, avoiding repetition of the question or excessive explanation.",
+            " - **Fallback Strategy**: If the context does not contain the answer, explicitly state that the information is not available in the provided text.",
+            "+- **Granularity Awareness**: When extracting evidence, ensure the level of detail matches the question's requirements (e.g., specific names vs. full descriptions). Do not globally shorten names or remove needed qualifiers unless the context only supports a broader term.",
+            "+- **Verification**: Compare extracted evidence against the original question to ensure it addresses all parts of the query and does not contain irrelevant information.",
+            " ",
+            " ### Graph-structured Skill Execution Guide",
+            " This skill operates by selecting a relevant workflow from `## Task Graphs` based on the question type, then executing the corresponding sequence of nodes defined in `## Node Lists`.",
+            " ",
+            "-1. Analyze the QUESTION to determine if it requires simple retrieval or multi-step reasoning.",
+            "-2. Select the matching Task Graph workflow (e.g., `Direct Fact Retrieval` or `Multi-Step Reasoning`).",
+            "+1. Analyze the QUESTION to determine if it requires simple retrieval, multi-step reasoning, or if the answer is absent.",
+            "+2. Select the matching Task Graph workflow (e.g., `Direct Fact Retrieval`, `Multi-Step Reasoning`, or `Information Not Found`).",
+            " 3. Execute the numbered nodes in the selected workflow sequentially.",
+            " 4. Apply the instructions within each node to perform the specific action (e.g., scanning, extracting, validating).",
+            " 5. Format the final result using the `<answer>` tags as required."
+          ]
+        },
+        {
+          "round": 2,
+          "operator": "mutation_graph",
+          "id": "g0002_i0001",
+          "parent": "g0000_i0001",
+          "accepted": true,
+          "attempts": 1,
+          "errors": [],
+          "correct": 22,
+          "f1": 0.7977777777777778,
+          "retained": false,
+          "parent_changes": {
+            "counts": {
+              "repaired": 0,
+              "regressed": 1,
+              "both_correct": 22,
+              "both_wrong": 7
+            },
+            "em_delta": -0.03333333333333333,
+            "bootstrap95": [
+              -0.1,
+              0.0
+            ],
+            "repair_rate": 0.0,
+            "regression_rate": 0.043478260869565216,
+            "changes": [
+              {
+                "id": "db73ca2786684b9e92deb1fcc796effd",
+                "question": "Blind Melon gave multiplication help covering the \"Schoolhouse Rock!\" song about this \"magic number\"",
+                "gold": [
+                  "three"
+                ],
+                "before": "Three",
+                "after": "Three Is a Magic Number",
+                "transition": "regressed"
+              }
+            ]
+          },
+          "skill_diff": [
+            "--- g0000_i0001",
+            "+++ g0002_i0001",
+            "@@ -37,10 +37,11 @@",
+            " - Ensure the evidence is complete and self-contained.",
+            " - If multiple sentences are needed, extract them all to form the evidence block.",
+            " ",
+            "-### Validate Evidence Against Question",
+            "+### Validate Evidence Granularity and Referent",
+            " - Compare the extracted evidence with the original QUESTION to ensure it addresses all parts of the query.",
+            "+- Verify that the extracted text is the correct entity or concept (e.g., ensure you extract the name, not the description of the name) and that the granularity matches the question request.",
+            " - Verify that the evidence does not contradict the question or contain irrelevant information.",
+            "-- If the evidence is insufficient or missing, note that the answer cannot be derived from the text.",
+            "+- If the evidence is insufficient, missing, or mismatched in granularity, note that the answer cannot be derived from the text.",
+            " ",
+            " ### Formulate Concise Answer",
+            " - Synthesize the validated evidence into a direct, concise answer.",
+            "@@ -60,7 +61,7 @@",
+            " 1. Analyze Question Intent",
+            " 2. Scan Context for Keywords",
+            " 3. Extract Supporting Evidence",
+            "-4. Validate Evidence Against Question",
+            "+4. Validate Evidence Granularity and Referent",
+            " 5. Formulate Concise Answer",
+            " 6. Format Final Response",
+            " ",
+            "@@ -70,7 +71,7 @@",
+            " 1. Analyze Question Intent",
+            " 2. Scan Context for Keywords",
+            " 3. Extract Supporting Evidence",
+            "-4. Validate Evidence Against Question",
+            "+4. Validate Evidence Granularity and Referent",
+            " 5. Formulate Concise Answer",
+            " 6. Format Final Response",
+            " ",
+            "@@ -80,6 +81,6 @@",
+            " 1. Analyze Question Intent",
+            " 2. Scan Context for Keywords",
+            " 3. Extract Supporting Evidence",
+            "-4. Validate Evidence Against Question",
+            "+4. Validate Evidence Granularity and Referent",
+            " 5. Formulate Concise Answer",
+            " 6. Format Final Response"
+          ]
+        },
+        {
+          "round": 3,
+          "operator": "mutation_other",
+          "id": "g0003_i0000",
+          "parent": "g0000_i0001",
+          "accepted": true,
+          "attempts": 1,
+          "errors": [],
+          "correct": 23,
+          "f1": 0.8177777777777778,
+          "retained": false,
+          "parent_changes": {
+            "counts": {
+              "repaired": 0,
+              "regressed": 0,
+              "both_correct": 23,
+              "both_wrong": 7
+            },
+            "em_delta": 0.0,
+            "bootstrap95": [
+              0.0,
+              0.0
+            ],
+            "repair_rate": 0.0,
+            "regression_rate": 0.0,
+            "changes": []
+          },
+          "skill_diff": [
+            "--- g0000_i0001",
+            "+++ g0003_i0000",
+            "@@ -10,6 +10,8 @@",
+            " - **Evidence First**: Always locate the specific sentence or phrase in the context that supports the answer before formulating the response.",
+            " - **Conciseness**: The final answer inside `<answer>` tags should be a short phrase or sentence, avoiding repetition of the question or excessive explanation.",
+            " - **Fallback Strategy**: If the context does not contain the answer, explicitly state that the information is not available in the provided text.",
+            "+- **Granularity Awareness**: When extracting evidence, match the requested entity granularity (e.g., specific name vs. descriptive phrase) without inferring missing hops or shortening valid titles.",
+            "+- **Verification**: Verify that extracted evidence directly answers the query without contradiction or irrelevance before finalizing.",
+            " ",
+            " ### Graph-structured Skill Execution Guide",
+            " This skill operates by selecting a relevant workflow from `## Task Graphs` based on the question type, then executing the corresponding sequence of nodes defined in `## Node Lists`."
+          ]
+        },
+        {
+          "round": 3,
+          "operator": "mutation_graph",
+          "id": "g0003_i0001",
+          "parent": "g0000_i0001",
+          "accepted": true,
+          "attempts": 1,
+          "errors": [],
+          "correct": 23,
+          "f1": 0.8222222222222223,
+          "retained": false,
+          "parent_changes": {
+            "counts": {
+              "repaired": 0,
+              "regressed": 0,
+              "both_correct": 23,
+              "both_wrong": 7
+            },
+            "em_delta": 0.0,
+            "bootstrap95": [
+              0.0,
+              0.0
+            ],
+            "repair_rate": 0.0,
+            "regression_rate": 0.0,
+            "changes": []
+          },
+          "skill_diff": []
+        }
+      ],
+      "cached_dev_rows": 30,
+      "retrieval": {
+        "counts": {
+          "selected": 18,
+          "original_pairs": 2,
+          "expanded_pairs": 8
+        },
+        "exposures": [
+          {
+            "round": 1,
+            "child": "g0001_i0000",
+            "failure": "f8a442980c55415b82527160422a2688",
+            "question": "...in American History, if you know that this man was the only U.S. President named Chester",
+            "original_reference": null,
+            "expanded_reference": "1907684788be4a09b36c6bb24812fe99",
+            "success_question": "In 1927, this Russian leader's book \"The State & Revolution\" was banned in Boston as obscene",
+            "rule": "target_kind:person"
+          },
+          {
+            "round": 1,
+            "child": "g0001_i0000",
+            "failure": "178c1b2e8450497a8fa6b0d853b885ab",
+            "question": "The 1815 Treaty of Paris was signed after his final defeat at Waterloo",
+            "original_reference": null,
+            "expanded_reference": null,
+            "success_question": null,
+            "rule": "unpaired"
+          },
+          {
+            "round": 1,
+            "child": "g0001_i0000",
+            "failure": "691178453c884f98a9205ef3d143bc42",
+            "question": "The National Air & Space Museum in Washington is the largest museum of this institution",
+            "original_reference": "691178453c884f98a9205ef3d143bc42",
+            "expanded_reference": "691178453c884f98a9205ef3d143bc42",
+            "success_question": "The National Air & Space Museum in Washington is the largest museum of this institution",
+            "rule": "original"
+          },
+          {
+            "round": 1,
+            "child": "g0001_i0001",
+            "failure": "f8a442980c55415b82527160422a2688",
+            "question": "...in American History, if you know that this man was the only U.S. President named Chester",
+            "original_reference": null,
+            "expanded_reference": "1907684788be4a09b36c6bb24812fe99",
+            "success_question": "In 1927, this Russian leader's book \"The State & Revolution\" was banned in Boston as obscene",
+            "rule": "target_kind:person"
+          },
+          {
+            "round": 1,
+            "child": "g0001_i0001",
+            "failure": "178c1b2e8450497a8fa6b0d853b885ab",
+            "question": "The 1815 Treaty of Paris was signed after his final defeat at Waterloo",
+            "original_reference": null,
+            "expanded_reference": null,
+            "success_question": null,
+            "rule": "unpaired"
+          },
+          {
+            "round": 1,
+            "child": "g0001_i0001",
+            "failure": "691178453c884f98a9205ef3d143bc42",
+            "question": "The National Air & Space Museum in Washington is the largest museum of this institution",
+            "original_reference": "691178453c884f98a9205ef3d143bc42",
+            "expanded_reference": "691178453c884f98a9205ef3d143bc42",
+            "success_question": "The National Air & Space Museum in Washington is the largest museum of this institution",
+            "rule": "original"
+          },
+          {
+            "round": 2,
+            "child": "g0002_i0000",
+            "failure": "84ab80ab3c5d47a58ddda464d62c5694",
+            "question": "He spun straw into gold(15)",
+            "original_reference": null,
+            "expanded_reference": "5c4fcaf8522d4d69812bf4f813b242b1",
+            "success_question": "In 1950 Sen. Margaret Chase Smith condemned this man for turning the Senate into a \"forum for hate\"",
+            "rule": "target_kind:person"
+          },
+          {
+            "round": 2,
+            "child": "g0002_i0000",
+            "failure": "1f6f687c79a642328a742e61154c9d90",
+            "question": "\"Tippecanoe and Tyler too\"",
+            "original_reference": null,
+            "expanded_reference": null,
+            "success_question": null,
+            "rule": "unpaired"
+          },
+          {
+            "round": 2,
+            "child": "g0002_i0000",
+            "failure": "1c2cc13e0fa745d6b541f6c7eb9f5619",
+            "question": "A \"hasty\" dessert, or perhaps you'd prefer the tapioca",
+            "original_reference": null,
+            "expanded_reference": null,
+            "success_question": null,
+            "rule": "unpaired"
+          },
+          {
+            "round": 2,
+            "child": "g0002_i0001",
+            "failure": "84ab80ab3c5d47a58ddda464d62c5694",
+            "question": "He spun straw into gold(15)",
+            "original_reference": null,
+            "expanded_reference": "5c4fcaf8522d4d69812bf4f813b242b1",
+            "success_question": "In 1950 Sen. Margaret Chase Smith condemned this man for turning the Senate into a \"forum for hate\"",
+            "rule": "target_kind:person"
+          },
+          {
+            "round": 2,
+            "child": "g0002_i0001",
+            "failure": "1f6f687c79a642328a742e61154c9d90",
+            "question": "\"Tippecanoe and Tyler too\"",
+            "original_reference": null,
+            "expanded_reference": null,
+            "success_question": null,
+            "rule": "unpaired"
+          },
+          {
+            "round": 2,
+            "child": "g0002_i0001",
+            "failure": "1c2cc13e0fa745d6b541f6c7eb9f5619",
+            "question": "A \"hasty\" dessert, or perhaps you'd prefer the tapioca",
+            "original_reference": null,
+            "expanded_reference": null,
+            "success_question": null,
+            "rule": "unpaired"
+          },
+          {
+            "round": 3,
+            "child": "g0003_i0000",
+            "failure": "4e71393e05184d6b84c4538f3d2be58e",
+            "question": "Studio A at the communications school at Ithaca College, the alma mater of this late journalist, is named for her",
+            "original_reference": null,
+            "expanded_reference": null,
+            "success_question": null,
+            "rule": "unpaired"
+          },
+          {
+            "round": 3,
+            "child": "g0003_i0000",
+            "failure": "6252b238d9554d45bc4eb9b9978543c5",
+            "question": "\"...on my mind\"",
+            "original_reference": null,
+            "expanded_reference": null,
+            "success_question": null,
+            "rule": "unpaired"
+          },
+          {
+            "round": 3,
+            "child": "g0003_i0000",
+            "failure": "84ab80ab3c5d47a58ddda464d62c5694",
+            "question": "He spun straw into gold(15)",
+            "original_reference": null,
+            "expanded_reference": "5c4fcaf8522d4d69812bf4f813b242b1",
+            "success_question": "In 1950 Sen. Margaret Chase Smith condemned this man for turning the Senate into a \"forum for hate\"",
+            "rule": "target_kind:person"
+          },
+          {
+            "round": 3,
+            "child": "g0003_i0001",
+            "failure": "4e71393e05184d6b84c4538f3d2be58e",
+            "question": "Studio A at the communications school at Ithaca College, the alma mater of this late journalist, is named for her",
+            "original_reference": null,
+            "expanded_reference": null,
+            "success_question": null,
+            "rule": "unpaired"
+          },
+          {
+            "round": 3,
+            "child": "g0003_i0001",
+            "failure": "6252b238d9554d45bc4eb9b9978543c5",
+            "question": "\"...on my mind\"",
+            "original_reference": null,
+            "expanded_reference": null,
+            "success_question": null,
+            "rule": "unpaired"
+          },
+          {
+            "round": 3,
+            "child": "g0003_i0001",
+            "failure": "84ab80ab3c5d47a58ddda464d62c5694",
+            "question": "He spun straw into gold(15)",
+            "original_reference": null,
+            "expanded_reference": "5c4fcaf8522d4d69812bf4f813b242b1",
+            "success_question": "In 1950 Sen. Margaret Chase Smith condemned this man for turning the Senate into a \"forum for hate\"",
+            "rule": "target_kind:person"
+          }
+        ],
+        "verified_attempt_prompts": 6,
+        "distinct_failed_questions_paired": {
+          "original_reference": 1,
+          "expanded_reference": 3
+        },
+        "distinct_references": {
+          "original_reference": 1,
+          "expanded_reference": 3
+        }
+      }
+    }
+  },
+  "comparisons": {
+    "B": {
+      "counts": {
+        "repaired": 0,
+        "regressed": 1,
+        "both_correct": 23,
+        "both_wrong": 6
+      },
+      "em_delta": -0.03333333333333333,
+      "bootstrap95": [
+        -0.1,
+        0.0
+      ],
+      "repair_rate": 0.0,
+      "regression_rate": 0.041666666666666664,
+      "changes": [
+        {
+          "id": "5324041c25d04316a800ccba2d79a2c7",
+          "question": "He wrote comic book stories for \"Captain America\" & \"Captain Marvel\" before hitting it big with \"I, the Jury\"",
+          "gold": [
+            "Mickey Spillane"
+          ],
+          "before": "Mickey Spillane",
+          "after": "True",
+          "transition": "regressed"
+        }
+      ]
+    },
+    "C2b": {
+      "counts": {
+        "repaired": 0,
+        "regressed": 0,
+        "both_correct": 23,
+        "both_wrong": 7
+      },
+      "em_delta": 0.0,
+      "bootstrap95": [
+        0.0,
+        0.0
+      ],
+      "repair_rate": 0.0,
+      "regression_rate": 0.0,
+      "changes": []
+    }
+  },
+  "common_cap": {
+    "calls": 307,
+    "generated_tokens": 15145
+  },
+  "matched": {
+    "B": {
+      "round": 3,
+      "best_id": "g0002_i0000",
+      "skill_hash": "d4af35210e57edf866ba98c47576eaf25067c70a8498de97a800f980447a3aa7",
+      "cost": {
+        "calls": 307,
+        "prompt_tokens": 609982,
+        "generated_tokens": 15145,
+        "reasoning_tokens": 0,
+        "physical_calls": 246
+      },
+      "em": 0.8,
+      "f1": 0.8444444444444444,
+      "unused_calls": 0,
+      "unused_generated_tokens": 0
+    },
+    "C2b": {
+      "round": 2,
+      "best_id": "g0000_i0001",
+      "skill_hash": "eac1b5a5d0bd15c10878d3535ffd9f9dd1902dd6589d7207e3d34b080ff6f6e5",
+      "cost": {
+        "calls": 235,
+        "prompt_tokens": 458131,
+        "generated_tokens": 11932,
+        "reasoning_tokens": 0,
+        "physical_calls": 174
+      },
+      "em": 0.7666666666666667,
+      "f1": 0.8222222222222223,
+      "unused_calls": 72,
+      "unused_generated_tokens": 3213
+    },
+    "C2c": {
+      "round": 2,
+      "best_id": "g0000_i0001",
+      "skill_hash": "eac1b5a5d0bd15c10878d3535ffd9f9dd1902dd6589d7207e3d34b080ff6f6e5",
+      "cost": {
+        "calls": 265,
+        "prompt_tokens": 521005,
+        "generated_tokens": 12487,
+        "reasoning_tokens": 0,
+        "physical_calls": 204
+      },
+      "em": 0.7666666666666667,
+      "f1": 0.8222222222222223,
+      "unused_calls": 42,
+      "unused_generated_tokens": 2658
+    }
+  },
+  "matched_comparisons": {
+    "B": {
+      "counts": {
+        "repaired": 0,
+        "regressed": 1,
+        "both_correct": 23,
+        "both_wrong": 6
+      },
+      "em_delta": -0.03333333333333333,
+      "bootstrap95": [
+        -0.1,
+        0.0
+      ],
+      "repair_rate": 0.0,
+      "regression_rate": 0.041666666666666664,
+      "changes": [
+        {
+          "id": "5324041c25d04316a800ccba2d79a2c7",
+          "question": "He wrote comic book stories for \"Captain America\" & \"Captain Marvel\" before hitting it big with \"I, the Jury\"",
+          "gold": [
+            "Mickey Spillane"
+          ],
+          "before": "Mickey Spillane",
+          "after": "True",
+          "transition": "regressed"
+        }
+      ]
+    },
+    "C2b": {
+      "counts": {
+        "repaired": 0,
+        "regressed": 0,
+        "both_correct": 23,
+        "both_wrong": 7
+      },
+      "em_delta": 0.0,
+      "bootstrap95": [
+        0.0,
+        0.0
+      ],
+      "repair_rate": 0.0,
+      "regression_rate": 0.0,
+      "changes": []
+    }
+  },
+  "gpu": [
+    {
+      "session": "4070-qwen35-20261123-171224",
+      "start_utc": "2026-11-23T09:12:24.902513+00:00",
+      "stop_utc": "2026-11-23T09:21:51.171463+00:00",
+      "gpu_hours": 0.15729693055555555
+    },
+    {
+      "session": "4070-qwen35-20261123-172152",
+      "start_utc": "2026-11-23T09:21:52.694206+00:00",
+      "stop_utc": "2026-11-23T09:25:21.679770+00:00",
+      "gpu_hours": 0.058051545555555556
+    }
+  ],
+  "test_evaluations": 0,
+  "cases": [
+    {
+      "id": "db73ca2786684b9e92deb1fcc796effd",
+      "question": "Blind Melon gave multiplication help covering the \"Schoolhouse Rock!\" song about this \"magic number\"",
+      "gold": [
+        "three"
+      ],
+      "outputs": {
+        "B": {
+          "predicted_answer": "Three",
+          "em": 1.0,
+          "f1": 1.0,
+          "format_ok": true
+        },
+        "C2b": {
+          "predicted_answer": "Three",
+          "em": 1.0,
+          "f1": 1.0,
+          "format_ok": true
+        },
+        "C2c": {
+          "predicted_answer": "Three",
+          "em": 1.0,
+          "f1": 1.0,
+          "format_ok": true
+        }
+      }
+    },
+    {
+      "id": "24143f01e7dd455e86c34a4a6f4ed3b9",
+      "question": "(Jon of the Clue Crew shows an anatomical diagram on the monitor.)  When Lasik eye surgery is performed, a flap is made in the eye, folded back, & then the stroma, or middle section, of this eye part is reshaped using lasers",
+      "gold": [
+        "the cornea"
+      ],
+      "outputs": {
+        "B": {
+          "predicted_answer": "cornea",
+          "em": 1.0,
+          "f1": 1.0,
+          "format_ok": true
+        },
+        "C2b": {
+          "predicted_answer": "cornea",
+          "em": 1.0,
+          "f1": 1.0,
+          "format_ok": true
+        },
+        "C2c": {
+          "predicted_answer": "cornea",
+          "em": 1.0,
+          "f1": 1.0,
+          "format_ok": true
+        }
+      }
+    },
+    {
+      "id": "09c769c7262e43eb95a52e874042c02a",
+      "question": "The drink known as \"Code\" this is \"everything you love about Mountain Dew with a smooth cherry flavor\"",
+      "gold": [
+        "Red"
+      ],
+      "outputs": {
+        "B": {
+          "predicted_answer": "Red",
+          "em": 1.0,
+          "f1": 1.0,
+          "format_ok": true
+        },
+        "C2b": {
+          "predicted_answer": "Red",
+          "em": 1.0,
+          "f1": 1.0,
+          "format_ok": true
+        },
+        "C2c": {
+          "predicted_answer": "Red",
+          "em": 1.0,
+          "f1": 1.0,
+          "format_ok": true
+        }
+      }
+    },
+    {
+      "id": "f0c26f4f2e9f4d1d84b4f13cb201cbeb",
+      "question": "This compound noun can refer to a leaflet given at a lecture or to food given to a hobo",
+      "gold": [
+        "a handout"
+      ],
+      "outputs": {
+        "B": {
+          "predicted_answer": "handout",
+          "em": 1.0,
+          "f1": 1.0,
+          "format_ok": true
+        },
+        "C2b": {
+          "predicted_answer": "a handout",
+          "em": 1.0,
+          "f1": 1.0,
+          "format_ok": true
+        },
+        "C2c": {
+          "predicted_answer": "a handout",
+          "em": 1.0,
+          "f1": 1.0,
+          "format_ok": true
+        }
+      }
+    },
+    {
+      "id": "66dc8aee931142b1834da63363511491",
+      "question": "With a diameter averaging about 7 miles, it's the smaller of Mars' 2 moons",
+      "gold": [
+        "Deimos"
+      ],
+      "outputs": {
+        "B": {
+          "predicted_answer": "Deimos",
+          "em": 1.0,
+          "f1": 1.0,
+          "format_ok": true
+        },
+        "C2b": {
+          "predicted_answer": "Deimos",
+          "em": 1.0,
+          "f1": 1.0,
+          "format_ok": true
+        },
+        "C2c": {
+          "predicted_answer": "Deimos",
+          "em": 1.0,
+          "f1": 1.0,
+          "format_ok": true
+        }
+      }
+    },
+    {
+      "id": "5c2009e4f1384b27b4b4fe9422f048ed",
+      "question": "To loosen, as a grip, or just to take it easy",
+      "gold": [
+        "relax"
+      ],
+      "outputs": {
+        "B": {
+          "predicted_answer": "To make lax or loose; to take rest or recreation",
+          "em": 0.0,
+          "f1": 0.0,
+          "format_ok": true
+        },
+        "C2b": {
+          "predicted_answer": "To make lax or loose; to take rest or recreation",
+          "em": 0.0,
+          "f1": 0.0,
+          "format_ok": true
+        },
+        "C2c": {
+          "predicted_answer": "To make lax or loose; to take rest or recreation",
+          "em": 0.0,
+          "f1": 0.0,
+          "format_ok": true
+        }
+      }
+    },
+    {
+      "id": "52967b20d9564d5b94756bc0b3d113d6",
+      "question": "\"We had joy, we had fun, we had\" this 1974 Terry Jacks hit",
+      "gold": [
+        "\"Seasons In The Sun\""
+      ],
+      "outputs": {
+        "B": {
+          "predicted_answer": "seasons in the sun",
+          "em": 1.0,
+          "f1": 1.0,
+          "format_ok": true
+        },
+        "C2b": {
+          "predicted_answer": "seasons in the sun",
+          "em": 1.0,
+          "f1": 1.0,
+          "format_ok": true
+        },
+        "C2c": {
+          "predicted_answer": "seasons in the sun",
+          "em": 1.0,
+          "f1": 1.0,
+          "format_ok": true
+        }
+      }
+    },
+    {
+      "id": "2b85b097d130404daeb26a3349bdc297",
+      "question": "Sabine Ulibarri's novel \"Mi Abuela Fumaba Puros\" translates to \"My Grandma Smoked\" these",
+      "gold": [
+        "Cigars"
+      ],
+      "outputs": {
+        "B": {
+          "predicted_answer": "cigars",
+          "em": 1.0,
+          "f1": 1.0,
+          "format_ok": true
+        },
+        "C2b": {
+          "predicted_answer": "cigars",
+          "em": 1.0,
+          "f1": 1.0,
+          "format_ok": true
+        },
+        "C2c": {
+          "predicted_answer": "cigars",
+          "em": 1.0,
+          "f1": 1.0,
+          "format_ok": true
+        }
+      }
+    },
+    {
+      "id": "f03757766e034c539bf2595428c03626",
+      "question": "Exist/unwanted \"bonnet\" intruder",
+      "gold": [
+        "be/bee"
+      ],
+      "outputs": {
+        "B": {
+          "predicted_answer": "be/bee",
+          "em": 1.0,
+          "f1": 1.0,
+          "format_ok": true
+        },
+        "C2b": {
+          "predicted_answer": "be/bee",
+          "em": 1.0,
+          "f1": 1.0,
+          "format_ok": true
+        },
+        "C2c": {
+          "predicted_answer": "be/bee",
+          "em": 1.0,
+          "f1": 1.0,
+          "format_ok": true
+        }
+      }
+    },
+    {
+      "id": "20e140b44e0f4a6484e9cf776b09679b",
+      "question": "Let's go Penn. Dutch & have this dish, bits of pork mixed with cornmeal mush, then shaped into loaves & fried",
+      "gold": [
+        "scrapple"
+      ],
+      "outputs": {
+        "B": {
+          "predicted_answer": "Scrapple",
+          "em": 1.0,
+          "f1": 1.0,
+          "format_ok": true
+        },
+        "C2b": {
+          "predicted_answer": "Scrapple",
+          "em": 1.0,
+          "f1": 1.0,
+          "format_ok": true
+        },
+        "C2c": {
+          "predicted_answer": "Scrapple",
+          "em": 1.0,
+          "f1": 1.0,
+          "format_ok": true
+        }
+      }
+    },
+    {
+      "id": "e3b96fc1b99247ebada09a84fa5fd205",
+      "question": "\"The unexamined life is not worth living\"",
+      "gold": [
+        "Greek"
+      ],
+      "outputs": {
+        "B": {
+          "predicted_answer": "Socrates",
+          "em": 0.0,
+          "f1": 0.0,
+          "format_ok": true
+        },
+        "C2b": {
+          "predicted_answer": "It is a famous dictum attributed to Socrates, appearing in Plato's Apology.",
+          "em": 0.0,
+          "f1": 0.0,
+          "format_ok": true
+        },
+        "C2c": {
+          "predicted_answer": "It is a famous dictum attributed to Socrates, appearing in Plato's Apology.",
+          "em": 0.0,
+          "f1": 0.0,
+          "format_ok": true
+        }
+      }
+    },
+    {
+      "id": "b745738e5b3c482aa2ae94ad5688246b",
+      "question": "Generations of inbreeding doomed this dynasty in Spain as Charles II was both witless & childless",
+      "gold": [
+        "Hapsburg"
+      ],
+      "outputs": {
+        "B": {
+          "predicted_answer": "Hapsburg",
+          "em": 1.0,
+          "f1": 1.0,
+          "format_ok": true
+        },
+        "C2b": {
+          "predicted_answer": "Hapsburg",
+          "em": 1.0,
+          "f1": 1.0,
+          "format_ok": true
+        },
+        "C2c": {
+          "predicted_answer": "Hapsburg",
+          "em": 1.0,
+          "f1": 1.0,
+          "format_ok": true
+        }
+      }
+    },
+    {
+      "id": "1a78a8cf476c4a0dbf551558da1d879b",
+      "question": "Yum!  The Chocolate Shoppe Ice Cream Co. here in Madison has a black ice cream named for this black candy",
+      "gold": [
+        "licorice"
+      ],
+      "outputs": {
+        "B": {
+          "predicted_answer": "Black Licorice",
+          "em": 0.0,
+          "f1": 0.6666666666666666,
+          "format_ok": true
+        },
+        "C2b": {
+          "predicted_answer": "Black Licorice",
+          "em": 0.0,
+          "f1": 0.6666666666666666,
+          "format_ok": true
+        },
+        "C2c": {
+          "predicted_answer": "Black Licorice",
+          "em": 0.0,
+          "f1": 0.6666666666666666,
+          "format_ok": true
+        }
+      }
+    },
+    {
+      "id": "c7bd32aee95f485d85d0b6749d542c51",
+      "question": "In March 2006 he was denied parole for the 13th time for the murder of Robert Kennedy",
+      "gold": [
+        "Sirhan Sirhan"
+      ],
+      "outputs": {
+        "B": {
+          "predicted_answer": "Yes",
+          "em": 0.0,
+          "f1": 0.0,
+          "format_ok": true
+        },
+        "C2b": {
+          "predicted_answer": "Yes, in March 2006, Sirhan Sirhan was denied parole for the 13th time for the murder of Robert F. Kennedy.",
+          "em": 0.0,
+          "f1": 0.19999999999999998,
+          "format_ok": true
+        },
+        "C2c": {
+          "predicted_answer": "Yes, in March 2006, Sirhan Sirhan was denied parole for the 13th time for the murder of Robert F. Kennedy.",
+          "em": 0.0,
+          "f1": 0.19999999999999998,
+          "format_ok": true
+        }
+      }
+    },
+    {
+      "id": "8e22ba3b6fc34886a86d60dd1a1db025",
+      "question": "The painting seen here shows Odysseus returning home to find this wife of his delaying some suitors",
+      "gold": [
+        "Penelope"
+      ],
+      "outputs": {
+        "B": {
+          "predicted_answer": "Penelope",
+          "em": 1.0,
+          "f1": 1.0,
+          "format_ok": true
+        },
+        "C2b": {
+          "predicted_answer": "Penelope",
+          "em": 1.0,
+          "f1": 1.0,
+          "format_ok": true
+        },
+        "C2c": {
+          "predicted_answer": "Penelope",
+          "em": 1.0,
+          "f1": 1.0,
+          "format_ok": true
+        }
+      }
+    },
+    {
+      "id": "0d1592f640f04ecb9c7add7164f87c5a",
+      "question": "If you're visiting the White House--the first White House of the Confederacy, that is--you're in this city",
+      "gold": [
+        "Montgomery"
+      ],
+      "outputs": {
+        "B": {
+          "predicted_answer": "Montgomery",
+          "em": 1.0,
+          "f1": 1.0,
+          "format_ok": true
+        },
+        "C2b": {
+          "predicted_answer": "Montgomery",
+          "em": 1.0,
+          "f1": 1.0,
+          "format_ok": true
+        },
+        "C2c": {
+          "predicted_answer": "Montgomery",
+          "em": 1.0,
+          "f1": 1.0,
+          "format_ok": true
+        }
+      }
+    },
+    {
+      "id": "0baaa0fe4fde4bae99bc6d2be230d525",
+      "question": "She hit the top 40 in both 1975 & 1977 with \"Send In The Clowns\"",
+      "gold": [
+        "Judy Collins"
+      ],
+      "outputs": {
+        "B": {
+          "predicted_answer": "Judy Collins",
+          "em": 1.0,
+          "f1": 1.0,
+          "format_ok": true
+        },
+        "C2b": {
+          "predicted_answer": "Judy Collins",
+          "em": 1.0,
+          "f1": 1.0,
+          "format_ok": true
+        },
+        "C2c": {
+          "predicted_answer": "Judy Collins",
+          "em": 1.0,
+          "f1": 1.0,
+          "format_ok": true
+        }
+      }
+    },
+    {
+      "id": "1c6add1cbd464f34b6e90485780f1c3e",
+      "question": "The French play \"The Madwoman of\" this place inspired Jerry Herman's Broadway musical \"Dear World\"",
+      "gold": [
+        "Chaillot"
+      ],
+      "outputs": {
+        "B": {
+          "predicted_answer": "Chaillot",
+          "em": 1.0,
+          "f1": 1.0,
+          "format_ok": true
+        },
+        "C2b": {
+          "predicted_answer": "Chaillot",
+          "em": 1.0,
+          "f1": 1.0,
+          "format_ok": true
+        },
+        "C2c": {
+          "predicted_answer": "Chaillot",
+          "em": 1.0,
+          "f1": 1.0,
+          "format_ok": true
+        }
+      }
+    },
+    {
+      "id": "4e90a93f4548458bb5d35ac9c767233b",
+      "question": "Christiansted National Historic Site on this largest of the U.S. Virgin Islands commemorates its Danish heritage",
+      "gold": [
+        "St. Croix"
+      ],
+      "outputs": {
+        "B": {
+          "predicted_answer": "St. Croix",
+          "em": 1.0,
+          "f1": 1.0,
+          "format_ok": true
+        },
+        "C2b": {
+          "predicted_answer": "St. Croix",
+          "em": 1.0,
+          "f1": 1.0,
+          "format_ok": true
+        },
+        "C2c": {
+          "predicted_answer": "St. Croix",
+          "em": 1.0,
+          "f1": 1.0,
+          "format_ok": true
+        }
+      }
+    },
+    {
+      "id": "5324041c25d04316a800ccba2d79a2c7",
+      "question": "He wrote comic book stories for \"Captain America\" & \"Captain Marvel\" before hitting it big with \"I, the Jury\"",
+      "gold": [
+        "Mickey Spillane"
+      ],
+      "outputs": {
+        "B": {
+          "predicted_answer": "Mickey Spillane",
+          "em": 1.0,
+          "f1": 1.0,
+          "format_ok": true
+        },
+        "C2b": {
+          "predicted_answer": "True",
+          "em": 0.0,
+          "f1": 0.0,
+          "format_ok": true
+        },
+        "C2c": {
+          "predicted_answer": "True",
+          "em": 0.0,
+          "f1": 0.0,
+          "format_ok": true
+        }
+      }
+    },
+    {
+      "id": "ab84169c66b2415180563269295f53be",
+      "question": "No matter what is depicted, putting a red seal as the finishing touch on a black and white painting is called adding an eye to this mythic beast",
+      "gold": [
+        "dragon"
+      ],
+      "outputs": {
+        "B": {
+          "predicted_answer": "dragon",
+          "em": 1.0,
+          "f1": 1.0,
+          "format_ok": true
+        },
+        "C2b": {
+          "predicted_answer": "dragon",
+          "em": 1.0,
+          "f1": 1.0,
+          "format_ok": true
+        },
+        "C2c": {
+          "predicted_answer": "dragon",
+          "em": 1.0,
+          "f1": 1.0,
+          "format_ok": true
+        }
+      }
+    },
+    {
+      "id": "c9f3a971abe64853aca3e0bb1fea6962",
+      "question": "\"Traitors are not gentlemen, my good friends. They don't understand being treated like gentlemen\"",
+      "gold": [
+        "(Joseph) McCarthy"
+      ],
+      "outputs": {
+        "B": {
+          "predicted_answer": "Senator Joseph Raymond McCarthy",
+          "em": 0.0,
+          "f1": 0.6666666666666666,
+          "format_ok": true
+        },
+        "C2b": {
+          "predicted_answer": "Senator Joseph McCarthy",
+          "em": 0.0,
+          "f1": 0.8,
+          "format_ok": true
+        },
+        "C2c": {
+          "predicted_answer": "Senator Joseph McCarthy",
+          "em": 0.0,
+          "f1": 0.8,
+          "format_ok": true
+        }
+      }
+    },
+    {
+      "id": "fbaae95260474ed58ccbb05ac482089b",
+      "question": "You've never been mellow if you don't know this Australian played Sandy in the 1978 film \"Grease\"",
+      "gold": [
+        "Olivia Newton-John",
+        "Olivia Newton John"
+      ],
+      "outputs": {
+        "B": {
+          "predicted_answer": "Olivia Newton-John",
+          "em": 1.0,
+          "f1": 1.0,
+          "format_ok": true
+        },
+        "C2b": {
+          "predicted_answer": "Olivia Newton-John",
+          "em": 1.0,
+          "f1": 1.0,
+          "format_ok": true
+        },
+        "C2c": {
+          "predicted_answer": "Olivia Newton-John",
+          "em": 1.0,
+          "f1": 1.0,
+          "format_ok": true
+        }
+      }
+    },
+    {
+      "id": "bbeeec20466a4dab9e4d73d86c964cba",
+      "question": "It can be the old section of an Arab city in north Africa, or the name of the city where Muhammad is entombed",
+      "gold": [
+        "Medina"
+      ],
+      "outputs": {
+        "B": {
+          "predicted_answer": "Medina",
+          "em": 1.0,
+          "f1": 1.0,
+          "format_ok": true
+        },
+        "C2b": {
+          "predicted_answer": "Medina",
+          "em": 1.0,
+          "f1": 1.0,
+          "format_ok": true
+        },
+        "C2c": {
+          "predicted_answer": "Medina",
+          "em": 1.0,
+          "f1": 1.0,
+          "format_ok": true
+        }
+      }
+    },
+    {
+      "id": "439e908aa7c7422daf5632af7e0440ec",
+      "question": "(Leonard Maltin reads the clue.)  David Lean's 1946 British film of this Dickens tale is a real \"Pip\", & the opening graveyard sequence is a gem",
+      "gold": [
+        "Great Expectations"
+      ],
+      "outputs": {
+        "B": {
+          "predicted_answer": "Great Expectations",
+          "em": 1.0,
+          "f1": 1.0,
+          "format_ok": true
+        },
+        "C2b": {
+          "predicted_answer": "Great Expectations",
+          "em": 1.0,
+          "f1": 1.0,
+          "format_ok": true
+        },
+        "C2c": {
+          "predicted_answer": "Great Expectations",
+          "em": 1.0,
+          "f1": 1.0,
+          "format_ok": true
+        }
+      }
+    },
+    {
+      "id": "dc2add9004fd40e69fcbd2eea80c513c",
+      "question": "His grave is marked\"REV. CHARLES LUTWIDGE DODGSON.FELL ASLEEP JAN. 14, 1898.AGED 65 YEARS\"",
+      "gold": [
+        "Lewis Carroll"
+      ],
+      "outputs": {
+        "B": {
+          "predicted_answer": "Lewis Carroll",
+          "em": 1.0,
+          "f1": 1.0,
+          "format_ok": true
+        },
+        "C2b": {
+          "predicted_answer": "Lewis Carroll",
+          "em": 1.0,
+          "f1": 1.0,
+          "format_ok": true
+        },
+        "C2c": {
+          "predicted_answer": "Lewis Carroll",
+          "em": 1.0,
+          "f1": 1.0,
+          "format_ok": true
+        }
+      }
+    },
+    {
+      "id": "f7bf36628c7540da907dda84b48aac82",
+      "question": "Geologic era between the Paleozoic & the Cenozoic",
+      "gold": [
+        "the Mesozoic"
+      ],
+      "outputs": {
+        "B": {
+          "predicted_answer": "Mesozoic",
+          "em": 1.0,
+          "f1": 1.0,
+          "format_ok": true
+        },
+        "C2b": {
+          "predicted_answer": "Mesozoic",
+          "em": 1.0,
+          "f1": 1.0,
+          "format_ok": true
+        },
+        "C2c": {
+          "predicted_answer": "Mesozoic",
+          "em": 1.0,
+          "f1": 1.0,
+          "format_ok": true
+        }
+      }
+    },
+    {
+      "id": "8d130f744b214055ad0c4cdce459a4b9",
+      "question": "This foolhardy \"charge\" took place at 1854's Battle of Balaklava during the Crimean War",
+      "gold": [
+        "the Charge of the Light Brigade"
+      ],
+      "outputs": {
+        "B": {
+          "predicted_answer": "Charge of the Light Brigade",
+          "em": 1.0,
+          "f1": 1.0,
+          "format_ok": true
+        },
+        "C2b": {
+          "predicted_answer": "The Charge of the Light Brigade",
+          "em": 1.0,
+          "f1": 1.0,
+          "format_ok": true
+        },
+        "C2c": {
+          "predicted_answer": "The Charge of the Light Brigade",
+          "em": 1.0,
+          "f1": 1.0,
+          "format_ok": true
+        }
+      }
+    },
+    {
+      "id": "4fb4332a7a0e44e4b5655de1d7c2e5ac",
+      "question": "Now used in horse racing, its name is Old English for \"the length of a furrow\"",
+      "gold": [
+        "a furlong"
+      ],
+      "outputs": {
+        "B": {
+          "predicted_answer": "furlong",
+          "em": 1.0,
+          "f1": 1.0,
+          "format_ok": true
+        },
+        "C2b": {
+          "predicted_answer": "Furlong",
+          "em": 1.0,
+          "f1": 1.0,
+          "format_ok": true
+        },
+        "C2c": {
+          "predicted_answer": "Furlong",
+          "em": 1.0,
+          "f1": 1.0,
+          "format_ok": true
+        }
+      }
+    },
+    {
+      "id": "982e414b371248788c72732975949957",
+      "question": "Chile dogs include the pastor aleman, this breed",
+      "gold": [
+        "the German shepherd"
+      ],
+      "outputs": {
+        "B": {
+          "predicted_answer": "Information not found in the provided text",
+          "em": 0.0,
+          "f1": 0.0,
+          "format_ok": true
+        },
+        "C2b": {
+          "predicted_answer": "Information not found in the provided text",
+          "em": 0.0,
+          "f1": 0.0,
+          "format_ok": true
+        },
+        "C2c": {
+          "predicted_answer": "Information not found in the provided text",
+          "em": 0.0,
+          "f1": 0.0,
+          "format_ok": true
+        }
+      }
+    }
+  ],
+  "physical_cost": {
+    "physical_calls": 829,
+    "prompt_tokens": 1687604,
+    "generated_tokens": 39009
+  },
+  "historical_replay": {
+    "scope": "Fixed historical C2b train trajectories, zero new model calls",
+    "datasets": {
+      "searchqa": {
+        "counts": {
+          "selected": 18,
+          "original_pairs": 2,
+          "expanded_pairs": 8
+        },
+        "exposures": [
+          {
+            "round": 1,
+            "child": "g0001_i0000",
+            "failure": "f8a442980c55415b82527160422a2688",
+            "question": "...in American History, if you know that this man was the only U.S. President named Chester",
+            "original_reference": null,
+            "expanded_reference": "1907684788be4a09b36c6bb24812fe99",
+            "success_question": "In 1927, this Russian leader's book \"The State & Revolution\" was banned in Boston as obscene",
+            "rule": "target_kind:person"
+          },
+          {
+            "round": 1,
+            "child": "g0001_i0000",
+            "failure": "691178453c884f98a9205ef3d143bc42",
+            "question": "The National Air & Space Museum in Washington is the largest museum of this institution",
+            "original_reference": "691178453c884f98a9205ef3d143bc42",
+            "expanded_reference": "691178453c884f98a9205ef3d143bc42",
+            "success_question": "The National Air & Space Museum in Washington is the largest museum of this institution",
+            "rule": "original"
+          },
+          {
+            "round": 1,
+            "child": "g0001_i0000",
+            "failure": "0d73382067a64ea4a6ed320ae386accb",
+            "question": "February 6, 1911 in Tampico, Illinois",
+            "original_reference": null,
+            "expanded_reference": null,
+            "success_question": null,
+            "rule": "unpaired"
+          },
+          {
+            "round": 1,
+            "child": "g0001_i0001",
+            "failure": "f8a442980c55415b82527160422a2688",
+            "question": "...in American History, if you know that this man was the only U.S. President named Chester",
+            "original_reference": null,
+            "expanded_reference": "1907684788be4a09b36c6bb24812fe99",
+            "success_question": "In 1927, this Russian leader's book \"The State & Revolution\" was banned in Boston as obscene",
+            "rule": "target_kind:person"
+          },
+          {
+            "round": 1,
+            "child": "g0001_i0001",
+            "failure": "691178453c884f98a9205ef3d143bc42",
+            "question": "The National Air & Space Museum in Washington is the largest museum of this institution",
+            "original_reference": "691178453c884f98a9205ef3d143bc42",
+            "expanded_reference": "691178453c884f98a9205ef3d143bc42",
+            "success_question": "The National Air & Space Museum in Washington is the largest museum of this institution",
+            "rule": "original"
+          },
+          {
+            "round": 1,
+            "child": "g0001_i0001",
+            "failure": "0d73382067a64ea4a6ed320ae386accb",
+            "question": "February 6, 1911 in Tampico, Illinois",
+            "original_reference": null,
+            "expanded_reference": null,
+            "success_question": null,
+            "rule": "unpaired"
+          },
+          {
+            "round": 2,
+            "child": "g0002_i0000",
+            "failure": "84ab80ab3c5d47a58ddda464d62c5694",
+            "question": "He spun straw into gold(15)",
+            "original_reference": null,
+            "expanded_reference": "5c4fcaf8522d4d69812bf4f813b242b1",
+            "success_question": "In 1950 Sen. Margaret Chase Smith condemned this man for turning the Senate into a \"forum for hate\"",
+            "rule": "target_kind:person"
+          },
+          {
+            "round": 2,
+            "child": "g0002_i0000",
+            "failure": "1f6f687c79a642328a742e61154c9d90",
+            "question": "\"Tippecanoe and Tyler too\"",
+            "original_reference": null,
+            "expanded_reference": null,
+            "success_question": null,
+            "rule": "unpaired"
+          },
+          {
+            "round": 2,
+            "child": "g0002_i0000",
+            "failure": "1c2cc13e0fa745d6b541f6c7eb9f5619",
+            "question": "A \"hasty\" dessert, or perhaps you'd prefer the tapioca",
+            "original_reference": null,
+            "expanded_reference": null,
+            "success_question": null,
+            "rule": "unpaired"
+          },
+          {
+            "round": 2,
+            "child": "g0002_i0001",
+            "failure": "84ab80ab3c5d47a58ddda464d62c5694",
+            "question": "He spun straw into gold(15)",
+            "original_reference": null,
+            "expanded_reference": "5c4fcaf8522d4d69812bf4f813b242b1",
+            "success_question": "In 1950 Sen. Margaret Chase Smith condemned this man for turning the Senate into a \"forum for hate\"",
+            "rule": "target_kind:person"
+          },
+          {
+            "round": 2,
+            "child": "g0002_i0001",
+            "failure": "1f6f687c79a642328a742e61154c9d90",
+            "question": "\"Tippecanoe and Tyler too\"",
+            "original_reference": null,
+            "expanded_reference": null,
+            "success_question": null,
+            "rule": "unpaired"
+          },
+          {
+            "round": 2,
+            "child": "g0002_i0001",
+            "failure": "1c2cc13e0fa745d6b541f6c7eb9f5619",
+            "question": "A \"hasty\" dessert, or perhaps you'd prefer the tapioca",
+            "original_reference": null,
+            "expanded_reference": null,
+            "success_question": null,
+            "rule": "unpaired"
+          },
+          {
+            "round": 3,
+            "child": "g0003_i0000",
+            "failure": "a234f47261f14ab9aed867375bddc652",
+            "question": "Rubber is an ingredient in this type of chewing gum",
+            "original_reference": null,
+            "expanded_reference": null,
+            "success_question": null,
+            "rule": "unpaired"
+          },
+          {
+            "round": 3,
+            "child": "g0003_i0000",
+            "failure": "6252b238d9554d45bc4eb9b9978543c5",
+            "question": "\"...on my mind\"",
+            "original_reference": null,
+            "expanded_reference": null,
+            "success_question": null,
+            "rule": "unpaired"
+          },
+          {
+            "round": 3,
+            "child": "g0003_i0000",
+            "failure": "84ab80ab3c5d47a58ddda464d62c5694",
+            "question": "He spun straw into gold(15)",
+            "original_reference": null,
+            "expanded_reference": "5c4fcaf8522d4d69812bf4f813b242b1",
+            "success_question": "In 1950 Sen. Margaret Chase Smith condemned this man for turning the Senate into a \"forum for hate\"",
+            "rule": "target_kind:person"
+          },
+          {
+            "round": 3,
+            "child": "g0003_i0001",
+            "failure": "a234f47261f14ab9aed867375bddc652",
+            "question": "Rubber is an ingredient in this type of chewing gum",
+            "original_reference": null,
+            "expanded_reference": null,
+            "success_question": null,
+            "rule": "unpaired"
+          },
+          {
+            "round": 3,
+            "child": "g0003_i0001",
+            "failure": "6252b238d9554d45bc4eb9b9978543c5",
+            "question": "\"...on my mind\"",
+            "original_reference": null,
+            "expanded_reference": null,
+            "success_question": null,
+            "rule": "unpaired"
+          },
+          {
+            "round": 3,
+            "child": "g0003_i0001",
+            "failure": "84ab80ab3c5d47a58ddda464d62c5694",
+            "question": "He spun straw into gold(15)",
+            "original_reference": null,
+            "expanded_reference": "5c4fcaf8522d4d69812bf4f813b242b1",
+            "success_question": "In 1950 Sen. Margaret Chase Smith condemned this man for turning the Senate into a \"forum for hate\"",
+            "rule": "target_kind:person"
+          }
+        ],
+        "verified_attempt_prompts": 7,
+        "distinct_failed_questions_paired": {
+          "original_reference": 1,
+          "expanded_reference": 3
+        },
+        "distinct_references": {
+          "original_reference": 1,
+          "expanded_reference": 3
+        }
+      },
+      "hotpotqa": {
+        "counts": {
+          "selected": 18,
+          "original_pairs": 3,
+          "expanded_pairs": 9
+        },
+        "exposures": [
+          {
+            "round": 1,
+            "child": "g0001_i0000",
+            "failure": "5a7219e155429971e9dc926e",
+            "question": "Which postcolonial literature academic specializes in Victorian and Modern English literature?",
+            "original_reference": null,
+            "expanded_reference": null,
+            "success_question": null,
+            "rule": "unpaired"
+          },
+          {
+            "round": 1,
+            "child": "g0001_i0000",
+            "failure": "5a89d7d05542992e4fca83df",
+            "question": "What type of publication does The Writer and Wired and have in common?",
+            "original_reference": null,
+            "expanded_reference": null,
+            "success_question": null,
+            "rule": "unpaired"
+          },
+          {
+            "round": 1,
+            "child": "g0001_i0000",
+            "failure": "5ab2de5d5542991669774116",
+            "question": "What two property groups own the enclosed shopping malls in Santa Rosa, California?",
+            "original_reference": "5ab2de5d5542991669774116",
+            "expanded_reference": "5ab2de5d5542991669774116",
+            "success_question": "What two property groups own the enclosed shopping malls in Santa Rosa, California?",
+            "rule": "original"
+          },
+          {
+            "round": 1,
+            "child": "g0001_i0001",
+            "failure": "5a7219e155429971e9dc926e",
+            "question": "Which postcolonial literature academic specializes in Victorian and Modern English literature?",
+            "original_reference": null,
+            "expanded_reference": null,
+            "success_question": null,
+            "rule": "unpaired"
+          },
+          {
+            "round": 1,
+            "child": "g0001_i0001",
+            "failure": "5a89d7d05542992e4fca83df",
+            "question": "What type of publication does The Writer and Wired and have in common?",
+            "original_reference": null,
+            "expanded_reference": null,
+            "success_question": null,
+            "rule": "unpaired"
+          },
+          {
+            "round": 1,
+            "child": "g0001_i0001",
+            "failure": "5ab2de5d5542991669774116",
+            "question": "What two property groups own the enclosed shopping malls in Santa Rosa, California?",
+            "original_reference": "5ab2de5d5542991669774116",
+            "expanded_reference": "5ab2de5d5542991669774116",
+            "success_question": "What two property groups own the enclosed shopping malls in Santa Rosa, California?",
+            "rule": "original"
+          },
+          {
+            "round": 2,
+            "child": "g0002_i0000",
+            "failure": "5a8e1f4955429917b4a5bd2f",
+            "question": "What army did the uncle of Jean Gordon command?",
+            "original_reference": null,
+            "expanded_reference": null,
+            "success_question": null,
+            "rule": "unpaired"
+          },
+          {
+            "round": 2,
+            "child": "g0002_i0000",
+            "failure": "5ade88ca55429939a52fe8e7",
+            "question": "What city is the university located where Lester J. Reed received his Bachelors of Science from?",
+            "original_reference": null,
+            "expanded_reference": null,
+            "success_question": null,
+            "rule": "unpaired"
+          },
+          {
+            "round": 2,
+            "child": "g0002_i0000",
+            "failure": "5a7bcd09554299294a54aaeb",
+            "question": "When was the actor who starred in The Finest Hours born?",
+            "original_reference": null,
+            "expanded_reference": "5ae356215542992f92d8228f",
+            "success_question": "Jon Kortajarena has modeled for the fashion designer who launched his luxury brand in what year?",
+            "rule": "target_kind:time"
+          },
+          {
+            "round": 2,
+            "child": "g0002_i0001",
+            "failure": "5a8e1f4955429917b4a5bd2f",
+            "question": "What army did the uncle of Jean Gordon command?",
+            "original_reference": null,
+            "expanded_reference": null,
+            "success_question": null,
+            "rule": "unpaired"
+          },
+          {
+            "round": 2,
+            "child": "g0002_i0001",
+            "failure": "5a7bcd09554299294a54aaeb",
+            "question": "When was the actor who starred in The Finest Hours born?",
+            "original_reference": null,
+            "expanded_reference": "5ae356215542992f92d8228f",
+            "success_question": "Jon Kortajarena has modeled for the fashion designer who launched his luxury brand in what year?",
+            "rule": "target_kind:time"
+          },
+          {
+            "round": 2,
+            "child": "g0002_i0001",
+            "failure": "5ab2de5d5542991669774116",
+            "question": "What two property groups own the enclosed shopping malls in Santa Rosa, California?",
+            "original_reference": "5ab2de5d5542991669774116",
+            "expanded_reference": "5ab2de5d5542991669774116",
+            "success_question": "What two property groups own the enclosed shopping malls in Santa Rosa, California?",
+            "rule": "original"
+          },
+          {
+            "round": 3,
+            "child": "g0003_i0000",
+            "failure": "5ae160125542990adbacf778",
+            "question": "Who was the ruler of an ancient city located Northwest of the junction of the Euphrates and Tigris and had several statues found in southern Mesopotamia?",
+            "original_reference": null,
+            "expanded_reference": "5ade80c155429975fa854ee2",
+            "success_question": "Who is the father of AFL medium-sized forward Tory Dickson?",
+            "rule": "target_kind:person"
+          },
+          {
+            "round": 3,
+            "child": "g0003_i0000",
+            "failure": "5a7219e155429971e9dc926e",
+            "question": "Which postcolonial literature academic specializes in Victorian and Modern English literature?",
+            "original_reference": null,
+            "expanded_reference": null,
+            "success_question": null,
+            "rule": "unpaired"
+          },
+          {
+            "round": 3,
+            "child": "g0003_i0000",
+            "failure": "5a7bcd09554299294a54aaeb",
+            "question": "When was the actor who starred in The Finest Hours born?",
+            "original_reference": null,
+            "expanded_reference": "5ae356215542992f92d8228f",
+            "success_question": "Jon Kortajarena has modeled for the fashion designer who launched his luxury brand in what year?",
+            "rule": "target_kind:time"
+          },
+          {
+            "round": 3,
+            "child": "g0003_i0001",
+            "failure": "5ae160125542990adbacf778",
+            "question": "Who was the ruler of an ancient city located Northwest of the junction of the Euphrates and Tigris and had several statues found in southern Mesopotamia?",
+            "original_reference": null,
+            "expanded_reference": "5ade80c155429975fa854ee2",
+            "success_question": "Who is the father of AFL medium-sized forward Tory Dickson?",
+            "rule": "target_kind:person"
+          },
+          {
+            "round": 3,
+            "child": "g0003_i0001",
+            "failure": "5a7219e155429971e9dc926e",
+            "question": "Which postcolonial literature academic specializes in Victorian and Modern English literature?",
+            "original_reference": null,
+            "expanded_reference": null,
+            "success_question": null,
+            "rule": "unpaired"
+          },
+          {
+            "round": 3,
+            "child": "g0003_i0001",
+            "failure": "5a7bcd09554299294a54aaeb",
+            "question": "When was the actor who starred in The Finest Hours born?",
+            "original_reference": null,
+            "expanded_reference": "5ae356215542992f92d8228f",
+            "success_question": "Jon Kortajarena has modeled for the fashion designer who launched his luxury brand in what year?",
+            "rule": "target_kind:time"
+          }
+        ],
+        "verified_attempt_prompts": 8,
+        "distinct_failed_questions_paired": {
+          "original_reference": 1,
+          "expanded_reference": 3
+        },
+        "distinct_references": {
+          "original_reference": 1,
+          "expanded_reference": 3
+        }
+      }
+    }
+  }
+}

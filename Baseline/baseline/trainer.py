@@ -50,6 +50,8 @@ class CourseTrainer(EvolutionarySkillTrainer):
     def __init__(self, config, data_dir, output, *, condition, demo=False, feedback=None):
         self.course = config
         self.data, self.manifest = load_data(data_dir, config["dataset"], demo=demo)
+        if bool(config.get("course_hotpotqa")) != (self.manifest.get("protocol") == "hotpotqa_distractor_course_11_02"):
+            raise ValueError("Course data and configuration must be used together")
         ensure_empty(output)
         self.output, self.condition, self.demo = Path(output).resolve(), condition, demo
         self.budget = Budget(self.output / "ledger.jsonl", config["budget"])
@@ -143,7 +145,13 @@ class CourseTrainer(EvolutionarySkillTrainer):
     def generation_train(self, population, generation):
         seed = self.course["seed"] + generation * 10000
         # Same batch and order for BOTH parents. Independent of outcomes and method.
-        batch = random.Random(seed).sample(self.data["train"], min(self.course["train_batch_size"], len(self.data["train"])))
+        if self.course.get("course_hotpotqa"):
+            seed = self.course["seed"]
+            order = random.Random(seed).sample(self.data["train"], len(self.data["train"]))
+            size = self.course["train_batch_size"]
+            batch = order[(generation - 1) * size:generation * size]
+        else:
+            batch = random.Random(seed).sample(self.data["train"], min(self.course["train_batch_size"], len(self.data["train"])))
         write_json(self.output / "train_batches" / f"{generation}.json", {"seed": seed, "ids": [i["id"] for i in batch]})
         results = []
         for individual in population:

@@ -1,0 +1,238 @@
+<!doctype html><html lang="zh-CN"><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SearchQA 本机成功参照检索实验</title><style>
+*{box-sizing:border-box}body{margin:0;background:#faf9f6;color:#20362e;font:16px/1.7 "Microsoft YaHei",system-ui,sans-serif}main{max-width:1050px;margin:auto;padding:30px 20px 56px}h1{font-size:clamp(25px,5vw,38px);line-height:1.2}h2{margin:36px 0 8px;font-size:22px}header{border-bottom:3px solid #48795f;padding-bottom:16px}.scroll{overflow-x:auto}pre{white-space:pre-wrap;overflow-wrap:anywhere}table{border-collapse:collapse;width:100%;font-size:14px}td,th{padding:9px 13px;border-bottom:1px solid #ced8cf;text-align:left}th{background:#e2ebe3;white-space:nowrap}a{color:#235b47}summary{cursor:pointer}small{color:#48574d}</style><main>
+<header><small>2026-11-23 · SearchQA · RTX 4070 Ti SUPER · Qwen3.5-9B-Q4_K_M</small>
+<h1>给陈述式线索检索成功参照，能多答对几题？</h1><p>B 24/30，C2b 23/30，C2c 23/30。C2c 相对同机 C2b 修复 0 题，退化 0 题。</p></header>
+<h2>三轮后的最终结果</h2><div class="scroll"><table><thead><tr><th>方法</th><th>最终技能</th><th>dev 正确</th><th>EM</th><th>F1</th><th>逻辑调用¹</th><th>逻辑生成 tokens¹</th></tr></thead><tbody><tr><td>B</td><td>g0002_i0000</td><td>24/30</td><td>80.0%</td><td>84.44%</td><td>307</td><td>15,145</td></tr><tr><td>C2b</td><td>g0000_i0001</td><td>23/30</td><td>76.7%</td><td>82.22%</td><td>307</td><td>15,193</td></tr><tr><td>C2c</td><td>g0000_i0001</td><td>23/30</td><td>76.7%</td><td>82.22%</td><td>337</td><td>15,571</td></tr></tbody></table></div><p><small>¹ 每组逻辑用量含一次共享初始化。每组上限为 600 次调用和 700,000 个生成 tokens。</small></p><div class="scroll"><table><thead><tr><th>C2c 相对</th><th>修复</th><th>退化</th><th>同对</th><th>同错</th><th>ΔEM（百分点）</th><th>配对 bootstrap 95% 区间</th></tr></thead><tbody><tr><td>B</td><td>0</td><td>1</td><td>23</td><td>6</td><td>-3.33</td><td>-10.00 至 +0.00</td></tr><tr><td>C2b</td><td>0</td><td>0</td><td>23</td><td>7</td><td>+0.00</td><td>+0.00 至 +0.00</td></tr></tbody></table></div>
+<h2>逐轮选中的技能</h2><div class="scroll"><table><thead><tr><th>方法</th><th>初始化</th><th>第 1 轮</th><th>第 2 轮</th><th>第 3 轮</th><th>六个新候选的正确数</th></tr></thead><tbody><tr><td>B</td><td>23</td><td>23</td><td>24</td><td>24</td><td>23, 23, 24, 23, 24, 24</td></tr><tr><td>C2b</td><td>23</td><td>23</td><td>23</td><td>23</td><td>23, 23, 23, 23, 23, 23</td></tr><tr><td>C2c</td><td>23</td><td>23</td><td>23</td><td>23</td><td>22, 23, 23, 22, 23, 23</td></tr></tbody></table></div><p>每轮用相同的 20 道 train、两个父代和两个候选。模型按原算子生成技能，固定 30 道 dev 按 EM 选优。表中正确数均以 30 为分母。</p>
+<details><summary>查看各候选相对父代的技能修改及修复、退化数</summary><details><summary>B · g0001_i0000 · 修复 0，退化 0</summary><pre>--- g0000_i0001
++++ g0001_i0000
+@@ -10,6 +10,8 @@
+ - **Evidence First**: Always locate the specific sentence or phrase in the context that supports the answer before formulating the response.
+ - **Conciseness**: The final answer inside `&lt;answer&gt;` tags should be a short phrase or sentence, avoiding repetition of the question or excessive explanation.
+ - **Fallback Strategy**: If the context does not contain the answer, explicitly state that the information is not available in the provided text.
++- **Entity Extraction**: When the question asks for a specific entity (e.g., a name), extract only the entity name itself from the supporting evidence, not the entire sentence containing the entity.
++- **Exact Matching**: Ensure the extracted answer matches the gold standard&#x27;s expected entity or fact precisely, avoiding full sentences unless the gold answer is a full sentence.
+ 
+ ### Graph-structured Skill Execution Guide
+ This skill operates by selecting a relevant workflow from `## Task Graphs` based on the question type, then executing the corresponding sequence of nodes defined in `## Node Lists`.
+@@ -19,6 +21,7 @@
+ 3. Execute the numbered nodes in the selected workflow sequentially.
+ 4. Apply the instructions within each node to perform the specific action (e.g., scanning, extracting, validating).
+ 5. Format the final result using the `&lt;answer&gt;` tags as required.
++6. Ensure the content inside `&lt;answer&gt;` tags is a direct extraction or concise summary of the evidence, not a restatement of the question.
+ 
+ ## Node Lists
+ </pre></details><details><summary>B · g0001_i0001 · 修复 0，退化 0</summary><pre>--- g0000_i0001
++++ g0001_i0001
+@@ -46,6 +46,7 @@
+ - Synthesize the validated evidence into a direct, concise answer.
+ - Remove any introductory phrases or context that is not part of the direct answer.
+ - Ensure the answer is a few words or a short phrase, not a full paragraph.
++- If no evidence was found during validation, formulate a statement indicating the information is not in the text.
+ 
+ ### Format Final Response
+ - Enclose the concise answer within `&lt;answer&gt;...&lt;/answer&gt;` tags.</pre></details><details><summary>B · g0002_i0000 · 修复 1，退化 0</summary><div class="scroll"><table><thead><tr><th>变动</th><th>题目</th><th>参考答案</th><th>父代预测</th><th>候选预测</th></tr></thead><tbody><tr><td>repaired</td><td>He wrote comic book stories for &quot;Captain America&quot; &amp; &quot;Captain Marvel&quot; before hitting it big with &quot;I, the Jury&quot;</td><td>Mickey Spillane</td><td>True</td><td>Mickey Spillane</td></tr></tbody></table></div><pre>--- g0001_i0000
++++ g0002_i0000
+@@ -3,15 +3,14 @@
+ ## Global Guidance
+ 
+ ### Overview
+-This skill enables an agent to answer questions by strictly adhering to provided context passages. The agent must locate specific evidence within the text and formulate a concise answer based solely on that information.
++This skill enables an agent to answer questions by strictly adhering to provided context passages. The agent must locate specific evidence within the text and formulate a concise answer based solely on that information, avoiding hallucination or external knowledge.
+ 
+ ### General Principles
+-- **Strict Adherence**: Answers must be derived exclusively from the provided context. Do not use external knowledge.
+-- **Evidence First**: Always locate the specific sentence or phrase in the context that supports the answer before formulating the response.
++- **Strict Adherence**: Answers must be derived exclusively from the provided context. Do not use external knowledge or assume facts not present.
++- **Entity Extraction**: When the question asks for a specific entity (e.g., a name, place, or person), extract only the entity name itself from the supporting evidence, not the entire sentence or descriptive phrases surrounding it.
+ - **Conciseness**: The final answer inside `&lt;answer&gt;` tags should be a short phrase or sentence, avoiding repetition of the question or excessive explanation.
++- **Exact Matching**: Ensure the extracted answer matches the gold standard&#x27;s expected entity or fact precisely. Do not include titles, descriptions, or context unless the gold answer explicitly includes them.
+ - **Fallback Strategy**: If the context does not contain the answer, explicitly state that the information is not available in the provided text.
+-- **Entity Extraction**: When the question asks for a specific entity (e.g., a name), extract only the entity name itself from the supporting evidence, not the entire sentence containing the entity.
+-- **Exact Matching**: Ensure the extracted answer matches the gold standard&#x27;s expected entity or fact precisely, avoiding full sentences unless the gold answer is a full sentence.
+ 
+ ### Graph-structured Skill Execution Guide
+ This skill operates by selecting a relevant workflow from `## Task Graphs` based on the question type, then executing the corresponding sequence of nodes defined in `## Node Lists`.</pre></details><details><summary>B · g0002_i0001 · 修复 0，退化 0</summary><pre>采用后与父代相同</pre></details><details><summary>B · g0003_i0000 · 修复 0，退化 0</summary><pre>--- g0002_i0000
++++ g0003_i0000
+@@ -7,7 +7,7 @@
+ 
+ ### General Principles
+ - **Strict Adherence**: Answers must be derived exclusively from the provided context. Do not use external knowledge or assume facts not present.
+-- **Entity Extraction**: When the question asks for a specific entity (e.g., a name, place, or person), extract only the entity name itself from the supporting evidence, not the entire sentence or descriptive phrases surrounding it.
++- **Entity Extraction**: When the question asks for a specific entity (e.g., a name, place, or person), extract only the entity name itself from the supporting evidence, not the entire sentence or descriptive phrases surrounding it. For phrases or events, extract the specific term mentioned in the text that matches the query intent.
+ - **Conciseness**: The final answer inside `&lt;answer&gt;` tags should be a short phrase or sentence, avoiding repetition of the question or excessive explanation.
+ - **Exact Matching**: Ensure the extracted answer matches the gold standard&#x27;s expected entity or fact precisely. Do not include titles, descriptions, or context unless the gold answer explicitly includes them.
+ - **Fallback Strategy**: If the context does not contain the answer, explicitly state that the information is not available in the provided text.</pre></details><details><summary>B · g0003_i0001 · 修复 0，退化 0</summary><pre>采用后与父代相同</pre></details><details><summary>C2b · g0001_i0000 · 修复 0，退化 0</summary><pre>--- g0000_i0001
++++ g0001_i0000
+@@ -10,6 +10,9 @@
+ - **Evidence First**: Always locate the specific sentence or phrase in the context that supports the answer before formulating the response.
+ - **Conciseness**: The final answer inside `&lt;answer&gt;` tags should be a short phrase or sentence, avoiding repetition of the question or excessive explanation.
+ - **Fallback Strategy**: If the context does not contain the answer, explicitly state that the information is not available in the provided text.
++- **Entity Extraction**: When a question asks for an entity, fact, or value, extract the specific missing entity/fact from the context rather than confirming the clue or answering with a boolean.
++- **Granularity Preservation**: Retain correctly supported intermediate relations and necessary qualifiers (e.g., full names, specific titles) as found in the source text; do not globally shorten names or remove needed qualifiers.
++- **Verification**: Verify the requested target and each necessary relation against the supplied passages; keep the diagnosis uncertain where evidence is missing.
+ 
+ ### Graph-structured Skill Execution Guide
+ This skill operates by selecting a relevant workflow from `## Task Graphs` based on the question type, then executing the corresponding sequence of nodes defined in `## Node Lists`.</pre></details><details><summary>C2b · g0001_i0001 · 修复 0，退化 0</summary><pre>--- g0000_i0001
++++ g0001_i0001
+@@ -55,7 +55,7 @@
+ ## Task Graphs
+ 
+ ### Direct Fact Retrieval
+-**Use when:** The question asks for a single specific fact, definition, or value explicitly stated in the context.
++**Use when:** The question asks for a single specific fact, entity, definition, or value explicitly stated in the context (e.g., names, dates, locations).
+ **Workflow:**
+ 1. Analyze Question Intent
+ 2. Scan Context for Keywords</pre></details><details><summary>C2b · g0002_i0000 · 修复 0，退化 0</summary><pre>采用后与父代相同</pre></details><details><summary>C2b · g0002_i0001 · 修复 0，退化 0</summary><pre>--- g0000_i0001
++++ g0002_i0001
+@@ -37,10 +37,11 @@
+ - Ensure the evidence is complete and self-contained.
+ - If multiple sentences are needed, extract them all to form the evidence block.
+ 
+-### Validate Evidence Against Question
++### Validate Evidence Granularity and Referent
+ - Compare the extracted evidence with the original QUESTION to ensure it addresses all parts of the query.
+-- Verify that the evidence does not contradict the question or contain irrelevant information.
+-- If the evidence is insufficient or missing, note that the answer cannot be derived from the text.
++- Verify that the granularity (level of detail) and referent (specific entity) of the evidence match the question requirements.
++- Ensure the evidence does not contradict the question or contain irrelevant information.
++- If the evidence is insufficient, missing, or mismatched in granularity, note that the answer cannot be derived from the text.
+ 
+ ### Formulate Concise Answer
+ - Synthesize the validated evidence into a direct, concise answer.
+@@ -60,7 +61,7 @@
+ 1. Analyze Question Intent
+ 2. Scan Context for Keywords
+ 3. Extract Supporting Evidence
+-4. Validate Evidence Against Question
++4. Validate Evidence Granularity and Referent
+ 5. Formulate Concise Answer
+ 6. Format Final Response
+ 
+@@ -70,7 +71,7 @@
+ 1. Analyze Question Intent
+ 2. Scan Context for Keywords
+ 3. Extract Supporting Evidence
+-4. Validate Evidence Against Question
++4. Validate Evidence Granularity and Referent
+ 5. Formulate Concise Answer
+ 6. Format Final Response
+ 
+@@ -80,6 +81,6 @@
+ 1. Analyze Question Intent
+ 2. Scan Context for Keywords
+ 3. Extract Supporting Evidence
+-4. Validate Evidence Against Question
++4. Validate Evidence Granularity and Referent
+ 5. Formulate Concise Answer
+ 6. Format Final Response</pre></details><details><summary>C2b · g0003_i0000 · 修复 0，退化 0</summary><pre>--- g0000_i0001
++++ g0003_i0000
+@@ -10,6 +10,8 @@
+ - **Evidence First**: Always locate the specific sentence or phrase in the context that supports the answer before formulating the response.
+ - **Conciseness**: The final answer inside `&lt;answer&gt;` tags should be a short phrase or sentence, avoiding repetition of the question or excessive explanation.
+ - **Fallback Strategy**: If the context does not contain the answer, explicitly state that the information is not available in the provided text.
++- **Granularity Preservation**: When extracting evidence, preserve the specific entity names, qualifiers, and granularity found in the supporting text. Do not infer missing intermediate relations or shorten names solely because the predicted answer string differs from the gold label.
++- **Verification**: Before finalizing an answer, verify that the extracted evidence directly addresses the specific target requested in the question.
+ 
+ ### Graph-structured Skill Execution Guide
+ This skill operates by selecting a relevant workflow from `## Task Graphs` based on the question type, then executing the corresponding sequence of nodes defined in `## Node Lists`.</pre></details><details><summary>C2b · g0003_i0001 · 修复 0，退化 0</summary><pre>采用后与父代相同</pre></details><details><summary>C2c · g0001_i0000 · 修复 0，退化 1</summary><div class="scroll"><table><thead><tr><th>变动</th><th>题目</th><th>参考答案</th><th>父代预测</th><th>候选预测</th></tr></thead><tbody><tr><td>regressed</td><td>(Jon of the Clue Crew shows an anatomical diagram on the monitor.)  When Lasik eye surgery is performed, a flap is made in the eye, folded back, &amp; then the stroma, or middle section, of this eye part is reshaped using lasers</td><td>the cornea</td><td>cornea</td><td>True</td></tr></tbody></table></div><pre>--- g0000_i0001
++++ g0001_i0000
+@@ -9,7 +9,9 @@
+ - **Strict Adherence**: Answers must be derived exclusively from the provided context. Do not use external knowledge.
+ - **Evidence First**: Always locate the specific sentence or phrase in the context that supports the answer before formulating the response.
+ - **Conciseness**: The final answer inside `&lt;answer&gt;` tags should be a short phrase or sentence, avoiding repetition of the question or excessive explanation.
++- **Answer Type Inference**: Infer the required answer type (e.g., entity, fact, yes/no) from the question phrasing. Extract the missing entity/fact for entity requests rather than confirming the clue with &quot;False&quot; or &quot;Yes&quot;.
+ - **Fallback Strategy**: If the context does not contain the answer, explicitly state that the information is not available in the provided text.
++- **Granularity Preservation**: Maintain the specific granularity requested (e.g., full name vs. title) and do not infer missing hops or shorten names based solely on answer-string differences.
+ 
+ ### Graph-structured Skill Execution Guide
+ This skill operates by selecting a relevant workflow from `## Task Graphs` based on the question type, then executing the corresponding sequence of nodes defined in `## Node Lists`.</pre></details><details><summary>C2c · g0001_i0001 · 修复 0，退化 0</summary><pre>--- g0000_i0001
++++ g0001_i0001
+@@ -55,7 +55,7 @@
+ ## Task Graphs
+ 
+ ### Direct Fact Retrieval
+-**Use when:** The question asks for a single specific fact, definition, or value explicitly stated in the context.
++**Use when:** The question asks for a single specific fact, definition, value, or entity explicitly stated in the context (e.g., names, dates, institutions).
+ **Workflow:**
+ 1. Analyze Question Intent
+ 2. Scan Context for Keywords</pre></details><details><summary>C2c · g0002_i0000 · 修复 0，退化 0</summary><pre>--- g0001_i0001
++++ g0002_i0000
+@@ -10,12 +10,14 @@
+ - **Evidence First**: Always locate the specific sentence or phrase in the context that supports the answer before formulating the response.
+ - **Conciseness**: The final answer inside `&lt;answer&gt;` tags should be a short phrase or sentence, avoiding repetition of the question or excessive explanation.
+ - **Fallback Strategy**: If the context does not contain the answer, explicitly state that the information is not available in the provided text.
++- **Granularity Awareness**: When extracting evidence, ensure the level of detail matches the question&#x27;s requirements (e.g., specific names vs. full descriptions). Do not globally shorten names or remove needed qualifiers unless the context only supports a broader term.
++- **Verification**: Compare extracted evidence against the original question to ensure it addresses all parts of the query and does not contain irrelevant information.
+ 
+ ### Graph-structured Skill Execution Guide
+ This skill operates by selecting a relevant workflow from `## Task Graphs` based on the question type, then executing the corresponding sequence of nodes defined in `## Node Lists`.
+ 
+-1. Analyze the QUESTION to determine if it requires simple retrieval or multi-step reasoning.
+-2. Select the matching Task Graph workflow (e.g., `Direct Fact Retrieval` or `Multi-Step Reasoning`).
++1. Analyze the QUESTION to determine if it requires simple retrieval, multi-step reasoning, or if the answer is absent.
++2. Select the matching Task Graph workflow (e.g., `Direct Fact Retrieval`, `Multi-Step Reasoning`, or `Information Not Found`).
+ 3. Execute the numbered nodes in the selected workflow sequentially.
+ 4. Apply the instructions within each node to perform the specific action (e.g., scanning, extracting, validating).
+ 5. Format the final result using the `&lt;answer&gt;` tags as required.</pre></details><details><summary>C2c · g0002_i0001 · 修复 0，退化 1</summary><div class="scroll"><table><thead><tr><th>变动</th><th>题目</th><th>参考答案</th><th>父代预测</th><th>候选预测</th></tr></thead><tbody><tr><td>regressed</td><td>Blind Melon gave multiplication help covering the &quot;Schoolhouse Rock!&quot; song about this &quot;magic number&quot;</td><td>three</td><td>Three</td><td>Three Is a Magic Number</td></tr></tbody></table></div><pre>--- g0000_i0001
++++ g0002_i0001
+@@ -37,10 +37,11 @@
+ - Ensure the evidence is complete and self-contained.
+ - If multiple sentences are needed, extract them all to form the evidence block.
+ 
+-### Validate Evidence Against Question
++### Validate Evidence Granularity and Referent
+ - Compare the extracted evidence with the original QUESTION to ensure it addresses all parts of the query.
++- Verify that the extracted text is the correct entity or concept (e.g., ensure you extract the name, not the description of the name) and that the granularity matches the question request.
+ - Verify that the evidence does not contradict the question or contain irrelevant information.
+-- If the evidence is insufficient or missing, note that the answer cannot be derived from the text.
++- If the evidence is insufficient, missing, or mismatched in granularity, note that the answer cannot be derived from the text.
+ 
+ ### Formulate Concise Answer
+ - Synthesize the validated evidence into a direct, concise answer.
+@@ -60,7 +61,7 @@
+ 1. Analyze Question Intent
+ 2. Scan Context for Keywords
+ 3. Extract Supporting Evidence
+-4. Validate Evidence Against Question
++4. Validate Evidence Granularity and Referent
+ 5. Formulate Concise Answer
+ 6. Format Final Response
+ 
+@@ -70,7 +71,7 @@
+ 1. Analyze Question Intent
+ 2. Scan Context for Keywords
+ 3. Extract Supporting Evidence
+-4. Validate Evidence Against Question
++4. Validate Evidence Granularity and Referent
+ 5. Formulate Concise Answer
+ 6. Format Final Response
+ 
+@@ -80,6 +81,6 @@
+ 1. Analyze Question Intent
+ 2. Scan Context for Keywords
+ 3. Extract Supporting Evidence
+-4. Validate Evidence Against Question
++4. Validate Evidence Granularity and Referent
+ 5. Formulate Concise Answer
+ 6. Format Final Response</pre></details><details><summary>C2c · g0003_i0000 · 修复 0，退化 0</summary><pre>--- g0000_i0001
++++ g0003_i0000
+@@ -10,6 +10,8 @@
+ - **Evidence First**: Always locate the specific sentence or phrase in the context that supports the answer before formulating the response.
+ - **Conciseness**: The final answer inside `&lt;answer&gt;` tags should be a short phrase or sentence, avoiding repetition of the question or excessive explanation.
+ - **Fallback Strategy**: If the context does not contain the answer, explicitly state that the information is not available in the provided text.
++- **Granularity Awareness**: When extracting evidence, match the requested entity granularity (e.g., specific name vs. descriptive phrase) without inferring missing hops or shortening valid titles.
++- **Verification**: Verify that extracted evidence directly answers the query without contradiction or irrelevance before finalizing.
+ 
+ ### Graph-structured Skill Execution Guide
+ This skill operates by selecting a relevant workflow from `## Task Graphs` based on the question type, then executing the corresponding sequence of nodes defined in `## Node Lists`.</pre></details><details><summary>C2c · g0003_i0001 · 修复 0，退化 0</summary><pre>采用后与父代相同</pre></details></details>
+<h2>实际进入优化器的成功参照</h2><div class="scroll"><table><thead><tr><th>方法</th><th>失败曝光</th><th>有成功参照</th><th>不同被配对失败题</th><th>不同成功参照题</th></tr></thead><tbody><tr><td>C2b</td><td>18</td><td>2</td><td>1</td><td>1</td></tr><tr><td>C2c</td><td>18</td><td>8</td><td>3</td><td>3</td></tr></tbody></table></div>
+<p>C2c 优先沿用 C2b 已找到的参照。遇到无参照的失败，才从当时的本组训练记忆中检索同一答案类别的正确记录，同一份反馈里优先使用不同题。一个父代被两个算子选中时，反馈曝光计两次。</p>
+<details><summary>查看新增规则实际配到的不同题对</summary><div class="scroll"><table><thead><tr><th>失败训练题</th><th>参考成功训练题</th><th>匹配类别</th></tr></thead><tbody><tr><td>...in American History, if you know that this man was the only U.S. President named Chester</td><td>In 1927, this Russian leader&#x27;s book &quot;The State &amp; Revolution&quot; was banned in Boston as obscene</td><td>person</td></tr><tr><td>He spun straw into gold(15)</td><td>In 1950 Sen. Margaret Chase Smith condemned this man for turning the Senate into a &quot;forum for hate&quot;</td><td>person</td></tr></tbody></table></div></details>
+<h2>同一批历史训练记录的离线复核</h2><div class="scroll"><table><thead><tr><th>历史 C2b 训练轨迹</th><th>失败曝光</th><th>原检索配对</th><th>新检索配对</th></tr></thead><tbody><tr><td>searchqa</td><td>18</td><td>2</td><td>8</td></tr><tr><td>hotpotqa</td><td>18</td><td>3</td><td>9</td></tr></tbody></table></div><p>此处固定了失败题和成功记忆。计数只衡量检索覆盖。下游成绩来自上方本机 SearchQA 实验。</p>
+<h2>成本与比较边界</h2><p>三组及共享初始化合计 829 次物理调用，1,687,604 输入 tokens、39,009 生成 tokens。GPU 分配账本记录 0.215 GPU·h，包括模型加载与空闲。</p>
+<div class="scroll"><table><thead><tr><th>阶段</th><th>新调用</th><th>新生成 tokens</th><th>复用的候选 dev 行</th></tr></thead><tbody><tr><td>B</td><td>246</td><td>11695</td><td>60</td></tr><tr><td>C2b</td><td>246</td><td>11743</td><td>60</td></tr><tr><td>C2c</td><td>276</td><td>12121</td><td>30</td></tr></tbody></table></div><p><small>每个方法只对新技能执行 dev 调用，内容完全相同的技能复用已记账观测。共享初始化的新调用单独计入总数。</small></p>
+<p>共同逻辑上限取各组最终用量的较小值，分别为 307 次调用与 15,145 生成 tokens。按两项上限内最后一个完整轮次比较。</p><div class="scroll"><table><thead><tr><th>方法</th><th>共同上限内最后完整轮</th><th>dev 正确</th><th>剩余调用</th><th>剩余生成 tokens</th></tr></thead><tbody><tr><td>B</td><td>3</td><td>24</td><td>0</td><td>0</td></tr><tr><td>C2b</td><td>2</td><td>23</td><td>72</td><td>3213</td></tr><tr><td>C2c</td><td>2</td><td>23</td><td>42</td><td>2658</td></tr></tbody></table></div>
+<p>本次使用本机 4-bit 模型、单一 seed 和参与选择的 30 道 dev。历史托管模型的精度和 revision 未披露，应在各自后端内解读效果。HotpotQA 的新数字仅来自离线训练记录，本次 test 调用为 0。</p>
+<h2>逐题结果与运行记录</h2><details><summary>展开 30 道 dev 预测</summary><div class="scroll"><table><thead><tr><th>题目</th><th>参考</th><th>B 预测</th><th>C2b 预测</th><th>C2c 预测</th><th>EM（B / C2b / C2c）</th></tr></thead><tbody><tr><td>Blind Melon gave multiplication help covering the &quot;Schoolhouse Rock!&quot; song about this &quot;magic number&quot;</td><td>three</td><td>Three</td><td>Three</td><td>Three</td><td>1 / 1 / 1</td></tr><tr><td>(Jon of the Clue Crew shows an anatomical diagram on the monitor.)  When Lasik eye surgery is performed, a flap is made in the eye, folded back, &amp; then the stroma, or middle section, of this eye part is reshaped using lasers</td><td>the cornea</td><td>cornea</td><td>cornea</td><td>cornea</td><td>1 / 1 / 1</td></tr><tr><td>The drink known as &quot;Code&quot; this is &quot;everything you love about Mountain Dew with a smooth cherry flavor&quot;</td><td>Red</td><td>Red</td><td>Red</td><td>Red</td><td>1 / 1 / 1</td></tr><tr><td>This compound noun can refer to a leaflet given at a lecture or to food given to a hobo</td><td>a handout</td><td>handout</td><td>a handout</td><td>a handout</td><td>1 / 1 / 1</td></tr><tr><td>With a diameter averaging about 7 miles, it&#x27;s the smaller of Mars&#x27; 2 moons</td><td>Deimos</td><td>Deimos</td><td>Deimos</td><td>Deimos</td><td>1 / 1 / 1</td></tr><tr><td>To loosen, as a grip, or just to take it easy</td><td>relax</td><td>To make lax or loose; to take rest or recreation</td><td>To make lax or loose; to take rest or recreation</td><td>To make lax or loose; to take rest or recreation</td><td>0 / 0 / 0</td></tr><tr><td>&quot;We had joy, we had fun, we had&quot; this 1974 Terry Jacks hit</td><td>&quot;Seasons In The Sun&quot;</td><td>seasons in the sun</td><td>seasons in the sun</td><td>seasons in the sun</td><td>1 / 1 / 1</td></tr><tr><td>Sabine Ulibarri&#x27;s novel &quot;Mi Abuela Fumaba Puros&quot; translates to &quot;My Grandma Smoked&quot; these</td><td>Cigars</td><td>cigars</td><td>cigars</td><td>cigars</td><td>1 / 1 / 1</td></tr><tr><td>Exist/unwanted &quot;bonnet&quot; intruder</td><td>be/bee</td><td>be/bee</td><td>be/bee</td><td>be/bee</td><td>1 / 1 / 1</td></tr><tr><td>Let&#x27;s go Penn. Dutch &amp; have this dish, bits of pork mixed with cornmeal mush, then shaped into loaves &amp; fried</td><td>scrapple</td><td>Scrapple</td><td>Scrapple</td><td>Scrapple</td><td>1 / 1 / 1</td></tr><tr><td>&quot;The unexamined life is not worth living&quot;</td><td>Greek</td><td>Socrates</td><td>It is a famous dictum attributed to Socrates, appearing in Plato&#x27;s Apology.</td><td>It is a famous dictum attributed to Socrates, appearing in Plato&#x27;s Apology.</td><td>0 / 0 / 0</td></tr><tr><td>Generations of inbreeding doomed this dynasty in Spain as Charles II was both witless &amp; childless</td><td>Hapsburg</td><td>Hapsburg</td><td>Hapsburg</td><td>Hapsburg</td><td>1 / 1 / 1</td></tr><tr><td>Yum!  The Chocolate Shoppe Ice Cream Co. here in Madison has a black ice cream named for this black candy</td><td>licorice</td><td>Black Licorice</td><td>Black Licorice</td><td>Black Licorice</td><td>0 / 0 / 0</td></tr><tr><td>In March 2006 he was denied parole for the 13th time for the murder of Robert Kennedy</td><td>Sirhan Sirhan</td><td>Yes</td><td>Yes, in March 2006, Sirhan Sirhan was denied parole for the 13th time for the murder of Robert F. Kennedy.</td><td>Yes, in March 2006, Sirhan Sirhan was denied parole for the 13th time for the murder of Robert F. Kennedy.</td><td>0 / 0 / 0</td></tr><tr><td>The painting seen here shows Odysseus returning home to find this wife of his delaying some suitors</td><td>Penelope</td><td>Penelope</td><td>Penelope</td><td>Penelope</td><td>1 / 1 / 1</td></tr><tr><td>If you&#x27;re visiting the White House--the first White House of the Confederacy, that is--you&#x27;re in this city</td><td>Montgomery</td><td>Montgomery</td><td>Montgomery</td><td>Montgomery</td><td>1 / 1 / 1</td></tr><tr><td>She hit the top 40 in both 1975 &amp; 1977 with &quot;Send In The Clowns&quot;</td><td>Judy Collins</td><td>Judy Collins</td><td>Judy Collins</td><td>Judy Collins</td><td>1 / 1 / 1</td></tr><tr><td>The French play &quot;The Madwoman of&quot; this place inspired Jerry Herman&#x27;s Broadway musical &quot;Dear World&quot;</td><td>Chaillot</td><td>Chaillot</td><td>Chaillot</td><td>Chaillot</td><td>1 / 1 / 1</td></tr><tr><td>Christiansted National Historic Site on this largest of the U.S. Virgin Islands commemorates its Danish heritage</td><td>St. Croix</td><td>St. Croix</td><td>St. Croix</td><td>St. Croix</td><td>1 / 1 / 1</td></tr><tr><td>He wrote comic book stories for &quot;Captain America&quot; &amp; &quot;Captain Marvel&quot; before hitting it big with &quot;I, the Jury&quot;</td><td>Mickey Spillane</td><td>Mickey Spillane</td><td>True</td><td>True</td><td>1 / 0 / 0</td></tr><tr><td>No matter what is depicted, putting a red seal as the finishing touch on a black and white painting is called adding an eye to this mythic beast</td><td>dragon</td><td>dragon</td><td>dragon</td><td>dragon</td><td>1 / 1 / 1</td></tr><tr><td>&quot;Traitors are not gentlemen, my good friends. They don&#x27;t understand being treated like gentlemen&quot;</td><td>(Joseph) McCarthy</td><td>Senator Joseph Raymond McCarthy</td><td>Senator Joseph McCarthy</td><td>Senator Joseph McCarthy</td><td>0 / 0 / 0</td></tr><tr><td>You&#x27;ve never been mellow if you don&#x27;t know this Australian played Sandy in the 1978 film &quot;Grease&quot;</td><td>Olivia Newton-John / Olivia Newton John</td><td>Olivia Newton-John</td><td>Olivia Newton-John</td><td>Olivia Newton-John</td><td>1 / 1 / 1</td></tr><tr><td>It can be the old section of an Arab city in north Africa, or the name of the city where Muhammad is entombed</td><td>Medina</td><td>Medina</td><td>Medina</td><td>Medina</td><td>1 / 1 / 1</td></tr><tr><td>(Leonard Maltin reads the clue.)  David Lean&#x27;s 1946 British film of this Dickens tale is a real &quot;Pip&quot;, &amp; the opening graveyard sequence is a gem</td><td>Great Expectations</td><td>Great Expectations</td><td>Great Expectations</td><td>Great Expectations</td><td>1 / 1 / 1</td></tr><tr><td>His grave is marked&quot;REV. CHARLES LUTWIDGE DODGSON.FELL ASLEEP JAN. 14, 1898.AGED 65 YEARS&quot;</td><td>Lewis Carroll</td><td>Lewis Carroll</td><td>Lewis Carroll</td><td>Lewis Carroll</td><td>1 / 1 / 1</td></tr><tr><td>Geologic era between the Paleozoic &amp; the Cenozoic</td><td>the Mesozoic</td><td>Mesozoic</td><td>Mesozoic</td><td>Mesozoic</td><td>1 / 1 / 1</td></tr><tr><td>This foolhardy &quot;charge&quot; took place at 1854&#x27;s Battle of Balaklava during the Crimean War</td><td>the Charge of the Light Brigade</td><td>Charge of the Light Brigade</td><td>The Charge of the Light Brigade</td><td>The Charge of the Light Brigade</td><td>1 / 1 / 1</td></tr><tr><td>Now used in horse racing, its name is Old English for &quot;the length of a furrow&quot;</td><td>a furlong</td><td>furlong</td><td>Furlong</td><td>Furlong</td><td>1 / 1 / 1</td></tr><tr><td>Chile dogs include the pastor aleman, this breed</td><td>the German shepherd</td><td>Information not found in the provided text</td><td>Information not found in the provided text</td><td>Information not found in the provided text</td><td>0 / 0 / 0</td></tr></tbody></table></div></details><p><a href="summary.json">完整统计与 GPU 记录</a> · <a href="design.json">运行设计</a> · <a href="skills/B.md">B 最终技能</a> · <a href="skills/C2b.md">C2b 最终技能</a> · <a href="skills/C2c.md">C2c 最终技能</a></p></main></html>

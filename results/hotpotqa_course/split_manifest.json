@@ -1,0 +1,89 @@
+{
+  "protocol": "hotpotqa_distractor_course_11_02",
+  "dataset": "hotpotqa",
+  "demo": false,
+  "seed": 42,
+  "source_repo": "hotpotqa/hotpot_qa",
+  "source_revision": "1908d6afbbead072334abe2965f91bd2709910ab",
+  "source_version": "HotpotQA v1.1 train and v1 distractor dev",
+  "source_sha256": {
+    "train-00000-of-00002.parquet": "76d3bb3048a7cc73c1958107c0c5872a00d7e7d00c105b81e92f6769e7822e68",
+    "train-00001-of-00002.parquet": "713661628434fbb19fff7392e2e321e4ed107e3c7c7784d0690946e5f722763f",
+    "validation-00000-of-00001.parquet": "c20b638ca82b21d04fe12e14ff417ad05153d4d215a65de54497fca4e972f7c6"
+  },
+  "source_counts": {
+    "train": 90447,
+    "validation": 7405
+  },
+  "counts": {
+    "train": 300,
+    "dev": 150,
+    "test": 1000
+  },
+  "test_source": "official distractor development set",
+  "test_pending": false,
+  "excluded_old_dev_ids": [
+    "5a72d7b35542991f9a20c5be",
+    "5a7300b85542994cef4bc41a",
+    "5a7326cd5542991f29ee2d11",
+    "5a733b835542991f9a20c6b2",
+    "5a776b82554299373536026f",
+    "5a77a65b5542992a6e59df57",
+    "5a78bd515542990784727749",
+    "5a793bc95542994bb9456fc3",
+    "5a7b443c5542992d025e67ce",
+    "5a7f79155542995d8a8dde86",
+    "5a80c79155429938b61421da",
+    "5a812d0555429938b61422e1",
+    "5a81e8ea5542995ce29dcc73",
+    "5a831fc955429954d2e2ec28",
+    "5a85a3005542991dd0999e72",
+    "5ab236645542993be8fa98c9",
+    "5ab84f2c55429934fafe6d54",
+    "5abb342055429966062416e8",
+    "5abc5951554299114383a116",
+    "5abe87cb5542993f32c2a156",
+    "5abfd5c45542994516f4550e",
+    "5ac2cdaa554299657fa29070",
+    "5ac3a76e554299741d48a2be",
+    "5adbf69c55429947ff173871",
+    "5add3fe05542992c1e3a2580",
+    "5ade0bc55542997545bbbe30",
+    "5adf34d35542993a75d26425",
+    "5adf53dc5542995534e8c791",
+    "5adf62d05542992d7e9f932d",
+    "5ae788fa55429952e35ea964"
+  ],
+  "pilot_train_ids": [
+    "5a7fc85355429969796c1b60",
+    "5a754ee65542993748c89825",
+    "5ab830bb55429919ba4e225c",
+    "5ab43d235542991779162c29",
+    "5a90712255429916514e74c1",
+    "5a8332bd5542990548d0b1c3",
+    "5a7f57245542992097ad2f27",
+    "5ae7e214554299540e5a5679",
+    "5a7d3db65542997cc2c47432",
+    "5adea91255429975fa854f59"
+  ],
+  "difficulty": {
+    "train": {
+      "easy": 100,
+      "medium": 100,
+      "hard": 100
+    },
+    "dev": {
+      "easy": 50,
+      "medium": 50,
+      "hard": 50
+    },
+    "test": {
+      "hard": 1000
+    }
+  },
+  "question_duplicates": [],
+  "sampling": "Python Random(42); easy/medium/hard in order; sample 150 sorted original train IDs per level, first 100 train, last 50 val; sample 1000 sorted official dev IDs after excluding old 30.",
+  "train_hash": "83dbb300fccc7dcda5cd7c7c35b82f43fe91b9819bec240087d6c41d12c2bde4",
+  "dev_hash": "791fe4f98280bfacc7e4fb333271d8f7a8ff1a179ddf430fb4ca89f982aaecff",
+  "test_hash": "61beb2b0d58243f197cda2ad05ffc67ae88cad132a8f028dbb8cc1831c90504c"
+}

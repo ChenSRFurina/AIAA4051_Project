@@ -29,7 +29,7 @@ def load_config(path=None, *, demo=False):
     config = deepcopy(DEFAULT)
     if path:
         for key, value in read_json(path).items():
-            if key not in config and key != "qa_context_max_tokens":
+            if key not in config and key not in {"qa_context_max_tokens", "course_hotpotqa"}:
                 raise ValueError(f"Unknown config key: {key}")
             if isinstance(config.get(key), dict):
                 unknown = set(value) - set(config[key])
@@ -42,6 +42,10 @@ def load_config(path=None, *, demo=False):
                 config[key] = value
     if config["dataset"] not in {"searchqa", "hotpotqa"}:
         raise ValueError("Only searchqa and hotpotqa are supported")
+    if "course_hotpotqa" in config and (config["course_hotpotqa"] is not True or config["dataset"] != "hotpotqa"
+                                       or "qa_context_max_tokens" in config or config["train_batch_size"] != 100
+                                       or config["rounds"] != 3 or not config["model"].get("context_window")):
+        raise ValueError("Course HotpotQA needs three disjoint batches of 100, full context and a bounded model window")
     if config["backend"] not in {"local", "api"}:
         raise ValueError("backend must be local or api")
     if config["model"]["structured_operators"] not in (True, False, "json_object", "json_schema"):
