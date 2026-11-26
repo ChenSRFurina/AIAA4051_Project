@@ -1,0 +1,1759 @@
+{
+ "dev": {
+  "5adeaaa35542995534e8c6d0": [
+   "d07989ba845d6414d892c5d504eaace437a2d3ce32ff404735b37bc84884c5bd",
+   "R",
+   "The response cites Rosaceae for rose and Fabaceae for Millettia. The premise of a common family conflicts with the two passages."
+  ],
+  "5adbd4fd5542996e68525256": [
+   "bfa25e7b8e06b6af02f0e4512054d2f8869d18aa13263b4d72de0e2352276ede",
+   "R",
+   "The prediction names the requested partner. The reference reproduces a clause about the pair and their titles."
+  ],
+  "5ae2320a554299492dc91bd8": [
+   "18fb77f2ce987b9de280bd557764dcf0eb7f28f5b9ddfa1735dd2f642eb07391",
+   "S",
+   "Both identify Leach as coach. The response adds team, season and tenure."
+  ],
+  "5a7367175542991f29ee2de5": [
+   "a3f772a447d88a204a38ed171d540aa340bd45e1eff2180ff686c638c28f2a17",
+   "R",
+   "The question asks about two objects; the prediction describes both, while the reference describes the telescope alone."
+  ],
+  "5ae77581554299540e5a55a4": [
+   "ab03e51cf2fe3d7650ec9e5d0cf5c7dd2eb86703ee06befcbed206e8869d8cb4",
+   "R",
+   "The response gives the suburb. The reference describes its local-government area."
+  ],
+  "5adfc7c255429906c02daa3a": [
+   "b028834da1141542b6a9ee730b00ac9d27e955a1f03f0a078f2ec5ee2b957339",
+   "S",
+   "The prediction appends California to the requested base name."
+  ],
+  "5ae10194554299422ee995bb": [
+   "a950d238c86267e6082d7b4a06cbf7d8d4b3880b74faec3bfa7bfe76a4ca23ec",
+   "G",
+   "The answer adds the size subclass full-size to SUV."
+  ],
+  "5aba35fd554299232ef4a277": [
+   "490b1f95e3444782ad18c38c7a3cea6405bafbff1734f1399ac0c19a22628241",
+   "S",
+   "The requested common profession occurs in a longer answer about collaboration."
+  ],
+  "5a8c9f1c5542996e8ac88af1": [
+   "6ec52c95959ac9320dbdc530f3285f1a85c68a0b5a1383a56f5e8a13fb97838b",
+   "R",
+   "The reference describes Apple's business. It does not explain the mechanism of flourishing asked for in the question."
+  ],
+  "5ae784f65542994a481bbd3d": [
+   "56cdfac85bff83f960446528d67c7a9f11ddb8ac68fde1035e0de822b0a28d80",
+   "S",
+   "The response appends the generic words crime family to Gambino."
+  ],
+  "5ae713ae5542995703ce8bc9": [
+   "e5a68e2c1c19573aff71e960e21d896e8a2773f4568aa5e65ec61ef73ffdf19b",
+   "F",
+   "The model debates competing Alpine names. Its output lacks a complete final answer tag, so fallback extraction selects prose."
+  ],
+  "5ab3b0ae5542992ade7c6e37": [
+   "dfa41a01bbcea3ad8c685db8a10c39b88cb472a115ad1ac10aef4b71e8b1c8b9",
+   "S",
+   "The answer uses the plural of bread. Normalization does not stem the noun."
+  ],
+  "5a7d17f85542995ed0d165e1": [
+   "830a8e93f93e252c52d29e4759a92d38750478079954d07a19f2b8dbb14cf345",
+   "R",
+   "The question asks for a city. The reference is a team name, while the prediction supplies its city."
+  ],
+  "5a80f759554299260e20a1e0": [
+   "b00ddaeb5d096d965fa98949dfa2d36b029cf857463df791f3e21b8c21a0a7b4",
+   "S",
+   "The two answers give the same southern and northern endpoints in different prose."
+  ],
+  "5a79e1835542990198eaefe8": [
+   "0a39173ca38d5c15900f878d6df8f41fae15985857146d2fcefaaa6b3a9a6d7c",
+   "R",
+   "The prediction names Bond films, while the reference names the character Jaws. The question explicitly requests a film."
+  ],
+  "5a728cea5542992359bc30ea": [
+   "68a7c397069b2e206fc4b3f331b4739d9b003db084f7b8a16e05e6263dd80949",
+   "G",
+   "The prediction gives the town and drops the county Lincolnshire."
+  ],
+  "5a7651e95542992db947375e": [
+   "4f15782982cbe45df444dace77cd7305d9bd6023a3e28ef09ac75f390eaf519a",
+   "S",
+   "David Miliband omits the middle name Wright from the reference."
+  ],
+  "5abeed235542994516f45488": [
+   "0429fc2859f062dc5f061aaf6691290fd387984dc839704523902da95b201e08",
+   "S",
+   "Dan Boren is the short name; the reference gives Daniel David Boren."
+  ],
+  "5ab999ef554299131ca42395": [
+   "83307fb931ed313a63453a12af128bcb604f7e029c30fed0af2b012a54ee78ef",
+   "G",
+   "The response includes the town as well as the county and country."
+  ],
+  "5a80acd05542996402f6a5e4": [
+   "060d2ea23f5878186337a9503e1116f85144c1556308ae2309cbd88c8a101218",
+   "T",
+   "The response gives a calendar year; the target gives the franchise season number."
+  ],
+  "5ae1b0fa5542997283cd223c": [
+   "7c859db458242ccc208a0011e1c03578c017e3fc9d4e48fe4d65a2377293c07d",
+   "A",
+   "The model identifies a Tiffany skylight but declines to equate supplying the skylight with decorating the ceiling."
+  ],
+  "5a7630fb55429976ec32bd4d": [
+   "289a13a706ba0e5442a34498684e528812c5e0ccf76f3c4a0dbca7d32883c9c4",
+   "C",
+   "The response enumerates four members for each band and returns a tie; the reference chooses +44. Membership timing needs independent verification."
+  ],
+  "5a7be36e5542997c3ec972b1": [
+   "f5928bbd9ca13c959eb1ffb38871f71063072c7a11332bfd305209a421b71706",
+   "G",
+   "The model drops the lower-bound qualifier over from the population."
+  ],
+  "5a8483bf5542997175ce1ee3": [
+   "72030b92fbf2277798d0990e4f985d27e59bfa1c327e1ed0e3d2c7a73ac8597c",
+   "S",
+   "The conference name is expanded with the word Conference."
+  ],
+  "5a850df85542994c784ddaea": [
+   "ef319945ebd7459fed009d9b2bb60bd6c26427693ec74c3dd56d652a9a07d6c6",
+   "G",
+   "The response adds the neighborhood North Quincy to the city and state."
+  ],
+  "5a89ee045542992e4fca848b": [
+   "d4c33d5f31377ce8e0724a7c834360eae8bf908863d6212ff51b0bcc31eaf0aa",
+   "T",
+   "The response considers the city Boston despite mentioning Sinclair's novel; the reference asks for the outcome associated with the case."
+  ],
+  "5abf59905542993fe9a41e04": [
+   "cfee8dbdf44280b492349377bc8f6214acbc4df543238f8579656b44fc62aaed",
+   "S",
+   "Both give 1986. Only the reference includes the introductory phrase."
+  ],
+  "5ae2a2c5554299492dc91c3c": [
+   "bdff57b5bf44afb36b073d05d29e60b5b323a4d12204aaf037326aa7d8746266",
+   "G",
+   "The response appends the venue's later name and the city to MCI Center."
+  ],
+  "5a83b6865542996488c2e499": [
+   "15ae912a407bb4c85c82d53ce253810125792ea72596a3156a1b2b52395bb900",
+   "S",
+   "The response appends crisis to the bank name Northern Rock."
+  ],
+  "5ae5cb11554299546bf82f6a": [
+   "eb578650b3a028b329a92dd0b32c8d0cf7b15f5c5cf23b78f6c903da49540292",
+   "S",
+   "The response gives the short name and omits David although the rationale mentions the full name."
+  ],
+  "5ae245875542996483e64953": [
+   "a86266123293de2e4e0f271731f2c3615969c8254ec1b97a025dfe5d43d34c04",
+   "R",
+   "The question requests a division. The prediction names Division I FBS; the reference names its governing association."
+  ],
+  "5a74cb3655429916b016421a": [
+   "4e8a0bba79c348d23f9e777ff0f56088467cac110f0123860b4c1eb9287cba17",
+   "R",
+   "The question requests a team. The reference names the heir instead."
+  ],
+  "5a77a7365542992a6e59df5d": [
+   "ffb23ba8d0bf53659635e35a20c8b516b8c2f6fad01bfb778ceb74746f238957",
+   "G",
+   "The prediction gives the numeric figure but omits in excess of."
+  ],
+  "5ae1815555429901ffe4aed2": [
+   "5f109dd8f6fcb8107b82af1386f5883e27a7522b358638e568553263eefa6eee",
+   "G",
+   "The city alone is returned; the reference includes state and country."
+  ],
+  "5a84bc1c5542997b5ce3ff43": [
+   "3b5f9a942a7507071ffc701856a2578ecfa9309f56c2b142ae7f83de1069bbe2",
+   "T",
+   "The response identifies McCain Sr. and McCain III, but its final kinship is father rather than grandfather; the intermediate generation matters."
+  ],
+  "5a74505955429979e28828eb": [
+   "83ba4e24cd0f4034c486921e92226ecb207a409604e277dc735b9c9608f4061c",
+   "L",
+   "Two guest artists are returned while the reference names one by legal name. Both list scope and alias matter."
+  ],
+  "5ade786f55429975fa854ed2": [
+   "329059543fb607f5692aeb5b279e17cb09fc3efe65f5a5c2477b932e53435643",
+   "L",
+   "The prediction gives the shared singing role but omits songwriter and the nationality qualifier."
+  ],
+  "5abfb1885542990832d3a1ac": [
+   "71d354220a8ae4ad8f8b860fc536c4f8d19378a2e3d649a3f6eef0111577882c",
+   "S",
+   "Henry VIII omits the title King."
+  ],
+  "5a7c688b5542990527d5549a": [
+   "edcdab29cb3c3248cb2faefab37b865d6cdb7e11ee89f12066e89b660b411531",
+   "S",
+   "The answer appends industry to film."
+  ],
+  "5add19305542994734353845": [
+   "076b0eed057ad589ae9b2f808f2b55ff9a168167c103d4c145c544c659c08175",
+   "S",
+   "The model gives the country name Nigeria, whereas the reference uses the adjective Nigerian."
+  ],
+  "5ab95cba554299753720f807": [
+   "055a0a86df788514db1ac4ba62c529197b3985ad32c1b6415a1d66d616157f22",
+   "S",
+   "The named cheese is the same with the generic noun cheese omitted."
+  ],
+  "5ac4eccb5542996feb3fe97f": [
+   "fc6f7a99dcfbfbf5af0e16923579e3bd99ae2de4b6fa5f7e67e0bad866d6c73d",
+   "G",
+   "The response gives the common genre pagan folk; the reference adds neoceltic, attributed specifically to Omnia in the rationale."
+  ],
+  "5a8f95215542997ba9cb32da": [
+   "19215bb7b674659da29c8f705e026b37c1fbfb55b0903e4034a7393f0e5bb40d",
+   "S",
+   "The response adds the title Prince to Nicholas."
+  ],
+  "5a7717715542994aec3b71e5": [
+   "d9241d1a02df9bc87453802d2a0768fe48e6da16c1f5b5ab7fa0fa2c85a50579",
+   "S",
+   "The prediction omits the quoted nickname Pete; the rationale includes it."
+  ],
+  "5ae7925155429952e35ea97b": [
+   "e043640f995419659215e31b89cf80c8ea0ae5f73fd4e85103bdfee381b7955f",
+   "S",
+   "The area figure and units match; only the reference states that it describes the parish."
+  ]
+ },
+ "test": {
+  "5a7bcc0f554299042af8f7e2": [
+   "c227be7509b48cc59ef3c11aeec37d2eaed3cc6585a1c2759d513db210e3bcbf",
+   "L"
+  ],
+  "5ab2b8fe5542991669774070": [
+   "c03227e959f141d4485a1e232b85388290c978976115cb0904dbe990ccaf5fbb",
+   "L"
+  ],
+  "5a73cbe4554299623ed4ac5f": [
+   "2132b9425ad452e10d606455e68e781b856d54563bcc7607a14bcb9be48856b1",
+   "L"
+  ],
+  "5a888d535542997e5c09a617": [
+   "e0becdb06b9f68fbef05d3690a9e688e8e3e3d25cb8ca645ae937bee0dd278bb",
+   "S"
+  ],
+  "5a80762a5542996402f6a536": [
+   "0e309fd455500083a27958cc8b9aafc45ba4ae42a22acac7bba14f4b7d7033d3",
+   "S"
+  ],
+  "5adc8977554299438c868de2": [
+   "a40c2ffc906faa75276ed911ef98d774f08b76768f0b45140a1c4573a0f0cfbd",
+   "U"
+  ],
+  "5ac52f8e5542996feb3fea14": [
+   "567d62d79f90383f0a711c45c19545391eeb1b4493d78255cbaf1bf1a0e5a445",
+   "V"
+  ],
+  "5a78ce79554299029c4b5ea1": [
+   "9e1b75e7e9ec3055539e8498ebf50dc74e93b711c0fd3c9a27db0207248e6fff",
+   "S"
+  ],
+  "5ae69cfe55429908198fa65f": [
+   "f4d8132f6c1057f4f7ce29d10a2d4af5c2cde9f09905ce95810edd005d78b410",
+   "S"
+  ],
+  "5a82626655429966c78a6a08": [
+   "13a62e2e7b9f5b4ee4ff20ade46420ebc40fd5404b7ffbbcd428e6063e0acc46",
+   "S"
+  ],
+  "5adf4a275542993a75d26498": [
+   "f715c1ea6e96625e159148e1dc96dbf0f00ded3e6d10e32a58bab2ae8a23bc3b",
+   "T"
+  ],
+  "5a8a575a554299515336136e": [
+   "5987b303cba8813e0c43e96d6f91fba4202a0cb8210e10cf5f0ea29b30e893d2",
+   "S"
+  ],
+  "5ae18ae6554299234fd04289": [
+   "fa08231a0cd25ab796f69ea5b588b599f70c3fcd538fb726e4e4a6803656552e",
+   "R"
+  ],
+  "5ac560235542993e66e82396": [
+   "b1e40943160d9ea6172599a65e213fa576dd77948270ca38c6d2fac58968357d",
+   "G"
+  ],
+  "5ae616ce5542992663a4f259": [
+   "b5ffdd098acfe227699359c5eb3107c5858e0edd516c5d04dffa2f0ef070c9aa",
+   "S"
+  ],
+  "5a84d71c5542997b5ce3ff75": [
+   "b48616f203bd454f099577726baba06c41e3f6be443193c9e7e91addf11ff46f",
+   "F"
+  ],
+  "5a7ca74c55429907fabeefe9": [
+   "487d11aa26dad1786ad542bce5556b0de4a51fc78144d64f0ef0e71cd2fd31ec",
+   "S"
+  ],
+  "5add60905542995b365fab1d": [
+   "51adeab85fa6b0783d6578861124346c90dea22e0e2b1b873b4d4c0b950ea8d7",
+   "L"
+  ],
+  "5ab5ecd75542992aa134a3e6": [
+   "bf8fc94e02ac25a2434094ebb6c4a86f2d9c40132c2e86ce7c4492c61c61fa8d",
+   "S"
+  ],
+  "5a8b7d7d5542997f31a41d4b": [
+   "6ed888fa038285d12a3dc522ccb9ce857bce01ecdcbca29d49784322c09c2ea4",
+   "S"
+  ],
+  "5ae39f405542991a06ce9a02": [
+   "bc9261d622cb1fc126a6674ab459599edc5db638893c6d093dfe6e3424db5125",
+   "A"
+  ],
+  "5ac47763554299204fd21f5b": [
+   "f59c649648dbe6779b727a23a4a37dcf01b088144f6b9641bfee787f4a01e0c5",
+   "S"
+  ],
+  "5a7f3d9b5542992e7d278cb8": [
+   "265973459d4f535f672ae821607b8aa44d39689a3ead3db1aadca70225cf0056",
+   "S"
+  ],
+  "5a8f5bb45542992414482a77": [
+   "419e71bde1c69a2a85af52dc1ff3f815f3abaffafdba68527a132ffa2e1c6e05",
+   "S"
+  ],
+  "5a8601f855429960ec39b5fd": [
+   "8ed729d08e22c968af7bd13ac6fcf1f233038b2ba0f46bcb038440af8558f4c6",
+   "T"
+  ],
+  "5ae6179b5542992663a4f25b": [
+   "de73dcb76145986f4ee472cae275a382bad4d63d48608cdb1e3f796514623836",
+   "S"
+  ],
+  "5a762a645542992d0ec0603d": [
+   "5ad00e8a8a29848af6b834608667a165bd18e8854f13a719940c5c968609d135",
+   "S"
+  ],
+  "5a8b8b3a5542995d1e6f13e5": [
+   "811ca9a222a2235a3dec21115fe8e620cd87893c495fdfe4c163e72c364a6e0d",
+   "S"
+  ],
+  "5adc5b875542996e68525328": [
+   "1afd2b13939b23010c7d6a9241d9dae3e308796f979f2a12620eaffef70f37b8",
+   "S"
+  ],
+  "5abaaf9355429955dce3eecb": [
+   "576289f4c2e1c4a8dd19821f2c6d08fbf1780414d003de42c4d6a13249a2a8b5",
+   "S"
+  ],
+  "5a7319bc5542992359bc3235": [
+   "c8eabdb4bf0a936f4152646c645a007c25b6c4f7cf7ab30b0566d60001149f44",
+   "S"
+  ],
+  "5a84c5545542991dd0999dee": [
+   "596e3ea28a9ef57679f60e2c5decb3da2b6d8ff2ea9b4e6cb11e62afd004fa80",
+   "A"
+  ],
+  "5a7385c45542992d56e7e359": [
+   "8bae411dbbaffecf43e16fbddf3e9e9f00579bd672413eed53e6b2c8213aa4e2",
+   "S"
+  ],
+  "5abf8cc35542990832d3a14e": [
+   "045bfa41dedb9424d5f43cd8033349a73134aef0deb226d3b34c6b959ac6d911",
+   "S"
+  ],
+  "5ae1d0e8554299234fd0430a": [
+   "322201d3502c2e48c939aa10a50508ca90f42e22372ba816417e89e9ac8d8dc5",
+   "S"
+  ],
+  "5ab327bc554299233954ff33": [
+   "6d94199e32d8a8bc979417d49595a048cfdeaf427f29a2656cc049e8e71a3930",
+   "L"
+  ],
+  "5a8e61165542995085b3741a": [
+   "78f798cb9ec95a559f66b92d2ab718573c7d7895d6f12a5e8dd24a13cdb663e7",
+   "S"
+  ],
+  "5ae829ea5542997ec2727738": [
+   "5e95ca2c1acffef9c3db2bc3a5390155d78b8e5d59b6eb93b698f42bd198b0f8",
+   "S"
+  ],
+  "5a7455eb55429979e2882908": [
+   "a0a9c0734544a86ab7afb1e7be31c7d4bda10c9a89025e62e92ebfd232485aea",
+   "S"
+  ],
+  "5ab322b1554299194fa93570": [
+   "5bb6d03cd1c472bc56d1844d7d4b28fb8d47344dbb44a1749b2da497604c99b6",
+   "G"
+  ],
+  "5ab96ab755429970cfb8eacd": [
+   "1b885c53c8c9e2f9488e19c1a7afc9564f5d23ff98c51cffb56532465466f1c5",
+   "L"
+  ],
+  "5ae2e0fd55429928c4239524": [
+   "ef45883d44015f38f9fa3a2d2eaddec0d9955398eda5f5a4fcee29df4762abd8",
+   "R"
+  ],
+  "5adbc8e25542996e68525230": [
+   "400d99e30bbcabda5c3e7cf8b40381d23389a6ba261cca5058cb0e4401117c10",
+   "G"
+  ],
+  "5ae537895542990ba0bbb234": [
+   "9656c68529fd337a3213d8914b55acb237616afda0441707736eb35349f60ec3",
+   "T"
+  ],
+  "5ade664555429939a52fe89c": [
+   "608730a56ab66186aa9dcb40cc042958d2052e3cc29180a9ba75baac0952d483",
+   "S"
+  ],
+  "5a9052765542995651fb513d": [
+   "2ac62c634221e4e108d83ab43e146201a8afec74df20051362ee8af7483b837a",
+   "S"
+  ],
+  "5a7f2d3e5542993067513675": [
+   "7fc26736325a78454b2886e1b1ae820fee40637590911e8b6c8f813f13ba77d7",
+   "V"
+  ],
+  "5a901f735542990a98493591": [
+   "f8418e8b4fd20896bc1fe8c44e6b508adc39f227e125a014022fae7afe679068",
+   "A"
+  ],
+  "5abbc2245542992ccd8e7f8a": [
+   "2387a43967dc55736fcbf4962877bd4fe7c968ead0eb4ef94c26e8441310aec4",
+   "S"
+  ],
+  "5ae48aff5542996836b02cce": [
+   "7be4bf7be5b924de91b666b74dae259f0480ea55bb7dc637c0c9c5558d56499c",
+   "G"
+  ],
+  "5a86b13f55429960ec39b6c3": [
+   "4f213493827babb6d3d3a0eab10dcf05489a393c2c1ff15a2d94847e5c9000ec",
+   "A"
+  ],
+  "5ae1c3cd554299492dc91b87": [
+   "ec90c1af329cccc9e7d07bc951a897c3d023b2c5d259c3b4e58b089fb757029c",
+   "G"
+  ],
+  "5abdcaea55429965af743e4e": [
+   "dc4ff38205ca909ff4b28af9e003637b24ba17d08e5bb6f54162605974454e96",
+   "S"
+  ],
+  "5ac056385542997d64295a08": [
+   "4467a6137e2c54d086d63a6fedc000b1c5f04a49d0fcc5ccaf00f7caf265bd61",
+   "S"
+  ],
+  "5ab3d69255429969a97a81c9": [
+   "c645c8316a650bdd34ec93c88e74415a0abee6b692053ad4d3ea65c9afe08d40",
+   "S"
+  ],
+  "5a809e9f5542996402f6a5b1": [
+   "6fbd42e51f5eb5bdfec18c33b0363768bd2849e40a7c896b18a7e120d48359a2",
+   "V"
+  ],
+  "5ab61668554299488d4d9aa6": [
+   "227ac69c30d7996648f706768296b006edefd522b2bb0b5bb9b15e4173722208",
+   "T"
+  ],
+  "5a86578755429960ec39b668": [
+   "473f30036528fb5a48ff992e1426808224b1da259b3fbef2e11f9013477f047f",
+   "V"
+  ],
+  "5ac4f42b55429924173fb50d": [
+   "d0f71f687ce49e4e024bb8b11c2f08d9a83673d751ce433cc32ae0d5b3c4b534",
+   "S"
+  ],
+  "5ac19bf55542994ab5c67d97": [
+   "18b8d8fdd1545fd759d3ec42c37a34c24b458d6e06db4f3663fbf37820de4c48",
+   "S"
+  ],
+  "5a8ab6be5542992d82986f5f": [
+   "86ae77706a49ca59f62827d727ee7282b99dc062d7a027ae9a1c790fe1489c47",
+   "V"
+  ],
+  "5a77a8b45542995d83181253": [
+   "8ac15a970c63bad804bb6b41b7d327967e828148e7a551b70705757b2f0363e9",
+   "G"
+  ],
+  "5a823b355542990a1d231f6e": [
+   "9ba2403019bc1ee1681857fce21081f64f29a83f58abb2b8a61afdca19ab95a7",
+   "G"
+  ],
+  "5ae2e61455429928c423953e": [
+   "d1d0054755ca5712fa5a345a29599994cac0f8cf9320c1ee23ff1f844724df71",
+   "S"
+  ],
+  "5a746ddc55429929fddd8423": [
+   "f579345d6bb8ce746a08732a350f021126efdb35d943cd0859107f811625762b",
+   "S"
+  ],
+  "5ae54b6355429908b63265cc": [
+   "8171a2a059a39e925c2ab2c87ea961585be343aa40a319ec1a144d706b08c722",
+   "G"
+  ],
+  "5a90b4fe55429916514e7525": [
+   "1a7bb58d7008ffec28c7176c38d15f277ce685b4d2a4064d379077add19cf893",
+   "G"
+  ],
+  "5add2b865542992c1e3a2550": [
+   "3bed63c26b75ebfb5766c1a44715757ad004dd13fc36b17d9d2ab9a95063effd",
+   "S"
+  ],
+  "5a8e463a5542995a26add4b7": [
+   "62a585ab1028e58b054b6fb67ea0f47282952e584d265419b10650b2a4bd3771",
+   "S"
+  ],
+  "5ab7ece25542995dae37e9f3": [
+   "14fdccc579330a9b8b498d3096897e0dff6fb6684cfb8a724a9d238ecb108f88",
+   "S"
+  ],
+  "5ae7c5ef5542993210983f44": [
+   "755eeb2adbe29f61f1ea0fff02e5cf9bef13fab58ad496c4347d3509cb750823",
+   "S"
+  ],
+  "5adfed45554299603e4183c5": [
+   "c944a5b29032798ca4ef32c2bf57be5e807aa493d3847c3a6eff40696126c415",
+   "V"
+  ],
+  "5ae760415542997b22f6a708": [
+   "19b1fb9ddc2879a5d66c987e84450abd3be6140697c2652fa79694a662f8b1a3",
+   "S"
+  ],
+  "5ab2958c554299449642c912": [
+   "411ff9b98e2c9c373bc2ce67246e7f0a64990411c30bbcf5351311924b19067a",
+   "S"
+  ],
+  "5ae2b83c5542992decbdcd7f": [
+   "b8683e5473a7ea567bed7237fa8136bf25f2d56c6906d8903d0d405e3dde1784",
+   "S"
+  ],
+  "5ab9535a5542996be202047e": [
+   "c49879714cd4709dc03c68195ba3e235a1d085bfb958bdd24755497206252231",
+   "S"
+  ],
+  "5ab5820e554299488d4d99c3": [
+   "77b3dbc02d301042680d122f57047821db16430c71ddd326323c65b73f2eb850",
+   "S"
+  ],
+  "5a74c6a655429974ef308c5d": [
+   "523353267425ad9e8c24a8dbd47fa48026d1907322767ec223a853d15152e43c",
+   "S"
+  ],
+  "5abc3a65554299700f9d782d": [
+   "ca2257e311ae0fc5a2a14d8e80331afaf9a49098f191569b5be6cefcb3f197e7",
+   "T"
+  ],
+  "5a7a1d305542990783324e66": [
+   "2c16ef644a0f6f42fee596d6887288f2bf90a5cd0e61526e2f0a94d8344f64d0",
+   "S"
+  ],
+  "5ab504865542991779162d52": [
+   "447ac040d7841897c2a1c03bd60f7ceb2eb64259414b9c76835eff64475d9923",
+   "T"
+  ],
+  "5a7af4cd55429931da12c9a6": [
+   "a8f5c56b918c82248e5ce7e679799958cd1b31187082abee3e3722480139d45c",
+   "S"
+  ],
+  "5ae277575542996483e649b2": [
+   "1d425c45b6c873ffd2957782df2c8b69fdc4c656d37f45eeb1cc369840e8c93c",
+   "S"
+  ],
+  "5ac537975542996feb3fea3c": [
+   "fced4fbbe9f22f9b3bcbc191f878b1fc74775a7852c5200f8c7fefc425350490",
+   "S"
+  ],
+  "5ade64b655429939a52fe89a": [
+   "72fa797cc5c023ae1a7c1625e4936344d5a754f6f7acb9f0578be5743f58c2f3",
+   "S"
+  ],
+  "5ab85f555542992aa3b8c8ca": [
+   "1b16737ebb4ddc3a25b75e1eeef16bccf83724d23828ac37b0724cb87811d523",
+   "S"
+  ],
+  "5ab29caa554299545a2cf9d3": [
+   "c799595dabc3eefbb4d74aa9c96f25efbe8e73c3d48e84b8ce1d3680dd983d54",
+   "L"
+  ],
+  "5ae807d25542993210984045": [
+   "601f38270d66d7f9bf14a831b2aba5363187be6ab0c438b47342061985f5b0a7",
+   "S"
+  ],
+  "5a7ca55b55429907fabeefe0": [
+   "0a7be4ac84b940902ad5f19966e792412a235ece817d37619e72e32b6328f439",
+   "S"
+  ],
+  "5adf9ee75542992d7e9f93c0": [
+   "8a5efe6c04a60cd586b3b60e5287d82fabf3706df0fb997e038cccdb7c15a23b",
+   "S"
+  ],
+  "5ae603ba5542996de7b71af4": [
+   "569364e02efb740322857817e6ea5a0fd5591a3cf8c172deb61d2f6c8ce6a63c",
+   "F"
+  ],
+  "5ab639e65542995eadeeff7f": [
+   "ffa070e3eb57bda9cbe238a2382dc41446126368314a60da00898a9302f1749d",
+   "S"
+  ],
+  "5ab4482b55429942dd415f09": [
+   "12455aa92abc7360feeb72e50a5eb2744d90684fbb46bba4130226198d7ea28c",
+   "S"
+  ],
+  "5adff2aa554299603e4183d0": [
+   "af3b307118090480e28edfed70de1d8cdbb0eba44fc79760da801502e48fc979",
+   "L"
+  ],
+  "5ae4c96355429913cc204506": [
+   "a21bc827369a11619fa1c31af9ac0662c0375831cee9905822fca954cf8667fb",
+   "S"
+  ],
+  "5ae0ba1155429924de1b7156": [
+   "d955030f34d3735260765740525cc7bcf2e6e1c725ecdb4f90f4404cd2dafd87",
+   "L"
+  ],
+  "5ae14b0655429920d52343a6": [
+   "9d590550dbdd2a7a29d5aae79eb8240df6d9117ce7b4e97adf3304de51cd7ed5",
+   "S"
+  ],
+  "5ab97b27554299131ca4233c": [
+   "66dd71e44449f10fdff8a469aa6e170ca30512908deef40fcda49e40f03bbddf",
+   "L"
+  ],
+  "5ab6e865554299710c8d1fad": [
+   "475b5882d9ea93a34559073a53a837e266722ae7f5914c6b670068e573d5d85b",
+   "S"
+  ],
+  "5ac257fe55429951e9e68562": [
+   "53ab0f82f0c544d71e98e9772c043b85c7e93a402223b37741b7775737a405fe",
+   "A"
+  ],
+  "5a85c3225542992a431d1b95": [
+   "b288c11e93008a8d17912be110fd8a308b9c27761c51d9f0357e7c103bd9d57b",
+   "G"
+  ],
+  "5ab3bcc55542992ade7c6e66": [
+   "70392c554e185401b7e8523944776e2c16ac45b57ede38013047dfea4f2b9c6d",
+   "S"
+  ],
+  "5a771e0b55429966f1a36c75": [
+   "db6778c2c16c38738107cb21a92facbbb612307d63ef519c3d521bfdf35c6ec8",
+   "S"
+  ],
+  "5a82301155429926c1cdae4a": [
+   "6e121ddca4c6409378e655b0e2034aa252d00f5bed1321b6284b817398091322",
+   "A"
+  ],
+  "5a8ac4085542992d82986f74": [
+   "b6a8216823039ecfbdc4f46162d4be22f9733d898b389f9189418349022ebeb3",
+   "T"
+  ],
+  "5ae7cea355429952e35ea9c1": [
+   "731d9cd931c7009a44a401c05d3cbb64571657403b3dd64db59195261a5170d9",
+   "R"
+  ],
+  "5a81ebee554299676cceb16d": [
+   "7acc95de3b9133d46cb0b5c1a6328400d32b030fbd24cbf5b8e934938695c3a7",
+   "G"
+  ],
+  "5add11935542994734353827": [
+   "f5e6b000be9d1b96044208c33dd2f049afbc80e804d774a99214d9eae44f9634",
+   "S"
+  ],
+  "5a75e3845542994ccc91864e": [
+   "c09c1de9daf70f489bd9ca2462ffd2fbd0f3bd27b4fddd9581f375a5ba270ac6",
+   "S"
+  ],
+  "5abb2e6855429966062416df": [
+   "131f4f41a81a92c5e932073af63d8429ff4cf5842c3352f55477f7246456b877",
+   "S"
+  ],
+  "5ab5a7f45542997d4ad1f1a5": [
+   "ce4c887d82c1a40dbc41002ea5e6692202eeb3c5ba6e035f86ada6076c54c959",
+   "F"
+  ],
+  "5a802e135542992bc0c4a6c7": [
+   "a669a3b829e68bc0586ee517fd997a24b85d080ac8db0ab33c859b2bfb789d51",
+   "S"
+  ],
+  "5a8e0a005542995085b373a1": [
+   "8c793d5b9474f17ead38ecaa0c76f21d4a178e7967f4fc8c2aa670bd41c41ac7",
+   "S"
+  ],
+  "5a7137dc5542994082a3e68a": [
+   "50cbb797832305ee0e8e7daf9ce8d62d62432130ca858d252d12d30842ac8f5b",
+   "S"
+  ],
+  "5a87a47c5542994846c1cdbd": [
+   "5f9a2a2b7cd3608a75117be49ea9ebb9907b853728babf0b8bd7b0562c770d0b",
+   "S"
+  ],
+  "5ae49b705542995ad6573dbc": [
+   "4fb842772e59e1ce186bf632a5e28e01f03a8180024ad67d5f18ee11b73ff34e",
+   "L"
+  ],
+  "5ab209ec554299722f9b4ca2": [
+   "b09000a21bd5d605c34e09665bfcec1b119c9ef55e27ffa7b56c89a8a818fec2",
+   "V"
+  ],
+  "5adf39d55542992d7e9f92e6": [
+   "4ba4578278e02cac0b853bff51f5c146e0e399c67f9e8e222386387ffaec9db0",
+   "S"
+  ],
+  "5ab72a025542992aa3b8c7b8": [
+   "6cf712d30ba6d17fbb5f221bce50a1633c2b308659143bb017ee26cb5e5b17db",
+   "S"
+  ],
+  "5a80f42b55429938b614226c": [
+   "33f78d6ccaa9d16efadf9675549a07fd9f37e9c79945100ccb39af7b5da5b849",
+   "A"
+  ],
+  "5ab31fea554299194fa9356a": [
+   "3dcede4d3e7e02d0aa23fcb9ee2574b4a509b2de8c5dade5977b37226c3dadd1",
+   "G"
+  ],
+  "5ab6faec5542991d32223708": [
+   "5b45de6f83102b53acd139f8e216e9f59ccc2d9b8d78d9bb714642765a08af9b",
+   "S"
+  ],
+  "5a7324205542994cef4bc478": [
+   "71de25b0f5857a598c0f5a32d0b1052a676b340a12eec4042a8f3bd93bbfe95d",
+   "S"
+  ],
+  "5a8ed7b455429917b4a5bdd1": [
+   "0bdeceb21fe98ee6b8af3ce3caf1b719b9d6a594f61cb1235fe628c8f5555442",
+   "S"
+  ],
+  "5adc54085542994650320cce": [
+   "193a76414877700636e25e0f3c7faeeb43fc16d06432a42d3d9443669622df8a",
+   "G"
+  ],
+  "5ae4cf975542990ba0bbb151": [
+   "c6abcfd44da17eb1b48313d3a407860a12353162ba2e0a0c2599e8982e4ddd81",
+   "T"
+  ],
+  "5abcf17655429959677d6b5c": [
+   "b96a2085dc960873b6a03b81c0558a092644f12f1a6590fa34df5a925769da2d",
+   "S"
+  ],
+  "5a7758895542994aec3b729c": [
+   "42ab3ef06a12753d480a8529471add1b135d93306e7ab72988632dcba0140256",
+   "R"
+  ],
+  "5ac32b565542995ef918c154": [
+   "45d533bb21d0ad69289adaaf8a4387fae5587b7b87a202d9b2489aed30b959ab",
+   "G"
+  ],
+  "5a7b1d3b5542992d025e677a": [
+   "143c0f4ec10a094e5e592b647524ddb8c67ba66fc6eb0f047a006b926abe8561",
+   "S"
+  ],
+  "5a8a0cb75542992d82986e7d": [
+   "83b650cb199fc9be1068791b61a36e7708b7cac332c10bdf7fb08230ae5c4d5c",
+   "S"
+  ],
+  "5a85fc995542996432c5715f": [
+   "d708636f759c0e11f62f793187ae64729c4b9aeaf0c88db308385d7e777ad61e",
+   "S"
+  ],
+  "5adff45c55429925eb1afb8c": [
+   "7811b90be5fac965d4e7828a4ae7795db31aae69dcacb1576716074f5b065567",
+   "V"
+  ],
+  "5ae47ae05542995ad6573d4f": [
+   "f30ea9ffff7fd6aac9f7d93087c9feb4463d9977985793251a3ee0d709b7a782",
+   "S"
+  ],
+  "5ae4957155429970de88d9bc": [
+   "117e96aabafc5401b9c181c68fadcada8368bbfa8cf0b1acd042c3acb132de51",
+   "A"
+  ],
+  "5a7744555542994aec3b725b": [
+   "ebdd7c3ed432c8d510c2100ec2e91f6cbf564cc5eb059d49f8a64bd2f5286b59",
+   "S"
+  ],
+  "5ab5ec0a5542997d4ad1f250": [
+   "2a864558b1cf306130c455a3a611b24b2e99dd0b1456da02800fa1382c2abe72",
+   "A"
+  ],
+  "5a74ee175542996c70cfae41": [
+   "0ad5e39d03e92e57bc38d10c08beb1c17541e96c06f3ed3cdc4bef7d04dd9671",
+   "S"
+  ],
+  "5a8b7dab5542997f31a41d4c": [
+   "69316448fc449dc9f57cbee5fb0c96a271ccca9fc6ce0b8e2d6e05801b6e4437",
+   "L"
+  ],
+  "5ac3ba0455429939154138f2": [
+   "d6333a42e12f940f916498eda03477c7a7bcd6698aeb0772100d983942bd37f4",
+   "S"
+  ],
+  "5ac3d1d9554299204fd21e8a": [
+   "4e6574fc0d1d862be2ff10afa7dc968835ae852c59ea14b54f235faec54cf2c7",
+   "S"
+  ],
+  "5a73a7c755429978a71e9068": [
+   "5f4224ce4c2912640eb427bffd64ba8ebddc78bc3854176622a606c0bc0de18d",
+   "S"
+  ],
+  "5ae0111e55429906c02daabc": [
+   "4c48e4c749f14520ada10a05bf891ae149436b19977bee3978d8d6828233f35f",
+   "S"
+  ],
+  "5a7f95685542995d8a8ddeaa": [
+   "11dca9eb26b569ed4758d56099e9e07fcc53e8dd1db8a1eb5b41c63381447564",
+   "F"
+  ],
+  "5a7c47c35542990527d55481": [
+   "4e8edb4c6bbeb62ace840ef150a554747fa05cc82c3af5963974f37b2a232aba",
+   "V"
+  ],
+  "5a829a7055429966c78a6a66": [
+   "f2a254ad15f0d6f4313846105d50f75deb487a295729faa4fdf6bd7f0b911211",
+   "S"
+  ],
+  "5a79c9395542994bb94570a2": [
+   "905c78fa5e5ef388aa7ba179338a4868a92da3b23b68b144d598332514dd5f8e",
+   "S"
+  ],
+  "5abcef9e55429959677d6b52": [
+   "ae4696a8ce5bbc44de21e3d45f6aa634ff820ccc3a018a8675d420df96dfc948",
+   "G"
+  ],
+  "5a80d2c6554299260e20a17c": [
+   "c2fbed110e081eb62412a48b70b7172afcb431432d48addabfa9fd55f9842e8f",
+   "C"
+  ],
+  "5add4dd35542992ae4cec507": [
+   "e576d509d1b0b30a4c07ee93e15fde2ba49942f3c069bd452936a7a4e8d6f4c2",
+   "A"
+  ],
+  "5ae0c7b055429945ae95944b": [
+   "e338c6a5f3116cf8fd6b837621352955f0b2c38ea019a91cb0ac974dbc501390",
+   "T"
+  ],
+  "5a79c9c05542994bb94570a5": [
+   "8568118866f424a9420f3129b7c99953fbfbc63f42d01c2044036d0ce3748ca4",
+   "T"
+  ],
+  "5a88ba465542993e715ac089": [
+   "a7f604f0cc26df78645783f56267229a58387bfde004f51ed64353c7501874fb",
+   "S"
+  ],
+  "5abdb7ff5542993f32c2a011": [
+   "217ad9a59ae1fa29f305704e1f51bc327e0c9ebad5eb9648f52fbc43ba8c1f74",
+   "S"
+  ],
+  "5a88c92d5542993b751ca84e": [
+   "89b4eddc5152df461a9ecde30675233c3f9e69714f2f6e18ea0fa5c451577fda",
+   "R"
+  ],
+  "5a8da81e554299068b959d7e": [
+   "903c3081d03e01697159c0edb05b0272fec72108423e58b173cc057914686beb",
+   "A"
+  ],
+  "5a770bb855429937353601b5": [
+   "ca704d77bbe5aa95b8835c514effa830b4cc703a0916f50e7b4acd8c7dd08147",
+   "V"
+  ],
+  "5a8318dd55429940e5e1a95e": [
+   "946eab826c84c2287bc9e748e74eec5cc41a127932e3cb47e5cc9f277bf33705",
+   "V"
+  ],
+  "5a78c235554299078472775d": [
+   "466175a5fc57688e57a0ec05c6b5b75b333312b88aa46267488ee89d5f006326",
+   "A"
+  ],
+  "5adc9d145542994d58a2f67d": [
+   "0f5607f6d97f67ae1db887ff17e83303a9be3f619defc83a684faac6df656c44",
+   "R"
+  ],
+  "5a7a1b165542996c55b2dd10": [
+   "3e9f20c46fdefa0e9a79e8807b947db325956166b95d18696039e3df6be6f86c",
+   "C"
+  ],
+  "5abcfd7e5542993a06baf9df": [
+   "9ce9d65800efa1ce6c324255826135b7fdb6b5f23effa680feb3117a32f5ee21",
+   "V"
+  ],
+  "5ae18d615542997283cd2229": [
+   "126a871fb07d8e2bf8e741e15d601a3255bf7bfee1ce6ee63df6c0893215d3bf",
+   "S"
+  ],
+  "5aba7d8655429901930fa7ec": [
+   "3622c48d41df4f76d38fb05112a6f8826f4db7aaaabd27af6b1d9fa218b8e1b2",
+   "V"
+  ],
+  "5ac4d717554299076e296e0e": [
+   "6e9ee41b2f0a47fb989abaa89ceae85680162ca6ba48b10c8a99add4480ae237",
+   "S"
+  ],
+  "5a8d227a554299585d9e37b1": [
+   "37f38074a0c0385dd74770eb4d1e0ab979f1626dcf1e76ae765232a2436b2e64",
+   "V"
+  ],
+  "5a76244c554299109176e65d": [
+   "88ee0328596275dee199aea67a2ef168282f154b6cfb10d61763e76dd7616645",
+   "V"
+  ],
+  "5ac3a928554299391541389f": [
+   "0fa1c8ec51d267d93a4b3ed2e124af55e0f4b091dbf2e911b73124d27d59b820",
+   "L"
+  ],
+  "5a721bbc55429971e9dc9279": [
+   "173de1765d2bec8a341843d2b22c9a38dc9b663128c00946787cc9d59f5b2278",
+   "V"
+  ],
+  "5ae3cd685542990afbd1e1de": [
+   "9460efd5ab75567a0206c34f383e403e4d1ebe7261d7a6159840a95e5ef7aa1d",
+   "L"
+  ],
+  "5ac2ba4855429921a00ab048": [
+   "dc9f74c20e92ee043e4d821138e75e36135ce3b6a162c0adb89d501e73d824fb",
+   "S"
+  ],
+  "5ae7ad385542993210983ef0": [
+   "d568b1527bb06e36b5e1ba30c81c8f27a4ecc0728f8675a85a4689f9b9c0db21",
+   "S"
+  ],
+  "5ab531cc5542990594ba9d23": [
+   "aeefef57bf5b734f673ed572d28e036cf5182fa301f40f9ecb12b99f034f8c27",
+   "S"
+  ],
+  "5addd5795542990dbb2f7e9d": [
+   "baba4b5ff50f2140e565bc9adef01dddacb4e73cae4ea6f86a7f92e4fd474f7d",
+   "L"
+  ],
+  "5a7dca645542990b8f503aab": [
+   "eba9de6775f33c951b0a2ae2e40d1f690175ae0b96b4b9fe916a32cfae2b1a60",
+   "S"
+  ],
+  "5a8512035542992a431d1ace": [
+   "6c1fd365e4ee2d9a6ce799bb4e5a0e26950f0453f2884c5ecaf0f25b7751156b",
+   "S"
+  ],
+  "5ac160af5542994d76dccdfa": [
+   "4bcbd49e1f171ca11e07a14f9e41cc3b8d807ce7e61bc9c5cbe6d039737fa206",
+   "S"
+  ],
+  "5ab6cebd55429954757d3378": [
+   "1d046e57464c9893b14f28d06b3d70f36a02ade83902930cf49468e35103ea96",
+   "T"
+  ],
+  "5ab31864554299233954ff06": [
+   "5cfa4e288156668dc6a1c1c0e4746135cad1fdaf1d88e341317e1fcac5c748cf",
+   "S"
+  ],
+  "5a84eecd5542994c784dda8e": [
+   "463d552c2f023a5db0fc7ff6638797e6948c16e4fcc921b393d341f9517ba5d2",
+   "G"
+  ],
+  "5ae5621655429908b63265fc": [
+   "9903d23f53d27ca5ddced88601241a0302247419086e23e9bb1902f94635633a",
+   "S"
+  ],
+  "5a8341c255429954d2e2ec6e": [
+   "170ae763a7343dc04834b7178f4a562e530fcfd6118bbc21193a65406d172708",
+   "S"
+  ],
+  "5ab45bcd5542991779162c80": [
+   "338bae40b3ffbf00d011142aa229b98b71a05d5bdce92bcc36f7ac8413d8d12e",
+   "S"
+  ],
+  "5ac5461d5542993e66e82296": [
+   "8af3823a49b0f16252fd962f48af9f6a25c253ac27f66128181271164b7d9aee",
+   "S"
+  ],
+  "5a8ac87d55429970aeb7031d": [
+   "08efe5c7d6342624d6466ce2068d996aa6cfed1f48c98ba90710096f48b6fe7d",
+   "S"
+  ],
+  "5ab721325542992aa3b8c7a2": [
+   "b8c75a5b9e7972a6d04740bd3004dd368399bcf4e4e040ea4b8edbc39d157c12",
+   "S"
+  ],
+  "5ae72e5d5542991e8301cba8": [
+   "d2b2ac23bfc9738868638a832ce36867b1936a4812b10014daf1d64163409262",
+   "L"
+  ],
+  "5abf63f15542997ec76fd3ea": [
+   "ce0913f74004bd535f6b4108d414fee9ca8fc77e0ebc6ba5c164b82efa0f5441",
+   "V"
+  ],
+  "5ae72c7d5542991e8301cb91": [
+   "99b682c0ee3be9a8b6dc04d18966ab060ba11deb7922b836542ddfd4c2d40d59",
+   "V"
+  ],
+  "5a85e5345542991dd0999ebb": [
+   "8aa7fe9b27346cad57aff5196971d2d73363ca3f4ad4a306eff69b62d4ea26de",
+   "G"
+  ],
+  "5abc0dfe55429959677d6a05": [
+   "7ef3843704c05ae78711fefa20b588c9aaa277b25d849fed6d35b0cb23e07cf1",
+   "L"
+  ],
+  "5ab946d7554299743d22eaaf": [
+   "2f1bb6b349db4acfea489ac6cf6fe06459715ebe8b4a15c09082b1ca7b6abbe1",
+   "G"
+  ],
+  "5a8303c255429954d2e2ec01": [
+   "3814879b25fe6efddbeaedb7eb5e93983a26646c2458190055b4bece429439bb",
+   "T"
+  ],
+  "5ab72b5c5542993667793f63": [
+   "0873f0e78fc5e42c742a321361036614dd4a26fbf46b21f37be7d2495e8f0e2a",
+   "S"
+  ],
+  "5a82ebb855429966c78a6a9c": [
+   "f2cd66b93052e3e41fbd43178012ac70d6a7c7ccc83976b940f735f325bf591c",
+   "S"
+  ],
+  "5ab4341c55429942dd415ede": [
+   "737f6da3a7dd158a13d067e205eb800b90e8e7702125f7ab43a3317c6d990566",
+   "G"
+  ],
+  "5ae205fd554299234fd043a9": [
+   "efb54b20ed6ff333bb45f84e9183c98b2e28fbf0413399a8bd96d03ab713b8e5",
+   "S"
+  ],
+  "5a7270395542992359bc30a8": [
+   "37d994b72f9252f59c7aeaed8d6cf963a3caf12b027b49b09f4d1856a3eced91",
+   "S"
+  ],
+  "5a8126265542995ce29dcbc9": [
+   "f407457b349859c1e745e76eb11213cbdf294710998aed0bb8cd10c9e9beec6d",
+   "S"
+  ],
+  "5a88658955429938390d3f47": [
+   "ba3618988dd0bfb7d57d4be42c51bd8ff4e259d4758de3ab66697e7a00a01a13",
+   "G"
+  ],
+  "5ac4f7e955429924173fb523": [
+   "025197c1326144c6ddb7e3da17700ccbaab07cb1528e3119df0ca3d3d39e6e99",
+   "A"
+  ],
+  "5ab296a6554299194fa93415": [
+   "26b6b4be0251c10c724c0591f0956430f906d2104538b1b22f8da93179fdcf7b",
+   "A"
+  ],
+  "5a8a43eb5542996c9b8d5e82": [
+   "2242aaafcb1bffdb0b0beecffaa5778689c07fc5ab271e0fff2edadd426f8463",
+   "S"
+  ],
+  "5a886b7555429938390d3f4d": [
+   "8aba71394c049526eee45edbd768d0a1f0460fb33f8cab2c7dd8ca17bb83cf4b",
+   "S"
+  ],
+  "5a83b01c5542996488c2e489": [
+   "7acf362bb575afada57036078f83f4f55219f4dd6651c84bcdc2f9acfa8b21ad",
+   "S"
+  ],
+  "5a7a15d35542996a35c170c4": [
+   "100247ede4c364b0199375122b40d12e0b4b656cad33bbf2cf2ab507152f1b4b",
+   "S"
+  ],
+  "5a7f38e255429930675136b6": [
+   "812b3c7b3290a3979db12ed1458b6655f78d0b918893b491663f12f879216d77",
+   "T"
+  ],
+  "5a8901a2554299515336125a": [
+   "2d64e67f103abafa2e7c3d9501a3ed36e60ccea88e1fd446aca6aac477a0d624",
+   "G"
+  ],
+  "5a7a073a5542990783324dfb": [
+   "f463fd0b6eb72e8298ab1df5d8370b7986a074534ebb5ee5a80d550472c02c68",
+   "S"
+  ],
+  "5ae09ce855429924de1b7113": [
+   "39467aa710fcaa5b6beb645557cf7d5f3f6cfbca731d2d9a6eeffe1a956292a5",
+   "A"
+  ],
+  "5a7e618155429949594199b0": [
+   "e4a2ad2eb242c8884c70df893dcb1e201cce2e688ddf22311c58707cb77ccf37",
+   "S"
+  ],
+  "5adf6a5c5542995ec70e8ff9": [
+   "e8973cc6324694f54f0b65c7be2ab55b904c2af81489199d994adf39908df041",
+   "S"
+  ],
+  "5ab6e07b55429954757d33a0": [
+   "d4c7aa03a1c26782bc4b67114901cbbe3bbb15f291f216d1b0d72e4db31faaa6",
+   "S"
+  ],
+  "5abea6a05542993f32c2a18d": [
+   "67eb3d223023bed6761a15155c7e7f94b74979b3bf8038f1917594d66eeff455",
+   "S"
+  ],
+  "5ab9be4f554299753720f843": [
+   "e056e730e59b3ceddffc85e87f354c9cf5bc857a86e047997f4e000c7ee353b7",
+   "A"
+  ],
+  "5a8646ec5542991e771815f2": [
+   "84b20435ec36132a0115f66264d28ba3a90d0596238526d8fedc1e2236d04b56",
+   "G"
+  ],
+  "5ae4808455429970de88d990": [
+   "98d695573c9f61d27440481ab9942ec96e7a95cdca3c787e5a380f8e6e036191",
+   "S"
+  ],
+  "5a7f48e15542992e7d278ce6": [
+   "bed2dd4ac8d31fe84f8850b6e00a186d563bbadd621c97abeea21a2920640899",
+   "S"
+  ],
+  "5a81b7205542990a1d231e79": [
+   "37843b2d2076263df78ea1883094bbee8a64a7a4abb30b063ccd704604a46a5e",
+   "S"
+  ],
+  "5a8810485542997e5c09a590": [
+   "57c02f8be0026009212f67a83ccd384ac55a17d37f7c8cc8e71504d0e854cd1b",
+   "G"
+  ],
+  "5a722c2255429971e9dc932c": [
+   "90f8c7dba50d6af3366854c4cb888eb4fd4866975eb1a8f8dea35c4c7f790293",
+   "G"
+  ],
+  "5adddb415542992200553b61": [
+   "33f6e817862023066df2f9ad967716d874c932e647055d239a4087bf5f93df07",
+   "S"
+  ],
+  "5a74639a55429929fddd8404": [
+   "8abdfd8b13205f2063945c8bca003614240ec94dfb1be0d4d4c79b3b2913b58a",
+   "S"
+  ],
+  "5a750de95542993748c897ac": [
+   "aa3d70c862e865b45dbf4ba95e00c6333754f829c6d6c417ab87866e325ba497",
+   "S"
+  ],
+  "5abbf7d755429931dba145eb": [
+   "1fbad12c4bcc4665bf2b56e0bf07c875aae0d21b729aaca44dd102a7ce6b08f0",
+   "L"
+  ],
+  "5a874e9b554299211dda2bd3": [
+   "badf6c73a2b3c7049d09e5914c384510f26469ed5a8423257086064561d97b67",
+   "A"
+  ],
+  "5ac2e97d554299657fa290c0": [
+   "59105189af945eead02a4ffa23df3c1b62fae927452634bfa30a382c171a1360",
+   "S"
+  ],
+  "5a7217f255429971e9dc9260": [
+   "c855c9a7773e00741e11124bd240c08263786d332a73c827bb20cb6c25041338",
+   "S"
+  ],
+  "5abd6bf055429933744ab7c8": [
+   "d92cd6d608b872cf07e87228c9b873d0c20df0ee6fdfcf8ae92c93d717c27b23",
+   "S"
+  ],
+  "5ab5df4c5542997d4ad1f218": [
+   "053c03db41683e6d7d1d0cb1925676fce03a4b199cf3fdc3602bba78f10b436b",
+   "T"
+  ],
+  "5a8b036d55429971feec45fe": [
+   "79cb37bdb56d4d042e44047d66f3675ce2f63bc42c0ea3056fd3d2aa9ae44c26",
+   "S"
+  ],
+  "5a83cce95542996488c2e4d6": [
+   "55c99758f2ea824935a14940d799dbe77eeeaa2e4808421f73ac5192d0c41d44",
+   "A"
+  ],
+  "5ae60484554299546bf8301a": [
+   "a0423ec8a93226f1a37930e5e9e5824ab447ea3e13c7499680b2e15105532007",
+   "S"
+  ],
+  "5a79c7ac5542994bb9457097": [
+   "87bbaf62733ccb3cbf092b4152098e50bdb86f72ad9bcf6a3ec5e46aa17a3b2f",
+   "A"
+  ],
+  "5a8f7a7055429918e830d230": [
+   "0ecf52c4239f8609199101fb8575fa699c00dfe0c70b8842189cf0c33c439432",
+   "G"
+  ],
+  "5ab7ba4155429928e1fe38b2": [
+   "079bf9eede0ba456d5333b35b5a595f2bf9a5ef36ccabceb990d59ef5a39a767",
+   "S"
+  ],
+  "5ac273455542992f1f2b38d4": [
+   "b27ac6bda77c5751ab63cd6be6a916be59a781149e827de0f7f807a7839f4a8f",
+   "L"
+  ],
+  "5adcc3ed5542994d58a2f6c4": [
+   "65386e58e728d47c8e396a7ef22174f818668144958aa710b8d3ff0185434403",
+   "A"
+  ],
+  "5a7506f455429916b0164240": [
+   "325d0b0a721c5650012368e548904922440719b814945aa7c9f8427c9b0fbb04",
+   "V"
+  ],
+  "5ae328df55429928c423963c": [
+   "3977e4486bef053f4322f0fbb14cf88601698b59a5b629274bb8d7a685829d73",
+   "S"
+  ],
+  "5abce3015542993a06baf995": [
+   "da778aba4b9bc5239edd1ebc3320b5ca350d0315a076ee997cc43f4233461711",
+   "S"
+  ],
+  "5a77626b5542993569682d77": [
+   "a8ed5378c24387285fb90a849ad141205396c315e34ec6273aafe0c6f8314d13",
+   "A"
+  ],
+  "5a7a01b15542996c55b2dcd1": [
+   "06ad4c7c4c7e516c5a01a37beae3ed7dd5a99f14928c3c89e2d1335767ee5650",
+   "S"
+  ],
+  "5ae1f596554299234fd04372": [
+   "61bd28c2f7964e86ef3bde2bbc5561c3577be85324e1381cddf6674535c5eb98",
+   "S"
+  ],
+  "5ac1928655429964131be234": [
+   "8046f5a6f6affa63ebe1b25a7dffc94a7a5fdd7b9bb8dae08d3b5d7d08b9bbc3",
+   "S"
+  ],
+  "5ae13c5155429920d5234336": [
+   "303bc343f913357fff16259c98714fea080721f24108faa4775c269c3e7541bc",
+   "G"
+  ],
+  "5ab98d70554299753720f82f": [
+   "c679600f49c847e62105d2bc19e6f73c732ba50931af59065d0ceacb29ed9f2c",
+   "T"
+  ],
+  "5ab3e577554299233954ffe3": [
+   "da69fe7b59e9436165c877e177527ca56141c69e44b6edb8dd76694106af2eb2",
+   "S"
+  ],
+  "5a878d795542993e715abf9d": [
+   "e4db704af6949a57620cd12175cd0fd7f90f78d12d1c325c8c892ad81e13eddf",
+   "R"
+  ],
+  "5abd0eae5542996e802b46d4": [
+   "84e2bfad42bee1d75c72fcbb6325dcd0601f5fa011a10329202192b403b3904f",
+   "C"
+  ],
+  "5adf744d5542992d7e9f937e": [
+   "e4ec98154b54e48fbdd7edfbd220f74ba4b48de3d3f68aa7e8fa37f5e39edf59",
+   "S"
+  ],
+  "5a77dbaf5542997042120b5b": [
+   "491244abf0a7899c096410b644ca53e2df437848ec3b7400e93c1db8687942ae",
+   "S"
+  ],
+  "5a82c51055429966c78a6a8d": [
+   "c5bb95e26afea04aeb1bda19ea40ab524d051bbd2d7cc148e48620e23bd96bcf",
+   "A"
+  ],
+  "5a7da98e5542990b8f503a17": [
+   "8ac911e786f6c8c998d23c201af10546c65c6d069b0201d631f65f67d80edabd",
+   "L"
+  ],
+  "5abbe09d55429931dba145c0": [
+   "434b670c8d818b38d1ea514f71a0ff290ca0b731eeb61220f77db7e3b988c174",
+   "S"
+  ],
+  "5a76dc2d55429972597f13eb": [
+   "87c4eeb4c4a56bf98b6a33bc56e979910e1780ff88107a5a4dcc4248b5560d52",
+   "S"
+  ],
+  "5a9057795542990a984935f7": [
+   "0539966f6b2b17e6768b5584c2be7ad68598255d1b45ba57291a4ab008d55519",
+   "T"
+  ],
+  "5a8732505542991e77181713": [
+   "ba46a5ed185606f9054b874d2d35fc56f0c538e29194514b1f9ec8625ab516cb",
+   "L"
+  ],
+  "5a734acf5542991f9a20c6ec": [
+   "e0985625c681d23eccd33851f82286734662327bfa8fb761738d103574b9c4cf",
+   "S"
+  ],
+  "5ae5f47c5542996de7b71a82": [
+   "5d1598ced47c8ec37a6d0db8f956bfba59499b9c7845b24369353d5bae69a10e",
+   "S"
+  ],
+  "5a763986554299109176e6bd": [
+   "65eb5ccc66cdf47a9195e4a035ba6740192e4e23cad7d6961e3f1de724ac1a2a",
+   "S"
+  ],
+  "5ae1f8235542997f29b3c1cf": [
+   "4832deaf97a213865d225b233c728c6f68b349bd34ba8fb8a17211333c4642f2",
+   "S"
+  ],
+  "5ac245015542992f1f2b3829": [
+   "688b51edb4721b52a4183056db66601020fa525d2238490c7bc44bc954e9e612",
+   "S"
+  ],
+  "5abea85f5542990832d3a070": [
+   "eeeab27bc9541bf3f9a72402ffc87bbb6c2313d3065c65f93274c95fd7e63256",
+   "S"
+  ],
+  "5a79ca585542996c55b2dc71": [
+   "625822ac73eded8af24511fd7492daa085694a54dd908dc006f2b428ab6c4028",
+   "L"
+  ],
+  "5abb7ff15542996cc5e4a015": [
+   "78afc9491241952b6d03ec792e2e29ab372b6218dd307b3dccab61449e0ccad4",
+   "L"
+  ],
+  "5a7be294554299294a54ab44": [
+   "c6fc54f3a049e5d59e9e1e627e68fe5e51c3ac6c320bde95e6bc1d8c7e1333e6",
+   "V"
+  ],
+  "5a8888e35542997e5c09a5f6": [
+   "0db25c93f54a6d9c19ceb7318b787caac2329bb8c88652e743c1090f510cc45e",
+   "S"
+  ],
+  "5ae3e2455542994393b9e78c": [
+   "7795c3d91779ac6e97faaf1bb064f93c260d375d5a511d99838c9c0561e69ca7",
+   "S"
+  ],
+  "5a7a43f25542996a35c1716c": [
+   "99521b6b7925d553edc3c64aabf33bfafc2bac2155d96bdcaf93a097e9ba77da",
+   "S"
+  ],
+  "5ab5d4eb5542992aa134a3aa": [
+   "559c9d91346eed992cc32cf9639fbf007891cf16ff91ee8796cd358c28ef2a93",
+   "S"
+  ],
+  "5a8f9cdb554299458435d69c": [
+   "9c8e1af454597026872691c627087247f6cd4d47bdf7729dd76a0acee6188288",
+   "S"
+  ],
+  "5ab7da6f55429928e1fe3928": [
+   "a1367d16f0940edba2425c7e62a4ff994009f9904ab79c6869714d7bb7855fde",
+   "S"
+  ],
+  "5ab2d61155429916697740ff": [
+   "ad8ba20838e0fb64e2be4b39909b5ce4b4a661a0916573a1d058a760ee037ece",
+   "S"
+  ],
+  "5adf39d45542992d7e9f92e5": [
+   "3d77da240e803bfe73b14f9997439bcfb92063db3f5826d3bb1c300aecd2c920",
+   "S"
+  ],
+  "5a72f3a85542992359bc31e5": [
+   "0d40e712749c990a530bbf5e4ae9a2b8fba9e721a64de6c1cff1f851261374c7",
+   "S"
+  ],
+  "5a81d51a55429903bc27b9d2": [
+   "70058a48fbe75b94cae18b4e171ff964a412abc1605ee999313f79889756ca2f",
+   "F"
+  ],
+  "5ae5fd395542996de7b71ab3": [
+   "49400d735348393168deea839929074e12691650c522aed6c2cc7d8399bc546b",
+   "G"
+  ],
+  "5abd81ff5542993062266cb3": [
+   "23714bff415883e81d27e5ac489f82caa8a83ce10d27455d81a3b6e6db4e2a3e",
+   "L"
+  ],
+  "5abe7c515542993f32c2a128": [
+   "9e6d4372033332dc988c621360dc8d7a1b04a9f2847df84441989d9c52489446",
+   "S"
+  ],
+  "5ae0b0af55429945ae959424": [
+   "836f86f2a761dbef44c06b0bbc3e0156c757fd28eb465cd58844ff3803f70e08",
+   "L"
+  ],
+  "5adbe1b355429944faac23a0": [
+   "189a12a12c770add46c6a4c1cf94e5826ab858453ea5df71852afa2723a4a64d",
+   "C"
+  ],
+  "5abd8ac25542993062266cc2": [
+   "d3a1c6be0821e3a1fab4850ed2d06f4cdb64eaad09b52e613cc1aaf0fb18f7a8",
+   "G"
+  ],
+  "5a7dbc175542995ed0d1666b": [
+   "719357f110d5809566f9367f25f517d6dc253578e69b64d6b178563bd9aeabec",
+   "S"
+  ],
+  "5a8a647b55429930ff3c0dc1": [
+   "2bc17fcb612b4395d337374e676ad311b3057b8c38e75704340d8c88b923328e",
+   "S"
+  ],
+  "5a78e86f55429974737f78fb": [
+   "f6ac2dc0eb25c528125a35ccbd8bc192ae8adc00b052cf5345fbb961f740ee33",
+   "L"
+  ],
+  "5ae5df84554299546bf82fa8": [
+   "37fe259d59dacdf444387483beb5de26f8bcdc4a1dda8459556e95b6a69a8498",
+   "V"
+  ],
+  "5add10ca5542994ed6169c59": [
+   "7372055faea9cca32c6873c7608c442f7d49b158c47b76697c9613a157043390",
+   "A"
+  ],
+  "5ab7f27e5542991d322237d6": [
+   "7e427ccef3adec7e11e1015f6891b31c08f5035ef86a817e7d75e5cebe90448b",
+   "V"
+  ],
+  "5ab4b9f75542990594ba9ca4": [
+   "10f43d94fd424280c58b405ad081ee67f7e09adf30fc4389a4b15f3ef58c371d",
+   "L"
+  ],
+  "5a83c9e45542992ef85e2361": [
+   "552fe695a969caa96a8fb2f9c70af97ca7cf688698f102f4a1ec42aa1d7c54ed",
+   "S"
+  ],
+  "5a89e47f5542992e4fca8457": [
+   "75af6e64820c45cecf6fa96735b040e5a32a6820fb57a7605dcf2922fbae62cb",
+   "G"
+  ],
+  "5a79dae35542994f819ef0d3": [
+   "cd7f03f30d9eda133e871b7c927dabb9a680a19b85bc5946c297ebccdf709619",
+   "G"
+  ],
+  "5ae61bfd5542992663a4f261": [
+   "8e7df7dd529cdff97a43f54a62d8760004167a84b9b68e231974690389db7953",
+   "L"
+  ],
+  "5ab92f1f554299753720f77b": [
+   "4dce1f81f93b8e991567d28e9ac6f4390b9f6e80888b564afb3d2eb10693ef5e",
+   "G"
+  ],
+  "5ae6545f5542991bbc9760c2": [
+   "7d74bf7fddff452e4038b8206c4a99f4d97374f78e1db8deea924c924d2d153c",
+   "A"
+  ],
+  "5ab56200554299494045ef88": [
+   "aacb159636d7d5996bb850b4a64916ec8ee06b185ed0df5a8628ea96b825a7a9",
+   "G"
+  ],
+  "5a7eb9f355429934daa2fc53": [
+   "406a46d55dfa81c708228db852f6bf9c7735249ff01c0536db43abeaff8bf9a2",
+   "S"
+  ],
+  "5ae038e955429942ec259c4d": [
+   "ee02675ab71cad37258e6aeb70ab2557c52fbf28c3cc1bd67f085d6dce516f87",
+   "S"
+  ],
+  "5ac249bd55429951e9e68528": [
+   "9ade8257e5d6100d47973d91dd2981c170ae02d38c5820e7ffd352a22834e503",
+   "S"
+  ],
+  "5ab3dbd8554299233954ffd6": [
+   "6e121ddca4c6409378e655b0e2034aa252d00f5bed1321b6284b817398091322",
+   "A"
+  ],
+  "5a74e6e855429974ef308c8e": [
+   "6be188db4444ab19f3c06bdc48af40fd3b7f7f711c737bc30338034d0e780f98",
+   "S"
+  ],
+  "5a84de255542991dd0999e06": [
+   "c4bf8ffd4a1f91841161086232eac6a22042a4285030ad34d7b82adb65a7dc19",
+   "S"
+  ],
+  "5abbd34d5542993f40c73bc6": [
+   "2ac8f00c9f6b007efdc9744931a86d468aed9d30d4c576a157936549aa7cfe0f",
+   "S"
+  ],
+  "5a86f13c554299211dda2b5e": [
+   "5fe39feba2d7a0c0cbf39659fd734864326e63c1cb8c3333baefe6a7ff1bf407",
+   "S"
+  ],
+  "5ab6e8e6554299710c8d1faf": [
+   "0e55d32b571f1a54edf48f4c07de9b4aa75173dab7dab91552dd6a2df8eac1c6",
+   "S"
+  ],
+  "5ac275f155429921a00aaf82": [
+   "7b1a4b1b326862872c5a32219fc9adb272d7b1daac97cee072affdee1a586c5f",
+   "V"
+  ],
+  "5ae256c35542994d89d5b3e9": [
+   "b19057f46cff57907eb66fc1b4a1bb4ffa5dea18507fa85aad13e7b1036c53dd",
+   "S"
+  ],
+  "5addeb685542992200553bb1": [
+   "16b5237fee303bb5f550e868682ffc2bf0ff7da4a67b7dff28e5d0a89c24d912",
+   "S"
+  ],
+  "5a7c9d2e55429935c91b5261": [
+   "ac983be5874e848efcc242b2653105e5e1a69abed0822a798937962d601d5de6",
+   "S"
+  ],
+  "5a88b3b4554299206df2b336": [
+   "84126d3341f1bc48059b75d31b07cd45a6ae6b2128c67098edb69c40422c1117",
+   "G"
+  ],
+  "5a79c1185542994bb9457065": [
+   "0c88363446f9ad2137fa18a58a828308ebd6d66eed8b37dedd4b7e869c99bc64",
+   "C"
+  ],
+  "5a79f6825542996c55b2dcb4": [
+   "0b53efcb355eb8a78c6418d48ab0f0d9fd5c83ea56fa4b4bf53b8746034804cf",
+   "V"
+  ],
+  "5ac3ac1855429939154138ab": [
+   "9441510fe9c7d45c8625c061b3ef865a6d9b88ed34d36f735eae640d4e5330fe",
+   "S"
+  ],
+  "5a87411d5542994846c1cd37": [
+   "674b4d6863d75bd8dbdaf831a6315d59f03807b8392504c0278377473a3e762f",
+   "G"
+  ],
+  "5ab8919655429934fafe6e13": [
+   "e2339a952cf2e28db5b35e776c9a27ba73f086979d1f239a869ea19f4b680ebb",
+   "S"
+  ],
+  "5add98ef5542997545bbbd82": [
+   "e4f58d982d7b860b3dbe065d6020e26a2500e217b1e95857f0c8285fdb59068a",
+   "S"
+  ],
+  "5a85a37d5542997175ce1fe5": [
+   "cb2b8cd91c4c1e8eddba3a1b60c2306bc3bd9faeb64d2cd8e24334ab980a9013",
+   "S"
+  ],
+  "5ab6c47e55429954757d3368": [
+   "fee88636dfdb964ac947210b8841faf80277be7781bd308e844e26cb5234d867",
+   "S"
+  ],
+  "5ab5057b5542991779162d56": [
+   "68410b0d5135f5b2af4b043a131fec87470e1c828acdbd000bc24cb352f1dd74",
+   "G"
+  ],
+  "5adfb790554299603e418389": [
+   "35602edf0f4a5fbfcf6e9f6dbb4da5ede2400b35ee9cdfaf8bf3e827eca2e5e7",
+   "S"
+  ],
+  "5ae1f2d4554299234fd04358": [
+   "1b576141e23b7281f0160a9a9ad2f0e5f08dcc6aa16078a3f7b19d817303a50b",
+   "S"
+  ],
+  "5a8af94455429971feec45b6": [
+   "bbbf99970e3b295548f6c85595171e55e5e6183bdabaa4ec7548e49dfb63d6b6",
+   "S"
+  ],
+  "5ae1dac85542997283cd229a": [
+   "7e129b791f5326e2f1d2934e0629d3ef7961f7b6b5f4b644d142ef48a2736908",
+   "S"
+  ],
+  "5a86458b5542991e771815ec": [
+   "2eefaf6c7f7eec6fb88074a2b24f113f219a6038d1bb1be6ea7acb3baab29d42",
+   "G"
+  ],
+  "5a879fe05542996e4f30888a": [
+   "0f29b936502db035c12658e353703c747eb37d06bcb66a3e10d8b7fb82894bda",
+   "S"
+  ],
+  "5a7bd791554299683c1c62c2": [
+   "2577e2ad1d9d9c02380b029d83e0ec68ecab094d15b695c17eda4b07f97dbbaa",
+   "S"
+  ],
+  "5ab6e6c7554299710c8d1fa4": [
+   "c0df70d54a11656e7cc9050946a1de35ca39d678549be24230e98c96d26dff56",
+   "S"
+  ],
+  "5a8b448255429971feec468c": [
+   "5292e3530e96f78acf884c956d7b6c4eb93509df1386eb44650848e7193fb400",
+   "S"
+  ],
+  "5ae0a48155429945ae9593df": [
+   "42c77f662688fc658e0721debb5a41c4916a977090ab29acdcf99e16582096f3",
+   "T"
+  ],
+  "5abb61735542993f40c73aef": [
+   "a5c3286881103e0e21b324d28d1110d4f5c02b20f687257ce3c8267e2e17fcf8",
+   "R"
+  ],
+  "5a8dce155542994ba4e3dd24": [
+   "fbde9d27a320acd7c333ed60558f01fc1969972c40869902003f5328ecd7dbdb",
+   "S"
+  ],
+  "5ae657d55542995703ce8b5b": [
+   "8a7783ba57c660b0a27e80af8a5f304b9c8ac94e74e7b8b1cf3dbfcacfcd92b8",
+   "S"
+  ],
+  "5a829fab55429954d2e2eb83": [
+   "5b155f3d0632927c784d4d40a5d1b8f19797dc9fba7bd8af74df6bd9bc83b0c6",
+   "S"
+  ],
+  "5a8210f355429926c1cdae24": [
+   "b571def9c517a0f386ad1d568e16bb263d901f4ded4d769f5d31534ec3c1cf54",
+   "V"
+  ],
+  "5ae5caff554299546bf82f69": [
+   "9591dcc7b880585634558d9e4d1e5f4f538cd6413c56e5f0f562de7171589023",
+   "S"
+  ],
+  "5a9072dd5542990a98493656": [
+   "1f562bc93b5dc28e7975b873627b9251a2eb90682458dc0df09777bd77306a51",
+   "S"
+  ],
+  "5ab614e5554299488d4d9a9c": [
+   "dd6ab0a451e553d6aab2b8b42fb343ccfb28137f033807ce394477613b04c65f",
+   "S"
+  ],
+  "5add98985542990dbb2f7e82": [
+   "2df96236bd28d6d78a957dd8ffd278dbd9aec44c9ce3cf5780b04ec9dc4fe800",
+   "G"
+  ],
+  "5a8e1577554299068b959e54": [
+   "691704c540b9e81ad8e1e84e9a1880c7d862e8d57cbce6496fc932506dd99cef",
+   "G"
+  ],
+  "5ac4f2e755429924173fb503": [
+   "cf2a482e4916e890973566d4309ba91a4bc0fc78b0a1637604c3936c0fdea445",
+   "A"
+  ],
+  "5ab7f22a5542991d322237d4": [
+   "381c3493d440cf552d89ded8226c722868bfdf4e96b07f934cbc8db7ef9694d1",
+   "S"
+  ],
+  "5ab846e155429919ba4e229c": [
+   "369973700d936f3e9177f0543aff0af4fa6b41275e3cdfc7aa4fa493234c6650",
+   "S"
+  ],
+  "5abeab375542990832d3a091": [
+   "4277a3376997af4be6861c122b6f5ba74f45332f7435c17307422782c092aea0",
+   "S"
+  ],
+  "5ae6914755429908198fa627": [
+   "ad9ee13e27ff3884fe02cf20d7dd348b7106336136dcc89b582425cd5e7b1c12",
+   "G"
+  ],
+  "5ae51fa25542992663a4f11f": [
+   "f7c4ab813b8d363a6e742e6251d9759dc348fad544445b2fd0b84f9ac2cfe075",
+   "G"
+  ],
+  "5a724ba25542990c210a40c7": [
+   "0d38263dfc4ba4af43a4cfa8d8b84c32071860d0800446a7632d02a8f1c5bff4",
+   "T"
+  ],
+  "5ade881f5542992fa25da7af": [
+   "a44c5c98b451a9517777b15f4a2fbbd06f45780eddab35885024098386cdc9a0",
+   "S"
+  ],
+  "5a7b895c5542997c3ec97206": [
+   "222d0f3ba34405ad4b7db4da348bd923827c3a3f25d8718aabe93d52f3a8ce8a",
+   "V"
+  ],
+  "5a7c68575542996dd594b91c": [
+   "03c8d06d89a8a49b2699a5c82e17406770e9a6e235c8cb66b0c32cd1b84346bb",
+   "T"
+  ],
+  "5ae1801955429901ffe4aec4": [
+   "53ae832e894c2f9fc35e9a5c719af8eaad12ec12a35f7f900a341e6f5b98a5be",
+   "S"
+  ],
+  "5ac1f4495542991316484bd2": [
+   "016f51256db6b4cbe91aa40a257aee81aabab1d700a8a87cceaf13a9f387c612",
+   "S"
+  ],
+  "5adcfdc555429947343537f4": [
+   "0b5243514948aa8913098383ead71a15e9e5090d59e532e45c10ff69bd83a71a",
+   "S"
+  ],
+  "5a8f53ad5542992414482a50": [
+   "33bf85d7db76de349c79d01b1a5b2e431251971540271fff4d1aee9aac781dc9",
+   "A"
+  ],
+  "5adbfb3f55429947ff17388a": [
+   "ffa63036a2faee1da33fbfffd2d21881ec37b48f8fbe4cf86ebbea073fa9c337",
+   "S"
+  ],
+  "5ae5f1a8554299546bf82fd9": [
+   "850a515bdd3c43dec3699107157b176356ed68a7cc332401fab0bc58f16c3ccd",
+   "S"
+  ],
+  "5ade5e335542992fa25da766": [
+   "00ed4af35a404141bfd2d9f6e67dbf1284615453b5753458686d1e5eb1e9f14a",
+   "G"
+  ],
+  "5ae7766455429952e35ea920": [
+   "87e4cab3c98db9fd628435ee6e063a24e07f2c02e28465c19c6ba056b94c1131",
+   "R"
+  ],
+  "5ae07b0155429945ae95935d": [
+   "af214c99f1b7c85a63b7bb7a7cb7ee24461efc4cc9cfec7f687f0306524fb7f1",
+   "S"
+  ],
+  "5ac1795f5542994ab5c67d5f": [
+   "be1b4c71dab329448d9bae7fc011735bb2bf23d8d6fba3508f9b3fe559c67512",
+   "V"
+  ],
+  "5adc9ebc5542994d58a2f681": [
+   "a225d10018ba98c938eec21d780218170459645463c35763baa9612fc2c3399a",
+   "S"
+  ],
+  "5a86ebac55429960ec39b6d6": [
+   "c36209959698a7057482894ff62dc91e4f405ff356ca36a987af136ec7fc3bdf",
+   "S"
+  ],
+  "5ae0819155429924de1b70ea": [
+   "7b760e66badeb2b8378c0938a1fdbf93d48ef787c91b520ae32505080c0a0ebf",
+   "C"
+  ],
+  "5add13b15542994ed6169c65": [
+   "420b75b5cbb285ba4738e956227237f58cc7bae791fa831267476110eb37dc53",
+   "S"
+  ],
+  "5a8756aa5542994846c1cd69": [
+   "3c51a24f83a988659570fafcac6c1bdfa77d4f97ed4acd547521076cbc14eddd",
+   "S"
+  ],
+  "5a8c493e554299653c1aa020": [
+   "c75aefa0dec8a7b517dc8442f4e1760c7677b202097145506b34402cd385c053",
+   "V"
+  ],
+  "5ab2c418554299545a2cfa67": [
+   "8d8a19925f315d512cc3318cb343784cc58376b9c6d116a486dba21f5b578d67",
+   "S"
+  ],
+  "5a7ba83f5542995eb53be981": [
+   "b390ca4ee48d63f18d0bd378c535a29e5962e222253bf110762da1e47913ff49",
+   "C"
+  ],
+  "5a9092cc55429916514e74fd": [
+   "6b8b783e3dfaa88562989bffa6efd704dc9ac9d9b0964cbf2a0974862c9c8790",
+   "G"
+  ],
+  "5adc861c5542994d58a2f62c": [
+   "9e750d65351c7c3ae63e660a84c6afa7d651a17d7daba9e7e7dc6acdb4970e0c",
+   "S"
+  ],
+  "5a7e08305542995f4f4023ab": [
+   "57d7b3da9c5b0320b386495f71d6e3af61b53c3b1ac9127c16ad53d2334b6b60",
+   "S"
+  ],
+  "5ac19ff35542991316484b61": [
+   "5c82deeb10e92df218cf1922e94ec80f619cc99dd031eb0104011036cfe71e96",
+   "A"
+  ],
+  "5adc93a4554299438c868e01": [
+   "59668567dc4cb795fb0b65b01bb8217d392777475caab759e4bed378520f76f9",
+   "S"
+  ],
+  "5a82f35f5542995ce29dcd14": [
+   "4ae28282747bf8fa4610595a16b9225b6dc852a45f01daa89aaf919ed7ef4121",
+   "S"
+  ],
+  "5a7b81715542997c3ec971d4": [
+   "e3b1dade7ed4655f1294a1ebb7bea6bea5904067615a157235f970d8957cc756",
+   "A"
+  ],
+  "5a81ff1a554299676cceb1c2": [
+   "ee059ed7fe37b9bcf8d5c566b0175496d587e8a11c2b73a8bebd82e40cc57c0a",
+   "G"
+  ],
+  "5a843de75542992ef85e23b4": [
+   "556eba402226173a97912e4bd41507e8a50761105ce87579de940739c476586a",
+   "A"
+  ],
+  "5ae2c416554299492dc91c67": [
+   "330a61d1be4f2bc99e9962d4b87316b9cfe9f43456a1f94a374e08fa0fd282fa",
+   "S"
+  ],
+  "5abba584554299642a094afa": [
+   "6a5f62f8d03aa2bbc78e9f078e73d9c55f24e94c298ef96ba3b014e91d06c323",
+   "S"
+  ],
+  "5a87ab9b5542996e4f3088c2": [
+   "1e52a2060f16832f634202e8bca7ce6d1652854cd3d1ea8840c833fce5bd11a7",
+   "S"
+  ],
+  "5ab2909a5542993be8fa994f": [
+   "34342d0e2ed2dbabdf23cec939dcb0a2ba3e7429aa23cd6e11bd4e0e58d3f781",
+   "S"
+  ],
+  "5ae524415542992663a4f121": [
+   "a41a3cfb5b274e7ecee732420e2ff0e9455f02907eaf5d0b6671eb50ff506ced",
+   "S"
+  ]
+ }
+}

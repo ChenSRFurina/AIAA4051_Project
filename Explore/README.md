@@ -1,5 +1,9 @@
 # Explore 成功与失败对照反馈
 
+## 最终课程实验 · 2026-11-25
+
+原版 C、C2b、C2c 在固定 SearchQA 与课程 HotpotQA 均已完成冻结测试。[最终报告、实际配对覆盖率与匹配预算](../results/final_project/index.html) · [离线复现说明](../results/final_project/README.md)。C2c 的问题线索检索在 `explore_c2c.py`。下文的 train/dev 限定属于 11 月 10 日单次 API 开发实验。
+
 ## C2b 后续开发验证
 
 独立实现位于 `explore_v2/`，运行与审计说明见 [C2B.md](../api/C2B.md)。它改进训练失败诊断、原文证据保留和算子范围指令；原 C 的配对检索、失败抽样、共享初始化、预算和选择规则保持不变。新实验仅使用 train/dev，不运行 test，也不覆盖下面的封存 C。

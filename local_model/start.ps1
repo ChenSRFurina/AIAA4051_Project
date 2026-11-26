@@ -1,15 +1,19 @@
 [CmdletBinding()]
-param()
+param(
+    [string]$PythonExe = 'E:\Anaconda\envs\qwen3.5\python.exe',
+    [string]$ServerExe = (Join-Path $PSScriptRoot 'runtime\b11871\llama-server.exe'),
+    [string]$ModelFile = 'F:\Document\HKUST\2026fall\NLP\Qwen3.5_9B_4bit\Qwen3.5-9B-Q4_K_M.gguf'
+)
 $ErrorActionPreference = 'Stop'
 $projectRoot = Split-Path -Parent $PSScriptRoot
-$pythonExe = 'E:\Anaconda\envs\qwen3.5\python.exe'
-$serverExe = Join-Path $PSScriptRoot 'runtime\b11871\llama-server.exe'
-$modelFile = 'F:\Document\HKUST\2026fall\NLP\Qwen3.5_9B_4bit\Qwen3.5-9B-Q4_K_M.gguf'
 $statePath = Join-Path $PSScriptRoot 'state.json'
 $ledgerPath = Join-Path $projectRoot 'Baseline\runs\gpu_accounting.jsonl'
 foreach ($requiredFile in @($pythonExe, $serverExe, $modelFile)) {
     if (-not (Test-Path -LiteralPath $requiredFile)) { throw "Missing required file: $requiredFile" }
 }
+$pythonExe = (Resolve-Path -LiteralPath $pythonExe).Path
+$serverExe = (Resolve-Path -LiteralPath $serverExe).Path
+$modelFile = (Resolve-Path -LiteralPath $modelFile).Path
 if (Test-Path -LiteralPath $statePath) {
     $savedState = Get-Content -LiteralPath $statePath -Raw | ConvertFrom-Json
     $existingProcess = Get-Process -Id $savedState.pid -ErrorAction SilentlyContinue
@@ -44,6 +48,7 @@ $serverProcess = $null
 try {
     $serverProcess = Start-Process -FilePath $serverExe -ArgumentList $serverArguments -WorkingDirectory (Split-Path -Parent $serverExe) -WindowStyle Hidden -RedirectStandardOutput $stdout -RedirectStandardError $stderr -PassThru
     $state = @{ pid=$serverProcess.Id; exe=$serverExe; model=$modelFile; alias='Qwen3.5-9B-Q4_K_M'; base_url='http://127.0.0.1:8000/v1'; session=$sessionName; ledger=$ledgerPath; stdout=$stdout; stderr=$stderr; started_utc=[DateTime]::UtcNow.ToString('o'); context_size=16384; parallel=1; reasoning='off' }
+    $state.python = $pythonExe
     $state | ConvertTo-Json -Depth 5 | Set-Content -LiteralPath $statePath -Encoding UTF8
     $deadline = (Get-Date).AddMinutes(4)
     while ((Get-Date) -lt $deadline) {

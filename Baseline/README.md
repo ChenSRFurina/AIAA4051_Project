@@ -2,7 +2,7 @@
 
 Baseline 包含 N（无技能）、I（原始初始技能）、B（原版失败反馈优化器），以及数据、调用、预算、评分、图导出和冻结流程。Explore 的 C 复用这些公共代码，只替换优化器输入反馈。
 
-环境安装与后端选择见 [主 README](../README.md)。当前 Mac 使用 API；原 `configs/searchqa.json`、`hotpotqa.json` 是旧 Windows 本地配置，不应与 `*_api.json` 混用。
+最终课程实验采用本机 GGUF，入口见[最终复现指南](../results/final_project/README.md)。历史 Mac 环境使用 API。原 `configs/searchqa.json`、`hotpotqa.json` 是旧 Windows 本地配置，不应与 `*_api.json` 混用。
 
 ## 一键执行 API Baseline
 

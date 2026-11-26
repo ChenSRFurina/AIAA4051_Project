@@ -1,6 +1,8 @@
 # Qwen API 配置与运行
 
-Windows 本机使用 conda `qwen3.5` 和队友部署的 `qwen3.5-9b`。此前使用阿里云的实验记录见 [API 实施方案](../Project5_API_Plan_zh.md)。
+最终课程结果使用本机 Qwen3.5-9B Q4_K_M，复现入口见[最终指南](../results/final_project/README.md)。以下为历史 API 路线。
+
+当时 Windows 本机使用 conda `qwen3.5` 和队友部署的 `qwen3.5-9b`。此前使用阿里云的实验记录见 [API 实施方案](../Project5_API_Plan_zh.md)。
 
 ## 配置
 

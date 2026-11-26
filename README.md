@@ -2,11 +2,19 @@
 
 本项目复现课程规模的 GraphSkillEvo，并研究成功与失败对照反馈能否改善图结构技能。模型负责回答问题和生成技能文档，代码负责评分、选优和经验记忆，不训练模型权重。
 
-## 当前结果与报告（实验 2026-11-10，发布 2026-11-20）
+## 最终课程结果 · 2026-11-25
+
+[中文 HTML 总览](results/final_project/index.html) · [六页英文报告](results/final_project/report.pdf) · [逐题与逐轮附录](results/final_project/appendix.html) · [离线演示](results/final_project/demo.html) · [复现指南](results/final_project/README.md)
+
+两套数据均使用本机 RTX 4070 Ti SUPER 和相同的 Qwen3.5-9B Q4_K_M。SearchQA 固定 100/30/50，课程 HotpotQA 固定 300/150/1000。N、I、B、原版 C、C2b、C2c 已完成开发和冻结测试。原版 C 与 B 的 test 正确数分别为 SearchQA 33 对 35、HotpotQA 618 对 618。C2c 在 HotpotQA 上答对 639 题，在 SearchQA 上答对 30 题。
+
+附录包含 64 张真实候选技能图、B 的 448 条 dev/test 错题、共同调用与生成 token 预算下的比较。论文、代码、固定题目 ID、真实优化输入、评测输出与 GPU 台账均可离线核查。运行和复算从上方复现指南进入。
+
+## 历史 API 实验 · 2026-11-10
 
 [全部结果与离线报告入口](results/README.md) · [机器可读结果](results/20261110/summary.json)
 
-- Part 1/2：N/I/B 的开发实验、SearchQA 固定 50 题 test 和失败分析已完成。SearchQA test 正确数为 N 35/50、I 36/50、B 34/50；HotpotQA 课程 test 仍缺失。
+- Part 1/2：N/I/B 的开发实验、SearchQA 固定 50 题 test 和失败分析已完成。SearchQA test 正确数为 N 35/50、I 36/50、B 34/50；该次 API 实验尚未接入课程 HotpotQA test。
 - 原版 C：两套数据均完成三轮。SearchQA dev 为 B 23/30、C 22/30，test 为 B 34/50、C 32/50；HotpotQA dev 为 B/C 均 19/30。
 - C2b：保留原预算、抽样和选择规则，仅改进训练反馈；两套数据均完成三轮 train/dev。SearchQA 22/30、HotpotQA 19/30，与 C 相同，没有取得最终 dev 提升，未运行 C2b test。
 - `results/20261110/` 包含完整 HTML、图表、逐题结果、反馈审计、校验清单和历史协议源码快照。下载仓库后用浏览器打开 HTML；GitHub 文件页只展示源码。模型、原始数据下载、运行环境与 `.env` 不随仓库发布。
@@ -19,9 +27,9 @@
 | C | 成功与失败对照反馈优化器 | Explore |
 | C2b | 诊断与证据反馈，原预算的后续 train/dev 验证 | Explore/explore_v2 |
 
-**当前报告使用队友部署的 `qwen3.5-9b` API**，Windows 环境名为 `qwen3.5`。早期 Mac / 阿里云配置和历史结果保留在下文，不与本次报告混合。固定评测、封存 C 和 C2b 的具体入口分别见 [Part 1/2](api/PART12.md)、[Part 3](api/PART3.md)、[C2b](api/C2B.md)。
+**该历史报告使用队友部署的 `qwen3.5-9b` API**，Windows 环境名为 `qwen3.5`。早期 Mac / 阿里云配置和历史结果保留在下文，不与本次报告混合。固定评测、封存 C 和 C2b 的具体入口分别见 [Part 1/2](api/PART12.md)、[Part 3](api/PART3.md)、[C2b](api/C2B.md)。
 
-## 1 两种模型运行方式
+## 1 早期环境中的两种模型运行方式
 
 | 项目 | Qwen API | 本地模型服务 |
 | --- | --- | --- |

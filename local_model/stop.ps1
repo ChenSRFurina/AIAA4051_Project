@@ -6,6 +6,7 @@ $statePath = Join-Path $PSScriptRoot 'state.json'
 $pythonExe = 'E:\Anaconda\envs\qwen3.5\python.exe'
 if (-not (Test-Path -LiteralPath $statePath)) { Write-Output 'No managed service state.'; return }
 $state = Get-Content -LiteralPath $statePath -Raw | ConvertFrom-Json
+if ($state.python) { $pythonExe = $state.python }
 $serverProcess = Get-Process -Id $state.pid -ErrorAction SilentlyContinue
 if ($serverProcess) {
     if ($serverProcess.Path -ne $state.exe) { throw 'PID was reused by another program; refusing to stop it.' }

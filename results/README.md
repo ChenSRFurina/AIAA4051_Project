@@ -1,5 +1,9 @@
 # 已完成实验与报告
 
+[2026-11-25 最终课程总览](final_project/index.html) · [六页论文](final_project/report.pdf) · [交互式证据附录](final_project/appendix.html) · [演示](final_project/demo.html) · [复现指南](final_project/README.md)
+
+最终两套数据均使用同一本机模型。以下为保留原时间与模型的历史实验。
+
 2026-11-23 新增 [SearchQA 本机成功参照检索实验与课程收尾](20261123/README.md)。本机 B、C2b、C2c 使用同一个 Q4_K_M 模型与共享初始化。以下 11 月 10 日结果使用队友的 API。
 
 实验完成日期：2026-11-10。发布整理日期：2026-11-20。发布过程没有重新调用模型或改写实验成绩。

@@ -1,0 +1,13 @@
+﻿dataset,arm,dev_correct,test_correct,test_n,test_em_pct,test_f1_pct,mean_latency_s,test_source
+hotpotqa,N,103,633,1000,63.30,78.52,1.601,N
+hotpotqa,I,102,626,1000,62.60,78.44,1.800,I
+hotpotqa,B,105,618,1000,61.80,77.95,1.863,B
+hotpotqa,C,106,618,1000,61.80,78.41,2.044,C
+hotpotqa,C2b,105,620,1000,62.00,78.24,2.252,C2b
+hotpotqa,C2c,105,639,1000,63.90,79.32,2.203,C2c
+searchqa,N,24,37,50,74.00,81.48,0.547,N
+searchqa,I,22,39,50,78.00,85.37,1.343,I
+searchqa,B,24,35,50,70.00,77.60,0.362,B
+searchqa,C,25,33,50,66.00,74.59,0.384,C
+searchqa,C2b,23,30,50,60.00,71.16,0.449,C2b
+searchqa,C2c,23,30,50,60.00,71.16,0.449,C2b

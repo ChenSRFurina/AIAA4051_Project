@@ -1,6 +1,6 @@
 # 本地 Qwen3.5 9B 模型服务
 
-本路线在自己的 GPU 机器上运行 Qwen3.5 9B Q4_K_M，通过本地兼容接口供 Baseline / Explore 调用。当前 Mac 实验使用 API；本页是独立的本地部署路线，不要求 API 用户下载权重。
+本路线在自己的 GPU 机器上运行 Qwen3.5 9B Q4_K_M，通过本地兼容接口供 Baseline / Explore 调用。最终课程实验在 Windows 的 RTX 4070 Ti SUPER 上完成。固定数据准备、六组实验命令和离线复算见[课程复现指南](../results/final_project/README.md)。下文保留早期多平台的部署说明。
 
 ## 1 环境与固定版本
 

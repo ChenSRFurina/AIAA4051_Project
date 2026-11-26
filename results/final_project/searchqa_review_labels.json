@@ -1,0 +1,111 @@
+{
+ "dev": {
+  "5c2009e4f1384b27b4b4fe9422f048ed": [
+   "76c776b0a59b3716b31273dac6deafd9bc812ba463d175cd83482073a764e005",
+   "T",
+   "The response gives a definition of relax, while the clue seeks the verb itself."
+  ],
+  "e3b96fc1b99247ebada09a84fa5fd205": [
+   "cb3293533d00165adbb88fe73a11319279e48037a7154e1bf022e775a8d66787",
+   "T",
+   "The model supplies the speaker Socrates. The reference is the language Greek; the short clue does not specify that slot."
+  ],
+  "1a78a8cf476c4a0dbf551558da1d879b": [
+   "31a66b2ab2215b3e60f517c22d589b88d8260910d3eb2a58dd24342f6cfc115a",
+   "G",
+   "Black licorice contains the target licorice with an added color modifier."
+  ],
+  "c7bd32aee95f485d85d0b6749d542c51": [
+   "84e2bfad42bee1d75c72fcbb6325dcd0601f5fa011a10329202192b403b3904f",
+   "T",
+   "A yes/no confirmation replaces the requested assassin's name."
+  ],
+  "c9f3a971abe64853aca3e0bb1fea6962": [
+   "ecdd8adc67e74a0a656b993bd15db2978d1b5281242573ac8fec3a08a40a5d51",
+   "S",
+   "The named senator corresponds to McCarthy; title and name length differ from the parenthesized reference."
+  ],
+  "982e414b371248788c72732975949957": [
+   "e103202c6e3661295af5a774df4e5819685642617c489c0e02f82466c1b82a82",
+   "A",
+   "The model abstains on a translation clue; the reference gives the German shepherd."
+  ]
+ },
+ "test": {
+  "59ec0cf2e15944659c77b96d911ceab0": [
+   "e74c78765c4e3dbb2c96e2b35777cc0b66cdf5f9e17c563ffb47c7c4859c0738",
+   "G",
+   "Structure is a broader term than the requested linguistic term syntax."
+  ],
+  "273e54aff0a149e08852c43ca2c5ea89": [
+   "efc556108d77eaafec7cb97c236615d68176bd07803a93b0175b522bd83b8821",
+   "V",
+   "The model supplies a flavoring rather than the spirit gin named by the reference."
+  ],
+  "218c4e7c031049cf8e40caa3ef4d03a5": [
+   "5b65071fe2c3e7acaf0a8c1543954d7391b1c464daeeb706eea6facd3a4ec816",
+   "S",
+   "The prediction adds brothers to the surname Coen."
+  ],
+  "0cbceee80bee448c8c5d40f39d12d434": [
+   "3fba5e240d6710c49b014ab0e0c8030b22fd15282f5a33b16f8c4049d3d5adac",
+   "S",
+   "The model expands the given name Catherine to Catherine de' Medici."
+  ],
+  "23a9f0f9823f4c6ba66163b1652a6b05": [
+   "3dfe6721edc30c422f491d30c7494703160879d05e5ecd8e8039e86b75c23385",
+   "G",
+   "The prediction gives a particular Gershwin title; the reference is the common musical form."
+  ],
+  "491fe356172c4f0f8899595cd13426db": [
+   "6d259c1b36d6e61ff79813db489f198f589a042431a5dc820c11bcc4aae9a2a9",
+   "T",
+   "The model names the effect; the clue seeks the physicist's surname."
+  ],
+  "671f3c2e406f4ca7b41cb69fefe72e66": [
+   "77d60a5e9b2e87254ce2aebc7a12e128cf871f237e33496ef55f553ae37eabdb",
+   "T",
+   "Pleasure Island is the setting, while the reference is the film Pinocchio."
+  ],
+  "3b118e16845f4c09a5c0ad28fa40b006": [
+   "82353240fd0c5fbfce8c98df81755384652d6d8f12c53ce0b3a5791edffd5b18",
+   "T",
+   "The model repeats the mileage stated in the clue rather than identifying the automaker."
+  ],
+  "7d249f57e28e4719aaec9d223e0a27e7": [
+   "7b26feb5f06f3f1af037f0a6cce12bc1e8781d112f9c2072beeb1c6c188ba459",
+   "T",
+   "A person is returned where a hairstyle is requested; the clue also refers to visual material."
+  ],
+  "39f0fe99cde247619b4057d0084ba9e1": [
+   "538eef2ffa1fdff2350f66c1da7815909ff38ba48ac3d539b2a5131fd63c18a3",
+   "T",
+   "The response copies the last clause of the clue; the reference is the work's title."
+  ],
+  "23a6c1fda8fc4c5fbb3b7740bee62ead": [
+   "d63eb7b7b43c27ab155b06105831c51c6323752386ed65d220498fabe0be5f98",
+   "S",
+   "The model drops the descriptive noun movement from the name Mau Mau."
+  ],
+  "7ec750061ca34bbc927c07fd28f2cefa": [
+   "651262c835fe45f2731017c7a88d46a388f5777fd6643f964fe2872676a57b49",
+   "V",
+   "The predicted calendar month is October, while the reference gives December."
+  ],
+  "60b000db8da6444098b74c01cc1eb0e2": [
+   "dc85c25cda3c3fc46edbc70d7b82f3893ba2f5f6d31e8a74abed80bb2a4983a3",
+   "T",
+   "The response gives the actress Drew Barrymore instead of the film named in the reference."
+  ],
+  "113ef1dcda894e588b26f9e31a1be728": [
+   "13da7fc71402569c308e70c6019fec16a9c899ed378a8611a1e64d399d4a0905",
+   "V",
+   "The model identifies a similarly named music act or album; the supplied answer is a television series."
+  ],
+  "8c3bc713dc724f5f907694e2d2583526": [
+   "29812e1702f64c25c65187ddb55e6e68271f7c7b95ce99e4a2dd355ce122e8fe",
+   "G",
+   "The response repeats the variety shiitake as well as the general class mushrooms."
+  ]
+ }
+}
